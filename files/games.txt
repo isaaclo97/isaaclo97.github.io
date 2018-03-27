@@ -2,8 +2,8 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.1"]
-[White "Fernandez, Pedro"]
-[Black "Garcia, Ana"]
+[White "?"]
+[Black "?"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
 
@@ -13,8 +13,8 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.2"]
-[White "Gonzalez, Ramon"]
-[Black "Gonzalez, Ramon"]
+[White "?"]
+[Black "?"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
 
@@ -24,8 +24,8 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.3"]
-[White "Garcia, Ana"]
-[Black "Perez, Maria"]
+[White "?"]
+[Black "?"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
 
@@ -35,8 +35,8 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.4"]
-[White "Perez, Maria"]
-[Black "Perez, Maria"]
+[White "?"]
+[Black "?"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
 
@@ -46,8 +46,41 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.5"]
-[White "Ruiz, Martin"]
-[Black "Sanchez, Carlos"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.6"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.7"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.8"]
+[White "?"]
+[Black "?"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
 
