@@ -2,7 +2,7 @@
 [Site "?"]
 [Date "2018.03.27"]
 [Round "1.1"]
-[White "Fernandez, Pedro"]
+[White "Fernande, Pedro"]
 [Black "Garcia, Ana"]
 [Result "*"]
 [LiveChessVersion "1.4.7"]
