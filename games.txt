@@ -1,0 +1,88 @@
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.1"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.2"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.3"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.4"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.5"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.6"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.7"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
+[Event "45 Torneo Internacional La Roda"]
+[Site "?"]
+[Date "2018.03.27"]
+[Round "1.8"]
+[White "?"]
+[Black "?"]
+[Result "*"]
+[LiveChessVersion "1.4.7"]
+
+*
+
