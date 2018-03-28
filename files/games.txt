@@ -84,7 +84,7 @@
 {[%clk 1:23:35]} Qxd2+ {[%clk 1:22:31]} 11. Nxd2 {[%clk 1:23:31]} Nc6
 {[%clk 1:22:18]} 12. Bb5 {[%clk 1:16:14]} Nd4 {[%clk 1:15:27]} 13. Nxe7+
 {[%clk 1:16:06]} Kh8 {[%clk 1:15:52]} 14. Bd3 {[%clk 1:15:52]} Be6
-{[%clk 1:09:40]} *
+{[%clk 1:09:40]} 15. c3 {[%clk 1:06:35]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
