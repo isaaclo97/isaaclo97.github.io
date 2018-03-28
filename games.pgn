@@ -161,7 +161,8 @@
 {[%clk 1:20:19]} 11. Bxf3 {[%clk 1:00:36]} Bxh3 {[%clk 1:19:38]} 12. e5
 {[%clk 0:58:23]} dxe5 {[%clk 1:14:26]} 13. Bxb7 {[%clk 0:55:47]} Rb8
 {[%clk 1:14:44]} 14. Bc6+ {[%clk 0:54:49]} Bd7 {[%clk 1:14:21]} 15. Bxd7+
-{[%clk 0:51:44]} Nxd7 {[%clk 1:09:32]} 16. Rb1 {[%clk 0:48:04]} *
+{[%clk 0:51:44]} Nxd7 {[%clk 1:09:32]} 16. Rb1 {[%clk 0:48:04]} f5
+{[%clk 1:06:34]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
