@@ -46,7 +46,7 @@ function openPopup(url) {
   // var pgnFile_default = location.protocol + "//" + location.hostname +
  //   location.pathname.replace(/\/[^\/]*$/, "/livepgn/games.pgn");
  // var pgnFile = pgnFile_default;
-  var pgnFile = "./files/games.txt";
+  var pgnFile = "./files/games.pgn";
   thisRegExp = /(&|\?)(pgnData|pd)=([^&]*)(&|$)/i;
   if (window.location.search.match(thisRegExp) !== null) {
     pgnFile = unescape(window.location.search.match(thisRegExp)[3]);
