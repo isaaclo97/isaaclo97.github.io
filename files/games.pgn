@@ -64,7 +64,7 @@
 {[%clk 1:23:11]} 9. Bd2 {[%clk 1:19:27]} Re8 {[%clk 1:19:26]} 10. O-O-O
 {[%clk 1:14:14]} Ng4 {[%clk 1:12:52]} 11. h3 {[%clk 1:06:17]} Nf2
 {[%clk 1:10:37]} 12. Nf3 {[%clk 1:01:33]} Nxd1 {[%clk 1:09:17]} 13. Nxd1
-{[%clk 1:01:48]} Bc7 {[%clk 1:04:57]} *
+{[%clk 1:01:48]} Bc7 {[%clk 1:04:57]} 14. Bd3 {[%clk 0:55:15]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
@@ -90,7 +90,8 @@
 {[%clk 1:09:40]} 15. c3 {[%clk 1:06:35]} Rfe8 {[%clk 1:05:43]} 16. Nxg6+
 {[%clk 1:06:45]} fxg6 {[%clk 1:05:46]} 17. cxd4 {[%clk 1:07:11]} cxd4
 {[%clk 1:04:53]} 18. Ke2 {[%clk 1:05:29]} Bd5 {[%clk 1:02:56]} 19. Kf3
-{[%clk 1:04:27]} Be6 {[%clk 1:02:58]} 20. h3 {[%clk 1:04:10]} *
+{[%clk 1:04:27]} Be6 {[%clk 1:02:58]} 20. h3 {[%clk 1:04:10]} Nh6
+{[%clk 1:02:24]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
