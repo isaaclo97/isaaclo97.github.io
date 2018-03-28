@@ -40,7 +40,7 @@
 6. e5 {[%clk 1:27:15]} Nfd7 {[%clk 1:28:51]} 7. Qe2 {[%clk 1:24:07]} Qc8
 {[%clk 1:28:44]} 8. O-O {[%clk 1:22:47]} Be7 {[%clk 1:22:09]} 9. c4
 {[%clk 1:18:50]} c5 {[%clk 1:16:39]} 10. Rd1 {[%clk 1:15:20]} O-O
-{[%clk 1:09:00]} *
+{[%clk 1:09:00]} 11. b3 {[%clk 1:01:29]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
