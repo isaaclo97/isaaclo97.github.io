@@ -32,7 +32,7 @@
   // var pgnFile_default = location.protocol + "//" + location.hostname +
  //   location.pathname.replace(/\/[^\/]*$/, "/livepgn/games.pgn");
  // var pgnFile = pgnFile_default;
-  var pgnFile = "games.txt";
+  var pgnFile = "games.pgn";
   thisRegExp = /(&|\?)(pgnData|pd)=([^&]*)(&|$)/i;
   if (window.location.search.match(thisRegExp) !== null) {
     pgnFile = unescape(window.location.search.match(thisRegExp)[3]);
