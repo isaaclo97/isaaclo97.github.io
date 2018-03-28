@@ -99,7 +99,7 @@
 {[%clk 1:01:01]} Bg8 {[%clk 1:00:44]} 23. Nxb7 {[%clk 1:01:15]} Rdb8
 {[%clk 0:56:47]} 24. Ba6 {[%clk 1:01:19]} Rc8 {[%clk 0:57:06]} 25. Bf2
 {[%clk 1:00:24]} Rc6 {[%clk 0:52:35]} 26. Bd3 {[%clk 0:59:12]} Rb6
-{[%clk 0:52:31]} 27. Na5 {[%clk 0:59:35]} *
+{[%clk 0:52:31]} 27. Na5 {[%clk 0:59:35]} Rxb2 {[%clk 0:52:45]} *
 
 [Event "45 Torneo Internacional La Roda"]
 [Site "?"]
