@@ -1,471 +1,813 @@
 <!DOCTYPE html>
-<html><!-- DiagonaleTV-applets for pgn4web
-     copyright (C) GPLv3 2016-2017 www.diagonaletv.com
-     GPLv3 https://www.gnu.org/licenses/gpl.html
---><!--
-  pgn4web javascript chessboard
-  copyright (C) 2009-2015 Paolo Casaschi
-  see README file and http://pgn4web.casaschi.net
-  for credits, license and more details
---><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
 
+<head>
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Isaac Lozano Osorio</title>
+    <meta name="description" content="Web Page Isaac Lozano Osorio" />
+    <meta name="keywords" content="HTML5, Bootstrap 3, CSS3, javascript, PHP, onepage, responsive, mobile,C,C++,Competitive Programming,Apache Cordova" />
+    <meta name="author" content="Isaac Lozano Osorio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
-<title>Retransmision</title>
+    <!-- Stlylesheet -->
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="css/style1.css" rel='stylesheet' type='text/css' />	
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-<link href="./files/live-applet.css" type="text/css" rel="stylesheet">
-<link href="./files/fonts/pgn4web-font-LiberationSans.css" type="text/css" rel="stylesheet">
-<link href="./files/fonts/pgn4web-font-ChessSansMerida.css" type="text/css" rel="stylesheet">
-
-<link rel="icon" sizes="16x16" href="">
-
-<script src="./files/pgn4web.js" type="text/javascript"></script>
-<script src="./files/engine.js" type="text/javascript"></script>
-<script src="./files/fide-lookup.js" type="text/javascript"></script>
-<script src="./files/live-applet.js" type="text/javascript"></script>
-
-<script>
-function openPopup(url) {
-    window.open(url, "_blank", "toolbar=no,menubar=no,titlebar=no,scrollbars=no,statusbar=no,resizable=yes,top=400,left=400,width=854,height=480");
-}
-</script>
-
-<script type="text/javascript">
-  "use strict";
-
-  var thisRegExp;
-
-  var readyToReceivePgn = true;
-
-  var useTextarea = false;
-  thisRegExp = /(&|\?)(useTextarea|ut)=([^&]*)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    var useTextareaValue = unescape(window.location.search.match(thisRegExp)[3]);
-    if ((useTextareaValue == "true") || (useTextareaValue == "t")) { useTextarea = true; }
-  }
-
-  // var pgnFile_default = location.protocol + "//" + location.hostname +
- //   location.pathname.replace(/\/[^\/]*$/, "/livepgn/games.pgn");
- // var pgnFile = pgnFile_default;
-  var pgnFile = "./files/games.pgn";
-  thisRegExp = /(&|\?)(pgnData|pd)=([^&]*)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    pgnFile = unescape(window.location.search.match(thisRegExp)[3]);
-  } else {
-    // accepts pgnData as alias for pgnFile for consistency with board.html
-    thisRegExp = /(&|\?)(pgnFile|pf)=([^&]*)(&|$)/i;
-    if (window.location.search.match(thisRegExp) !== null) {
-      pgnFile = unescape(window.location.search.match(thisRegExp)[3]);
-    }
-  }
-
-  var alertFlag = false;
-  var demoFlag = false;
-  thisRegExp = /(&|\?)(refreshDemo|rd|demo|d)=([^&]*)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    var refreshDemo = unescape(window.location.search.match(thisRegExp)[3]);
-    if ((refreshDemo == "true") || (refreshDemo == "t")) { alertFlag = demoFlag = true; }
-  }
-
-  var refreshMinutes_default = 1;
-  var refreshMinutes = refreshMinutes_default;
-  var stepFlag = false;
-  thisRegExp = /(&|\?)(refreshMinutes|rm)=([^&]*)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    refreshMinutes = parseFloat(unescape(window.location.search.match(thisRegExp)[3]));
-    if (isNaN(refreshMinutes)) { refreshMinutes = refreshMinutes_default; }
-    if (refreshMinutes <= 0) { refreshMinutes = refreshMinutes_default; }
-  }
-
-  var iniGame_default = 1;
-  var iniGame = iniGame_default;
-  thisRegExp = /(&|\?)(initialGame|ig)=([^&]*)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    iniGame = unescape(window.location.search.match(thisRegExp)[3]);
-  }
-
-  // set hideFinishedGamesClocks to true/false to hide/show the clocks of finished games
-  var hideFinishedGamesClocks = true;
-
-  thisRegExp = /(&|\?)(help|h)=(true|t)(&|$)/i;
-  if (window.location.search.match(thisRegExp) !== null) {
-    alert("pgn4web live-mosaic-tile.html parameters" + "\n" +
-      " - useTextarea = " + useTextarea + "; if set true uses textarea as PGN input (default false = use pgnData)" + "\n" +
-      " - pgnData = " + pgnFile + "; PGN file to load (default " + pgnFile_default + ")" + "\n" +
-      " - refreshMinutes = " + refreshMinutes + "; refresh interval in minutes, decimals allowed (default " + refreshMinutes_default + ")" + "\n" +
-      " - refreshDemo = " + demoFlag + "; sets live demo mode (default false)" + "\n" +
-      " - initialGame = " + iniGame + "; initial game number or search string" + "\n" +
-      " - help = true");
-  }
-
-  if (!useTextarea) { SetPgnUrl(pgnFile); }
-  SetImagePath("files/images/");
-  SetImageType("png");
-  SetHighlightOption(false); // true or false
-  SetCommentsIntoMoveText(false);
-  SetCommentsOnSeparateLines(false);
-  SetAutoplayDelay(1000); // milliseconds
-  SetAutostartAutoplay(false);
-  SetAutoplayNextGame(false);
-  SetInitialGame(iniGame);
-  SetInitialVariation(0);
-  SetInitialHalfmove("end", true);
-  SetShortcutKeysEnabled(false);
-  SetLiveBroadcast(refreshMinutes, demoFlag, alertFlag, stepFlag);
-
-clearShortcutSquares("ABCDEFGH", "12345678");
-
-  try {
-    var pcscsfcf, cscs;
-    if (parent && (parent !== window) && (pcscsfcf = parent.pgn4webClearShortCutSquaresForChildFrames)) {
-      for (cscs in pcscsfcf) { clearShortcutSquares(pcscsfcf[cscs][0], pcscsfcf[cscs][1]); }
-    }
-    if (parent && (parent !== window) && parent.displayPgnData && parent.savePgnData) {
-      boardShortcut("D8", "show full PGN source data", function(t,e){ if (e.shiftKey) { parent.savePgnData(); } else { parent.displayPgnData(); } });
-    }
-  } catch(e) { myAlert("warning: failed accessing frame's parent for shortcut squares to clear", false); }
-
-  function addTagToTitle(tagLabel, tagValue, object) {
-    if (!tagValue || tagValue[1] == "?" || !object) { return; }
-    object.title += ((object.title && tagLabel) ? "\n" : (object.title ? "  " : "")) + simpleHtmlentitiesDecode(tagLabel + tagValue);
-  }
-
-  function hideThisGame() {
-    try {
-      if (parent && (parent !== window) && parent.pgn4webHideChildFrameGame) {
-        parent.pgn4webHideChildFrameGame(gameEvent[currentGame], gameSite[currentGame], gameDate[currentGame], gameRound[currentGame], gameWhite[currentGame], gameBlack[currentGame]);
-      }
-    } catch(e) { myAlert("error: failed accessing frame's parent for hiding game", true); }
-  }
-
-  function customFunctionOnPgnTextLoad() {
-    var thisCurrentGame = currentGame;
-
-    // force reloading iniGame each time
-    SetInitialGame(iniGame);
-    setCurrentGameFromInitialGame();
-    if (currentGame != thisCurrentGame) {
-      SetInitialVariation(0);
-      SetInitialHalfmove("end",true);
-      Init();
-      GoToInitialHalfmove();
-    }
-
-  }
-
-  var old_gameKey = "";
-  var old_PlyNumber = -1;
-  function customFunctionOnPgnGameLoad() {
-    var theObj;
-
-    theObj = document.getElementById("GameWhiteClock");
-    if (theObj) { theObj.style.visibility = ((hideFinishedGamesClocks) && (gameResult[currentGame] != "*")) ? "hidden" : ""; }
-    theObj = document.getElementById("GameBlackClock");
-    if (theObj) { theObj.style.visibility = ((hideFinishedGamesClocks) && (gameResult[currentGame] != "*")) ? "hidden" : ""; }
-
-    theObj = document.getElementById("bottomContainer");
-    if (theObj) {
-      theObj.title = numberOfGames > 1 ? "game " + (currentGame+1) + " of " + numberOfGames : "";
-      addTagToTitle("event:  ", gameEvent[currentGame], theObj);
-      addTagToTitle("", customPgnHeaderTag("Section"), theObj);
-      addTagToTitle("", customPgnHeaderTag("Stage"), theObj);
-      addTagToTitle("site:  ", gameSite[currentGame], theObj);
-      addTagToTitle("date:  ", gameDate[currentGame], theObj);
-      addTagToTitle("round:  ", gameRound[currentGame], theObj);
-      addTagToTitle("white:  ", gameWhite[currentGame], theObj);
-      addTagToTitle("", customPgnHeaderTag("WhiteTitle"), theObj);
-      addTagToTitle("", customPgnHeaderTag("WhiteElo"), theObj);
-      addTagToTitle("", customPgnHeaderTag("WhiteTeam"), theObj);
-      addTagToTitle("black:  ", gameBlack[currentGame], theObj);
-      addTagToTitle("", customPgnHeaderTag("BlackTitle"), theObj);
-      addTagToTitle("", customPgnHeaderTag("BlackElo"), theObj);
-      addTagToTitle("", customPgnHeaderTag("BlackTeam"), theObj);
-      addTagToTitle("result:  ", gameResult[currentGame], theObj);
-      addTagToTitle("termination:  ", customPgnHeaderTag("Termination"), theObj);
-      addTagToTitle("timecontrol:  ", customPgnHeaderTag("TimeControl"), theObj);
-    }
-
-    try {
-      if (parent && (parent !== window) && parent.pgn4webHideChildFrameGame) {
-        if (parent.barePadding === "") {
-          if (parent.pgn4webHideChildFrameGame(gameEvent[currentGame], gameSite[currentGame], gameDate[currentGame], gameRound[currentGame], gameWhite[currentGame], gameBlack[currentGame], true)) {
-            boardShortcut("A6", "hide this game", function(t,e){ hideThisGame(); });
-          } else {
-            boardShortcut("A6", "hiding option unavailable for this game", function(t,e){} );
-          }
-        }
-      }
-    } catch(e) { myAlert("warning: failed accessing frame's parent for hiding game option", false); }
-
-    var this_gameKey = gameKey(gameEvent[currentGame], gameSite[currentGame], gameDate[currentGame], gameRound[currentGame], gameWhite[currentGame], gameBlack[currentGame]);
-    newMovesFlag((old_gameKey === this_gameKey) && (old_PlyNumber !== PlyNumber));
-    old_gameKey = this_gameKey;
-    old_PlyNumber = PlyNumber;
-  }
-
-  var newMovesFlagTimeout = null;
-  function newMovesFlag(onOff) {
-    if (newMovesFlagTimeout) {
-      clearTimeout(newMovesFlagTimeout);
-      newMovesFlagTimeout = null;
-    }
-    var theObj = document.getElementById("GameNewMoves");
-    if (theObj) { theObj.innerHTML = onOff ? "^" : ""; }
-    if (onOff) { newMovesFlagTimeout = setTimeout("newMovesFlag(false);", refreshMinutes * 60000 + 2000); }
-  }
-
-  function gameKey(event, site, date, round, white, black) {
-    var key = "";
-    key += "[" + (typeof(event) == "string" ? event : "") + "]";
-    key += "[" + (typeof(site) == "string" ? site : "") + "]";
-    key += "[" + (typeof(round) == "string" ? round : "") + "]";
-    key += "[" + (typeof(white) == "string" ? white : "") + "]";
-    key += "[" + (typeof(black) == "string" ? black : "") + "]";
-    return key;
-  }
-
-  function replayPreviousMovesMosaic(force) {
-    if (force || newMovesFlagTimeout) { replayPreviousMoves(1); }
-  }
-
-  function customShortcutKey_Shift_0() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_0) { parent.customShortcutKey_Shift_0(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-
-  // customShortcutKey_Shift_1 defined by fide-lookup.js
-  // customShortcutKey_Shift_2 defined by fide-lookup.js
-
-  function customShortcutKey_Shift_3() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_3) { parent.customShortcutKey_Shift_3(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-  function customShortcutKey_Shift_4() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_4) { parent.customShortcutKey_Shift_4(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-  function customShortcutKey_Shift_5() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_5) { parent.customShortcutKey_Shift_5(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-  function customShortcutKey_Shift_6() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_6) { parent.customShortcutKey_Shift_6(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-  function customShortcutKey_Shift_7() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_7) { parent.customShortcutKey_Shift_7(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-
-  // overwriting engine.js definitions of customShortcutKey_Shift_8 9 0
-  function customShortcutKey_Shift_8() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_8) { parent.customShortcutKey_Shift_8(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-  function customShortcutKey_Shift_9() { try { if (parent && (parent !== window) && parent.customShortcutKey_Shift_9) { parent.customShortcutKey_Shift_9(); } } catch(e) { myAlert("error: failed accessing frame's parent custom shortcut key function"); } }
-
-
-  function pgn4web_onload(e) {
-    start_pgn4web();
-    readyToReceivePgn = true;
-    try {
-      if (parent && (parent !== window)) {
-        if (parent.readyToSendPgn) {
-          var boardId = parseInt(window.name.substr(5), 10);
-          if (!isNaN(boardId)) { parent.updateBoard(boardId); }
-          else { myAlert("warning: failed detecting board id", false); }
-        }
-        if (parent.document.body.style.backgroundColor) {
-          var RGB;
-          if (RGB = parent.document.body.style.backgroundColor.match(/^rgb\((\d+), (\d+), (\d+)\)$/)) {
-            // RGB to Luma conversion: Photometric/digital ITU-R
-            if ((0.2126 * parseInt(RGB[1],10) + 0.7152 * parseInt(RGB[2],10) + 0.0722 * parseInt(RGB[3],10)) < (256 * 0.45)) {
-              if (theObj = document.body) { theObj.style.color = "white"; }
-              if (theObj = document.getElementById("GameWhiteFlag")) { theObj.style.borderColor = "white"; }
-              if (theObj = document.getElementById("GameBlackFlag")) { theObj.style.borderColor = "white"; }
-            }
-          }
-        }
-      } else { myAlert("warning: parent not avalable", false); }
-    } catch(e) { myAlert("warning: failed accessing parent", false); }
-  }
-
-</script>
-
-<style type="text/css">
-
-@import url("files/fonts/pgn4web-font-LiberationSans.css");
-
-html,
-body {
-  margin: 0px;
-  padding: 0px;
-}
-
-body {
-  background: transparent;
-  color: black;
-  font-family: 'pgn4web Liberation Sans', sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 13px;
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  -o-text-size-adjust: none;
-  text-size-adjust: none;
-  -webkit-touch-callout: none;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.boardTable {
-  border-style: solid;
-  border-color: #663300;
-  border-width: 3px;
-  background: #CC9966;
-  box-shadow: 0px 0px 13px #663300;
-  width: 230px;
-  height: 230px;
-}
-
-.pieceImage {
-  width: 24px;
-  height: 24px;
-}
-
-.whiteSquare,
-.blackSquare,
-.highlightWhiteSquare,
-.highlightBlackSquare {
-  width: 26px;
-  height: 26px;
-  border-style: solid;
-  border-width: 1px;
-}
-
-.whiteSquare,
-.highlightWhiteSquare {
-  border-color: #FFCC99;
-  background: #FFCC99;
-}
-
-.blackSquare,
-.highlightBlackSquare {
-  border-color: #CC9966;
-  background: #CC9966;
-}
-
-.highlightWhiteSquare,
-.highlightBlackSquare {
-  border-style: inset;
-  border-color: #CC9966;
-}
-
-.move,
-.variation,
-.comment {
-}
-
-.bottomContainer {
-  width: 230px;
-  margin-top: 10px;
-}
-
-.leftHeaderItem,
-.rightHeaderItem {
-  white-space: nowrap;
-  overflow: hidden;
-  width: 103px;
-}
-
-.leftHeaderItem {
-  float: left;
-  text-align: left;
-}
-
-.rightHeaderItem {
-  float: right;
-  text-align: right;
-}
-
-</style>
+    <!-- Skin Color -->
+    <link rel="stylesheet" href="css/colors/red.css" id="color-skins" />
+</head>
 
 <body>
 
-<body style="margin-top: 0px;margin-left: 0px; margin-right: 0px;">
-<div align="center">
 
-<table cellpadding="0" cellspacing="2" width="910" border="0">
-<tbody><tr>
-  <!-- video stream -->
-  <td>
-<img style="weight: 500px; height: 700px;" src="./files/banner1.jpg" ></img>
+    <!--Start Header-->
+    <header>
+        <nav class="navbar navbar-default navbar-alt" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
 
-  </td>
-  <!-- end of video stream -->
-  <!-- Vertical chessboards -->
-  <td rowspan="5">
-    <iframe src="./files/live-mosaic-frame.html" height="1000" width="340" valign="top" name="board1" scrolling="auto" frameborder="0" marginwidth="0" marginheight="0"></iframe>
-  </td>
-  <!-- end of vertical chessboards -->
-</tr>
-<tr>
-<!-- principal board -->
-<td>
-  <table border="0">
-  <tbody><tr>
-    <!-- black information -->
-    <td width="240">
-   </td>
-    <!-- end of black information -->
-    <!-- Right of the board, moves, result -->
-    <td valign="top" rowspan="5">
-      <br>
-      <div style="font-size: 120%; text-align: justify; padding-top:5px;" id="GameText"></div>
-	  <br>
-      <div><span style="font-size: 120%;">Resultado : <span style="font-weight: bold; font-size: 120%; white-space: nowrap;" id="GameResult"></span></span></div>
-	  <br>
-    </td>
-    <!-- End of right of the board, moves, result -->
-  </tr>  
-  <tr>
-  <!-- board -->
-    <td colspan="2" width="500" style="position:relative;">
-    <div id="GameBoard" ></div>
-	
-<div id="bottomContainer" class="bottomContainer">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav  navbar-right">
 
-<div class="leftHeaderItem"><span id="GameLastMove"></span>&nbsp;</div>
-<div class="rightHeaderItem">&nbsp;<span id="GameNextMove"></span></div>
-<div>&nbsp;<a href="javascript:void(0);" onclick="newMovesFlag(false); this.blur();" title="new moves received" id="GameNewMoves"></a>&nbsp;</div>
+                        <li><a class="to-top">Inicio</a></li>
+                        <li class="to-section"><a href="#quote">Proyectos</a></li>
+                         <li class="to-section"><a href="Blog.html">Blog</a></li>
+                        <li class="to-section"><a href="#portfolio">Tecnologías</a></li>
+                        <li class="to-section"><a href="#team">¿Quien soy?</a></li>
+                        <li class="to-section"><a href="#get-connected">Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+    <!--End Header-->
 
-<!--
-<div class="leftHeaderItem"><a href="javascript:void(0);" onclick="if (typeof(openFidePlayerUrl) == 'function') { openFidePlayerUrl(gameWhite[currentGame], customPgnHeaderTag('WhiteFideId')); } this.blur();" id="GameWhite" class="notranslate"></a>&nbsp;</div>
-<div class="rightHeaderItem">&nbsp;<a href="javascript:void(0);" onclick="if (typeof(openFidePlayerUrl) == 'function') { openFidePlayerUrl(gameBlack[currentGame], customPgnHeaderTag('BlackFideId')); } this.blur();" id="GameBlack" class="notranslate"></a></div>
--->
+    <!-- Start Home Fullwidth Section -->
+    <section id="home-parallax-fullwidth">
+        <div class="home-container text-center op-1">
+            <div class="home-title">
+                <div>
+                    <h3 class="white wow fadeInDown">Página web de</h3>
+                    <h2 class="white wow fadeInDown">Isaac Lozano Osorio</h2>
+                   <!-- <p class="home-subheading wow fadeInDown">Universidad Rey Juan Carlos</p> -->
+                </div>
+            </div>
+            <div class="home-button">
+                <a href="#team" class="btn btn-primary btn-scroll">¿Quien soy?</a>
+            </div>
 
-<div class="leftHeaderItem"><span id="GameWhite" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('WhiteFideId')); this.blur();" title="white player"></span><span id="GameWhiteTitle" title="white title"></span><span id="GameWhiteElo" title="white elo"></span><span id="GameWhiteTeam" title="white team"></span><span style="font-weight:bold;">&nbsp;</span></div>
-<div class="rightHeaderItem"><span id="GameBlack" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('BlackFideId')); this.blur();" title="black player"></span><span id="GameBlackTitle" title="black title"></span><span id="GameBlackElo" title="black elo"></span><span id="GameBlackTeam" title="black team"></span><span style="font-weight:bold;">&nbsp;</span></div>
+        </div>
+    </section>
+    <!-- End Home Fullwidth Section -->
+
+    <div class="site-wrapper content">
+
+        <!-- Start Features Section -->
+        <section id="features">
+            <div class="container">
+                <div class="row features-row wow fadeInUp">
+
+                    <div class="col-md-4 col-sm-12 feature-column">
+                        <div class="feature-icon">
+                            <i class="icon-energy size-2x highlight"></i>
+                            <i class="icon-energy back-icon"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Últimas tecnologías</h4>
+                            <p class="feature-description">La tecnología avanza y siempre tenemos que estar actualizados a los últimas novedades</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 feature-column">
+                        <div class="feature-icon">
+                            <i class="icon-screen-desktop size-2x highlight"></i>
+                            <i class="icon-screen-desktop back-icon"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Desarrollo web</h4>
+                            <p class="feature-description">HTML5, CSS3, JavaScript, Angular 2 se pueden crear páginas web impactantes y fáciles de usar adaptadas para todos los dispositivos. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 feature-column">
+                        <div class="feature-icon">
+                            <i class="icon-screen-smartphone size-2x highlight"></i>
+                            <i class="icon-screen-smartphone back-icon"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Apps móviles con tecnologías web</h4>
+                            <p class="feature-description">Desarrollo de aplicaciones para móviles y tabletas tanto Android como IOS, con simples herramientas y los lenguajes más usados. Gracias a Ionic y Apache Cordova hace muy sencillo el desarrollo de apicaciones.</p>
+                        </div>
+                    </div>
+                         <div class="col-md-4 col-sm-12 feature-column">
+                        <div class="feature-icon">
+                            <i class="icon-grid size-2x highlight"></i>
+                            <i class="icon-grid back-icon"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Programación - Programación Competitiva</h4>
+                            <p class="feature-description">C,C++ y Java con los que crear códigos eficientes para resolver cualquier problema</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--End Features Section -->
+ <!-- Start Quote Section -->
+         <section id="about" class="parallax-section-1">
+            <div class="container">
+
+                <div class="col-md-12 text-center wow fadeInUp">
+                    <h3 class="section-title white">Presentación</h3>
+                    <p class="subheading">¿Que encontrarás aquí?</p>
+                </div>
 
 
-<div class="leftHeaderItem"><span id="GameWhiteClock"></span>&nbsp;</div>
-<div class="rightHeaderItem">&nbsp;<span id="GameBlackClock"></span></div>
-<div id="GameButtons"></div>
-<div id="GameSelector"></div>
+                <div class="col-md-12 text-left about-text">
+                    <p class="grey wow fadeInUp">Bienvenidos a mi página web donde encontraras  <span class="highlight">información sobre proyectos, blog personal, etc.</span>. Abajo tienes toda la información personal, para si en algún momento quieres contactar conmigo.</p>        
+                    <p class="grey wow fadeInUp">Espero que disfrutes y aprendas nuevas cosas.  <span class="highlight">Isaac Lozano Osorio</span></p>
+                </div>
 
-</div>
-    </td>
-  <!-- end of board -->
-  </tr>
-  </tbody></table>
-  </td>
-        
-  <!-- end of principal board -->
-</tr>
-</tbody></table>
-<div><a href="./files/games.pgn" style="font-size: 120%; color:blue;">Descargar partidas</a></div>
-</div>
+            </div>
+        </section>
+        <!-- End Quote Section -->
+        <!-- End Fun Facts Section -->
+
+ <section id="quote" >
+            <div class="container">
+			<div class="col-md-12 text-center wow fadeInUp">
+                     <h3 class="section-title wow fadeInUp">Proyectos</h3>
+                    <p class="subheading wow fadeInUp">Blog de diferentes proyectos</span>.</p>
+                </div>
+				<!--
+                <div class="row wow fadeInUp">
+
+                    <div class="col-lg-12 wow fadeInUp" style="z-index:3">
+                        <div id="quote-slider" class="owl-carousel">
+                            <div>
+                                <blockquote>
+                                    <div class="blog">
+									<div class="col-md-6 blog-left">
+										<div class="col-md-3 agile1">
+											<h5>25</h5>
+											<h6>March-2016</h6>
+										</div>
+										<div class="col-md-9 agile2">
+											<a href="noticia1.html" ><img src="images/b1.jpg" alt="" /></a>
+											<a href="noticia1.html" ><h4>Contrary to popular belief</h4></a>
+											<p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="col-md-6 blog-right">
+										<div class="col-md-3 agile1">
+											<h5>10</h5>
+											<h6>Feb-2016</h6>
+										</div>
+										<div class="col-md-9 agile2">
+											<a href="noticia1.html" ><img src="images/b2.jpg" alt="" /></a>
+											<a href="noticia1.html" ><h4>The standard chunk</h4></a>
+											<p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor</p>
+										</div>
+										<div class="clearfix"></div>				
+									</div>
+									<div  class="clearfix"></div>
+                                </blockquote>
+                            </div>
+                            <div>
+                                <blockquote>
+								 <div class="blog">
+								<div class="col-md-6 blog-left">
+									<div class="col-md-3 agile1">
+										<h5>25</h5>
+										<h6>March-2016</h6>
+									</div>
+									<div class="col-md-9 agile2">
+										<a href="noticia1.html" ><img src="images/b1.jpg" alt="" /></a>
+										<a href="noticia1.html" ><h4>Contrary to popular belief</h4></a>
+										<p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor</p>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="col-md-6 blog-right">
+									<div class="col-md-3 agile1">
+										<h5>10</h5>
+										<h6>Feb-2016</h6>
+									</div>
+									<div class="col-md-9 agile2">
+										<a href="noticia1.html" ><img src="images/b2.jpg" alt="" /></a>
+										<a href="noticia1.html" ><h4>The standard chunk</h4></a>
+										<p>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor</p>
+									</div>
+									<div class="clearfix"></div>				
+								</div>
+								<div  class="clearfix"></div>
+                                </blockquote>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+				-->
+            </div>
+        </section>
+        <!-- Start Content Section -->
+       <section class="parallax-section-4">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">¿Con que trabajo?.</h3>
+                    <p class="subheading grey wow fadeInUp">¡Más información abajo sobre todo lo que conozco!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                   
+                </div>
+
+            </div>
+        </section>
+       
+
+        <!-- Start Portfolio Section -->
+        <section id="portfolio" style="position: relative;">
+            <div class="separator"></div>
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title wow fadeInUp">Tecnologías, lenguajes y herramientas que conozco</h3>
+                    <p class="subheading wow fadeInUp">Para resolver  <span class="highlight">cualquier problema</span>.</p>
+                </div>
+
+                <div id="filters-container-fullwidth" class="cbp-l-filters-alignCenter wow fadeInUp">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">Todos
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".programming" class="cbp-filter-item">Programación
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".web-layout" class="cbp-filter-item">Maquetación
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".editor" class="cbp-filter-item">Editores
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".build" class="cbp-filter-item">Construcción
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".framework" class="cbp-filter-item">Frameworks
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                </div>
+
+                <div id="grid-container-fullwidth" class="cbp-l-grid-fullScreen">
+                    <ul>
+
+                        <li class="cbp-item effect effects programming">
+                            <div class="img">
+                                <img src="img/portfolio/1.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Java 8</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de Programación backend</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://docs.oracle.com/javase/8/docs/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects programming">
+                            <div class="img">
+                                <img src="img/portfolio/2.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">JavaScript ES5</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de Programación frontend</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://es5.github.io/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects programming">
+                            <div class="img">
+                                <img src="img/portfolio/3.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">TypeScript 1.7</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de Programación frontend</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://www.typescriptlang.org/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects web-layout">
+                            <div class="img">
+                                <img src="img/portfolio/4.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">HTML 5</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de maquetación</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://developer.mozilla.org/es/docs/HTML/HTML5" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects web-layout">
+                            <div class="img">
+                                <img src="img/portfolio/5.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">CSS 3</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de maquetación</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://www.w3.org/Style/CSS/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/6.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Brackets 1.5</li>
+                                        <li class="cbp-l-caption-desc">Editor</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://brackets.io/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/8.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Eclipse STS 3.7</li>
+                                        <li class="cbp-l-caption-desc">IDE</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://spring.io/tools" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects build">
+                            <div class="img">
+                                <img src="img/portfolio/9.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Gulp</li>
+                                        <li class="cbp-l-caption-desc">Construcción de proyectos web</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://gulpjs.com/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects build ">
+                            <div class="img">
+                                <img src="img/portfolio/10.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Maven</li>
+                                        <li class="cbp-l-caption-desc">Construcción de proyectos Java</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://maven.apache.org/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects framework ">
+                            <div class="img">
+                                <img src="img/portfolio/11.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Angular 2</li>
+                                        <li class="cbp-l-caption-desc">Framework frontend</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://angular.io/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="cbp-item effect effects framework ">
+                            <div class="img">
+                                <img src="img/portfolio/12.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Ionic 2</li>
+                                        <li class="cbp-l-caption-desc">Framework frontend</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="http://ionicframework.com/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <!-- Modificar desde aquí --> 
+                        </li>
+                         <li class="cbp-item effect effects framework">
+                            <div class="img">
+                                <img src="img/portfolio/18.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Apache Cordova</li>
+                                        <li class="cbp-l-caption-desc">Aplicaciones hibridas</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://cordova.apache.org/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/19.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Android Studio</li>
+                                        <li class="cbp-l-caption-desc">Aplicaciones en Android</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://developer.android.com/studio/index.html" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/20.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Bluej</li>
+                                        <li class="cbp-l-caption-desc">IDE</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://www.bluej.org/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/21.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Netbeans</li>
+                                        <li class="cbp-l-caption-desc">IDE</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://netbeans.org/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/22.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Visual Studio</li>
+                                        <li class="cbp-l-caption-desc">IDE</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://www.visualstudio.com/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                            <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/23.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Visual Studio Code</li>
+                                        <li class="cbp-l-caption-desc">Editor</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://code.visualstudio.com/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <li class="cbp-item effect effects editor">
+                            <div class="img">
+                                <img src="img/portfolio/24.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">QT</li>
+                                        <li class="cbp-l-caption-desc">IDE</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://www.qt.io/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                            <li class="cbp-item effect effects  programming">
+                            <div class="img">
+                                <img src="img/portfolio/26.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">Arduino</li>
+                                        <li class="cbp-l-caption-desc">Electrónica</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://www.arduino.cc/" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                            <li class="cbp-item effect effects programming">
+                            <div class="img">
+                                <img src="img/portfolio/27.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">C</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de Programación</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://es.wikipedia.org/wiki/C_(lenguaje_de_programaci%C3%B3n)" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                            <li class="cbp-item effect effects programming">
+                            <div class="img">
+                                <img src="img/portfolio/25.png" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="cbp-l-caption-title">C++</li>
+                                        <li class="cbp-l-caption-desc">Lenguaje de Programación</li>
+                                        <li class="cbp-l-icon">
+                                            <a href="https://es.wikipedia.org/wiki/C%2B%2B" target="_blank">
+                                                <i class="icon-action-redo"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                         <!-- Modificar hasta aquí --> 
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- End Portfolio Section -->
+       <section class="parallax-section-5">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">¿Quieres saber más sobre mí?</h3>
+                    <p class="subheading grey wow fadeInUp">¡Abajo tienes toda la información!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                   
+                </div>
+
+            </div>
+        </section>
+        <!-- Start Team Section -->
+        <section id="team">
+            <div class="container">
+
+                <div class="col-md-12 text-center wow fadeInUp">
+                    <h3 class="section-title">¿Quien soy?</h3>
+					 <p class="subheading wow fadeInUp">Descubramos mas sobre mi.</p>
+                </div>
+
+                <div class="row wow fadeInUp">
+                    <div class="col-md-4 col-sm-6 text-center">
+					<div class="effect effects wow fadeInUp">
+                            <div class="img">
+                                <img src="img/team-1.jpg" class="img-responsive" alt="" />
+                                <div class="overlay">
+                                    <ul class="expand">
+                                        <li class="social-icon"><a href="https://twitter.com/isaac_lozano_97" target="_blank"><i class="icon-social-twitter"></i></a></li>
+                                        <li class="social-icon"><a href="https://www.facebook.com/isaac.lozanoosorio" target="_blank"><i class="icon-social-facebook"></i></a></li>
+                                        <li class="social-icon"><a href="mailto:i.loozano97@gmail.com" target="_blank"><i class=" icon-envelope-open"></i></a></li>
+                                    </ul>
+                                    <a class="close-overlay hidden">x</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-info wow fadeInUp">
+                            <h4>Isaac Lozano Osorio</h4>
+                            <h5 class="highlight">Estudiante de <br>Ingeniería Informática  <br>Ingeniería Computadores</h5>
+                             </div>
+						</div>
+                    <div class="col-md-8 col-sm-6 ">
+                        <p>Desde mi punto de vista, me considero una persona que no se rinde, soy capaz de idear una estrategia y tomar decisiones en momentos críticos, una persona que no deja de investigar y aprender por ejemplo: impresoras 3D, aplicaciones móvil, desarrollador de juegos, componentes electrónicos, desarrollo web, etc.</span></p>
+                        <p><span class="highlight">Una persona que busca desafíos.</span></p>
+					<p>3 proyectos realizados con éxito, relacionados con páginas webs y tecnología SPA (Apache Cordova) para una aplicación móvil</p>
+                    <h4>Cursos realizados</h4>
+                <div class="bar_group">
+					<div class='bar_group__bar thin' label='Introducción al desarrollo de videojuegos con Unity' show_values='true' tooltip='true' value='400'></div>
+					<div class='bar_group__bar thin' label='Desarrollo en HTML5, CSS y Javascript de Apps Web, Android, IOS.' show_values='true' tooltip='true' value='400'></div>
+				</div>
+                 <h4>Mis habilidades</h4>
+				<div class="bar_group">
+					<div class='bar_group__bar thin' label='HTML, CSS, AngularJS,JavaScript,C#' show_values='true' tooltip='true' value='350'></div>
+					<div class='bar_group__bar thin' label='C, C++, Java' show_values='true' tooltip='true' value='400'></div>
+					<div class='bar_group__bar thin' label='Apache Cordova' show_values='true' tooltip='true' value='310'></div>
+					<div class='bar_group__bar thin' label='Unity, Impresoras 3D, Electrónica' show_values='true' tooltip='true' value='270'></div>
+					<div class='bar_group__bar thin' label='Photoshop' show_values='true' tooltip='true' value='265'></div>
+				</div>
+				<script src="js/bars.js"></script>
+                        </div>
+
+			<div class="clearfix"></div>
+                    <div class="download">
+                        <h3>Descarga mi Curriculum</h3>
+                        <a href="CV.pdf">Descargar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Get Connected -->
+        <section id="get-connected" class="parallax-section-6">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">No te pierdas nada.</h3>
+                    <p class="subheading grey wow fadeInUp">Sigue en contacto con <span class="highlight">Isaac Lozano Osorio</span>!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                    <ul class="connected-icons text-center">
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://twitter.com/isaac_lozano_97">
+                                <span class="icon icon-social-twitter size-6x"></span>
+                                <h4 class="white">Twitter</h4>
+                                <span class="grey">Sígueme</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio">
+                                <span class="icon icon-social-facebook size-6x"></span>
+                                <h4 class="white">Facebook</h4>
+                                <span class="grey">Sígueme</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://github.com/isaaclo97">
+                                <span class="icon ion-social-octocat size-6x"></span>
+                                <h4 class="white">GitHub</h4>
+                                <span class="grey">¿Quieres ver mis proyectos?</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="mailto:i.loozano97@gmail.com">
+                                <span class="icon icon-envelope-open size-6x"></span>
+                                <h4 class="white">Email</h4>
+                                <span class="grey">i.loozano97@gmail.com</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
 
 
-</body></html>
+
+            </div>
+        </section>
+        <!-- End Get Connected -->
+
+        <!-- Start Footer 1 -->
+        <footer id="footer">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <p>© 2018 Isaac Lozano Osorio. All Rights Reserved. </p>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <ul id="social-icons">
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-twitter"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio"><i class="icon ion-social-facebook"></i></a></li>
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-octocat"></i></a></li>
+                                <li><a target="_blank" href="mailto:i.loozano97@gmail.com"><i class="icon ion-android-drafts"></i></a></li>
+                            </ul>
+                        </div>
 
 
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Copyright -->
 
+        </footer>
+        <!-- End Footer 1 -->
 
+        <!-- Start Back To Top -->
+        <a id="back-to-top"><i class="icon ion-chevron-up"></i></a>
+        <!-- End Back To Top -->
 
+    </div>
+    <!-- End Site Wrapper -->
 
+    <!-- jQuery -->
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/moderniz.min.js"></script>
+    <script src="js/plugins/smoothscroll.min.js"></script>
+    <script src="js/plugins/revslider.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/waypoints.min.js"></script>
+    <script src="js/plugins/parallax.min.js"></script>
+    <script src="js/plugins/easign1.3.min.js"></script>
+    <script src="js/plugins/cubeportfolio.min.js"></script>
+    <script src="js/plugins/owlcarousel.min.js"></script>
+    <script src="js/plugins/wow.min.js"></script>
+    <script src="js/plugins/counterup.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/bars.js"></script>
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+        ga('create', 'UA-69918439-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 
+    <!--Start Cookie Script-->
+    <script type="text/javascript" charset="UTF-8" src="http://cookie-script.com/s/eccbdbc38f31ea25d1b3265195902907.js">
+    </script>
+    <!--End Cookie Script-->
 
+</body>
 
-
-
-
+</html>
