@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Problema Resuelto</title>
+    <meta name="description" content="Problemas resueltos programación competitiva" />
+    <meta name="keywords" content="HTML5, Bootstrap 3, CSS3, javascript, PHP, onepage, responsive, mobile,C,C++,Competitive Programming,Apache Cordova,Programacion Competitiva,Uva,Acepta el Reto, Spoj, Codeforces, C++, C, Python" />
+    <meta name="author" content="Isaac Lozano Osorio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="../../img/favicon.jpg" type="image/x-icon">
+
+    <!-- Stlylesheet -->
+    <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+      
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/style1.css" rel='stylesheet' type='text/css' />	
+    <link href="../../css/prism.css" rel='stylesheet' type='text/css' />
+
+
+    <!-- Skin Color -->
+    <link rel="stylesheet" href="../../css/colors/red.css" id="color-skins" />
+</head>
+
+<body>
+    <script src="../../js/prism.js"></script>
+
+    <!--Start Header-->
+    <header>
+        <nav class="navbar navbar-default navbar-alt" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav  navbar-right">
+
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li class="to-section"><a href="../../index.html#data2">Proyectos</a></li>
+                        
+                        <li class="to-section"><a href="../../index.html#portfolio">Tecnologías</a></li>
+                        <li class="to-section"><a href="../../index.html#team">¿Quien soy?</a></li>
+                        <li class="to-section"><a href="../../index.html#get-connected">Contacto</a></li>
+                        <li class="to-section"><a href="../../Blog.html">Blog</a></li>
+                        <li class="to-section"><a href="../../Programacion.html">Programación Competitiva</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+    <!--End Header-->
+  <section id="quote" class="parallax-section-4">
+            <div class="container">
+                <div class="row wow fadeInUp">
+
+                    <div class="col-lg-12 wow fadeInUp" style="z-index:3">
+                        <div id="quote-slider" class="owl-carousel">
+                            <div>
+                                <blockquote>
+                                    <span>Programación Competitiva.</span>
+                                </blockquote>
+                                <h4 class="quote-author highlight">Isaac Lozano Osorio</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+        var infolinks_pid = 3096956;
+        var infolinks_wsid = 0;
+        </script>
+        <script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+        <!-- Start Team Section -->
+        <section id="team">
+            <div class="container">
+
+                <div class="col-md-12 text-center wow fadeInUp">
+                    <h3 class="section-title">Solución al problema.</h3>
+					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
+                </div>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+
+using namespace std;
+
+#define FOR(i,n,k) for(int i=n;i&lt;k;++i)
+#define RI(i) scanf("%d",&i);
+#define RF(i) scanf("%lf",&i);
+
+const int MAXN=100001;
+
+struct point{
+    double x,y;
+    point(){}
+    point(double a,double b){
+        x=a;y=b;
+    }
+    bool operator&lt;(const point &other)const{
+        return x &lt; other.x || (x==other.x && y &lt; other.y);
+    }
+};
+int L,S;
+point points[MAXN];
+
+int orientation(point a,point b,point c){
+    int v = (b.y-a.y) * (c.x-b.x) - (b.x-a.x) * (c.y-b.y);
+    if(!v) return 0; //colinear
+    return v>0?1:2; // clock or counterclock wise
+}
+
+double cross(const point &O, const point &A, const point &B)
+{
+    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+}
+
+// Returns a list of points on the convex hull in counter-clockwise order.
+// Note: the last point in the returned list is the same as the first one.
+vector&lt;point> getConvexHull(){
+    int n = L, k = 0;
+    vector&lt;point> H(2*n);
+    // Sort points lexicographically
+    sort(points, points+n);
+    // Build lower hull
+    for (int i = 0; i &lt; n; ++i) {
+        while (k >= 2 && cross(H[k-2], H[k-1], points[i]) &lt;= 0) k--;
+        H[k++] = points[i];
+    }
+    // Build upper hull
+    for (int i = n-2, t = k+1; i >= 0; i--) {
+        while (k >= t && cross(H[k-2], H[k-1], points[i]) &lt;= 0) k--;
+        H[k++] = points[i];
+    }
+    H.resize(k-1);
+    return H;
+}
+//Comprueba si el punto q pertenece al segmento pr
+bool onSegment(point p, point q, point r)
+{
+    if (q.x &lt;= max(p.x, r.x) && q.x >= min(p.x, r.x) &&
+            q.y &lt;= max(p.y, r.y) && q.y >= min(p.y, r.y))
+        return true;
+    return false;
+}
+// The main function that returns true if line segment 'p1q1'
+// and 'p2q2' intersect.
+bool doIntersect(point p1, point q1, point p2, point q2)
+{
+    // Find the four orientations needed for general and
+    // special cases
+    int o1 = orientation(p1, q1, p2);
+    int o2 = orientation(p1, q1, q2);
+    int o3 = orientation(p2, q2, p1);
+    int o4 = orientation(p2, q2, q1);
+
+    // General case
+    if (o1 != o2 && o3 != o4)
+        return true;
+
+    // Special Cases
+    // p1, q1 and p2 are colinear and p2 lies on segment p1q1
+    if (o1 == 0 && onSegment(p1, p2, q1)) return true;
+
+    // p1, q1 and p2 are colinear and q2 lies on segment p1q1
+    if (o2 == 0 && onSegment(p1, q2, q1)) return true;
+
+    // p2, q2 and p1 are colinear and p1 lies on segment p2q2
+    if (o3 == 0 && onSegment(p2, p1, q2)) return true;
+
+     // p2, q2 and q1 are colinear and q1 lies on segment p2q2
+    if (o4 == 0 && onSegment(p2, q1, q2)) return true;
+
+    return false; // Doesn't fall in any of the above cases
+}
+
+int pointInsidePolygon(point p, vector&lt;point> polygon) {
+    int n = (int)polygon.size();
+    if (polygon.size() &lt; 3)
+        return false;
+    if (cross(polygon[0], p, polygon[1]) > 1e-10)
+        return false;
+    if (cross(polygon[0], p, polygon[n-1]) &lt; -1e-10)
+        return false;
+
+    int l = 2, r = n-1;
+    int line = -1;
+    while (l &lt;= r) {
+        int mid = (l + r)>>1;
+        if (cross(polygon[0],p, polygon[mid]) > -1e-10) {
+            line = mid;
+            r = mid - 1;
+        } else l = mid + 1;
+    }
+    return cross(polygon[line-1], p, polygon[line]) &lt; 1e-10;
+}*/
+/*bool pointInsidePolygon(point P, vector&lt;point> poly){
+    int n = poly.size();
+    bool in = 0;
+
+    for(int i = 0,j = n - 1;i &lt; n;j = i++){
+        double dx = poly[j].x - poly[i].x;
+        double dy = poly[j].y - poly[i].y;
+
+        if((poly[i].y &lt;= P.y + 1e-10 && P.y &lt; poly[j].y) ||
+            (poly[j].y &lt;= P.y + 1e-10 && P.y &lt; poly[i].y))
+            if(P.x - 1e-10 &lt; dx * (P.y-poly[i].y) / dy+poly[i].x)
+                in ^= 1;
+    }
+
+    return in;
+}*//*
+double signed_area(vector&lt;point> &poly){
+  int n = poly.size();
+  if(n &lt; 3) return 0.0;
+
+  double S = 0.0;
+
+  for(int i = 1;i &lt;= n;++i)
+    S += poly[i % n].x * (poly[(i + 1) % n].y - poly[i - 1].y);
+
+  return S / 2;
+}
+int main(){
+    while(scanf("%d",&L)!=EOF){
+        FOR(i,0,L){
+            RF(points[i].x);
+            RF(points[i].y);
+        }
+        vector&lt;point> convex_hull = getConvexHull();
+        int cnt = 0;
+        RI(S);
+        FOR(i,0,S){
+            int x,y; RI(x); RI(y);
+            cnt += pointInsidePolygon(point(x,y), convex_hull);
+        }
+        printf("%d\n",cnt);
+    }
+    return 0;
+}
+</code></pre>
+            </div>
+        </section>
+         
+
+ 
+
+        <!-- Start Get Connected -->
+        <section id="get-connected" class="parallax-section-6">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">No te pierdas nada.</h3>
+                    <p class="subheading grey wow fadeInUp">Sigue en contacto con <span class="highlight">Isaac Lozano Osorio</span>!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                    <ul class="connected-icons text-center">
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://twitter.com/isaac_lozano_97">
+                                <span class="icon icon-social-twitter size-6x"></span>
+                                <h4 class="white">Twitter</h4>
+                                <span class="grey">Sígueme</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio">
+                                <span class="icon icon-social-facebook size-6x"></span>
+                                <h4 class="white">Facebook</h4>
+                                <span class="grey">Sígueme</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://github.com/isaaclo97">
+                                <span class="icon ion-social-octocat size-6x"></span>
+                                <h4 class="white">GitHub</h4>
+                                <span class="grey">¿Quieres ver mis proyectos?</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="mailto:i.loozano97@gmail.com">
+                                <span class="icon icon-envelope-open size-6x"></span>
+                                <h4 class="white">Email</h4>
+                                <span class="grey">i.loozano97@gmail.com</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- End Get Connected -->
+
+        <!-- Start Footer 1 -->
+        <footer id="footer">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <p>© 2018 Isaac Lozano Osorio. All Rights Reserved. </p>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <ul id="social-icons">
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-twitter"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio"><i class="icon ion-social-facebook"></i></a></li>
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-octocat"></i></a></li>
+                                <li><a target="_blank" href="mailto:i.loozano97@gmail.com"><i class="icon ion-android-drafts"></i></a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Copyright -->
+
+        </footer>
+        <!-- End Footer 1 -->
+
+        <!-- Start Back To Top -->
+        <a id="back-to-top"><i class="icon ion-chevron-up"></i></a>
+        <!-- End Back To Top -->
+
+    </div>
+    <!-- End Site Wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../js/plugins/jquery.min.js"></script>
+    <script src="../../js/plugins/moderniz.min.js"></script>
+    <script src="../../js/plugins/smoothscroll.min.js"></script>
+    <script src="../../js/plugins/revslider.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/plugins/waypoints.min.js"></script>
+    <script src="../../js/plugins/parallax.min.js"></script>
+    <script src="../../js/plugins/easign1.3.min.js"></script>
+    <script src="../../js/plugins/cubeportfolio.min.js"></script>
+    <script src="../../js/plugins/owlcarousel.min.js"></script>
+    <script src="../../js/plugins/wow.min.js"></script>
+    <script src="../../js/plugins/counterup.min.js"></script>
+    <script src="../../js/scripts.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-69918439-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!--Start Cookie Script-->
+    <script type="text/javascript" charset="UTF-8" src="http://cookie-script.com/s/eccbdbc38f31ea25d1b3265195902907.js"></script>
+    <!--End Cookie Script-->
+
+</body>
+
+</html>

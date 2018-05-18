@@ -234,6 +234,9 @@ p,ul {
 .grey {
     color: #d3d3d3;
 }
+.black {
+    color: #1c1c1c;
+}
 .size-8x { font-size:8em }
 .size-7x { font-size:7em }
 .size-6x { font-size:6em }
