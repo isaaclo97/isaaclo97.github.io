@@ -1,0 +1,313 @@
+/*"333333", "E8EAEB", "E6EDF3", "A0BED8", "596978" 
+ *fontcolor,bgcolor,lightcolor,darkcolor,highlight color
+ * 
+ * body {
+    font-family: 'pgn4web Liberation Sans', sans-serif;
+  }
+  .move, .variation, .commentMove {
+    font-family: 'pgn4web ChessSansPiratf', 'pgn4web Liberation Sans', sans-serif;
+  }
+ * */
+
+@media all {	
+	a {
+		text-decoration:none;
+	}
+	
+	body {
+	  margin:0;
+	  padding:0;
+	  background-color: white;
+	  background: url(http://retransmisio.escacs.cat/spin/body-bg.png) #E8EAEB;
+	  font-family: 'pgn4web Liberation Sans', sans-serif;
+	  /*white-space: nowrap;
+	  overflow: hidden;*/ 
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#E0E0E0'); /* IE */
+	  /*background: -webkit-linear-gradient(#FFFFFF, #E0E0E0); /* chrome 10+ */
+	  /*background: -moz-linear-gradient(top,  #FFFFFF,  #E0E0E0); /* firefox 3.6+ */
+	  /*background: -o-linear-gradient(#FFFFFF, #E0E0E0); /* opera 11.10+ */
+	}
+	
+	.boardTable {
+	  float:left;
+	  border-style: solid;
+	  border-color: transparent;
+	  margin:5px;
+	  padding: 1px;
+	}
+	
+	.whiteSquare {
+	  border-style: solid; 
+	  border-width: 2px;
+	  background-color: #E6EDF3;
+	  border-color: #E6EDF3;
+	}
+	
+	.blackSquare {
+	  border-style: solid; 
+	  border-width: 2px;
+	  background-color: #A0BED8;
+	  border-color: #A0BED8;
+	}
+	
+	.highlightBlackSquare{
+		border-color: #596978;
+		border-width: 2px;
+		border-style: solid;
+		background-color: #A0BED8;
+	}
+	
+	.highlightWhiteSquare {
+		background-color: #E6EDF3;
+		border-color: #596978;
+		border-width: 2px;
+		border-style: solid;
+	}
+	
+	.GameSite{
+		font-size:2em;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px #CCC;
+	}
+	
+	.GameEvent{
+		font-size:2.75em;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px #CCC;
+	}
+	
+	.GameSection{
+		font-size:1em;
+	}
+	
+	.GameStage{
+		font-size:1em;
+	}
+	
+	.GameRound{
+		font-size:2em;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px #CCC;
+	}
+
+	.GameDate{
+		font-size:2em;
+		font-weight: bold;
+		text-shadow: 1px 1px 1px #CCC;
+	}
+	
+	.clock {
+		font-size:1.25em;
+	}
+	
+	#GameButtons{
+		margin-top: 0em;
+	}
+	
+	.move, .variation, .commentMove {
+		color:black;
+		font-size:1em;
+    font-family: 'pgn4web ChessSansPiratf', 'pgn4web Liberation Sans', sans-serif;
+    }
+    
+     .variation {
+    	font-weight: bold;
+    }
+    
+    .moves {
+    	margin-top:1em;
+    	word-wrap: break-word;
+    	width: 25em;
+    	overflow: hidden;
+    }
+    
+    .colorFlag{
+    	border-style: solid;
+    	border-color: black;
+    	border-width: 1px;
+    }
+    
+    #blackColor{
+    	background-color: black;
+		float:left;
+    }
+    
+    #whiteColor{
+    	float:left;
+    	background-color: white;
+    	border-style: solid;
+    	border-color: black;
+    	border-width: 1px;
+    }
+    
+    .GameBlack,.GameBlackTitle,.GameBlackElo,.GameBlackTeam, .GameWhite,.GameWhiteTitle, .GameWhiteElo, .GameWhiteTeam {
+    	font-size: 2em;
+    	white-space:nowrap;
+    	overflow:hidden;
+    }
+    
+    .GameResult {
+    	font-weight: bold;
+    	margin-top: 1em;
+    	font-size: 1.5em;
+    }
+    
+    .leftHeaderItem,
+	.rightHeaderItem {
+  		white-space: nowrap;
+ 		overflow: hidden;
+ 		width: 103px;
+	}
+
+	.leftHeaderItem {
+ 		float: left;
+  		text-align: left;
+	}
+
+	.rightHeaderItem {
+ 		float: right;
+  		text-align: right;
+	}
+	
+	#blocJugadors {
+		position:relative;
+		margin-left: 2em;
+		margin-right: 2em;
+	}
+	
+	#GameButtons{
+		width:340px;
+		margin-left: auto ;
+  		margin-right: auto ;
+	}
+	
+	.jugada {
+		display:none;
+	}
+
+
+}
+
+@media all and (orientation:portrait) { 
+	.headerContainer{
+		margin-top: 2em;
+		float:left;
+		position:relative;
+	}
+	
+	.moves {
+		display:none;
+	}
+	
+	#PlaceDate{
+		display:none;
+	}
+	
+	#GameEvent{
+		display:none;
+	}
+	
+	.rellotgeBlanc {
+		position: absolute;
+		bottom: 0;
+		left:0;
+	}
+	
+	.rellotgeNegre {
+		position: absolute;
+		bottom: 0;
+		right:0;
+	}
+	
+	.jugadorBlanc {
+		position: absolute;
+		bottom: 2em;
+		left:0;
+		width:50%
+	}
+	
+	.jugadorNegre {
+		position: absolute;
+		bottom: 2em;
+		right:0;
+		width:50%;
+		text-align:right;
+		padding-right:3em;
+	}
+	
+	.GameNextMove{
+		position: absolute;
+		top: 0;
+		right:0;
+		font-size: 1.25em;
+	}
+	
+	.GameLastMove{
+		position: absolute;
+		top:0;
+		left:0;
+		font-size:1.25em;
+	}
+	
+	.GameResult{
+		display:none;
+	}
+	
+	.colorFlagB{
+		position:absolute;
+		right: 0;
+		top: 2px;
+		margin-right: 0px;
+	}
+	
+	#blocJugadors {
+		height:5.3em;
+	}
+	
+	.GameBlack,.GameBlackTitle,.GameBlackElo,.GameBlackTeam, .GameWhite,.GameWhiteTitle, .GameWhiteElo, .GameWhiteTeam {
+    	font-size: 1.5em;
+    }
+    
+    .jugada {
+		display:block;
+	}
+}
+
+@media all and (orientation:landscape) { 
+	.headerContainer{
+		width:26em;
+		margin-top: 2em;
+		padding-left: 1em;
+		float:left;
+	}
+	
+	.rellotgeBlanc {
+		position: absolute;
+		top: 0;
+	}
+	
+	.rellotgeNegre {
+		position: absolute;
+		bottom: 0;
+	}
+	
+	.jugadorBlanc {
+		padding-top:20px;
+	}
+	
+	.jugadorNegre {
+		padding-bottom:20px;
+	}
+	
+	#PlaceDate{
+		margin-bottom:4em;
+	}
+	
+	
+}
+
+@media all and (orientation:landscape) and (aspect-ratio:16/10) {
+	.headerContainer{
+		width:35em;
+	}
+	} 
