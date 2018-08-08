@@ -3569,12 +3569,12 @@ if (theObj = document.getElementById("GameButtons")) {
       // ' ID="btnGoToEnd" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
       // '</TD></TR></TABLE></FORM>';
 
-text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,event);" class="button" title="Inici Partida"><span class="icon icon7"></span></a>'+
+text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,event);" class="button" title="Inicio de Partida"><span class="icon icon7"></span></a>'+
     '<a href="javascript:void(0)" id="backButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Anterior"><span class="icon icon8"></span></a>'+
-    '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproducció Automàtica"><span class="icon icon6"></span></a>'+
-    '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Següent"><span class="icon icon9"></span></a>'+
-    '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fi Partida"><span class="icon icon10"></span></a></div>'+
-    '<a href="javascript:void(0)" onClick="javascript:window.history.back();" class="button" title="Llista de Partides"><span class="icon icon120"></span></a></div>';
+    '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproduccion Automática"><span class="icon icon6"></span></a>'+
+    '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Seguiente"><span class="icon icon9"></span></a>'+
+    '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a></div>'+
+    '<a href="javascript:void(0)" onClick="javascript:window.history.back();" class="button" title="Lista de Partidas"><span class="icon icon120"></span></a></div>';
     theObj.innerHTML = text;
   }
 
