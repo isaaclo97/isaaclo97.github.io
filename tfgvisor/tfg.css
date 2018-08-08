@@ -249,7 +249,9 @@
 	}
 	
 	.GameResult{
-		display:none;
+		text-align: center;
+		font-size: 3em;
+		margin-top: -2em;
 	}
 	
 	.colorFlagB{
