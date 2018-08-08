@@ -18,6 +18,9 @@ jQuery.noConflict();
 var ww = 0, wh = 0;
   
 var squareSize;
+function searchPlayer(name, FideId) {
+  if (typeof(openFidePlayerUrl) == "function") { openFidePlayerUrl(name, FideId); }
+}
 
 function myRulesLength(sheet) {
   if (sheet.cssRules) { return sheet.cssRules.length; }
