@@ -117,7 +117,7 @@ SetInitialGame(iniGame);
 
 function customFunctionOnMove() {
 //nombre de jugades que es mostren a la pantalla
-  extraMoves = 200;
+  extraMoves = 100;
 
   document.getElementById("GamePrevMoves").innerHTML = "";
   document.getElementById("GameCurrMove").innerHTML = "";
@@ -137,8 +137,8 @@ function customFunctionOnMove() {
   }
   if (thisPly < StartPly + PlyNumber) { theObj.innerHTML += "..."; }
 
-  fixHeaderItem(null, "GameWhiteClock", "Rellotge Blanques");
-  fixHeaderItem(null, "GameBlackClock", "Rellotge Negres");
+  fixHeaderItem(null, "GameWhiteClock", "Reloj de Blancas");
+  fixHeaderItem(null, "GameBlackClock", "Relojs de Negras");
   fixColorFlag();
   clearInterval(timerVar);
   if ((!LiveBroadcastEnded)&&(thisPly == CurrentPly)){
@@ -225,21 +225,21 @@ clearShortcutSquares("ABCDEFGH", "12345678");
 function customFunctionOnPgnGameLoad() {
   myOnResize();
   customPgnHeaderTag("TimeControl", "GameTimeControl");
-  fixHeaderItem(null, "GameEvent", "Torneig");
-  fixHeaderItem(null, "GameSite", "Lloc");
-  fixHeaderItem(null, "GameDate", "Data");
-  fixHeaderItem(null, "GameRound", "Ronda");
-  fixHeaderItem(null, "GameWhite", "white player");
-  fixHeaderItem(null, "GameBlack", "black player");
-  fixHeaderItem(null, "GameResult", "Resultat");
+  fixHeaderItem(null, "GameEvent", "Tournament");
+  fixHeaderItem(null, "GameSite", "Site");
+  fixHeaderItem(null, "GameDate", "Date");
+  fixHeaderItem(null, "GameRound", "Round");
+  fixHeaderItem(null, "GameWhite", "Whitehite player");
+  fixHeaderItem(null, "GameBlack", "Black player");
+  fixHeaderItem(null, "GameResult", "Result");
   fixHeaderItem("Section", "GameSection", "section");
   fixHeaderItem("Stage", "GameStage", "stage");
-  fixHeaderItem("WhiteTitle", "GameWhiteTitle", "white title");
-  fixHeaderItem("WhiteElo", "GameWhiteElo", "white elo");
-  fixHeaderItem("WhiteTeam", "GameWhiteTeam", "white team");
-  fixHeaderItem("BlackTitle", "GameBlackTitle", "black title");
-  fixHeaderItem("BlackElo", "GameBlackElo", "black elo");
-  fixHeaderItem("BlackTeam", "GameBlackTeam", "black team");
+  fixHeaderItem("WhiteTitle", "GameWhiteTitle", "White title");
+  fixHeaderItem("WhiteElo", "GameWhiteElo", "White elo");
+  fixHeaderItem("WhiteTeam", "GameWhiteTeam", "White team");
+  fixHeaderItem("BlackTitle", "GameBlackTitle", "Black title");
+  fixHeaderItem("BlackElo", "GameBlackElo", "Black elo");
+  fixHeaderItem("BlackTeam", "GameBlackTeam", "Black team");
   //updateBareShortcut();
 }
 
@@ -260,9 +260,6 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 
   <link rel="stylesheet" href="FCE_files/css3-buttons.css" type="text/css" media="screen">
   
-  <!-- Using TipTip jQuery plugin for the tooltips 
-  <link rel="stylesheet" href="buttons/tiptip.css" type="text/css"  media="screen">
-	<script src="buttons/jquery.tiptip.js"></script> -->
 	<script type="text/javascript">
 		
 		function toggleAutoplayBtn(){
@@ -291,51 +288,51 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <div><span id="GameEvent" class="GameEvent" title="Torneig: "></span></div>
 
 <div id="PlaceDate">
-	<span id="GameSite" class="GameSite" title="Lloc: ?"></span>
+	<span id="GameSite" class="GameSite" title=""></span>
 	<span class="GameRound">(</span>
-	<span id="GameSection" class="GameSection" title="section"></span>
-	<span id="GameStage" class="GameStage" title="stage"></span>
-	<span id="GameRound" class="GameRound" title="Ronda: "></span>
+	<span id="GameSection" class="GameSection" title=""></span>
+	<span id="GameStage" class="GameStage" title=""></span>
+	<span id="GameRound" class="GameRound" title=""></span>
 	<span class="GameRound">)</span>
-	<span id="GameDate" class="GameDate" title="Data: 2018.08.08" style="white-space: nowrap;"></span>
+	<span id="GameDate" class="GameDate" title="" style="white-space: nowrap;"></span>
 </div>
 
-<div id="blocJugadors">
+<div id="blocJugadores">
 <div id="jugada" class="jugada">
 	<div class="GameLastMove">></div>
 	<div class="GameNextMove"></div>
-	<div>&nbsp;<a href="javascript:void(0);" onclick="newMovesFlag(false); this.blur();" title="new moves received" id="GameNewMoves"></a>&nbsp;</div>
+	<div>&nbsp;<a href="javascript:void(0);" onclick="newMovesFlag(false); this.blur();" title="" id="GameNewMoves"></a>&nbsp;</div>
 </div>
-<div class="rellotgeBlanc">
-	<span style="display:inline-block;" title="Mouen les blanques">
+<div class="relojBlancas">
+	<span style="display:inline-block;" title="">
 		<img class="" style="display: inline; visibility: hidden;" id="whiteColorFlag" src="./FCE_files/rarrow.png">
 	</span>
-	<span class="clock" id="GameWhiteClock" title="Rellotge Blanques"></span>
+	<span class="clock" id="GameWhiteClock" title=""></span>
 </div>
 
 <div class="jugadorBlanc">
 	
 	<div class="colorFlag colorFlagW" style="background:white;" id="whiteColor"></div>
-	<div class="GameWhite" id="GameWhite" href="javascript:void(0);" title="white player: "></div>
-	<span class="GameWhiteTitle" id="GameWhiteTitle" title="white title"></span>
-	<span class="GameWhiteElo" id="GameWhiteElo" title="white elo: "></span>
-	<span class="GameWhiteTeam" id="GameWhiteTeam" title="white team"></span>
+	<div class="GameWhite" id="GameWhite" href="javascript:void(0);" title=""></div>
+	<span class="GameWhiteTitle" id="GameWhiteTitle" title=""></span>
+	<span class="GameWhiteElo" id="GameWhiteElo" title=""></span>
+	<span class="GameWhiteTeam" id="GameWhiteTeam" title=""></span>
 	
 </div>
 
 <div class="jugadorNegre">
 	<div class="colorFlag colorFlagB" id="blackColor"></div>
-	<div class="GameBlack" id="GameBlack" href="javascript:void(0);" title="black player: "></div>
-	<span class="GameBlackTitle" id="GameBlackTitle" title="black title"></span>
-	<span class="GameBlackElo" id="GameBlackElo" title="black elo: "></span>
-	<span class="GameBlackTeam" id="GameBlackTeam" title="black team"></span>
+	<div class="GameBlack" id="GameBlack" href="javascript:void(0);" title=""></div>
+	<span class="GameBlackTitle" id="GameBlackTitle" title=""></span>
+	<span class="GameBlackElo" id="GameBlackElo" title=""></span>
+	<span class="GameBlackTeam" id="GameBlackTeam" title=""></span>
 </div>
 
-<div class="rellotgeNegre">
-	<span style="display:inline-block;" title="Mouen les negres">
+<div class="relojNegras">
+	<span style="display:inline-block;" title="">
 		<img class="" style="display: inline; visibility: visible;" id="blackColorFlag" src="./FCE_files/rarrow.png">
 	</span>
-	<span class="clock" id="GameBlackClock" title="Rellotge Negres"></span>
+	<span class="clock" id="GameBlackClock" title=""></span>
 </div>
 </div>
 
@@ -345,10 +342,10 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 	<a class="move" id="GameNextMoves" href="javascript:void(0);" onclick="GoToMove(CurrentPly + 1); this.blur();" title="next moves"></a>
 </div>
 <div class="GameResult">
-	<span id="GameResult" title="Resultat:" style="white-space: nowrap;"></span>
+	<span id="GameResult" title="" style="white-space: nowrap;"></span>
 </div>
 
-<div id="GameButtons"><a href="javascript:void(0)" id="startButton" onclick="clickedBbtn(this,event);" class="button" title="Inici Partida"><span class="icon icon7"></span></a><a href="javascript:void(0)" id="backButton" onclick="clickedBbtn(this,event);" class="button" title="Jugada Anterior"><span class="icon icon8"></span></a><a href="javascript:void(0)" id="autoplayButton" onclick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproducció Automàtica"><span class="icon icon6"></span></a><a href="javascript:void(0)" id="forwardButton" onclick="clickedBbtn(this,event);" class="button" title="Jugada Següent"><span class="icon icon9"></span></a><a href="javascript:void(0)" id="endButton" onclick="clickedBbtn(this,event);" class="button" title="Fi Partida"><span class="icon icon10"></span></a><a href="javascript:void(0)" onclick="javascript:window.history.back();" class="button" title="Llista de Partides"><span class="icon icon120"></span></a></div>
+<div id="GameButtons"><a href="javascript:void(0)" id="startButton" onclick="clickedBbtn(this,event);" class="button" title="Inicio de Partida"><span class="icon icon7"></span></a><a href="javascript:void(0)" id="backButton" onclick="clickedBbtn(this,event);" class="button" title="Jugada Anterior"><span class="icon icon8"></span></a><a href="javascript:void(0)" id="autoplayButton" onclick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproducción Automática"><span class="icon icon6"></span></a><a href="javascript:void(0)" id="forwardButton" onclick="clickedBbtn(this,event);" class="button" title="Jugada Siguiente"><span class="icon icon9"></span></a><a href="javascript:void(0)" id="endButton" onclick="clickedBbtn(this,event);" class="button" title="Fin Partida"><span class="icon icon10"></span></a><a href="javascript:void(0)" onclick="javascript:window.history.back();" class="button" title="Lista de Partidas"><span class="icon icon120"></span></a></div>
 
 </div>
 

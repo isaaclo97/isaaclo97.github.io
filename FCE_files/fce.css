@@ -18,7 +18,7 @@
 	  margin:0;
 	  padding:0;
 	  background-color: white;
-	  background: url(http://retransmisio.escacs.cat/spin/body-bg.png) #E8EAEB;
+	  background: #E8EAEB;
 	  font-family: 'pgn4web Liberation Sans', sans-serif;
 	  /*white-space: nowrap;
 	  overflow: hidden;*/ 
@@ -97,7 +97,7 @@
 	}
 	
 	.clock {
-		font-size:1.25em;
+		font-size:1.5em;
 	}
 	
 	#GameButtons{
@@ -171,8 +171,6 @@
 	
 	#blocJugadors {
 		position:relative;
-		margin-left: 2em;
-		margin-right: 2em;
 	}
 	
 	#GameButtons{
@@ -207,13 +205,13 @@
 		display:none;
 	}
 	
-	.rellotgeBlanc {
+	.relojBlancas {
 		position: absolute;
 		bottom: 0;
 		left:0;
 	}
 	
-	.rellotgeNegre {
+	.relojNegras {
 		position: absolute;
 		bottom: 0;
 		right:0;
@@ -260,7 +258,7 @@
 		margin-right: 0px;
 	}
 	
-	#blocJugadors {
+	#blocJugadores {
 		height:5.3em;
 	}
 	
