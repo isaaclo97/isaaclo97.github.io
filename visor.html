@@ -336,7 +336,7 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 </div>
 </div>
 
-<div class="moves">
+<div class="moves" style="height: auto;">
 	<a class="move" id="GamePrevMoves" href="javascript:void(0);" onclick="GoToMove(CurrentPly - 1); this.blur();" title="previous moves"></a>
 	<a class="variation" style="font-weight: bold;" id="GameCurrMove" href="javascript:void(0);" onclick="SetHighlight(!highlightOption); this.blur();" title="current move as shown on chessboard"></a>
 	<a class="move" id="GameNextMoves" href="javascript:void(0);" onclick="GoToMove(CurrentPly + 1); this.blur();" title="next moves"></a>

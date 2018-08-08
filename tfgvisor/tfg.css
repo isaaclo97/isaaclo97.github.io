@@ -207,26 +207,27 @@
 	
 	.relojBlancas {
 		position: absolute;
-		bottom: 0;
+		bottom: -9em;
 		left:0;
 	}
 	
 	.relojNegras {
 		position: absolute;
-		bottom: 0;
+		bottom: -9em;
 		right:0;
 	}
 	
 	.jugadorBlanc {
 		position: absolute;
-		bottom: 2em;
+		bottom: -6.3em;
+		padding-left: 3em
 		left:0;
 		width:50%
 	}
 	
 	.jugadorNegre {
 		position: absolute;
-		bottom: 2em;
+		bottom: -6em;
 		right:0;
 		width:50%;
 		text-align:right;
