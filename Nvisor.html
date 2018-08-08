@@ -6,8 +6,8 @@
 
 <link rel="shortcut icon" href="">
 
-<script type="text/javascript" async="" src="./mosaics_files/ga.js"></script><script src="./mosaics_files/pgn4web.js" type="text/javascript"></script>
-<link rel="stylesheet" href="./mosaics_files/portada.css">
+<script type="text/javascript" async="" src="mosaics_files/ga.js"></script><script src="mosaics_files/pgn4web.js" type="text/javascript"></script>
+<link rel="stylesheet" href="mosaics_files/portada.css">
 <script type="text/javascript">
 
   var pgnData_default = "files/games.pgn";
@@ -449,7 +449,7 @@ function customFunctionOnPgnTextLoad() {
   }
 
   if (newMovesInShownGames) { liveBroadcastUpdateTicker++; }
-  document.title = gameEvent[0] +" :: Federació Catalana d'Escacs :: Retransmissio";
+  document.title = gameEvent[0];
 
   if (theObj = document.getElementById("GameLiveStatusDemo")) { theObj.innerHTML = LiveBroadcastDemo ? "demo &nbsp; " : ""; }
 

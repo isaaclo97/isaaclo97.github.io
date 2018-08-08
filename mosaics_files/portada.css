@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: white;
-  background: url(http://retransmisio.escacs.cat/spin/body-bg.png) #E8EAEB;
+  background: #E8EAEB;
 }
 
 a:link, a:visited, a:active {
@@ -122,7 +122,7 @@ height: 55px;
 	height: 22px;
 	margin-bottom: -7px;
 	margin-top: -1px;
-	background: url('http://escacs.cat/templates/rt_tachyon_j16/images/header/dark/header-bottom.png') 50% 100% repeat-x;
+	
 }
 
 #containerFotos {
