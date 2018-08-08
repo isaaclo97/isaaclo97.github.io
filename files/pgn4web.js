@@ -3299,7 +3299,7 @@ function fixCommentForDisplay(comment) {
   return comment.replace(chessMovesRegExp, '<SPAN CLASS="commentMove">$1</SPAN>');
 }
 
-var tableSize = 350;
+var tableSize = 200;
 var textSelectOptions = '';
 function PrintHTML() {
   var ii, jj, text, theObj, squareId, imageId, squareCoord, squareTitle, numText, textSO;
