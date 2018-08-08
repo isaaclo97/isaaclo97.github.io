@@ -313,7 +313,7 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <div class="jugadorBlanc">
 	
 	<div class="colorFlag colorFlagW" style="background:white;" id="whiteColor"></div>
-	<div class="GameWhite" id="GameWhite" href="javascript:void(0);" title=""></div>
+	<div class="GameWhite" id="GameWhite" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('WhiteFideId')); this.blur();" href="javascript:void(0);" title=""></div>
 	<span class="GameWhiteTitle" id="GameWhiteTitle" title=""></span>
 	<span class="GameWhiteElo" id="GameWhiteElo" title=""></span>
 	<span class="GameWhiteTeam" id="GameWhiteTeam" title=""></span>
@@ -322,7 +322,7 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 
 <div class="jugadorNegre">
 	<div class="colorFlag colorFlagB" id="blackColor"></div>
-	<div class="GameBlack" id="GameBlack" href="javascript:void(0);" title=""></div>
+	<div class="GameBlack" id="GameBlack" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('BlackFideId')); this.blur();" href="javascript:void(0);" title=""></div>
 	<span class="GameBlackTitle" id="GameBlackTitle" title=""></span>
 	<span class="GameBlackElo" id="GameBlackElo" title=""></span>
 	<span class="GameBlackTeam" id="GameBlackTeam" title=""></span>
