@@ -3573,10 +3573,16 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<a href="javascript:void(0)" id="backButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Anterior"><span class="icon icon8"></span></a>'+
     '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproduccion Automática"><span class="icon icon6"></span></a>'+
     '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Seguiente"><span class="icon icon9"></span></a>'+
-    '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a></div>'+
-    '<a href="javascript:void(0)" onClick="javascript:window.history.back();" class="button" title="Lista de Partidas"><span class="icon icon120"></span></a></div>';
+    '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a>'+
+    '<button type="button" id="sidebarCollapse" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></button></div>';
     theObj.innerHTML = text;
   }
+  
+  console.log("Nombres de jugadores");
+  //NOMBRES DE JUGADORES PARA LISTADO LATERAL
+  for(i=0; i<numberOfGames;i++)
+  console.log(gameWhite[i]+" "+gameBlack[i]+" "+gameResult[i]); 
+
 
   // game selector
 
