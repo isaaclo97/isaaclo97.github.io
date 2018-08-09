@@ -3472,56 +3472,6 @@ function PrintHTML() {
       theObj.style.height = tableSize + "px";
     }
   }
-	/*
-  // control buttons OLD
-
-  if (theObj = document.getElementById("GameButtons")) {
-    numberOfButtons = 5;
-    spaceSize = 3;
-    buttonSize = ((tableSize - spaceSize*(numberOfButtons - 1)) / numberOfButtons)/2;
-    text = '<FORM NAME="GameButtonsForm" STYLE="display:inline;">' +
-      '<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">' +
-      '<TR><TD>' +
-      '<INPUT ID="startButton" TYPE="BUTTON" VALUE="&lt;&lt;" STYLE="';
-    if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    text += '"; CLASS="buttonControl" TITLE="go to game start" ' +
-      ' ID="btnGoToStart" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      '</TD>' +
-      '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      '</TD><TD>' +
-      '<INPUT ID="backButton" TYPE="BUTTON" VALUE="&lt;" STYLE="';
-    if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    text += '"; CLASS="buttonControl" TITLE="move backward" ' +
-      ' ID="btnMoveBackward1" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      '</TD>' +
-      '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      '</TD><TD>';
-    text += '<INPUT ID="autoplayButton" TYPE="BUTTON" VALUE=' +
-      (isAutoPlayOn ? "=" : "+") + ' STYLE="';
-    if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    text += isAutoPlayOn ?
-      '"; CLASS="buttonControlStop" TITLE="toggle autoplay (stop)" ' :
-      '"; CLASS="buttonControlPlay" TITLE="toggle autoplay (start)" ';
-    text += ' ID="btnPlay" NAME="AutoPlay" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      '</TD>' +
-      '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      '</TD><TD>' +
-      '<INPUT ID="forwardButton" TYPE="BUTTON" VALUE="&gt;" STYLE="';
-    if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    text += '"; CLASS="buttonControl" TITLE="move forward" ' +
-      ' ID="btnMoveForward1" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      '</TD>' +
-      '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      '</TD><TD>' +
-      '<INPUT ID="endButton" TYPE="BUTTON" VALUE="&gt;&gt;" STYLE="';
-    if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    text += '"; CLASS="buttonControl" TITLE="go to game end" ' +
-      ' ID="btnGoToEnd" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      '</TD></TR></TABLE></FORM>';
-
-    theObj.innerHTML = text;
-  }
- */
 
 //control buttons SPIN
 
@@ -3529,45 +3479,6 @@ if (theObj = document.getElementById("GameButtons")) {
     numberOfButtons = 5;
     spaceSize = 3;
     buttonSize = ((tableSize - spaceSize*(numberOfButtons - 1)) / numberOfButtons)/2;
-    // text = '<FORM NAME="GameButtonsForm" STYLE="display:inline;">' +
-      // '<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">' +
-      // '<TR><TD>' +
-      // '<INPUT ID="startButton" TYPE="BUTTON" VALUE="&lt;&lt;" STYLE="';
-    // if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    // text += '"; CLASS="buttonControl" TITLE="go to game start" ' +
-      // ' ID="btnGoToStart" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      // '</TD>' +
-      // '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      // '</TD><TD>' +
-      // '<INPUT ID="backButton" TYPE="BUTTON" VALUE="&lt;" STYLE="';
-    // if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    // text += '"; CLASS="buttonControl" TITLE="move backward" ' +
-      // ' ID="btnMoveBackward1" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      // '</TD>' +
-      // '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      // '</TD><TD>';
-    // text += '<INPUT ID="autoplayButton" TYPE="BUTTON" VALUE=' +
-      // (isAutoPlayOn ? "=" : "+") + ' STYLE="';
-    // if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    // text += isAutoPlayOn ?
-      // '"; CLASS="buttonControlStop" TITLE="toggle autoplay (stop)" ' :
-      // '"; CLASS="buttonControlPlay" TITLE="toggle autoplay (start)" ';
-    // text += ' ID="btnPlay" NAME="AutoPlay" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      // '</TD>' +
-      // '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      // '</TD><TD>' +
-      // '<INPUT ID="forwardButton" TYPE="BUTTON" VALUE="&gt;" STYLE="';
-    // if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    // text += '"; CLASS="buttonControl" TITLE="move forward" ' +
-      // ' ID="btnMoveForward1" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      // '</TD>' +
-      // '<TD CLASS="buttonControlSpace" WIDTH="' + spaceSize + '">' +
-      // '</TD><TD>' +
-      // '<INPUT ID="endButton" TYPE="BUTTON" VALUE="&gt;&gt;" STYLE="';
-    // if (buttonSize > 0) { text += 'width: ' + buttonSize + 'px;'; }
-    // text += '"; CLASS="buttonControl" TITLE="go to game end" ' +
-      // ' ID="btnGoToEnd" onClick="clickedBbtn(this,event);" ONFOCUS="this.blur();">' +
-      // '</TD></TR></TABLE></FORM>';
 
 text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,event);" class="button" title="Inicio de Partida"><span class="icon icon7"></span></a>'+
     '<a href="javascript:void(0)" id="backButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Anterior"><span class="icon icon8"></span></a>'+
@@ -3577,12 +3488,13 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<button type="button" id="sidebarCollapse" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></button></div>';
     theObj.innerHTML = text;
   }
-  
   //NOMBRES DE JUGADORES PARA LISTADO LATERAL
-  if(document.getElementById("addGames"))
+  if(theObj = document.getElementById("addGames"))
   {
+	text=""
     for(i=0; i<numberOfGames;i++)
-      text+= '<a href="#" data-toggle="collapse" aria-expanded="false">"'+(gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i])+'"</a>"'; 
+      text+= '<a href="#" data-toggle="collapse" aria-expanded="false">'+gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i]+'</a>'; 
+	text+="</div>"
   theObj.innerHTML=text;
   }
 
