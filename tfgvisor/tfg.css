@@ -297,8 +297,6 @@
 		width:35em;
 	}
 	}
-
-
 	//INICIO CODIGO 
 
 	.navbar {
@@ -326,15 +324,14 @@
 
 	#sidebar {
 		width: 250px;
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: -250px;
-		height: 100vh;
+		height: auto;
 		z-index: 999;
 		background: #7386D5;
 		color: #fff;
 		transition: all 0.3s;
-		overflow-y: scroll;
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 	}
 
@@ -386,12 +383,6 @@
 		padding: 20px 0;
 		border-bottom: 1px solid #47748b;
 	}
-
-	#sidebar ul p {
-		color: #fff;
-		padding: 10px;
-	}
-
 	#sidebar ul li a {
 		padding: 10px;
 		font-size: 1.1em;
