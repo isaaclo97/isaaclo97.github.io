@@ -3578,10 +3578,13 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     theObj.innerHTML = text;
   }
   
-  console.log("Nombres de jugadores");
   //NOMBRES DE JUGADORES PARA LISTADO LATERAL
-  for(i=0; i<numberOfGames;i++)
-  console.log(gameWhite[i]+" "+gameBlack[i]+" "+gameResult[i]); 
+  if(document.getElementById("addGames"))
+  {
+    for(i=0; i<numberOfGames;i++)
+      text+= '<a href="#" data-toggle="collapse" aria-expanded="false">"'+(gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i])+'"</a>"'; 
+  theObj.innerHTML=text;
+  }
 
 
   // game selector
