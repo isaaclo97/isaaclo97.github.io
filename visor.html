@@ -297,6 +297,7 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
             <ul class="list-unstyled CTAs">
                 <li>
                     <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Download Games</a>
+					<a href="javascript:void(0)" id="atras" onClick="clickedBbtn(this,event);"  class="download">Back</a>
                 </li>
             </ul>
         </nav>
@@ -373,25 +374,4 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <script src="tfgvisor/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="tfgvisor/popper.min.js"></script>
 <script src="tfgvisor/bootstrap.min.js"></script>
-
-<script>
-$(document).ready(function () {
-	$("#sidebar").mCustomScrollbar({
-		theme: "minimal"
-	});
-
-	$('#dismiss, .overlay').on('click', function () {
-		$('#sidebar').removeClass('active');
-		$('.overlay').removeClass('active');
-	});
-
-	$('#sidebarCollapse').on('click', function () {
-		$('#sidebar').addClass('active');
-		$('.overlay').addClass('active');
-		$('.collapse.in').toggleClass('in');
-		$('a[aria-expanded=true]').attr('aria-expanded', 'false');
-	});
-});
-</script>
-
 </body></html>

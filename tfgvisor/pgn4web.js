@@ -3485,7 +3485,7 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproduccion Automática"><span class="icon icon6"></span></a>'+
     '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Seguiente"><span class="icon icon9"></span></a>'+
     '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a>'+
-    '<button type="button" id="sidebarCollapse" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></button></div>';
+    '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a></div>';
     theObj.innerHTML = text;
   }
   //NOMBRES DE JUGADORES PARA LISTADO LATERAL
@@ -3675,6 +3675,19 @@ function endButton(e) {
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
 }
 
+function atras(e)
+{
+	$('#sidebar').removeClass('active');
+	$('.overlay').removeClass('active');
+}
+
+function menu(e) {
+	  $('#sidebar').addClass('active');
+	  $('.overlay').addClass('active');
+	  $('.collapse.in').toggleClass('in');
+	  $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+}
+
 function clickedBbtn(t,e) {
   switch (t.id) {
     case "startButton":
@@ -3692,6 +3705,12 @@ function clickedBbtn(t,e) {
       break;
     case "endButton":
       endButton(e);
+	  break;
+	case "menu":
+      menu(e);
+	  break;
+	case "atras":
+      atras(e);
       break;
     default:
       break;
