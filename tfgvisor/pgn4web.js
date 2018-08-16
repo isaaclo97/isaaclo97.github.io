@@ -3654,21 +3654,21 @@ function startButton(e) {
     }
   } else { GoToMove(StartPlyVar[0], 0); }
   color1=1;
-  init();
+  updatemove();
 }
 
 function backButton(e) {
   if (e.shiftKey) { GoToMove(StartPlyVar[CurrentVar]); }
   else { GoToMove(CurrentPly - 1); }
   color1 = CurrentPly - 1;
-  init();
+  updatemove();
 }
 
 function forwardButton(e) {
   if (e.shiftKey) { if (!goToNextVariationSibling()) { GoToMove(CurrentPly + 1); } }
   else { GoToMove(CurrentPly + 1); }
   color1 = CurrentPly + 1;
-  init();
+  updatemove();
 }
 
 function endButton(e) {
@@ -3680,7 +3680,7 @@ function endButton(e) {
     }
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
   color1 = StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar];
-  init();
+  updatemove();
 }
 
 function atras(e)
@@ -3709,10 +3709,54 @@ function atras()
 //
 //
 
+  var wait_for_script;
+  var newGame = function (){};
   
+  /// We can load Stockfish.js via Web Workers or directly via a <script> tag.
+  /// Web Workers are better since they don't block the UI, but they are not always avaiable.
+  (function fix_workers()
+  {
+	var script_tag;
+	/// Does the environment support web workers?  If not, include stockfish.js directly.
+	///NOTE: Since web workers don't work when a page is loaded from the local system, we have to fake it there too. (Take that security measures!)
+	if (!Worker || (location && location.protocol === "file:")) {
+	  var script_tag  = document.createElement("script");
+	  script_tag.type ="text/javascript";
+	  script_tag.src  = "https://isaaclo97.github.io/tfgvisor/stockfish.js";
+	  script_tag.onload = init;
+	  document.getElementsByTagName("head")[0].appendChild(script_tag);
+	  wait_for_script = true;
+	}
+  }());
+  
+  var gameupdate;
   function init()
   {
 	var game = engineGame();
+	gameupdate = game;
+	newGame = function newGame() {
+		var text =  document.getElementById("GamePrevMoves").textContent;
+		text+= document.getElementById("GameCurrMove").textContent;
+		console.log('Partida: ' + text);
+		console.log('Partida color: ' + color1);
+		var pgn = text;
+		game.reset();
+		game.loadPgn(pgn);
+		var skill = 20;
+		game.setSkillLevel(skill);
+		game.setPlayerColor(color1 % 2 === 0 ? 'white' : 'black');
+		game.setDisplayScore($('#showScore').is(':checked'));
+		game.start();
+	}
+	
+	game.setSkillLevel
+	
+	newGame();
+  }
+  
+  function updatemove()
+  {
+	var game = gameupdate;
 
 	newGame = function newGame() {
 		var text =  document.getElementById("GamePrevMoves").textContent;
@@ -3734,6 +3778,10 @@ function atras()
 	newGame();
   }
   
+  /// If we load Stockfish.js via a <script> tag, we need to wait until it loads.
+  if (!wait_for_script) {
+	document.addEventListener("DOMContentLoaded", init);
+  }
 	  
 function engineGame(options) {
     options = options || {}
