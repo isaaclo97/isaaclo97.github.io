@@ -3654,16 +3654,19 @@ function startButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + 1);
     }
   } else { GoToMove(StartPlyVar[0], 0); }
+  init();
 }
 
 function backButton(e) {
   if (e.shiftKey) { GoToMove(StartPlyVar[CurrentVar]); }
   else { GoToMove(CurrentPly - 1); }
+  init();
 }
 
 function forwardButton(e) {
   if (e.shiftKey) { if (!goToNextVariationSibling()) { GoToMove(CurrentPly + 1); } }
   else { GoToMove(CurrentPly + 1); }
+  init();
 }
 
 function endButton(e) {
@@ -3674,6 +3677,7 @@ function endButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar]);
     }
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
+  init();
 }
 
 function atras(e)
