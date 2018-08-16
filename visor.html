@@ -375,6 +375,33 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <div id="GameButtons"></div>
 </div>
 
+<script> 
+
+  var wait_for_script;
+  var newGame = function (){};
+  
+  /// We can load Stockfish.js via Web Workers or directly via a <script> tag.
+  /// Web Workers are better since they don't block the UI, but they are not always avaiable.
+  (function fix_workers()
+  {
+	var script_tag;
+	/// Does the environment support web workers?  If not, include stockfish.js directly.
+	///NOTE: Since web workers don't work when a page is loaded from the local system, we have to fake it there too. (Take that security measures!)
+	if (!Worker || (location && location.protocol === "file:")) {
+	  var script_tag  = document.createElement("script");
+	  script_tag.type ="text/javascript";
+	  script_tag.src  = "https://isaaclo97.github.io/tfgvisor/stockfish.js";
+	  script_tag.onload = init;
+	  document.getElementsByTagName("head")[0].appendChild(script_tag);
+	  wait_for_script = true;
+	}
+  }());
+    /// If we load Stockfish.js via a <script> tag, we need to wait until it loads.
+  if (!wait_for_script) {
+	document.addEventListener("DOMContentLoaded", init);
+  }
+</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="tfgvisor/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="tfgvisor/popper.min.js"></script>
