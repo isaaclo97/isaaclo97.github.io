@@ -722,7 +722,7 @@ function displayPgnData(allGames) {
     if (window.focus) { pgnWin.focus(); }
   }
 }
-var color = 'w';
+var color1 = 'w';
 function CurrentFEN() {
   currentFEN = "";
 
@@ -748,7 +748,7 @@ function CurrentFEN() {
 
   // active color
   currentFEN += CurrentPly%2 === 0 ? " w" : " b";
-  color=currentFen;
+  color1=CurrentPly%2 === 0 ? " w" : " b";
   // castling availability, always in the KQkq form
   // (wrong FEN for for Chess960 positions with an inner castling rook)
   CastlingFEN = "";
@@ -3734,13 +3734,13 @@ function atras()
 		var text =  document.getElementById("GamePrevMoves").textContent;
 		text+= document.getElementById("GameCurrMove").textContent;
 		console.log('Partida: ' + text);
-		console.log('Partida color: ' + color);
+		console.log('Partida color: ' + color1);
 		var pgn = text;
 		game.reset();
 		game.loadPgn(pgn);
 		var skill = 20;
 		game.setSkillLevel(skill);
-		game.setPlayerColor(color === 'w' ? 'white' : 'black');
+		game.setPlayerColor(color1 === 'w' ? 'white' : 'black');
 		game.setDisplayScore($('#showScore').is(':checked'));
 		game.start();
 	}
