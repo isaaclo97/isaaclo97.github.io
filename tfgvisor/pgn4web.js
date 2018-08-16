@@ -3687,6 +3687,16 @@ function menu(e) {
 	  $('.overlay').addClass('active');
 	  $('.collapse.in').toggleClass('in');
 	  $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+	  var userSelection = document.getElementsByClassName('active');
+	for(let i = 0; i < userSelection.length; i++) {
+	  userSelection[i].addEventListener("click",atras);
+	}
+}
+
+function atras()
+{
+	$('#sidebar').removeClass('active');
+	$('.overlay').removeClass('active');
 }
 
 function clickedBbtn(t,e) {

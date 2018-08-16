@@ -11,11 +11,10 @@ function engineGame(options) {
     var playerColor = 'white';
     var clockTimeoutID = null;
     var isEngineRunning = false;
-    var evaluation_el = document.getElementById("evaluation");
     var announced_game_over;
     // do not pick up pieces if the game is over
     // only pick up pieces for White
-    var onDragStart = function(source, piece, position, orientation) {
+    /*var onDragStart = function(source, piece, position, orientation) {
         var re = playerColor == 'white' ? /^b/ : /^w/
             if (game.game_over() ||
                 piece.search(re) !== -1) {
@@ -33,7 +32,7 @@ function engineGame(options) {
             announced_game_over = true;
             alert("Game Over");
         }
-    }, 1000);
+    }, 1000);*/
 
     function uciCmd(cmd, which) {
         console.log("UCI: " + cmd);
@@ -62,65 +61,6 @@ function engineGame(options) {
         }
         $('#engineStatus').html(status);
     }
-
-    function displayClock(color, t) {
-        var isRunning = false;
-        if(time.startTime > 0 && color == time.clockColor) {
-            t = Math.max(0, t + time.startTime - Date.now());
-            isRunning = true;
-        }
-        var id = color == playerColor ? '#time2' : '#time1';
-        var sec = Math.ceil(t / 1000);
-        var min = Math.floor(sec / 60);
-        sec -= min * 60;
-        var hours = Math.floor(min / 60);
-        min -= hours * 60;
-        var display = hours + ':' + ('0' + min).slice(-2) + ':' + ('0' + sec).slice(-2);
-        if(isRunning) {
-            display += sec & 1 ? ' <--' : ' <-';
-        }
-        $(id).text(display);
-    }
-
-    function updateClock() {
-        displayClock('white', time.wtime);
-        displayClock('black', time.btime);
-    }
-
-    function clockTick() {
-        updateClock();
-        var t = (time.clockColor == 'white' ? time.wtime : time.btime) + time.startTime - Date.now();
-        var timeToNextSecond = (t % 1000) + 1;
-        clockTimeoutID = setTimeout(clockTick, timeToNextSecond);
-    }
-
-    function stopClock() {
-        if(clockTimeoutID !== null) {
-            clearTimeout(clockTimeoutID);
-            clockTimeoutID = null;
-        }
-        if(time.startTime > 0) {
-            var elapsed = Date.now() - time.startTime;
-            time.startTime = null;
-            if(time.clockColor == 'white') {
-                time.wtime = Math.max(0, time.wtime - elapsed);
-            } else {
-                time.btime = Math.max(0, time.btime - elapsed);
-            }
-        }
-    }
-
-    function startClock() {
-        if(game.turn() == 'w') {
-            time.wtime += time.winc;
-            time.clockColor = 'white';
-        } else {
-            time.btime += time.binc;
-            time.clockColor = 'black';
-        }
-        time.startTime = Date.now();
-        clockTick();
-    }
     
     function get_moves()
     {
@@ -136,16 +76,15 @@ function engineGame(options) {
     }
 
     function prepareMove() {
-        stopClock();
+        //stopClock();
         $('#pgn').text(game.pgn());
-        board.position(game.fen());
-        updateClock();
+        //board.position(game.fen());
+        //updateClock();
         var turn = game.turn() == 'w' ? 'white' : 'black';
         if(!game.game_over()) {
             if(turn != playerColor) {
                 uciCmd('position startpos moves' + get_moves());
                 uciCmd('position startpos moves' + get_moves(), evaler);
-                evaluation_el.textContent = "";
                 uciCmd("eval", evaler);
                 
                 if (time && time.wtime) {
@@ -156,7 +95,7 @@ function engineGame(options) {
                 isEngineRunning = true;
             }
             if(game.history().length >= 2 && !time.depth && !time.nodes) {
-                startClock();
+                //startClock();
             }
         }
     }
@@ -169,18 +108,12 @@ function engineGame(options) {
         } else {
             line = event;
         }
-        
         console.log("evaler: " + line);
-        
+
         /// Ignore some output.
         if (line === "uciok" || line === "readyok" || line.substr(0, 11) === "option name") {
             return;
         }
-        
-        if (evaluation_el.textContent) {
-            evaluation_el.textContent += "\n";
-        }
-        evaluation_el.textContent += line;
     }
 
     engine.onmessage = function(event) {
@@ -204,7 +137,6 @@ function engineGame(options) {
                 game.move({from: match[1], to: match[2], promotion: match[3]});
                 prepareMove();
                 uciCmd("eval", evaler)
-                evaluation_el.textContent = "";
                 //uciCmd("eval");
             /// Is it sending feedback?
             } else if(match = line.match(/^info .*\bdepth (\d+) .*\bnps (\d+)/)) {
@@ -228,9 +160,12 @@ function engineGame(options) {
                 }
             }
         }
+		line = line.match(/([a-h][1-8])([a-h][1-8])/);
+		if(line!=null)
+		$('#curMove').html(line[0] + ' ' + engineStatus.score);
         displayStatus();
     };
-
+/*
     var onDrop = function(source, target) {
         // see if the move is legal
         var move = game.move({
@@ -252,15 +187,15 @@ function engineGame(options) {
     };
 
     var cfg = {
-        showErrors: true,
-        draggable: true,
+        showErrors: false,
+        draggable: false,
         position: 'start',
         onDragStart: onDragStart,
         onDrop: onDrop,
         onSnapEnd: onSnapEnd
     };
 
-    board = new ChessBoard('board', cfg);
+    board = new ChessBoard('board', cfg);*/
 
     return {
         reset: function() {
@@ -273,7 +208,7 @@ function engineGame(options) {
         loadPgn: function(pgn) { game.load_pgn(pgn); },
         setPlayerColor: function(color) {
             playerColor = color;
-            board.orientation(playerColor);
+            //board.orientation(playerColor);
         },
         setSkillLevel: function(skill) {
             var max_err,
@@ -289,17 +224,8 @@ function engineGame(options) {
             
             time.level = skill;
             
-            /// Change thinking depth allowance.
-            if (skill < 5) {
-                time.depth = "1";
-            } else if (skill < 10) {
-                time.depth = "2";
-            } else if (skill < 15) {
-                time.depth = "3";
-            } else {
                 /// Let the engine decide.
                 time.depth = "";
-            }
             
             uciCmd('setoption name Skill Level value ' + skill);
             
