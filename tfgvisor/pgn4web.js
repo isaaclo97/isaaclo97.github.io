@@ -722,7 +722,7 @@ function displayPgnData(allGames) {
     if (window.focus) { pgnWin.focus(); }
   }
 }
-var color1 = 'w';
+var color1 = 1;
 function CurrentFEN() {
   currentFEN = "";
 
@@ -748,7 +748,6 @@ function CurrentFEN() {
 
   // active color
   currentFEN += CurrentPly%2 === 0 ? " w" : " b";
-  color1=CurrentPly%2 === 0 ? " w" : " b";
   // castling availability, always in the KQkq form
   // (wrong FEN for for Chess960 positions with an inner castling rook)
   CastlingFEN = "";
@@ -3654,18 +3653,21 @@ function startButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + 1);
     }
   } else { GoToMove(StartPlyVar[0], 0); }
+  color1=1;
   init();
 }
 
 function backButton(e) {
   if (e.shiftKey) { GoToMove(StartPlyVar[CurrentVar]); }
   else { GoToMove(CurrentPly - 1); }
+  color1 = CurrentPly - 1;
   init();
 }
 
 function forwardButton(e) {
   if (e.shiftKey) { if (!goToNextVariationSibling()) { GoToMove(CurrentPly + 1); } }
   else { GoToMove(CurrentPly + 1); }
+  color1 = CurrentPly + 1;
   init();
 }
 
@@ -3677,6 +3679,7 @@ function endButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar]);
     }
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
+  color1 = StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar];
   init();
 }
 
@@ -3740,7 +3743,7 @@ function atras()
 		game.loadPgn(pgn);
 		var skill = 20;
 		game.setSkillLevel(skill);
-		game.setPlayerColor(color1 === 'w' ? 'white' : 'black');
+		game.setPlayerColor(color1 % 2 === 0 ? 'white' : 'black');
 		game.setDisplayScore($('#showScore').is(':checked'));
 		game.start();
 	}
