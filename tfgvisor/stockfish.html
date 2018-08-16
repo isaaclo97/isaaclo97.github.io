@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/chessboard-0.3.0.min.css" />
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chess.min.js"></script>
+    <script src="js/chessboard-0.3.0.min.js"></script>
+    <title>Stockfish 6</title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-sm-7 col-md-6">
+        <div id="board" style="width: 400px"></div>
+        <hr>
+        <div id="engineStatus">...</div>
+		<div id="curMove">...</div>
+      </div>
+      <div class="col-sm-5 col-md-6">
+        <h3>Moves:</h3>
+        <div id="pgn"></div>
+        <hr>
+    </div>
+    <script src="enginegame.js"></script>
+    <script>
+      var wait_for_script;
+      var newGame = function (){};
+      
+      /// We can load Stockfish.js via Web Workers or directly via a <script> tag.
+      /// Web Workers are better since they don't block the UI, but they are not always avaiable.
+      (function fix_workers()
+      {
+        var script_tag;
+        /// Does the environment support web workers?  If not, include stockfish.js directly.
+        ///NOTE: Since web workers don't work when a page is loaded from the local system, we have to fake it there too. (Take that security measures!)
+        if (!Worker || (location && location.protocol === "file:")) {
+          var script_tag  = document.createElement("script");
+          script_tag.type ="text/javascript";
+          script_tag.src  = "stockfish.js";
+          script_tag.onload = init;
+          document.getElementsByTagName("head")[0].appendChild(script_tag);
+          wait_for_script = true;
+        }
+      }());
+      
+      function init()
+      {
+        var game = engineGame();
+    
+        newGame = function newGame() {
+			var pgn = '1.c4 e6 2.d4 d5 3.Nc3 c6 4.e4 dxe4 5.Nxe4 Bb4+ 6.Nc3 c5 7.a3 Ba5 8.Nf3 Nf6 9.Be3 Nc6 10.Qd3 cxd4 11.Nxd4 Ng4 12.O-O-O Nxe3 13.fxe3 Bc7 14.Nxc6 bxc6 15.Qxd8+ Bxd8 16.Be2 Ke7 17.Bf3 Bd7 18.Ne4 Bb6 19.c5 f5 20.cxb6 fxe4 21.b7 Rab8 22.Bxe4 Rxb7 23.Rhf1 Rb5 24.Rf4 g5 25.Rf3 h5 26.Rdf1 Be8 27.Bc2 Rc5 28.Rf6 h4 29.e4 a5 30.Kd2 Rb5 31.b3 Bh5 32.Kc3 Rc5+ 33.Kb2 Rd8 34.R1f2 Rd4 35.Rh6 Bd1 36.Bb1 Rb5 37.Kc3 c5 38.Rb2 e5 39.Rg6 a4 40.Rxg5 Rxb3+ 41.Rxb3 Bxb3 42.Rxe5+ Kd6 43.Rh5 Rd1 44.e5+ Kd5 45.Bh7 Rc1+ *'
+			game.reset();
+			game.loadPgn(pgn);
+            var skill = 20;
+            game.setSkillLevel(skill);
+            game.setPlayerColor($('#color-white').hasClass('active') ? 'white' : 'black');
+            game.setDisplayScore($('#showScore').is(':checked'));
+            game.start();
+        }
+        
+        game.setSkillLevel
+        
+        newGame();
+      }
+      
+      /// If we load Stockfish.js via a <script> tag, we need to wait until it loads.
+      if (!wait_for_script) {
+        document.addEventListener("DOMContentLoaded", init);
+      }
+    </script>
+  </body>
+</html>
