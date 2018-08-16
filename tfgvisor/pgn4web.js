@@ -3734,12 +3734,13 @@ function atras()
 		var text =  document.getElementById("GamePrevMoves").textContent;
 		text+= document.getElementById("GameCurrMove").textContent;
 		console.log('Partida: ' + text);
+		console.log('Partida color: ' + CurrentPly-1);
 		var pgn = text;
 		game.reset();
 		game.loadPgn(pgn);
 		var skill = 20;
 		game.setSkillLevel(skill);
-		game.setPlayerColor($('#color-white').hasClass('active') ? 'white' : 'black');
+		game.setPlayerColor(CurrentPly%2 === 0 ? 'white' : 'black');
 		game.setDisplayScore($('#showScore').is(':checked'));
 		game.start();
 	}
