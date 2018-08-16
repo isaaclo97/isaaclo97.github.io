@@ -3727,8 +3727,8 @@ function atras()
 	var game = engineGame();
 
 	newGame = function newGame() {
-		var text =  document.getElementById("GamePrevMoves");
-		text+= document.getElementById("GameCurrMove");
+		var text =  document.getElementById("GamePrevMoves").textContent;
+		text+= document.getElementById("GameCurrMove").textContent;
 		console.log('Partida: ' + text);
 		var pgn = text;
 		game.reset();
