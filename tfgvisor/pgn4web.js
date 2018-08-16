@@ -3680,6 +3680,7 @@ function endButton(e) {
     }
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
   color1 = StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar];
+  if(color1===0) color1=1;
   updatemove();
 }
 
@@ -3732,26 +3733,7 @@ function atras()
   var gameupdate;
   function init()
   {
-	var game = engineGame();
-	gameupdate = game;
-	newGame = function newGame() {
-		var text =  document.getElementById("GamePrevMoves").textContent;
-		text+= document.getElementById("GameCurrMove").textContent;
-		console.log('Partida: ' + text);
-		console.log('Partida color: ' + color1);
-		var pgn = text;
-		game.reset();
-		game.loadPgn(pgn);
-		var skill = 20;
-		game.setSkillLevel(skill);
-		game.setPlayerColor(color1 % 2 === 0 ? 'white' : 'black');
-		game.setDisplayScore($('#showScore').is(':checked'));
-		game.start();
-	}
-	
-	game.setSkillLevel
-	
-	newGame();
+	gameupdate  = engineGame();
   }
   
   function updatemove()
