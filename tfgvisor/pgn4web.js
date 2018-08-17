@@ -3484,7 +3484,8 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproduccion Automática"><span class="icon icon6"></span></a>'+
     '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Siguiente"><span class="icon icon9"></span></a>'+
     '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a>'+
-    '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a></div>';
+    '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a></div>'+
+    '<a href="javascript:void(0)" id="menu2" onClick="clickedBbtn(this,event);" title="Funciones" class="button">  <span class="icon icon120" ></span></a></div>';
     theObj.innerHTML = text;
   }
   //NOMBRES DE JUGADORES PARA LISTADO LATERAL
@@ -3691,11 +3692,22 @@ function menu(e) {
 	  userSelection[i].addEventListener("click",atras);
 	}
 }
+function menu2(e) {
+	  $('#sidebar1').addClass('active');
+	  $('.overlay').addClass('active');
+	  $('.collapse.in').toggleClass('in');
+	  $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+	  var userSelection = document.getElementsByClassName('active');
+	for(let i = 0; i < userSelection.length; i++) {
+	  userSelection[i].addEventListener("click",atras);
+	}
+}
 
 function atras()
 {
 	$('#sidebar').removeClass('active');
 	$('.overlay').removeClass('active');
+	$('#sidebar1').removeClass('active');
 }
 
 function clickedBbtn(t,e) {
@@ -3718,6 +3730,9 @@ function clickedBbtn(t,e) {
 	  break;
 	case "menu":
       menu(e);
+	  break;
+	case "menu2":
+      menu2(e);
 	  break;
 	case "atras":
       atras(e);
