@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="tfgvisor/tfg.css">
 <script src="tfgvisor/fide-lookup.js" type="text/javascript"></script>
 <script type="text/javascript" async="" src="tfgvisor/ga.js"></script>
-   
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
 
@@ -302,13 +302,28 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
             </ul>
         </nav>
 		
+		        <!-- Sidebar  -->
+        <nav id="sidebar1">
+            <div class="sidebar-header1">
+               <span class="GameEventSideBar">Funciones</span>
+            </div>
+            <ul class="list-unstyled CTAs">
+                <li>
+					<a href="javascript:void(0)" id="copyfen" onClick="clickedBbtn(this,event);"  class="download">Copiar FEN</a>
+					<a href="javascript:void(0)" id="copygame" onClick="clickedBbtn(this,event);"  class="download">Copiar Partida</a>
+					<a href="javascript:void(0)" id="downloadgame" onClick="clickedBbtn(this,event);"  class="download">Descargar Partida</a>
+					<a href="https://lichess.org/analysis" target="blank" class="download">Tablero de Analisis</a>
+				    <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Descargar Partidas</a>
+                </li>
+            </ul>
+        </nav>
+		
 <div id="GameBoard"></div>
 
 <div class="headerContainer" id="HeaderContainer"> 
 <!-- <div class="firstVariableSpacer">&nbsp;</div> -->
 
 <div><span id="GameEvent" class="GameEvent" title="Torneo: "></span></div>
-
 <div id="PlaceDate">
 	<span id="GameSite" class="GameSite" title=""></span>
 	<span class="GameRound">(</span>
@@ -366,7 +381,9 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <div class="GameResult">
 	<span id="GameResult" title="" style="white-space: nowrap;"></span>
 </div>
-
+<div class="popup">
+  <span class="popuptext" id="myPopup">Copiado</span>
+</div>
 <div id="GameButtons"></div>
 </div>
 
