@@ -3484,7 +3484,7 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<a href="javascript:void(0)" id="autoplayButton" onClick="clickedBbtn(this,event); toggleAutoplayBtn();" class="button" title="Reproduccion Automática"><span class="icon icon6"></span></a>'+
     '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Siguiente"><span class="icon icon9"></span></a>'+
     '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a>'+
-    '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a></div>'+
+    '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a>'+
     '<a href="javascript:void(0)" id="menu2" onClick="clickedBbtn(this,event);" title="Funciones" class="button">  <span class="icon icon112" ></span></a></div>';
     theObj.innerHTML = text;
   }
