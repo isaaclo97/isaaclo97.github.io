@@ -13,8 +13,6 @@ var pgn4web_project_email; // preassigned in pgn4web-server-config.js
 if (typeof(pgn4web_project_email) == "undefined") { pgn4web_project_email = "pgn4web@casaschi.net"; }
 
 var helpWin=null;
-var color1 = 1;
-
 function displayHelp(section) {
   section = !section ? "" : "?" + section;
   if (helpWin && !helpWin.closed) { helpWin.close(); }
@@ -724,7 +722,7 @@ function displayPgnData(allGames) {
     if (window.focus) { pgnWin.focus(); }
   }
 }
-
+var color1 = 1;
 function CurrentFEN() {
   currentFEN = "";
 
@@ -2718,14 +2716,13 @@ function MoveForward(diff, targetVar, scanOnly) {
 
   // new position: update ply count, then refresh board
   CurrentPly = thisPly;
-  color1=thisPly;
+
   if (scanOnly) { return; }
 
   synchMoves();
 
   RefreshBoard();
   HighlightLastMove();
-  updatemove();
 
   autoScrollToCurrentMoveIfEnabled();
 
@@ -3672,6 +3669,7 @@ function forwardButton(e) {
   if (e.shiftKey) { if (!goToNextVariationSibling()) { GoToMove(CurrentPly + 1); } }
   else { GoToMove(CurrentPly + 1); }
   color1 = CurrentPly + 1;
+
   updatemove();
 }
 
