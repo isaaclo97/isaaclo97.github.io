@@ -3485,7 +3485,7 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
     '<a href="javascript:void(0)" id="forwardButton" onClick="clickedBbtn(this,event);" class="button" title="Jugada Siguiente"><span class="icon icon9"></span></a>'+
     '<a href="javascript:void(0)" id="endButton" onClick="clickedBbtn(this,event);" class="button" title="Fin de Partida"><span class="icon icon10"></span></a>'+
     '<a href="javascript:void(0)" id="menu" onClick="clickedBbtn(this,event);" title="Lista de Partidas" class="button">  <span class="icon icon120" ></span></a></div>'+
-    '<a href="javascript:void(0)" id="menu2" onClick="clickedBbtn(this,event);" title="Funciones" class="button">  <span class="icon icon120" ></span></a></div>';
+    '<a href="javascript:void(0)" id="menu2" onClick="clickedBbtn(this,event);" title="Funciones" class="button">  <span class="icon icon112" ></span></a></div>';
     theObj.innerHTML = text;
   }
   //NOMBRES DE JUGADORES PARA LISTADO LATERAL
@@ -3710,6 +3710,53 @@ function atras()
 	$('#sidebar1').removeClass('active');
 }
 
+function copyfen(e)
+{
+	text = CurrentFEN();
+	var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute('value', text);
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);	
+	var popup = document.getElementById("myPopup");
+    popup.classList.add("show");
+    setTimeout(function(){ 
+		popup.classList.remove("show");
+    }, 3000); 
+}
+
+function copygame(e)
+{
+    text = fullPgnGame(currentGame);
+	var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute('value', text);
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);	
+	var popup = document.getElementById("myPopup");
+    popup.classList.add("show");
+    setTimeout(function(){ 
+		popup.classList.remove("show");
+    }, 3000); 
+}
+
+function downloadgame(e)
+{
+  var element = document.createElement('a');
+  text = fullPgnGame(currentGame);
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', 'game.pgn');
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 function clickedBbtn(t,e) {
   switch (t.id) {
     case "startButton":
@@ -3737,6 +3784,15 @@ function clickedBbtn(t,e) {
 	case "atras":
       atras(e);
       break;
+	case "copyfen":
+	  copyfen(e);
+	  break;
+	case "copygame":
+	  copygame(e);
+	  break;
+	case "downloadgame":
+	  downloadgame(e);
+	  break;
     default:
       break;
   }

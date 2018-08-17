@@ -309,8 +309,11 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
             </div>
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Download Games</a>
-					<a href="javascript:void(0)" id="atras" onClick="clickedBbtn(this,event);"  class="download">Back</a>
+					<a href="javascript:void(0)" id="copyfen" onClick="clickedBbtn(this,event);"  class="download">Copiar FEN</a>
+					<a href="javascript:void(0)" id="copygame" onClick="clickedBbtn(this,event);"  class="download">Copiar Partida</a>
+					<a href="javascript:void(0)" id="downloadgame" onClick="clickedBbtn(this,event);"  class="download">Descargar Partida</a>
+					<a href="https://lichess.org/analysis" target="blank" class="download">Tablero de Analisis</a>
+				    <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Descargar Partidas</a>
                 </li>
             </ul>
         </nav>
@@ -378,10 +381,11 @@ function customDebugInfo() { return "squareSize=" + squareSize; }
 <div class="GameResult">
 	<span id="GameResult" title="" style="white-space: nowrap;"></span>
 </div>
-
+<div class="popup">
+  <span class="popuptext" id="myPopup">Copiado</span>
+</div>
 <div id="GameButtons"></div>
 </div>
-<div class="firstVariableSpacer"></div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="tfgvisor/jquery.mCustomScrollbar.concat.min.js"></script>
