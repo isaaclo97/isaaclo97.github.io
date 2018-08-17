@@ -722,7 +722,7 @@ function displayPgnData(allGames) {
     if (window.focus) { pgnWin.focus(); }
   }
 }
-var color1 = 1;
+
 function CurrentFEN() {
   currentFEN = "";
 
@@ -3653,24 +3653,16 @@ function startButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + 1);
     }
   } else { GoToMove(StartPlyVar[0], 0); }
-  color1=1;
-  updatemove();
 }
 
 function backButton(e) {
   if (e.shiftKey) { GoToMove(StartPlyVar[CurrentVar]); }
   else { GoToMove(CurrentPly - 1); }
-  color1 = CurrentPly - 1;
-  if(color1===-1) color1=1;
-  updatemove();
 }
 
 function forwardButton(e) {
   if (e.shiftKey) { if (!goToNextVariationSibling()) { GoToMove(CurrentPly + 1); } }
   else { GoToMove(CurrentPly + 1); }
-  color1 = CurrentPly + 1;
-
-  updatemove();
 }
 
 function endButton(e) {
@@ -3681,10 +3673,6 @@ function endButton(e) {
       GoToMove(StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar]);
     }
   } else { GoToMove(StartPlyVar[0] + PlyNumberVar[0], 0); }
-  color1 = StartPlyVar[CurrentVar] + PlyNumberVar[CurrentVar];
-  color1-=1;
-  if(color1===-1) color1=1;
-  updatemove();
 }
 
 function atras(e)
@@ -3709,290 +3697,6 @@ function atras()
 	$('#sidebar').removeClass('active');
 	$('.overlay').removeClass('active');
 }
-
-//
-//
-
-  var wait_for_script;
-  var newGame = function (){};
-  
-  /// We can load Stockfish.js via Web Workers or directly via a <script> tag.
-  /// Web Workers are better since they don't block the UI, but they are not always avaiable.
-  (function fix_workers()
-  {
-	var script_tag;
-	/// Does the environment support web workers?  If not, include stockfish.js directly.
-	///NOTE: Since web workers don't work when a page is loaded from the local system, we have to fake it there too. (Take that security measures!)
-	if (!Worker || (location && location.protocol === "file:")) {
-	  var script_tag  = document.createElement("script");
-	  script_tag.type ="text/javascript";
-	  script_tag.src  = "https://isaaclo97.github.io/tfgvisor/stockfish.js";
-	  script_tag.onload = init;
-	  document.getElementsByTagName("head")[0].appendChild(script_tag);
-	  wait_for_script = true;
-	}
-  }());
-  
-  var gameupdate;
-  function init()
-  {
-	gameupdate  = engineGame();
-  }
-  
-  function updatemove()
-  {
-	var game = gameupdate;
-
-	newGame = function newGame() {
-		var text =  document.getElementById("GamePrevMoves").textContent;
-		text+= document.getElementById("GameCurrMove").textContent;
-		console.log('Partida: ' + text);
-		console.log('Partida color: ' + color1);
-		var pgn = text;
-		game.reset();
-		game.loadPgn(pgn);
-		var skill = 20;
-		game.setSkillLevel(skill);
-		game.setPlayerColor(color1 % 2 === 0 ? 'white' : 'black');
-		game.setDisplayScore($('#showScore').is(':checked'));
-		game.start();
-	}
-	
-	game.setSkillLevel
-	
-	newGame();
-  }
-  
-  /// If we load Stockfish.js via a <script> tag, we need to wait until it loads.
-  if (!wait_for_script) {
-	document.addEventListener("DOMContentLoaded", init);
-  }
-	  
-function engineGame(options) {
-    options = options || {}
-    var game = new Chess();
-    var board;
-    /// We can load Stockfish via Web Workers or via STOCKFISH() if loaded from a <script> tag.
-    var engine = typeof STOCKFISH === "function" ? STOCKFISH() : new Worker(options.stockfishjs || 'https://isaaclo97.github.io/tfgvisor/stockfish.js');
-    var evaler = typeof STOCKFISH === "function" ? STOCKFISH() : new Worker(options.stockfishjs || 'https://isaaclo97.github.io/tfgvisor/stockfish.js');
-    var engineStatus = {};
-    var displayScore = false;
-    var time = { wtime: 300000, btime: 300000, winc: 2000, binc: 2000 };
-    var playerColor = 'white';
-    var clockTimeoutID = null;
-    var isEngineRunning = false;
-    var announced_game_over;
-
-    function uciCmd(cmd, which) {
-        console.log("UCI: " + cmd);
-        
-        (which || engine).postMessage(cmd);
-    }
-    uciCmd('uci');
-    
-    ///TODO: Eval starting posistions. I suppose the starting positions could be different in different chess varients.
-
-    function displayStatus() {
-        var status = 'Engine: ';
-        if(!engineStatus.engineLoaded) {
-            status += 'loading...';
-        } else if(!engineStatus.engineReady) {
-            status += 'loaded...';
-        } else {
-            status += 'ready.';
-        }
-        
-        if(engineStatus.search) {
-            status += '<br>' + engineStatus.search;
-            if(engineStatus.score && displayScore) {
-                status += (engineStatus.score.substr(0, 4) === "Mate" ? " " : ' Score: ') + engineStatus.score;
-            }
-        }
-        $('#engineStatus').html(status);
-    }
-    
-    function get_moves()
-    {
-        var moves = '';
-        var history = game.history({verbose: true});
-        
-        for(var i = 0; i < history.length; ++i) {
-            var move = history[i];
-            moves += ' ' + move.from + move.to + (move.promotion ? move.promotion : '');
-        }
-        
-        return moves;
-    }
-
-    function prepareMove() {
-        var turn = game.turn() == 'w' ? 'white' : 'black';
-        if(!game.game_over()) {
-            if(turn != playerColor) {
-                uciCmd('position startpos moves' + get_moves());
-                uciCmd('position startpos moves' + get_moves(), evaler);
-                uciCmd("eval", evaler);
-                
-                if (time && time.wtime) {
-                    uciCmd("go " + (time.depth ? "depth " + time.depth : "") + " wtime " + time.wtime + " winc " + time.winc + " btime " + time.btime + " binc " + time.binc);
-                } else {
-                    uciCmd("go " + (time.depth ? "depth " + time.depth : ""));
-                }
-                isEngineRunning = true;
-            }
-        }
-    }
-    
-    evaler.onmessage = function(event) {
-        var line;
-        
-        if (event && typeof event === "object") {
-            line = event.data;
-        } else {
-            line = event;
-        }
-        console.log("evaler: " + line);
-
-        /// Ignore some output.
-        if (line === "uciok" || line === "readyok" || line.substr(0, 11) === "option name") {
-            return;
-        }
-    }
-
-    engine.onmessage = function(event) {
-        var line;
-        
-        if (event && typeof event === "object") {
-            line = event.data;
-        } else {
-            line = event;
-        }
-        console.log("Reply: " + line)
-        if(line == 'uciok') {
-            engineStatus.engineLoaded = true;
-        } else if(line == 'readyok') {
-            engineStatus.engineReady = true;
-        } else {
-            var match = line.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
-            /// Did the AI move?
-            if(match) {
-                isEngineRunning = false;
-                game.move({from: match[1], to: match[2], promotion: match[3]});
-                prepareMove();
-                uciCmd("eval", evaler)
-                //uciCmd("eval");
-            /// Is it sending feedback?
-            } else if(match = line.match(/^info .*\bdepth (\d+) .*\bnps (\d+)/)) {
-                engineStatus.search = 'Depth: ' + match[1] + ' Nps: ' + match[2];
-            }
-            
-            /// Is it sending feed back with a score?
-            if(match = line.match(/^info .*\bscore (\w+) (-?\d+)/)) {
-                var score = parseInt(match[2]) * (game.turn() == 'w' ? 1 : -1);
-                /// Is it measuring in centipawns?
-                if(match[1] == 'cp') {
-                    engineStatus.score = (score / 100.0).toFixed(2);
-                /// Did it find a mate?
-                } else if(match[1] == 'mate') {
-                    engineStatus.score = 'Mate in ' + Math.abs(score);
-                }
-                
-                /// Is the score bounded?
-                if(match = line.match(/\b(upper|lower)bound\b/)) {
-                    engineStatus.score = ((match[1] == 'upper') == (game.turn() == 'w') ? '<= ' : '>= ') + engineStatus.score
-                }
-            }
-        }
-		line = line.match(/([a-h][1-8])([a-h][1-8])/);
-		if(line!=null)
-		$('#curMove').html(line[0] + ' ' + engineStatus.score);
-        displayStatus();
-    };
-
-    return {
-        reset: function() {
-            game.reset();
-            uciCmd('setoption name Contempt value 0');
-            //uciCmd('setoption name Skill Level value 20');
-            this.setSkillLevel(0);
-            uciCmd('setoption name King Safety value 0'); /// Agressive 100 (it's now symetric)
-        },
-        loadPgn: function(pgn) { game.load_pgn(pgn); },
-        setPlayerColor: function(color) {
-            playerColor = color;
-            //board.orientation(playerColor);
-        },
-        setSkillLevel: function(skill) {
-            var max_err,
-                err_prob,
-                difficulty_slider;
-            
-            if (skill < 0) {
-                skill = 0;
-            }
-            if (skill > 20) {
-                skill = 20;
-            }
-            
-            time.level = skill;
-            
-                /// Let the engine decide.
-                time.depth = "";
-            
-            uciCmd('setoption name Skill Level value ' + skill);
-            
-            ///NOTE: Stockfish level 20 does not make errors (intentially), so these numbers have no effect on level 20.
-            /// Level 0 starts at 1
-            err_prob = Math.round((skill * 6.35) + 1);
-            /// Level 0 starts at 10
-            max_err = Math.round((skill * -0.5) + 10);
-            
-            uciCmd('setoption name Skill Level Maximum Error value ' + max_err);
-            uciCmd('setoption name Skill Level Probability value ' + err_prob);
-        },
-        setTime: function(baseTime, inc) {
-            time = { wtime: baseTime * 1000, btime: baseTime * 1000, winc: inc * 1000, binc: inc * 1000 };
-        },
-        setDepth: function(depth) {
-            time = { depth: depth };
-        },
-        setNodes: function(nodes) {
-            time = { nodes: nodes };
-        },
-        setContempt: function(contempt) {
-            uciCmd('setoption name Contempt value ' + contempt);
-        },
-        setAggressiveness: function(value) {
-            uciCmd('setoption name Aggressiveness value ' + value);
-        },
-        setDisplayScore: function(flag) {
-            displayScore = flag;
-            displayStatus();
-        },
-        start: function() {
-            uciCmd('ucinewgame');
-            uciCmd('isready');
-            engineStatus.engineReady = false;
-            engineStatus.search = null;
-            displayStatus();
-            prepareMove();
-            announced_game_over = false;
-        },
-        undo: function() {
-            if(isEngineRunning)
-                return false;
-            game.undo();
-            game.undo();
-            engineStatus.search = null;
-            displayStatus();
-            prepareMove();
-            return true;
-        }
-    };
-}
-
-
-//
-//
 
 function clickedBbtn(t,e) {
   switch (t.id) {
