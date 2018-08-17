@@ -167,6 +167,10 @@
 	.jugada {
 		display:none;
 	}
+	.analisis{
+		width: 100%;
+		height: 100%;
+	}
 
 
 }
