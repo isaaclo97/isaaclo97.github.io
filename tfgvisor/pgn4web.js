@@ -3729,13 +3729,6 @@ function copyfen(e)
 function copygame(e)
 {
     text = fullPgnGame(currentGame);
-	var texto;
-	for(var i=0; i<text.length;i++)
-	{
-		if(text[i]==="\"" && text[i+1]==="]") { texto=texto+"\"]\n"; i++; }
-		else texto+=text[i];
-	}
-	text=texto;
 	var dummy = document.createElement("input");
     document.body.appendChild(dummy);
     dummy.setAttribute('value', text);
