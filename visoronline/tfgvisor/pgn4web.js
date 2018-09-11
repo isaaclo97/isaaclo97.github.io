@@ -3493,8 +3493,8 @@ text ='<a href="javascript:void(0)" id="startButton" onClick="clickedBbtn(this,e
   {
 	text=""
     for(i=0; i<numberOfGames;i++)
-		if(i==0) text+= '<a href="https://isaaclo97.github.io/visor.html" aria-expanded="false">'+gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i]+'</a>'; 
-	    else text+= '<a href="'+"https://isaaclo97.github.io/visor("+i+").html" +'" aria-expanded="false">'+gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i]+'</a>'; 
+		if(i==0) text+= '<a href="https://isaaclo97.github.io/visoronline/visor.html" aria-expanded="false">'+gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i]+'</a>'; 
+	    else text+= '<a href="'+"https://isaaclo97.github.io/visoronline/visor("+i+").html" +'" aria-expanded="false">'+gameWhite[i]+" - "+gameBlack[i]+" "+gameResult[i]+'</a>'; 
 	text+="</li>"
   theObj.innerHTML=text;
   }
