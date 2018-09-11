@@ -3810,7 +3810,7 @@ function clickedBbtn(t,e) {
 	  downloadgame(e);
 	  break;
 	case "downloadgames":
-	  downloadgame(e);
+	  downloadgames(e);
 	  break;
     default:
       break;
