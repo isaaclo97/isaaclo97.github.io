@@ -3757,6 +3757,22 @@ function downloadgame(e)
   document.body.removeChild(element);
 }
 
+function downloadgames(e)
+{
+  var element = document.createElement('a');
+  for(var i=0; i<numberOfGames; i++)
+	text += fullPgnGame(i);
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', 'games.pgn');
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 function clickedBbtn(t,e) {
   switch (t.id) {
     case "startButton":
@@ -3791,6 +3807,9 @@ function clickedBbtn(t,e) {
 	  copygame(e);
 	  break;
 	case "downloadgame":
+	  downloadgame(e);
+	  break;
+	case "downloadgames":
 	  downloadgame(e);
 	  break;
     default:
