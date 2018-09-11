@@ -1,0 +1,394 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Retransmision</title>
+
+<!-- use viewport settings when body.onresize adapts the chessboard to the available space -->
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+
+<style id="dynamicStyle" type="text/css"></style>
+<link rel="stylesheet" href="tfgvisor/tfg.css">
+<script src="tfgvisor/fide-lookup.js" type="text/javascript"></script>
+<script type="text/javascript" async="" src="tfgvisor/ga.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+jQuery.noConflict();
+var ww = 0, wh = 0;
+  
+var squareSize;
+function searchPlayer(name, FideId) {
+  if (typeof(openFidePlayerUrl) == "function") { openFidePlayerUrl(name, FideId); }
+}
+
+function myRulesLength(sheet) {
+  if (sheet.cssRules) { return sheet.cssRules.length; }
+  if (sheet.rules) { return sheet.rules.length; }
+  return null;
+}
+
+function myInsertRule(sheet, selector, declaration) {
+  if (sheet.insertRule) { sheet.insertRule(selector + "{ " + declaration + " }", myRulesLength(sheet)); }
+  else if (sheet.addRule) { sheet.addRule(selector, declaration); }
+}
+
+function myDeleteRule(sheet, index) {
+  if (sheet.deleteRule) { sheet.deleteRule(index); }
+  else if (sheet.removeRule) { sheet.removeRule(index); }
+}
+
+
+function myOnResize() {
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    ww = window.innerWidth;
+    wh = window.innerHeight;
+  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    ww = document.documentElement.clientWidth;
+    wh = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    ww = document.body.clientWidth;
+    wh = document.body.clientHeight;
+  }
+  
+  boardObject = document.getElementById("GameBoard");
+  maxAvaiable = Math.max(ww, wh);
+  minAvaiable = Math.min(ww, wh);
+  squareSize = Math.floor(minAvaiable / 8.3);
+  if (squareSize > 0) {
+    pieceSize = Math.floor(squareSize * 0.9);
+    boardBorder = Math.ceil(squareSize / 20);
+    shadowBorder = Math.floor(squareSize / 2);
+    textSize = Math.floor(squareSize / 6);
+	containerWidth = maxAvaiable - squareSize*9;
+     sheet = document.styleSheets[0];
+  	oldRules = myRulesLength(sheet);
+    myInsertRule(sheet,".boardTable"," border-width: " + boardBorder + "px; border-radius: " + boardBorder + "px; box-shadow: 0px 0px " + shadowBorder + "px #734C27; ", oldRules);
+    myInsertRule(sheet,".pieceImage","width:" + pieceSize + "px; height:" + pieceSize + "px;  ", oldRules);
+    myInsertRule(sheet,".whiteSquare", "width:" + squareSize + "px; height:" + squareSize + "px;  ", oldRules);
+    myInsertRule(sheet,".blackSquare", "width:" + squareSize + "px; height:" + squareSize + "px;  ", oldRules);
+    myInsertRule(sheet,".highlightWhiteSquare", "width:" + squareSize + "px; height:" + squareSize + "px;  ", oldRules);
+    myInsertRule(sheet,".highlightBlackSquare", "width:" + squareSize + "px; height:" + squareSize + "px;  ", oldRules);
+    myInsertRule(sheet,"body","font:" + textSize + "px sans-serif; ",oldRules);
+    //myInsertRule(sheet,"#blackColor {width:" + textSize + " px; height:" + textSize + " px; margin-right:" + (1.5*textSize) + " px; margin-top:" + (0.5*textSize) + " px; }",sheet.cssRules.length);
+    myInsertRule(sheet,"#whiteColor","width:" + textSize + "px; height:" + textSize + "px; margin-right:" + (1.5*textSize) + "px; margin-top:" + (0.5*textSize) + "px; ",oldRules);
+    myInsertRule(sheet,"#BlackColorFlag ","width:" + (textSize) + "px; height:" + (textSize) + "px; ",oldRules);
+    myInsertRule(sheet,"#WhiteColorFlag ","width:" + (textSize) + "px; height:" + (textSize) + "px; ",oldRules);
+    myInsertRule(sheet,".clock","margin-left:" + (1.5*textSize) + "px; ",oldRules);
+    myInsertRule(sheet,"#wrapper","width:" + (window.innerWidth-4) + "; ", oldRules);
+    if(ww > wh){
+    	myInsertRule(sheet,".moves","height:" + (squareSize*2.5) + "px;", oldRules);
+    	myInsertRule(sheet,".headerContainer","width:26em;", oldRules);
+    	myInsertRule(sheet,"#blackColor","width:" + textSize + "px; height:" + textSize + "px;margin-left:0px; margin-right:" + (1.5*textSize) + "px; margin-top:" + (0.5*textSize) + "px; ",oldRules);
+    }else{
+    	myInsertRule(sheet,".headerContainer","width:" + (squareSize * 8) + "px;", oldRules);
+    	myInsertRule(sheet,"#blackColor","width:" + textSize + "px; height:" + textSize + "px; margin-right:0px; margin-left:" + (1.5*textSize) + "px; margin-top:" + (0.5*textSize) + "px; ",oldRules);
+
+    }
+    for (ii = 0; ii < oldRules; ii++) { myDeleteRule(sheet, 0); }
+
+    //boardObject.style.paddingTop = (window.innerHeight - 8 * squareSize - 2 * boardBorder) / 2 + "px";
+    //boardObject.style.paddingBottom = (window.innerHeight - 8 * squareSize - 2 * boardBorder) / 2 + "px";
+    //boardObject.style.paddingLeft = (window.innerWidth - 8 * squareSize - 2 * boardBorder) / 2 + "px";
+    //boardObject.style.paddingRight = (window.innerWidth - 8 * squareSize - 2 * boardBorder) / 2 + "px";
+    if (theObj = document.getElementById("boardTable")) {
+      theObj.style.height = (squareSize * 8 + boardBorder * 2) + "px";
+      theObj.style.width = (squareSize * 8 + boardBorder * 2) + "px";
+    }
+  }
+}
+
+</script>
+<style type="text/css">
+@import url("fonts/pgn4web-font-ChessSansPiratf.css");
+@import url("fonts/pgn4web-font-LiberationSans.css");
+</style>
+<script src="tfgvisor/pgn4web.js" type="text/javascript"></script>
+<script src="tfgvisor/chess-informant-NAG-symbols.js" type="text/javascript"></script>
+<link href="tfgvisor/pgn4web-font-ChessInformantReader.css" type="text/css" rel="stylesheet"><style type="text/css">.NAGs, .NAGl { font-family: "pgn4web ChessInformantReader"; line-height: 1em; }</style>
+	
+<script type="text/javascript">
+iniGame="37";
+thisRegExp = /(&|\?)(initialGame|ig)=([^&]*)(&|$)/i;
+if (window.location.search.match(thisRegExp) !== null) {
+  iniGame = unescape(window.location.search.match(thisRegExp)[3]);
+}
+SetInitialGame(iniGame);
+
+function customFunctionOnMove() {
+  extraMoves = 100;
+
+  document.getElementById("GamePrevMoves").innerHTML = "";
+  document.getElementById("GameCurrMove").innerHTML = "";
+  document.getElementById("GameNextMoves").innerHTML = "";
+  theObj = document.getElementById("GamePrevMoves");
+  thisPly = Math.max(CurrentPly - extraMoves - 1, StartPly);
+  if (thisPly > StartPly) { theObj.innerHTML += "... "; }
+  for (; thisPly < Math.min(CurrentPly + extraMoves, StartPly + PlyNumber); thisPly++) {
+    if (thisPly == CurrentPly) {
+      theObj = document.getElementById("GameNextMoves");
+    }
+    if (thisPly % 2 === 0) { theObj.innerHTML += Math.floor(1 + thisPly / 2) + ". "; }
+    if (thisPly == CurrentPly - 1) {
+      theObj = document.getElementById("GameCurrMove");
+    }
+    theObj.innerHTML += Moves[thisPly] + " ";
+  }
+  if (thisPly < StartPly + PlyNumber) { theObj.innerHTML += "..."; }
+
+  fixHeaderItem(null, "GameWhiteClock", "Reloj de Blancas");
+  fixHeaderItem(null, "GameBlackClock", "Reloj de Negras");
+  fixColorFlag();
+  clearInterval(timerVar);
+  if ((!LiveBroadcastEnded)&&(thisPly == CurrentPly)){
+  	//timer();
+  }
+}
+
+function fixHeaderItem(tag, objectId, label) {
+  if (theObj = document.getElementById(objectId)) {
+    var tagValue = tag ? customPgnHeaderTag(tag, objectId) : theObj.innerHTML;
+    if (tagValue) {
+      theObj.title = label + ": " + tagValue;
+      //theObj.className = "leftRightSpacing";
+    } else {
+      theObj.title = label;
+      //theObj.className = "";
+    }
+  }
+}
+
+var seconds;
+var minutes;
+var hours;
+var idClock;
+var timerVar;
+
+function timer(){
+	
+	idClock = CurrentPly % 2 ? "GameBlackClock" : "GameWhiteClock";
+	if(theObj = document.getElementById(idClock)){
+		time = theObj.innerHTML;
+		if (time.length==7){
+			seconds = parseInt(time.substr(5,2));
+			minutes = parseInt(time.substr(2,2));
+			hours = parseInt(time.substr(0,1));
+			timerVar = setInterval(function(){
+				if(seconds==0){
+					seconds=59;
+					minutes--;
+				}else{
+					seconds--;
+				}
+				document.getElementById(idClock).innerHTML=hours+":"+pad(minutes,2)+"."+pad(seconds,2);
+			},1000);
+		}
+	}
+}
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+
+//Live
+SetPgnUrl("files/games.pgn");
+SetGameSelectorOptions(null, true, 0, 0, 0, 15, 15, 3, 0); // (head, num, chEvent, chSite, chRound, chWhite, chBlack, chResult, chDate);
+
+   SetCommentsIntoMoveText(false);
+   SetCommentsOnSeparateLines(false);
+   SetAutoplayDelay(1000); // milliseconds
+// SetAutostartAutoplay(false);
+// SetAutoplayNextGame(false); // if set, move to the next game at the end of the current game during autoplay
+//   SetInitialGame("1"); // number of game to be shown at load, from 1 (default); values (keep the quotes) of "first", "last", "random" are accepted; other string values assumed as PGN search string
+// SetInitialVariation(0); // halfmove number to be shown at load, 0 (default) for main variation
+
+   // make sure each time a game is loaded the last played move is shown
+   SetInitialHalfmove("end", true); // halfmove number to be shown at load, 0 (default) for start position; values (keep the quotes) of "start", "end", "random", "comment" (go to first comment or variation), "variation" (go to the first variation) are also accepted. Second parameter if true applies the setting to every selected game instead of startup only
+
+   // set live broadcast; parameters are delay (refresh delay in minutes, 0 means no broadcast, default 0) alertFlag (if true, displays debug error messages, default false) demoFlag (if true starts broadcast demo mode, default false) stepFlag (if true, autoplays updates in steps, default false)
+// SetLiveBroadcast(1, false, false, false);  // enable this one for real live broadcast using the live-grab.sh script
+   SetLiveBroadcast(1, false, false, false); // enable this one for live broadcast demo
+
+   
+SetHighlightOption(true);
+SetAutostartAutoplay(true);
+SetAutoplayNextGame(false);
+SetShortcutKeysEnabled(false);
+SetImagePath("files/images/");
+SetImageType("png");
+clearShortcutSquares("ABCDEFGH", "12345678");
+//clearShortcutSquares("A", "123456");
+
+function customFunctionOnPgnGameLoad() {
+  myOnResize();
+  customPgnHeaderTag("TimeControl", "GameTimeControl");
+  fixHeaderItem(null, "GameEvent", "Tournament");
+  fixHeaderItem(null, "GameSite", "Site");
+  fixHeaderItem(null, "GameDate", "Date");
+  fixHeaderItem(null, "GameRound", "Round");
+  fixHeaderItem(null, "GameWhite", "White player");
+  fixHeaderItem(null, "GameBlack", "Black player");
+  fixHeaderItem(null, "GameResult", "Result");
+  fixHeaderItem("Section", "GameSection", "section");
+  fixHeaderItem("Stage", "GameStage", "stage");
+  fixHeaderItem("WhiteTitle", "GameWhiteTitle", "White title");
+  fixHeaderItem("WhiteElo", "GameWhiteElo", "White elo");
+  fixHeaderItem("WhiteTeam", "GameWhiteTeam", "White team");
+  fixHeaderItem("BlackTitle", "GameBlackTitle", "Black title");
+  fixHeaderItem("BlackElo", "GameBlackElo", "Black elo");
+  fixHeaderItem("BlackTeam", "GameBlackTeam", "Black team");
+  //updateBareShortcut();
+}
+
+function fixColorFlag() {
+
+    if (theObj = document.getElementById("whiteColorFlag")) {
+      theObj.style.display = "inline";
+      theObj.style.visibility = CurrentPly % 2 ? "hidden" : "visible";
+    }
+    if (theObj = document.getElementById("blackColorFlag")) {
+      theObj.style.display = "inline";
+      theObj.style.visibility = CurrentPly % 2 ? "visible" : "hidden";
+    }
+  }
+
+function customDebugInfo() { return "squareSize=" + squareSize; }
+</script>
+
+  <link rel="stylesheet" href="tfgvisor/css3-buttons.css" type="text/css" media="screen">
+  
+	<script type="text/javascript">
+		
+		function toggleAutoplayBtn(){
+			if(isAutoPlayOn){
+				jQuery('#autoplayButton').children().removeClass('icon35');
+				jQuery('#autoplayButton').children().addClass('icon6');
+			}else{
+				if (thisPly < StartPly + PlyNumber){
+					jQuery('#autoplayButton').children().removeClass('icon6');
+					jQuery('#autoplayButton').children().addClass('icon35');
+				}
+			}
+		}
+	</script>
+
+</head>
+
+<body  onload=" myOnResize(); start_pgn4web(); setTimeout(function () {window.scrollTo(0, 1)}, 100);" onresize="myOnResize();">
+<div class="overlay"></div>
+<div id="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+               <span id="GameEvent" class="GameEvent" title="Torneo: "></span>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Games</p>
+                <li class="active" id="addGames"></li>
+            </ul>
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Download Games</a>
+					<a href="javascript:void(0)" id="atras" onClick="clickedBbtn(this,event);"  class="download">Back</a>
+                </li>
+            </ul>
+        </nav>
+		
+		        <!-- Sidebar  -->
+        <nav id="sidebar1">
+            <div class="sidebar-header1">
+               <span class="GameEventSideBar">Funciones</span>
+            </div>
+            <ul class="list-unstyled CTAs">
+                <li>
+					<a href="javascript:void(0)" id="copyfen" onClick="clickedBbtn(this,event);"  class="download">Copiar FEN</a>
+					<a href="javascript:void(0)" id="copygame" onClick="clickedBbtn(this,event);"  class="download">Copiar Partida</a>
+					<a href="javascript:void(0)" id="downloadgame" onClick="clickedBbtn(this,event);"  class="download">Descargar Partida</a>
+					<a href="https://lichess.org/analysis" target="blank" class="download">Tablero de Analisis</a>
+				    <a href="https://isaaclo97.github.io/files/games.pgn" class="download">Descargar Partidas</a>
+                </li>
+            </ul>
+        </nav>
+		
+<div id="GameBoard"></div>
+
+<div class="headerContainer" id="HeaderContainer"> 
+<!-- <div class="firstVariableSpacer">&nbsp;</div> -->
+
+<div><span id="GameEvent" class="GameEvent" title="Torneo: "></span></div>
+<div id="PlaceDate">
+	<span id="GameSite" class="GameSite" title=""></span>
+	<span class="GameRound">(</span>
+	<span id="GameSection" class="GameSection" title=""></span>
+	<span id="GameStage" class="GameStage" title=""></span>
+	<span id="GameRound" class="GameRound" title=""></span>
+	<span class="GameRound">)</span>
+	<span id="GameDate" class="GameDate" title="" style="white-space: nowrap;"></span>
+</div>
+
+<div id="blocJugadores">
+<div id="jugada" class="jugada">
+	<div class="GameLastMove">></div>
+	<div class="GameNextMove"></div>
+	<div>&nbsp;<a href="javascript:void(0);" onclick="newMovesFlag(false); this.blur();" title="" id="GameNewMoves"></a>&nbsp;</div>
+</div>
+<div class="relojBlancas">
+	<span style="display:inline-block;" title="">
+		<img class="" style="display: inline; visibility: hidden;" id="whiteColorFlag" src="tfgvisor/rarrow.png">
+	</span>
+	<span class="clock" id="GameWhiteClock" title=""></span>
+</div>
+
+<div class="jugadorBlanc">
+	
+	<div class="colorFlag colorFlagW" style="background:white;" id="whiteColor"></div>
+	<div class="GameWhite" id="GameWhite" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('WhiteFideId')); this.blur();" href="javascript:void(0);" title=""></div>
+	<span class="GameWhiteTitle" id="GameWhiteTitle" title=""></span>
+	<span class="GameWhiteElo" id="GameWhiteElo" title=""></span>
+	<span class="GameWhiteTeam" id="GameWhiteTeam" title=""></span>
+	
+</div>
+
+<div class="jugadorNegre">
+	<div class="colorFlag colorFlagB" id="blackColor"></div>
+	<div class="GameBlack" id="GameBlack" style="font-weight:bold; cursor:pointer;" onclick="searchPlayer(this.innerHTML, customPgnHeaderTag('BlackFideId')); this.blur();" href="javascript:void(0);" title=""></div>
+	<span class="GameBlackTitle" id="GameBlackTitle" title=""></span>
+	<span class="GameBlackElo" id="GameBlackElo" title=""></span>
+	<span class="GameBlackTeam" id="GameBlackTeam" title=""></span>
+</div>
+
+<div class="relojNegras">
+	<span style="display:inline-block;" title="">
+		<img class="" style="display: inline; visibility: visible;" id="blackColorFlag" src="tfgvisor/rarrow.png">
+	</span>
+	<span class="clock" id="GameBlackClock" title=""></span>
+</div>
+</div>
+
+<div class="moves" style="height: auto;">
+	<a class="move" id="GamePrevMoves" href="javascript:void(0);" onclick="GoToMove(CurrentPly - 1); this.blur();" title="previous moves"></a>
+	<a class="variation" style="font-weight: bold;" id="GameCurrMove" href="javascript:void(0);" onclick="SetHighlight(!highlightOption); this.blur();" title="current move as shown on chessboard"></a>
+	<a class="move" id="GameNextMoves" href="javascript:void(0);" onclick="GoToMove(CurrentPly + 1); this.blur();" title="next moves"></a>
+</div>
+<div class="GameResult">
+	<span id="GameResult" title="" style="white-space: nowrap;"></span>
+</div>
+<div class="popup">
+  <span class="popuptext" id="myPopup">Copiado</span>
+</div>
+<div id="GameButtons"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="tfgvisor/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="tfgvisor/popper.min.js"></script>
+<script src="tfgvisor/bootstrap.min.js"></script>
+</body></html>
