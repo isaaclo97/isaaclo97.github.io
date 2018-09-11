@@ -3760,6 +3760,7 @@ function downloadgame(e)
 function downloadgames(e)
 {
   var element = document.createElement('a');
+  var text = "";
   for(var i=0; i<numberOfGames; i++)
 	text += fullPgnGame(i);
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
