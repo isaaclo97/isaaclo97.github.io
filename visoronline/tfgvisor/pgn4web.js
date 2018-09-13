@@ -4162,14 +4162,17 @@ function SquareOnBoard(col, row) {
 document.addEventListener("keydown", keyDownTextField, false);
 
 function keyDownTextField(e) {
-var keyCode = e.keyCode;
+  var iv;
+  if (initialVariation < 0) { iv = Math.max(numberOfVars + initialVariations, 0); }
+  else { iv = Math.min(initialVariation, numberOfVars - 1); }
+  var keyCode = e.keyCode;
   if (e.keyCode == 39) { //right arrow
   document.getElementById("GameNextMoves").click(); 
   } else if (e.keyCode == 37) { //left arrow 
    document.getElementById("GamePrevMoves").click();
   } else if (e.keyCode == 38) { //up arrow
-     GoToInitialHalfmove("start");
-    } else if (e.keyCode == 40) { //down arrow
-       GoToInitialHalfmove("end");
-    }
+     GoToMove(0, iv);
+  } else if (e.keyCode == 40) { //down arrow
+       GoToMove(StartPlyVar[iv] + PlyNumberVar[iv], iv);
+  }
 }
