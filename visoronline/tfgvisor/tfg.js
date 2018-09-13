@@ -14,14 +14,4 @@ $(document).ready(function () {
 		$('.collapse.in').toggleClass('in');
 		$('a[aria-expanded=true]').attr('aria-expanded', 'false');
 	});
-	
-	$(document).keydown(function(e){
-    if (e.keyCode == 39) { //right arrow
-	  document.getElementById("GameNextMoves").click();
-      return false;
-    } else if (e.keyCode == 37) { //left arrow
-      document.getElementById("GamePrevMoves").click();
-      return false;
-    } 
-  });
 });
