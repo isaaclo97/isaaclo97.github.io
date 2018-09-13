@@ -4159,12 +4159,13 @@ function SquareOnBoard(col, row) {
   return col >= 0 && col <= 7 && row >= 0 && row <= 7;
 }
 
-$(document).keydown(function(e){
-if (e.keyCode == 39) { //right arrow
-  document.getElementById("GameNextMoves").click();
-  return false;
-} else if (e.keyCode == 37) { //left arrow
-  document.getElementById("GamePrevMoves").click();
-  return false;
-} 
-});
+document.addEventListener("keydown", keyDownTextField, false);
+
+function keyDownTextField(e) {
+var keyCode = e.keyCode;
+  if (e.keyCode == 39) { //right arrow
+  document.getElementById("GameNextMoves").click(); 
+  } else if (e.keyCode == 37) { //left arrow 
+   document.getElementById("GamePrevMoves").click();
+ }
+}
