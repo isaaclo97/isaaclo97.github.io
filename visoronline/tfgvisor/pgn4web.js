@@ -4167,5 +4167,9 @@ var keyCode = e.keyCode;
   document.getElementById("GameNextMoves").click(); 
   } else if (e.keyCode == 37) { //left arrow 
    document.getElementById("GamePrevMoves").click();
- }
+  } else if (e.keyCode == 38) { //up arrow
+     GoToInitialHalfmove("start");
+    } else if (e.keyCode == 40) { //down arrow
+       GoToInitialHalfmove("end");
+    }
 }
