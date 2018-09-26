@@ -23,7 +23,7 @@
   // var pgnFile_default = location.protocol + "//" + location.hostname +
  //   location.pathname.replace(/\/[^\/]*$/, "/livepgn/games.pgn");
  // var pgnFile = pgnFile_default;
-  var pgnFile = "games.pgn";
+  var pgnFile = "files/games.pgn";
   thisRegExp = /(&|\?)(pgnData|pd)=([^&]*)(&|$)/i;
   if (window.location.search.match(thisRegExp) !== null) {
     pgnFile = unescape(window.location.search.match(thisRegExp)[3]);
@@ -75,7 +75,7 @@
   }
 
   if (!useTextarea) { SetPgnUrl(pgnFile); }
-  SetImagePath("images/");
+  SetImagePath("files/images/");
   SetImageType("png");
   SetHighlightOption(true); // true or false
   SetCommentsIntoMoveText(false);
