@@ -52,7 +52,7 @@
     refreshMinutes = parseFloat(unescape(window.location.search.match(thisRegExp)[3]));
     if (isNaN(refreshMinutes)) { refreshMinutes = refreshMinutes_default; }
     if (refreshMinutes <= 0) { refreshMinutes = refreshMinutes_default; }
-  }var iniGame_default = 1;
+  }var iniGame_default = 4;
   var iniGame = iniGame_default;
   thisRegExp = /(&|\?)(initialGame|ig)=([^&]*)(&|$)/i;
   if (window.location.search.match(thisRegExp) !== null) {
