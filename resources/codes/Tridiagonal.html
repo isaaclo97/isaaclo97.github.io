@@ -90,88 +90,66 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Ulf Lundstrom, Simon Lindholm
+ * Date: 2009-08-15
+ * License: CC0
+ * Source: https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
+ * Description: $x=\textrm{tridiagonal}(d,p,q,b)$ solves the equation system
+\[
+\left(\begin{array}{c}b_0\\b_1\\b_2\\b_3\\\vdots\\b_{n-1}\end{array}\right) =
+\left(\begin{array}{cccccc}
+d_0 & p_0 & 0 & 0 & \cdots & 0\\
+q_0 & d_1 & p_1 & 0 & \cdots & 0\\
+0 & q_1 & d_2 & p_2 & \cdots & 0\\
+\vdots & \vdots & \ddots & \ddots & \ddots & \vdots\\
+0 & 0 & \cdots & q_{n-3} & d_{n-2} & p_{n-2}\\
+0 & 0 & \cdots & 0 & q_{n-2} & d_{n-1}\\
+\end{array}\right)
+\left(\begin{array}{c}x_0\\x_1\\x_2\\x_3\\\vdots\\x_{n-1}\end{array}\right).
+\]
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+This is useful for solving problems on the type
+\[ a_i=b_ia_{i-1}+c_ia_{i+1}+d_i,\,1\leq i\leq n, \]
+where $a_0$, $a_{n+1}$, $b_i$, $c_i$ and $d_i$ are known. $a$ can then be obtained from
+\begin{align*}
+\{a_i\}=\textrm{tridiagonal}(&\{1,-1,-1,...,-1,1\}, \{0,c_1,c_2,\dots,c_n\},\\
+&\{b_1,b_2,\dots,b_n,0\}, \{a_0,d_1,d_2,\dots,d_n,a_{n+1}\}).
+\end{align*}
+Fails if the solution is not unique.
 
-point arr[100005];
-point res[100005];
+If $|d_i| > |p_i| + |q_{i-1}|$ for all $i$, or $|d_i| > |p_{i-1}| + |q_i|$, or the matrix is positive definite,
+the algorithm is numerically stable and neither \texttt{tr} nor the check for \texttt{diag[i] == 0} is needed.
+ * Time: O(N)
+ * Status: Brute-force tested mod 5 and 7 and fuzz-tested for real matrices obeying the criteria above.
+ */
+#pragma once
 
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
+typedef double T;
+vector&lt;T> tridiagonal(vector&lt;T> diag, const vector&lt;T>& super,
+		const vector&lt;T>& sub, vector&lt;T> b) {
+	int n = sz(b); vi tr(n);
+	FOR(i,0,n-1) {
+		if (abs(diag[i]) &lt; 1e-9 * abs(super[i])) { // diag[i] == 0
+			b[i+1] -= b[i] * diag[i+1] / super[i];
+			if (i+2 &lt; n) b[i+2] -= b[i] * sub[i+1] / super[i];
+			diag[i+1] = sub[i]; tr[++i] = 1;
+		} else {
+			diag[i+1] -= super[i]*sub[i]/diag[i];
+			b[i+1] -= b[i]*sub[i]/diag[i];
+		}
+	}
+	for (int i = n; i--;) {
+		if (tr[i]) {
+			swap(b[i], b[i-1]);
+			diag[i-1] = diag[i];
+			b[i] /= super[i-1];
+		} else {
+			b[i] /= diag[i];
+			if (i) b[i-1] -= b[i]*super[i-1];
+		}
+	}
+	return b;
 }
 </code></pre>
             </div>

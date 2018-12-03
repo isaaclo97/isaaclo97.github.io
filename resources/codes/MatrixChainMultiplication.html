@@ -90,90 +90,55 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+* Author: Isaac
+* Date: 2009-04-06
+* License: -
+* Source:
+* Description: Matrix Chain Multiplication Top Down
+*/
+#define n 4
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+int arr[] = {1, 2, 3, 4};
+int dp[n][n];
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
+int topDown(int i, int j)
 {
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+    if(i==j) return 0;
+    if(dp[i][j]!=-1) return dp[i][j];
+    dp[i][j]=INF;
+    for(int k=i; k&lt;=j;k++)
+    {
+        int temp = topDown(i,k)+topDown(k+1,j)+arr[i-1]*arr[k]*arr[j];
+        dp[i][j]=min(dp[i][j],temp);
+    }
+    return dp[i][j];
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
+    memset(dp,-1,sizeof(dp));
+    int m[n][n];
+
+    for (int i=1; i&lt;n; i++) m[i][i] = 0; // cost is zero when multiplying one matrix.
+
+    for (int L=2; L&lt;n; L++) // L is chain length.
+        for (int i=1; i&lt;n-L+1; i++)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            int j = i+L-1;
+            m[i][j] = INT_MAX;
+            for (int k=i; k&lt;=j-1; k++)
+            {
+                // q = cost/scalar multiplications
+                int q = m[i][k] + m[k+1][j] + arr[i-1]*arr[k]*arr[j];
+                if (q &lt; m[i][j])  m[i][j] = q;
+            }
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
+
+    cout&lt;&lt;m[1][n-1]&lt;&lt;endl;
+    cout&lt;&lt;topDown(1,n-1)&lt;&lt;endl;
     return 0;
-}
-</code></pre>
+}</code></pre>
             </div>
         </section>
          

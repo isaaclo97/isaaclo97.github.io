@@ -90,88 +90,30 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Simon Lindholm
+ * Date: 2017-05-10
+ * License: CC0
+ * Source: Wikipedia
+ * Description: Given $n$ points (x[i], y[i]), computes an n-1-degree polynomial $p$ that
+ *  passes through them: $p(x) = a[0]*x^0 + ... + a[n-1]*x^{n-1}$.
+ *  For numerical precision, pick $x[k] = c*\cos(k/(n-1)*\pi), k=0 \dots n-1$.
+ * Time: O(n^2)
+ */
+#pragma once
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
+typedef vector&lt;double> vd;
+vd interpolate(vd x, vd y, int n) {
+	vd res(n), temp(n);
+	FOR(k,0,n-1) FOR(i,k+1,n)
+		y[i] = (y[i] - y[k]) / (x[i] - x[k]);
+	double last = 0; temp[0] = 1;
+	FOR(k,0,n) FOR(i,0,n) {
+		res[i] += y[k] * temp[i];
+		swap(last, temp[i]);
+		temp[i] -= last * x[k];
+	}
+	return res;
 }
 </code></pre>
             </div>

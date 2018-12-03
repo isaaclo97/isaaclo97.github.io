@@ -90,88 +90,76 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Eric
+ * License: CC0
+ * Description: Returns maximum flow.
+ * Time: O(V^2 * E) for general graphs. For unit capacities O(min(V^(2/3), E^(1/2)) * E). For maximum matching O(E*sqrt(V)))(bipartite unit weighted graf). It is generally very fast.
+ * Status: Tested
+ * Usage: To obtain a cut in the mincut problem one must bfs from the source. All the vertices reached from it using only edges with CAP > 0 are in the same cut
+ */
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
+typedef long long ll;
+typedef vector&lt;int> vi;
+const ll INF = 1000000000000000000LL;
+
+#define VEI(w,e) ((E[e].u == w) ? E[e].v : E[e].u)
+#define CAP(w,e) ((E[e].u == w) ? E[e].cap[0] - E[e].flow : E[e].cap[1] + E[e].flow)
+#define ADD(w,e,f) E[e].flow += ((E[e].u == w) ? (f) : (-(f)))
+
+struct Edge { int u, v; ll cap[2], flow; };
+
+vi d, act;
+
+bool bfs(int s, int t, vector&lt;vi>& adj, vector&lt;Edge>& E) {
+  queue&lt;int> Q;
+  d = vi(adj.size(), -1);
+  d[t] = 0; Q.push(t);
+  while (not Q.empty()) {
+    int u = Q.front(); Q.pop();
+    for (int i = 0; i &lt; int(adj[u].size()); ++i) {
+      int e = adj[u][i], v = VEI(u, e);
+      if (CAP(v, e) > 0 and d[v] == -1) {
+        d[v] = d[u] + 1;
+        Q.push(v);
+      }
     }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+  }
+  return d[s] >= 0;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
+ll dfs(int u,int t,ll bot,vector&lt;vi>& adj,vector&lt;Edge>& E) {
+  if (u == t) return bot;
+  for (; act[u] &lt; int(adj[u].size()); ++act[u]) {
+    int e = adj[u][act[u]];
+    if (CAP(u, e) > 0 and d[u] == d[VEI(u, e)] + 1) {
+      ll inc=dfs(VEI(u,e),t,min(bot,CAP(u,e)),adj,E);
+      if (inc) {
+        ADD(u, e, inc);
+        return inc;
+      }
     }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+  }
+  return 0;
 }
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+ll maxflow(int s, int t, vector&lt;vi>& adj, vector&lt;Edge>& E) {
+  for (int i=0; i&lt;int(E.size()); ++i) E[i].flow = 0;
+  ll flow = 0, bot;
+  while (bfs(s, t, adj, E)) {
+    act = vi(adj.size(), 0);
+    while ((bot = dfs(s,t,INF, adj, E))) flow += bot;
+  }
+  return flow;
 }
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
+
+void addEdge(int u, int v, Vvi& adj, vector&lt;Edge>& E, ll cap){
+	Edge e; e.u = u; e.v = v;
+	e.cap[0] = cap; e.cap[1] = 0;
+	e.flow = 0;
+	adj[u].push_back(E.size());
+	adj[v].push_back(E.size());
+	E.push_back(e);
 }
 </code></pre>
             </div>

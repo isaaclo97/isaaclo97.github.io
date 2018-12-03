@@ -90,88 +90,117 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Isaac
+ * Date: 
+ * License: 
+ * Description: - Pair of (maximum flow value, minimum cost value). Look at positive values only. Use adjacency matrix. For a regular max flow, set all edge costs to 0.
+ * Time:  O(V^4 * MAX_EDGE_COST)
+ * Status: 
+ */
+typedef vector&lt;int> VI;
+typedef vector&lt;VI> VVI;
+typedef long long L;
+typedef vector&lt;L> VL;
+typedef vector&lt;VL> VVL;
+typedef pair&lt;int, int> PII;
+typedef vector&lt;PII> VPII;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
+const L INF = numeric_limits&lt;L>::max() / 4;
+
+struct MinCostMaxFlow {
+  int N;
+  VVL cap, flow, cost;
+  VI found;
+  VL dist, pi, width;
+  VPII dad;
+
+  MinCostMaxFlow(int N) : 
+    N(N), cap(N, VL(N)), flow(N, VL(N)), cost(N, VL(N)), 
+    found(N), dist(N), pi(N), width(N), dad(N) {}
+  
+  void AddEdge(int from, int to, L cap, L cost) {
+    this->cap[from][to] = cap;
+    this->cost[from][to] = cost;
+  }
+  
+  void Relax(int s, int k, L cap, L cost, int dir) {
+    L val = dist[s] + pi[s] - pi[k] + cost;
+    if (cap && val &lt; dist[k]) {
+      dist[k] = val;
+      dad[k] = make_pair(s, dir);
+      width[k] = min(cap, width[s]);
     }
-};
+  }
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
+  L Dijkstra(int s, int t) {
+    fill(found.begin(), found.end(), false);
+    fill(dist.begin(), dist.end(), INF);
+    fill(width.begin(), width.end(), 0);
+    dist[s] = 0;
+    width[s] = INF;
+    
+    while (s != -1) {
+      int best = -1;
+      found[s] = true;
+      for (int k = 0; k &lt; N; k++) {
+        if (found[k]) continue;
+        Relax(s, k, cap[s][k] - flow[s][k], cost[s][k], 1);
+        Relax(s, k, flow[k][s], -cost[k][s], -1);
+        if (best == -1 || dist[k] &lt; dist[best]) best = k;
+      }
+      s = best;
     }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+    for (int k = 0; k &lt; N; k++)
+      pi[k] = min(pi[k] + dist[k], INF);
+    return width[t];
+  }
+
+  pair&lt;L, L> GetMaxFlow(int s, int t) {
+    L totflow = 0, totcost = 0;
+    while (L amt = Dijkstra(s, t)) {
+      totflow += amt;
+      for (int x = t; x != s; x = dad[x].first) {
+        if (dad[x].second == 1) {
+          flow[dad[x].first][x] += amt;
+          totcost += amt * cost[dad[x].first][x];
+        } else {
+          flow[x][dad[x].first] -= amt;
+          totcost -= amt * cost[x][dad[x].first];
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+      }
     }
-    return 0;
+    return make_pair(totflow, totcost);
+  }
+}; 
+
+int main() { //Data Flow
+  int N, M;
+
+  while (scanf("%d%d", &N, &M) == 2) {
+    VVL v(M, VL(3));
+    for (int i = 0; i &lt; M; i++)
+      scanf("%Ld%Ld%Ld", &v[i][0], &v[i][1], &v[i][2]);
+    L D, K;
+    scanf("%Ld%Ld", &D, &K);
+
+    MinCostMaxFlow mcmf(N+1);
+    for (int i = 0; i &lt; M; i++) {
+      mcmf.AddEdge(int(v[i][0]), int(v[i][1]), K, v[i][2]);
+      mcmf.AddEdge(int(v[i][1]), int(v[i][0]), K, v[i][2]);
+    }
+    mcmf.AddEdge(0, 1, D, 0);
+    
+    pair&lt;L, L> res = mcmf.GetMaxFlow(0, N);
+
+    if (res.first == D) {
+      printf("%Ld\n", res.second);
+    } else {
+      printf("Impossible.\n");
+    }
+  }
+  return 0;
 }
 </code></pre>
             </div>

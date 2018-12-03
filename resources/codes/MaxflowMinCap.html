@@ -90,88 +90,75 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Dean Zhu
+ * Date: 2018-11-15
+ * License: CC0
+ * Description: Finds all articulation points and bridges of a undirected graph.
+ * Time: O(E + V)
+ * Status: Tested on: Bridges tested on https://jutge.org/problems/P37339_en
+ */
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+/**
+ * Author: Dean Zhu
+ * Date: 2018-11-15
+ * License: CC0
+ * Source: UPC
+ * Description: Normal maxflow but with minimum capacity in each edge.
+ * Usage: Need to copy maxflow, pass source sink adj matrix, Edge matrix and choose scaling if needed
+ * Time: O(V^2 * E) for general graphs. For unit capacities O(min(V^(2/3), E^(1/2)) * E)
+ * Status: tested on https://codeforces.com/gym/101252/problem/I
+ */
 
-point arr[100005];
-point res[100005];
+#include "FastMaxFlow.h"
+struct Edge { int u, v; ll cap[2], mincap, flow; };
 
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+void addEdge(int x, int y, ll c, ll m, vector&lt;vi>& adj, vector&lt;Edge>& E) {
+    Edge e; e.u = x; e.v = y;
+    e.cap[0] = c - m; e.cap[1] = 0; e.mincap = m;
+    adj[x].push_back(E.size()); adj[y].push_back(E.size());
+    E.push_back(e);
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
+ll mincap(int s, int t, vector&lt;vi>& adj, vector&lt;Edge>& E, int F = 0) {
+    int n = adj.size();
+    int m = E.size();
+    vector&lt;ll> C(n, 0);
+    for (int i = 0; i &lt; m; ++i) {
+        C[E[i].u] -= E[i].mincap;
+        C[E[i].v] += E[i].mincap;
     }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+    adj.push_back(vi(0));
+    adj.push_back(vi(0));
+    ll flowsat = 0;
+    for (int i = 0; i &lt; n; ++i) {
+        if (C[i] > 0) {
+            addEdge(n, i, C[i], 0, adj, E);
+            flowsat += C[i];
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+        else if (C[i] &lt; 0) addEdge(i, n + 1, -C[i], 0, adj, E);
     }
-    return 0;
+    addEdge(t, s, oo, 0, adj, E);
+    for (int i = 0; i &lt; (int)E.size(); ++i) E[i].flow = 0;
+    if (flowsat != maxflow(n, n + 1, adj, E, F)) return -1;
+    maxflow(s, t, adj, E, F);
+    while ((int)E.size() > m) E.pop_back();
+    adj.pop_back();
+    adj.pop_back();
+    for (int i = 0; i &lt; n; ++i) {
+        int j = (int)adj[i].size() - 1;
+        while (j >= 0 and adj[i][j] >= m) {
+            --j;
+            adj[i].pop_back();
+        }
+    }
+    ll flow = 0;
+    for (int i = 0; i &lt; m; ++i) {
+        E[i].flow += E[i].mincap;
+        if (E[i].u == s) flow += E[i].flow;
+        else if (E[i].v == s) flow -= E[i].flow;
+    }
+    return flow;
 }
 </code></pre>
             </div>

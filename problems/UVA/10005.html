@@ -91,85 +91,96 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
 #define PI acos(-1.0)
+#define EPS 1e-8
 using namespace std;
 
 struct point{
     double x,y;
     point(){x=y=0;}
     point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
 };
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+double dist(point p1, point p2) {
+  return hypot(p1.x - p2.x, p1.y - p2.y);
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+bool circle2PtsRad(point p1, point p2, double r, point &c) {
+  double d2 = (p1.x - p2.x) * (p1.x - p2.x) +
+              (p1.y - p2.y) * (p1.y - p2.y);
+  double det = r * r / d2 - 0.25;
+  if (det &lt; 0.0) return false;
+  double h = sqrt(det);
+  c.x = (p1.x + p2.x) * 0.5 + (p1.y - p2.y) * h;
+  c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
+  return true; }
+point circle(point &a, point &b, point &c) {
+   static point ab, ac, o;
+   static double a1, b1, c1, a2, b2, c2, D, D1, D2;
+   ab.x = (a.x+b.x)/2, ab.y = (a.y+b.y)/2;
+   ac.x = (a.x+c.x)/2, ac.y = (a.y+c.y)/2;
+   a1 = a.x-b.x, b1 = a.y-b.y;
+   c1 = a1*ab.x + b1*ab.y;
+   a2 = a.x-c.x, b2 = a.y-c.y;
+   c2 = a2*ac.x + b2*ac.y;
+   D = a1*b2-a2*b1;
+   D1 = c1*b2-c2*b1;
+   D2 = a1*c2-a2*c1;
+   o.x = D1/D;
+   o.y = D2/D;
+   return o;
 }
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
+double minCoverCircle(vector&lt;point> p, int n) {
+    point c;
+    double cr = 0.0;
+    int i, j, k;
+    c = p[0];
+    for(i = 1; i &lt; n; i++) {
+        if(dist(p[i], c) >= cr+EPS) {
+            c = p[i], cr = 0;
+            for(j = 0; j &lt; i; j++) {
+                if(dist(p[j], c) >= cr+EPS) {
+                    c.x = (p[i].x+p[j].x)/2;
+                    c.y = (p[i].y+p[j].y)/2;
+                    cr = dist(p[i], c);
+                    for(k = 0; k &lt; j; k++) {
+                        if(dist(p[k], c) >= cr+EPS) {
+                            c = circle(p[i], p[j], p[k]);
+                            cr = dist(p[i], c);
+                        }
+                    }
+                }
+            }
+        }
     }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+    return sqrt(cr);
 }
 int main()
 {
     int n;
-    while(scanf("%d",&n)==1)
+    while(scanf("%d",&n)==1 && n!=0)
     {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+      vector&lt;point> V;
+      double x,y,rad;
+      for(int i=0; i&lt;n;i++)
+      {
+          scanf("%lf%lf",&x,&y);
+          V.push_back(point(x,y));
+      }
+      scanf("%lf",&rad);
+      point aux;
+      bool flag = false;
+      int k;
+      for(int i=0; i&lt;n && !flag;i++)
+          for(int j=i+1; j&lt;n &&!flag;j++)
+          {
+              circle2PtsRad(V[i],V[j],rad,aux);
+              for(k=0;k&lt;n;k++)
+                if(dist(V[k],aux) > rad) break;
+              if(k==n) flag=true;
+          }
+      if(flag) printf("The polygon can be packed in the circle.\n");
+      else printf("There is no way of packing that polygon.\n");
     }
     return 0;
 }

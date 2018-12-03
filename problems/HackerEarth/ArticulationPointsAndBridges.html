@@ -91,86 +91,66 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+vector&lt;int> adj[11],ap;
+vector&lt;pair&lt;int,int> >bridges;
+int disc[11],low[11],parent[11],visited[11];
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
+pair&lt;int,int> minmax(int x,int y)
 {
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+    pair&lt;int,int> ret;
+    if(x&lt;y) ret=make_pair(x,y);
+    else ret=make_pair(y,x);
+    return ret;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
+void dfs(int vertex,int vistime)
+{
+    visited[vertex]=1;
+    disc[vertex]=low[vertex]=vistime;
+    int child=0;
+    for(int i=0;i&lt;(int)adj[vertex].size();i++)
+        if(!visited[adj[vertex][i]])
+        {
+            child++;
+            parent[adj[vertex][i]]=vertex;
+            dfs(adj[vertex][i],vistime+1);
+            low[vertex]=min(low[vertex],low[adj[vertex][i]]);
+            if(parent[vertex]==-1){
+                bridges.push_back(minmax(vertex,adj[vertex][i]));
+                if(child>1)
+                    ap.push_back(vertex);
+            }
+            else if(low[adj[vertex][i]]>disc[vertex]){
+                bridges.push_back(minmax(vertex,adj[vertex][i]));
+                ap.push_back(vertex);
+            }
+            else if(low[adj[vertex][i]]==disc[vertex])
+                ap.push_back(vertex);
 
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
+        }
+        else if(parent[vertex]!=adj[vertex][i])
+            low[vertex]=min(low[vertex],disc[adj[vertex][i]]);
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
 }
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+    int n,m,x,y;
+    scanf("%d%d",&n,&m);
+    for(int i=0;i&lt;m;i++){
+        scanf("%d%d",&x,&y);
+        adj[x].push_back(y);
+        adj[y].push_back(x);
     }
+    memset(parent,-1,sizeof(parent));
+    dfs(0,0);
+    sort(ap.begin(),ap.end());
+    sort(bridges.begin(),bridges.end());
+    printf("%d\n",ap.size());
+    for(unsigned i=0;i&lt;ap.size();i++) printf("%d ",ap[i]);
+    printf("\n%d\n",bridges.size());
+    for(unsigned i=0;i&lt;bridges.size();i++)  printf("%d %d\n", bridges[i].first,bridges[i].second);
     return 0;
 }
 </code></pre>

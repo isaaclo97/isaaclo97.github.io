@@ -90,88 +90,119 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Isaac
+ * Date: 
+ * License:
+ * Description: Maximum flow (zero capacity edges are residual edges). Solves problems 10000 vertices and 1000000 edges, worst-case has very few edges.
+ * Time: O(V^3)
+ * Status:
+ */
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+typedef long long LL;
+
+struct Edge {
+  int from, to, cap, flow, index;
+  Edge(int from, int to, int cap, int flow, int index) :
+    from(from), to(to), cap(cap), flow(flow), index(index) {}
 };
 
-point arr[100005];
-point res[100005];
+struct PushRelabel {
+  int N;
+  vector&lt;vector&lt;Edge> > G;
+  vector&lt;LL> excess;
+  vector&lt;int> dist, active, count;
+  queue&lt;int> Q;
 
+  PushRelabel(int N) : N(N), G(N), excess(N), dist(N), active(N), count(2*N) {}
 
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
+  void AddEdge(int from, int to, int cap) {
+    G[from].push_back(Edge(from, to, cap, 0, G[to].size()));
+    if (from == to) G[from].back().index++;
+    G[to].push_back(Edge(to, from, 0, 0, G[from].size() - 1));
+  }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
+  void Enqueue(int v) { 
+    if (!active[v] && excess[v] > 0) { active[v] = true; Q.push(v); } 
+  }
 
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
+  void Push(Edge &e) {
+    int amt = int(min(excess[e.from], LL(e.cap - e.flow)));
+    if (dist[e.from] &lt;= dist[e.to] || amt == 0) return;
+    e.flow += amt;
+    G[e.to][e.index].flow -= amt;
+    excess[e.to] += amt;    
+    excess[e.from] -= amt;
+    Enqueue(e.to);
+  }
+  
+  void Gap(int k) {
+    for (int v = 0; v &lt; N; v++) {
+      if (dist[v] &lt; k) continue;
+      count[dist[v]]--;
+      dist[v] = max(dist[v], N+1);
+      count[dist[v]]++;
+      Enqueue(v);
     }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
+  }
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
+  void Relabel(int v) {
+    count[dist[v]]--;
+    dist[v] = 2*N;
+    for (int i = 0; i &lt; G[v].size(); i++) 
+      if (G[v][i].cap - G[v][i].flow > 0)
+	dist[v] = min(dist[v], dist[G[v][i].to] + 1);
+    count[dist[v]]++;
+    Enqueue(v);
+  }
+
+  void Discharge(int v) {
+    for (int i = 0; excess[v] > 0 && i &lt; G[v].size(); i++) Push(G[v][i]);
+    if (excess[v] > 0) {
+      if (count[dist[v]] == 1) 
+	Gap(dist[v]); 
+      else
+	Relabel(v);
     }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
+  }
+
+  LL GetMaxFlow(int s, int t) {
+    count[0] = N-1;
+    count[N] = 1;
+    dist[s] = N;
+    active[s] = active[t] = true;
+    for (int i = 0; i &lt; G[s].size(); i++) {
+      excess[s] += G[s][i].cap;
+      Push(G[s][i]);
     }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+    
+    while (!Q.empty()) {
+      int v = Q.front();
+      Q.pop();
+      active[v] = false;
+      Discharge(v);
     }
-    return 0;
+    
+    LL totflow = 0;
+    for (int i = 0; i &lt; G[s].size(); i++) totflow += G[s][i].flow;
+    return totflow;
+  }
+};
+
+int main() {
+  int n, m;
+  scanf("%d%d", &n, &m);
+  //FASTFLOW
+  PushRelabel pr(n);
+  for (int i = 0; i &lt; m; i++) { 
+   int a, b, c;
+    scanf("%d%d%d", &a, &b, &c);
+    if (a == b) continue;
+    pr.AddEdge(a-1, b-1, c);
+    pr.AddEdge(b-1, a-1, c);
+  }
+  printf("%Ld\n", pr.GetMaxFlow(0, n-1));
+  return 0;
 }
 </code></pre>
             </div>

@@ -91,85 +91,203 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
+#define EPS 10e-9
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
+typedef long long ll;
+typedef pair&lt;int, int> pii;
+typedef vector&lt;int> vi;
+#define FOR(i, a, b) for(int i = (a); i &lt; int(b); i++)
+#define trav(i, v) for(auto &i : v)
+#define has(c, e) ((c).find(e) != (c).end())
+#define sz(c) int((c).size())
+#define all(c) c.begin(), c.end()
+#define debug(x) cerr &lt;&lt; #x &lt;&lt; ": " &lt;&lt; x &lt;&lt; endl;
+
+typedef double T;
+template&lt;class T>
+struct P {
+    T x, y;
+
+    explicit P(T a = 0, T b = 0) : x(a), y(b) {
+    }
+
+    bool operator&lt;(P p) const {
+        return tie(x, y) &lt; tie(p.x, p.y);
+    }
+
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+
+    P operator*(T d) const {
+        return P(x*d, y * d);
+    }
+
+    P operator/(T d) const {
+        return P(x / d, y / d);
+    }
+
+    T dot(P p) const {
+        return x * p.x + y * p.y;
+    }
+
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
+
+    T cross(P a, P b) const {
+        return (a - * this).cross(b - * this);
+    }
+
+    T dist2() const {
+        return x * x + y*y;
+    }
+
+    double dist() const {
+        return sqrt((double) dist2());
+    }
+    // angle to x-axis in interval [-pi, pi]
+
+    double angle() const {
+        return atan2(y, x);
+    }
+
+    P unit() const {
+        return *this / dist();
+    } // makes dist()=1
+
+    P perp() const {
+        return P(-y, x);
+    } // rotates +90 degrees
+
+    P normal() const {
+        return perp().unit();
+    }
+    // returns P rotated a radians ccw around the origin
+
+    P rotate(double a) const {
+        return P(x * cos(a) - y * sin(a), x * sin(a) + y * cos(a));
     }
 };
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+template &lt;class P>
+double cross(P o, P a, P b) {
+    return (a.x-o.x)*(b.y-o.y) - (a.y-o.y)*(b.x-o.x);
+}
+template &lt;class P>
+double cross2(P a, P b) {
+    return a.x * b.y - a.y * b.x;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
+template &lt;class P>
+double dist(P p1, P p2) {
+  return hypot(p1.x - p2.x, p1.y - p2.y); }
 
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
+template &lt;class P>
+int CH(int n, P p[], P ch[]) {
+    sort(p, p+n);
+    int m = 0;
+    for (int i = 0; i &lt; n; i++) {
+        while (m >= 2 && cross(ch[m-2], ch[m-1], p[i]) &lt;= 0)
             m--;
-        res[m++] = arr[i];
+        ch[m++] = p[i];
     }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
+    for (int i = n-1, t = m+1; i >= 0; i--) {
+        while (m >= t && cross(ch[m-2], ch[m-1], p[i]) &lt;= 0)
             m--;
-        res[m++] = arr[i];
+        ch[m++] = p[i];
     }
     return m-1;
 }
+
+struct vec {
+    double x, y;
+
+    vec(double _x, double _y) : x(_x), y(_y) {
+    }
+};
+template &lt;class P>
+vec toVec(P a, P b) {
+    return vec(b.x - a.x, b.y - a.y);
+}
+
+double dot(vec a, vec b) {
+    return (a.x * b.x + a.y * b.y);
+}
+
+double norm_sq(vec v) {
+    return v.x * v.x + v.y * v.y;
+}
+
+vec scale(vec v, double s) { // nonnegative s = [&lt;1 .. 1 ..>1]
+    return vec(v.x * s, v.y * s);
+}// shorter.same.longer
+
+template &lt;class P>
+P translate(P p, vec v) { // translate p according to v
+    return P(p.x + v.x, p.y + v.y);
+}
+template &lt;class P>
+double distToLine(P p, P a, P b, P &c) {
+    // formula: c = a + u * ab
+    vec ap = toVec(a, p), ab = toVec(a, b);
+    double u = dot(ap, ab) / norm_sq(ab);
+    c = translate(a, scale(ab, u)); // translate a to c
+    return dist(p, c);
+}
+template &lt;class P>
+double distToLineSegment(P p, P a, P b, P &c) {
+    vec ap = toVec(a, p), ab = toVec(a, b);
+    double u = dot(ap, ab) / norm_sq(ab);
+    if (u &lt; 0.0) {
+        c = P(a.x, a.y); // closer to a
+        return dist(p, a);
+    }
+    if (u > 1.0) {
+        c = P(b.x, b.y); // closer to b
+        return dist(p, b);
+    }
+    return distToLine(p, a, b, c);
+} // run distToLine as above
+
+template &lt;class P>
+double polygonDiameter(int n, P pt[]) {
+    if (n &lt;= 2) return 0;
+    double ret = 1e+60;
+    P aux;
+    pt[n]=pt[0];
+    //int n =  pt.size()-1; //just end added
+    for (int i = 0, j = 0; i &lt;n; i++) {
+            while (cross(pt[i], pt[i+1], pt[j+1]) >= cross(pt[i], pt[i+1], pt[j]))
+                j = (j+1)%n;
+            double dist = distToLineSegment(pt[j], pt[i], pt[i+1],aux);
+            ret = min(ret, dist);
+        }
+    return ret;
+}
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
+    int n,r;
+    while(scanf("%d%d",&n,&r)==2)
     {
+        P&lt;double> pt[262144], ch[262144];
         double x,y;
         for(int i=0; i&lt;n;i++)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            scanf("%lf%lf",&x,&y); pt[i] = P&lt;double>{x,y};
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+        n = CH(n,pt,ch);
+        double sol = polygonDiameter(n,ch);
+        printf("%.17lf\n",sol);
     }
     return 0;
 }

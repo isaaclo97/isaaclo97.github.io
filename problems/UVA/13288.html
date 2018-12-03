@@ -91,85 +91,125 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
+#define oo 0x3f3f3f3f3f3f3f3fLL
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+const int MAXV = 2005;
 
-point arr[100005];
-point res[100005];
+struct KM {
+    int _mem[MAXV*MAXV];
+    int *w[MAXV];
+    int lx[MAXV], ly[MAXV];
+    int16_t mx[MAXV], my[MAXV];
+    int16_t aug[MAXV], vis[MAXV];
+    pair&lt;int, int> slack[MAXV];
+    int nx, ny;
 
 
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+    int match() {
+        for (int i = 0; i &lt; nx; i++)
+            lx[i] = *max_element(w[i], w[i]+ny); fill(ly, ly+ny, 0);
+        fill(mx, mx+nx, -1);
+        fill(my, my+ny, -1);
+        fill(slack, slack+ny, make_pair(0, 0));
+        for (int root = 0; root &lt; nx; root++){
+            fill(aug, aug+ny, -1);
+            fill(vis, vis+nx, 0);
+            vis[root] = 1;
+            for (int y = 0; y &lt; ny; y++)
+                slack[y] = make_pair(lx[root]+ly[y]-w[root][y], root);
+            int sy = -1;
+            for (;;) {
+                int delta = INT_MAX, sx = -1;
+                for (int y = 0; y &lt; ny; y++) {
+                    if (aug[y] == -1 && slack[y].first &lt; delta) {
+                        delta = slack[y].first; sx = slack[y].second, sy = y;
+                    }
+                }
+                // assert(vis[sx]);
+                if (delta > 0) {
+                    for (int x = 0; x &lt; nx; x++) {
+                        if (vis[x]) lx[x] -= delta;
+                    }
+                    for (int y = 0; y &lt; ny; y++) {
+                        if (aug[y] > -1) ly[y] += delta;
+                        else slack[y].first -= delta;
+                    }
+                }
+                // assert(lx[sx] + ly[sy] == w[sx][sy]);
+                aug[sy] = sx; sx = my[sy];
+                if (sx == -1) break;
+                vis[sx] = 1;
+                for (int y = 0; y &lt; ny; y++) {
+                    if (aug[y] == -1) {
+                        if (lx[sx]+ly[y]-w[sx][y] &lt; slack[y].first)
+                            slack[y] = make_pair(lx[sx]+ly[y]-w[sx][y], sx);
+                    }
+                }
+            }
+            while (sy != -1) {
+                int sx = aug[sy];
+                int ty = mx[sx];
+                my[sy] = sx;
+                mx[sx] = sy;
+                sy = ty;
+            }
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
+        int ret = 0;
+        for (int i = 0; i &lt; nx; i++)
+            ret += lx[i];
+        for (int i = 0; i &lt; ny; i++)
+            ret += ly[i];
+        return ret;
+    }
+
+    void init(int nx, int ny) {
+        this->nx = nx, this->ny = ny;
+        for (int i = 0; i &lt; nx; i++)
+            w[i] = _mem + i*ny;
+    }
+} km;
+
+int main() {
+    int numVine, numCouriers;
+    const int MAXN = 2005;
+    int bottlex[MAXN], bottley[MAXN];
+    int courierx[MAXN], couriery[MAXN];
+    int retuaurantx, restauranty;
+    while (scanf("%d %d", &numVine, &numCouriers) == 2) {
+        for (int i = 0; i &lt; numVine; i++)
+            scanf("%d %d", &bottlex[i], &bottley[i]);
+        for (int i = 0; i &lt; numCouriers; i++)
+            scanf("%d %d", &courierx[i], &couriery[i]);
+        scanf("%d %d", &retuaurantx, &restauranty);
+        km.init(numVine, numCouriers+(numVine-1));
+
+        //suma acumulada de distnacias de restaurante a vino.
+        int ret = 0;
+
+        for (int i = 0; i &lt; numVine; i++) {
+
+            int b = abs(bottlex[i]-retuaurantx)+abs(bottley[i]-restauranty);
+            ret += b; //incremento
+            //Presupones que tendrs que hacer el trayecto botella->restaurante
+            //al menos una vez por cada botella.
+            //asi que solo apuntas las distnacias casa->botella y rest->botella
+
+            for (int j = 0; j &lt; numCouriers; j++) {
+                //distancia entre cada botella y cada repartidor
+                int d = abs(bottlex[i]-courierx[j])+abs(bottley[i]-couriery[j]);
+                km.w[i][j] = -d;
+            }
+            for (int j = 0; j &lt; numVine-1; j++)
+                //distancia entre cada botella y el restaurante
+                //Aades esto numVinos-1 veces para asegurar que al menos un camino es
+                //desde la casa de uno de los repartidores
+                km.w[i][j+numCouriers] = -b;
         }
-        printf("%d\n",res);
+        //Segn este planteamiento una botella tiene que ser asignada o al restaurante(repartidor virtual) o a un repartidor.
+        //Y al menos una botella ser repartida por un repartidor normal, ya que solo hay numBotellas-1 de los virtuales.
+        ret += -km.match();
+        printf("%d\n", ret);
     }
     return 0;
 }

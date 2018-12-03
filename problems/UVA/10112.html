@@ -98,78 +98,91 @@ using namespace std;
 
 struct point{
     double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+    char c;
+    point(){x=y=0; c='$';}
+    point(double _x,double _y, char _c){x=_x,y=_y, c=_c;}
 };
 
-point arr[100005];
-point res[100005];
 
+struct vec { double x, y;  // name: `vec' is different from STL vector
+  vec(double _x, double _y) : x(_x), y(_y) {} };
 
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+vec toVec(point a, point b) {       // convert 2 points to vector a->b
+  return vec(b.x - a.x, b.y - a.y); }
+
+double dot(vec a, vec b) { return (a.x * b.x + a.y * b.y); }
+
+double norm_sq(vec v) { return v.x * v.x + v.y * v.y; }
+
+double angle(point a, point o, point b) {  // returns angle aob in rad
+  vec oa = toVec(o, a), ob = toVec(o, b);
+  return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob))); }
+
+double cross(vec a, vec b) { return a.x * b.y - a.y * b.x; }
+
+// note: to accept collinear points, we have to change the `> 0'
+// returns true if point r is on the left side of line pq
+bool ccw(point p, point q, point r) {
+  return cross(toVec(p, q), toVec(p, r)) > 0; }
+
+double cross(point o, point a, point b) {
+    return (a.x-o.x)*(b.y-o.y) - (a.y-o.y)*(b.x-o.x);
 }
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+bool cmp(point a,point b){
+    return a.c&lt;b.c;
 }
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+bool inPolygon(point test, vector&lt;point> g){
+  bool result = false;
+  for (unsigned i = 0, j = g.size() - 1; i &lt; g.size(); j = i++) {
+    if ((g[i].y > test.y) != (g[j].y > test.y) &&
+        (test.x &lt; (g[j].x - g[i].x) * (test.y - g[i].y) / (g[j].y-g[i].y) + g[i].x)) {
+      result = !result;
+     }
+  }
+  return result;
 }
+double area(vector&lt;point> P) {
+ return abs(0.5 * (((P[2].y - P[0].y)*(P[1].x - P[0].x)) - ((P[1].y - P[0].y)*(P[2].x - P[0].x))));
+}
+// double area = Math.abs(0.5*(((tri.g[2].y-tri.g[0].y)(tri.g[1].x-tri.g[0].x))-((tri.g[1].y-tri.g[0].y)(tri.g[2].x-tri.g[0].x))));
 int main()
 {
     int n;
-    while(scanf("%d",&n)==1)
+    while(scanf("%d",&n)==1 && n!=0)
     {
+        vector&lt;point> V;
+        vector&lt;point> R;
         double x,y;
+        char c;
         for(int i=0; i&lt;n;i++)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            cin.ignore();
+            scanf("%c %lf %lf",&c,&x,&y);
+            V.push_back(point(x,y,c));
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
+        double areaR = -INF;
+        for(unsigned int i=0; i&lt;V.size();i++)
+            for(unsigned int j=i+1; j&lt;V.size();j++)
+                for(unsigned int k=j+1; k&lt;V.size();k++)
+                {
+                    vector&lt;point> T; T.push_back(V[i]); T.push_back(V[j]); T.push_back(V[k]);
+                    int flag=0;
+                    for(unsigned int m=0; m&lt;V.size() && flag==0;m++)
+                    {
+                        if(m==i || m==j || m==k) continue;
+                        if(inPolygon(V[m],T)) flag=1;
+                    }
+                    if(flag==0) {
+                        double res = area(T); if(res>areaR) { areaR=res; R=T; }
+                        //printf("%c %c %c %lf %lf\n",T[0].c,T[1].c,T[2].c,areaR, res);
+                    }
+                }
+        sort(R.begin(),R.end(),cmp);
+        for(auto v:R)
         {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
+            printf("%c",v.c);
         }
-        printf("%d\n",res);
+        printf("\n");
     }
     return 0;
 }

@@ -91,85 +91,93 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
+#define INF LLONG_MAX
+#define MAX_V 1+2*100
+#define MAX_E 2*10001
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+typedef long long edge_type;
+int V,E,previ[MAX_V],last[MAX_V];
+edge_type flowVal,flowCost,cap[MAX_E],cost[MAX_E],to[MAX_E],nexti[MAX_E],dist[MAX_V],pot[MAX_V];
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+void init(){
+   memset(last,-1,sizeof(last));
+   E = 0;
+}
+void add_edge(int u, int v, edge_type capacity, edge_type cst){
+    to[E] = v, cap[E] = capacity;
+    cost[E] = cst, nexti[E] = last[u];
+    last[u] = E++;
+    to[E] = u, cap[E] = 0;
+    cost[E] = -cst, nexti[E] = last[v];
+    last[v] = E++;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
+void mincostmaxflow(int s, int t){
+    flowVal = flowCost = 0;
+    memset(pot,0,sizeof(pot));
 
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+    while(true){
+        memset(previ,-1,sizeof(previ));
+        for(int i = 0;i&lt;V;++i) dist[i] = INF;
+        set&lt; pair&lt;edge_type, int> > Q;
+        Q.insert(make_pair(0,s));
+        dist[s] = previ[s] = 0;
+        while(!Q.empty()){
+            int aux = Q.begin()->second; Q.erase(Q.begin());
+            for(int e = last[aux];e!=-1;e = nexti[e]){
+                if(cap[e]&lt;=0) continue;
+                edge_type new_dist = dist[aux]+cost[e]+pot[aux]-pot[to[e]];
+                if(new_dist&lt;dist[to[e]]){
+                    Q.erase(make_pair(dist[to[e]],to[e]));
+                    dist[to[e]] = new_dist;
+                    previ[to[e]] = e;
+                    Q.insert(make_pair(new_dist,to[e]));
+                }
+            }
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
+        if (previ[t]==-1) break;
+        edge_type f = INF;
+        for(int i = t;i!=s;i = to[previ[i]^1]) f = min(f,cap[previ[i]]);
+        for(int i = t;i!=s;i = to[previ[i]^1]){
+            cap[previ[i]] -= f;
+            cap[previ[i]^1] += f;
         }
-        printf("%d\n",res);
+        flowVal += f;
+        flowCost += f*(dist[t]-pot[s]+pot[t]);
+
+        for(int i = 0;i&lt;V;++i) if (previ[i]!=-1) pot[i] += dist[i];
+    }
+}
+
+
+int main(){
+    int N,M,u[5000],v[5000];
+    long long cst[5000],D,K;
+
+    while(scanf("%d %d",&N,&M)==2){
+        V = 2*N+1;
+
+        for(int i = 0;i&lt;M;++i){
+            scanf("%d %d %lld",&u[i],&v[i],&cst[i]);
+            --u[i]; --v[i];
+        }
+        scanf("%lld %lld",&D,&K);
+
+        init();
+        add_edge(0,1,D,0);
+
+        for(int i = 0;i&lt;N;++i) add_edge(1+2*i,1+2*i+1,INF,0);
+
+        for(int i = 0;i&lt;M;++i){
+            add_edge(1+2*u[i]+1,1+2*v[i],K,cst[i]);
+            add_edge(1+2*v[i]+1,1+2*u[i],K,cst[i]);
+        }
+
+        mincostmaxflow(0,2*N-1);
+
+        if(flowVal!=D) printf("Impossible.\n");
+        else printf("%lld\n",flowCost);
     }
     return 0;
 }

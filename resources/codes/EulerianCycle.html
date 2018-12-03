@@ -90,90 +90,80 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Dean
+ * License: CC0
+ * Description: returns de eulerian cycle/tour starting at u. If its a tour it must start at a vertex with odd degree. It is common to add edges between odd vertex to find a pseudo euler tour. Start and end in same vertex and visit each edge exactly once. All vertex degree must be even.
+ * Time: O(E)
+ * Status: Undirected Tested, Directed tested: http://codeforces.com/contest/508/problem/D
+ * Usage: adj should contain index of edge in the vector&lt;edge>, if undirected add index to both rows of adj list. If directed make sure if it needs to be connected, difference between in/out edges. If it is a tour then u must be a vertex with odd degree, else it can be any edge.
+ */
+#pragma once
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+struct edge{
+	int u, v;
+	bool used;
 };
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+void Eulerdfs(int u, vi &nxt, vi &Euler, vector&lt;edge> &E, const vector&lt;vi> &adj) {
+	while(nxt[u] &lt; adj[u].size()){
+		int go = adj[u][nxt[u]++];
+		if(!E[go].used){
+			E[go].used = 1;
+			int to = (E[go].u ^ E[go].v ^ u);
+			Eulerdfs(to, nxt, Euler, E, adj);
+		}
+	}
+	Euler.push_back(u);
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+vi Eulerian(int u, vector&lt;edge> &E, const vector&lt;vi> &adj) {
+	vi nxt (adj.size(), 0); vi Euler;
+	Eulerdfs(u, nxt, Euler, E, adj);
+	reverse(Euler.begin(), Euler.end());
+	return Euler;
 }
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
+
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
+    int cases,ca=1;
+    scanf("%d",&cases);
+    while(cases--)
     {
-        double x,y;
+        int n; scanf("%d",&n);
+        vector&lt;edge> E;
+        vector&lt;vector&lt;int>> adj(51);
+        vector&lt;int> degree(51);
         for(int i=0; i&lt;n;i++)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            int x,y; scanf("%d%d",&x,&y);
+            E.push_back({x,y,false});
+            adj[x].push_back(E.size()-1);
+            adj[y].push_back(E.size()-1);
+            degree[x - 1]++;
+            degree[y - 1]++;
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
+        printf("Case #%d\n",ca++);
+        bool good = true;
+        int start = -1;
+        for (int i = 0; i &lt; 50; i++) {
+            if (degree[i] % 2) { //All degree must be even 
+                good = false;
+                break;
+            }
+            else if (degree[i] && start == -1)
+                start = i;
         }
-        printf("%d\n",res);
+        if(!good) printf("some beads may be lost\n");
+        else{
+        vector&lt;int> res = Eulerian(start+1,E,adj);
+        for(int i=0; i&lt;sz(res)-1;i++) printf("%d %d\n",res[i],res[(i+1)%sz(res)]);
+        }
+        printf("\n");
     }
     return 0;
-}
-</code></pre>
+}</code></pre>
             </div>
         </section>
          

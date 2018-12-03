@@ -91,85 +91,53 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
+int di[]={-1,0,1,0}; //4 directions up rigth down left priority
+int dj[]={0,1,0,-1};
+char arr[105][105];
+bool visited[105][105];
+int r,c,lf,ri,j_,i_,p_;
+
+void dfs(int a, int b, int p){
+    visited[a][b]=true;
+    for(int i=0;i&lt;4;i++){
+    int I=a+di[i];
+    int J=b+dj[i];
+    if(I>=0 && I&lt;r && J>=0 && J&lt;c &&  arr[I][J]=='#' && !visited[I][J]){
+    j_=J; i_=I; p_=i;
+    if(i==4) dfs(I,J,i);
+    if(i==0) { if(p==1) lf++; if(p==3) ri++; dfs(I,J,i); }
+    else if(i==1) { if(p==0) ri++; if(p==2) lf++; dfs(I,J,i); }
+    else if(i==3) { if(p==0) lf++; if(p==2) ri++; dfs(I,J,i); }
+    else { if(p==1) ri++; if(p==3) lf++; dfs(I,J,i); }
     }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+  }
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
+    while(scanf("%d%d",&c,&r)==2)
     {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+        int i1,j1;
+        for(int i=0; i&lt;r;i++)
+            for(int j=0; j&lt;c;j++) { cin>>arr[i][j]; visited[i][j]=false; if(arr[i][j]=='O') {i1=i; j1=j;} }
+        lf=ri=0;
+        dfs(i1,j1,4);
+        for(int i=0;i&lt;4;i++){
+            int I=i_+di[i];
+            int J=j_+dj[i];
+            if(I>=0 && I&lt;r && J>=0 && J&lt;c && arr[I][J]=='O')
+            {
+                if(i==0) { if(p_==1) lf++; if(p_==3) ri++;  }
+                else if(i==1) { if(p_==0) ri++; if(p_==2) lf++; }
+                else if(i==3) { if(p_==0) lf++; if(p_==2) ri++; }
+                else { if(p_==1) ri++; if(p_==3) lf++;  }
+                break;
+            }
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+        if(lf>ri){ int f = lf; lf=ri; ri=f;}
+        printf("%d %d\n",lf,ri);
     }
     return 0;
 }

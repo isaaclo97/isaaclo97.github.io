@@ -91,86 +91,297 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
+template &lt;class T>
+class bintree {
+protected:
+    /*
+    Nodo que almacena internamente el elemento (de tipo T),
+    y punteros al hijo izquierdo y derecho, que pueden ser
+    nullptr si el hijo es vaco (no existe).
+    */
+    struct TreeNode;
+    using Link = shared_ptr&lt;TreeNode>;
+
+    struct TreeNode {
+        TreeNode(Link const& l, T const& e, Link const& r) : elem(e), left(l), right(r) {};
+        T elem;
+        Link left, right;
+    };
+
+    // constructora privada
+    bintree(Link const& r) : raiz(r) {}
+
+    // puntero a la raz del rbol
+    Link raiz;
+
+    private:
+    void mostrar(Link const& raiz){
+        if (raiz != this->raiz) cout &lt;&lt; " ";
+        if (raiz != nullptr){
+            cout &lt;&lt; raiz->elem;
+            mostrar(raiz->left);
+            mostrar(raiz->right);
+        }
+        else cout &lt;&lt; -1;
     }
+
+
+    void sumaleArbol(Link & raiz1, Link const & raiz2){
+        if (raiz1 != nullptr && raiz2 != nullptr) {
+            raiz1->elem += raiz2->elem;
+            sumaleArbol(raiz1->left, raiz2->left);
+            sumaleArbol(raiz1->right, raiz2->right);
+        }
+        else if (raiz1 == nullptr && raiz2 != nullptr) {
+            raiz1 = raiz2;
+        }
+
+    }
+    int height(Link const& node)
+    {
+       /* base case tree is empty */
+       if(node == nullptr)
+           return 0;
+
+       /* If tree is not empty then height = 1 + max of left
+          height and right heights */
+       return 1 + max(height(node->left), height(node->right));
+    }
+    bool isBalanced(Link const& root)
+    {
+       int lh; /* for height of left subtree */
+       int rh; /* for height of right subtree */
+
+       /* If tree is empty then return true */
+       if(root == nullptr) return 1;
+
+       /* Get the height of left and right sub trees */
+       lh = height(root->left);
+       rh = height(root->right);
+       if(root->left!=nullptr) { if(root->elem &lt; root->left->elem) return 0; }
+       if(root->right!=nullptr){ if(root->elem > root->right->elem) return 0; }
+       if( abs(lh-rh) &lt;= 1 &&isBalanced(root->left) && isBalanced(root->right)) return 1;
+
+       /* If we reach here then tree is not height-balanced */
+       return 0;
+    }
+
+
+public:
+    int he()
+    {
+        return height(raiz);
+    }
+    void muestraArbol(){
+        mostrar(raiz);
+    }
+    bool esAVL(){
+        return isBalanced(raiz);
+    }
+    void sumaSobreArbol(bintree&lt;T> const& arbol2){
+        sumaleArbol(this->raiz, arbol2.raiz);
+    }
+
+    // rbol vaco
+    bintree() : raiz(nullptr) {}
+
+    // rbol hoja
+    bintree(T const& e) :
+        raiz(make_shared&lt;TreeNode>(nullptr, e, nullptr)) {}
+
+    // rbol con dos hijos
+    bintree(bintree&lt;T> const& l, T const& e, bintree&lt;T> const& r) :
+        raiz(make_shared&lt;TreeNode>(l.raiz, e, r.raiz)) {}
+
+    // consultar si el rbol est vaco
+    bool empty() const {
+        return raiz == nullptr;
+    }
+
+    // consultar la raz
+    T const& root() const {
+        if (empty()) throw domain_error("El arbol vacio no tiene raiz.");
+        else return raiz->elem;
+    }
+
+    // consultar el hijo izquierdo
+    bintree&lt;T> left() const {
+        if (empty()) throw domain_error("El arbol vacio no tiene hijo izquierdo.");
+        else return bintree&lt;T>(raiz->left);
+    }
+
+    // consultar el hijo derecho
+    bintree&lt;T> right() const {
+        if (empty()) throw domain_error("El arbol vacio no tiene hijo derecho.");
+        else return bintree(raiz->right);
+    }
+
+
+    // recorridos
+
+    vector&lt;T> preorder() const {
+        vector&lt;T> pre;
+        preorder(raiz, pre);
+        return pre;
+    }
+
+    vector&lt;T> inorder() const {
+        vector&lt;T> in;
+        inorder(raiz, in);
+        return in;
+    }
+
+    vector&lt;T> postorder() const {
+        vector&lt;T> post;
+        postorder(raiz, post);
+        return post;
+    }
+
+    vector&lt;T> levelorder() const {
+        vector&lt;T> levels;
+        if (!empty()) {
+            queue&lt;Link> pendientes;
+            pendientes.push(raiz);
+            while (!pendientes.empty()) {
+                Link sig = pendientes.front();
+                pendientes.pop();
+                levels.push_back(sig->elem);
+                if (sig->left != nullptr)
+                    pendientes.push(sig->left);
+                if (sig->right != nullptr)
+                    pendientes.push(sig->right);
+            }
+        }
+        return levels;
+    }
+
+protected:
+    static void preorder(Link a, vector&lt;T> & pre) {
+        if (a != nullptr) {
+            pre.push_back(a->elem);
+            preorder(a->left, pre);
+            preorder(a->right, pre);
+        }
+    }
+
+    static void inorder(Link a, vector&lt;T> & in) {
+        if (a != nullptr) {
+            inorder(a->left, in);
+            in.push_back(a->elem);
+            inorder(a->right, in);
+        }
+    }
+
+    static void postorder(Link a, vector&lt;T> & post) {
+        if (a != nullptr) {
+            postorder(a->left, post);
+            postorder(a->right, post);
+            post.push_back(a->elem);
+        }
+    }
+
+public:
+    // iterador que recorre el rbol en inorden
+    class const_iterator {
+    public:
+        T const& operator*() const {
+            if (ptr == nullptr) throw out_of_range("fuera del arbol");
+            return ptr->elem;
+        }
+
+        T const* operator->() const {
+            return &operator*();
+        }
+
+        bool operator==(const_iterator const& other) const {
+            return ptr == other.ptr;
+        }
+        bool operator!=(const_iterator const& other) const {
+            return !(*this == other);
+        }
+
+        const_iterator & operator++() {  // ++ prefijo
+            next();
+            return *this;
+        }
+
+    private:
+        friend class bintree;
+        Link ptr;
+        stack&lt;Link> ancestros;
+
+        // constructores privados
+        const_iterator() : ptr(nullptr) {}
+        const_iterator(Link raiz) { ptr = first(raiz); }
+
+        Link first(Link act) {
+            if (act == nullptr) {
+                return nullptr;
+            }
+            else {
+                while (act->left != nullptr) {
+                    ancestros.push(act);
+                    act = act->left;
+                }
+                return act;
+            }
+        }
+
+        void next() {
+            if (ptr == nullptr) {
+                throw range_error("El iterador no puede avanzar");
+            }
+            else if (ptr->right != nullptr) { // primero del hijo derecho
+                ptr = first(ptr->right);
+            }
+            else if (ancestros.empty()) { // hemos llegado al final
+                ptr = nullptr;
+            }
+            else { // podemos retroceder
+                ptr = ancestros.top();
+                ancestros.pop();
+            }
+        }
+
+    };
+
+    const_iterator begin() const {
+        return const_iterator(raiz);
+    }
+    const_iterator end() const {
+        return const_iterator();
+    }
+
 };
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+// lee un rbol binario de la entrada estndar
+template &lt;typename T>
+inline bintree&lt;T> leerArbol(T vacio) {
+    T raiz;
+    cin >> raiz;
+    if (raiz == vacio) { // es un rbol vaco
+        return{};
+    }
+    else { // leer recursivamente los hijos
+        auto iz = leerArbol(vacio);
+        auto dr = leerArbol(vacio);
+        return{ iz, raiz, dr };
+    }
 }
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+bool resuelveCaso() {
+    bintree &lt;int> arbol1, arbol2;
+    arbol1 = leerArbol(-1);
+    arbol2 = leerArbol(-1);
+    if (arbol1.empty() && arbol2.empty()) return false;
+    arbol1.sumaSobreArbol(arbol2);
+    arbol1.muestraArbol();
+    cout &lt;&lt; '\n';
+    return true;
 }
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
+int main() {
+    while (resuelveCaso());
     return 0;
 }
 </code></pre>

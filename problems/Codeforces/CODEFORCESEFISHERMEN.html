@@ -91,85 +91,93 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
+bool compare(pair&lt;int,int> A, pair&lt;int,int> B)
 {
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+    return A.second&lt;B.second;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
+vector&lt;pair&lt;int,int>> V;
+vector&lt;pair&lt;int,int>> P;
+vector&lt;int> Paux;
+int n,m,l;
 
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
+int bb(int x)
+{
+    int first = 0, middle, last = m;
+    int searched = x;
+    while (first&lt;=last) { middle = (first + last) / 2;
+    if (searched == P[middle].second) return middle;
+    else {
+        if (P[middle].second > searched) last = middle - 1;
+        else first = middle + 1;
     }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+   }
+   return middle+1;
 }
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
+    scanf("%d%d%d",&n,&m,&l);
+    for(int i=0; i&lt;n;i++)
     {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
+        int x,y; scanf("%d%d",&x,&y);
+        V.push_back({x,y});
+    }
+
+    int marcas[m+1]; memset(marcas,0,sizeof(marcas));
+    int sol[m+1]; memset(sol,0,sizeof(sol));
+    for(int i=0; i&lt;m;i++)
+    {
+        int k;
+        scanf("%d",&k);
+        P.push_back({i,k});
+        Paux.push_back(k);
+    }
+    sort(P.begin(),P.end(),compare);
+    sort(Paux.begin(),Paux.end());
+    for(int i=0; i&lt;n;i++)
+    {
+        int x,y; x=V[i].first; y=V[i].second;
+        int aux = l-y;
+        if(aux&lt;0) continue;
+        if(aux==0)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            //bbinaria pescadores con x
+            int res = bb(x);
+            if(P[res].second == x) {
+                marcas[res]++;
+                marcas[res+1]--;
+            }
+            continue;
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
+        int infer = x-aux;
+        int super = x+aux;
+        vector&lt;int>::iterator low,up;
+        low=std::lower_bound (Paux.begin(), Paux.end(),infer);
+        up= std::upper_bound (Paux.begin(), Paux.end(),super);
+        int resi = (low- Paux.begin());
+        int ress = (up - Paux.begin());
+        if(ress==m) marcas[m]--;
+        if(P[ress].second==super) marcas[ress+1]--;
+        else marcas[ress]--;
+        marcas[resi]++;
+    }
+    int flag = 0;
+    for(int i=0; i&lt;m;i++)
+    {
+        //printf("M: %d\n",marcas[i]);
+        flag+=marcas[i];
+        sol[i]=flag;
+    }
+    int solv[m+1];
+    for(int i=0; i&lt;m;i++)
+    {
+      solv[P[i].first] = sol[i];
+    }
+    for(int i=0; i&lt;m;i++)
+    {
+       printf("%d\n",solv[i]);
     }
     return 0;
 }

@@ -90,88 +90,55 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Per Austrin, Simon Lindholm
+ * Date: 2004-02-08
+ * License: CC0
+ * Description: Solves $A * x = b$. If there are multiple solutions, an arbitrary one is returned.
+ *  Returns rank, or -1 if no solutions. Data in $A$ and $b$ is lost.
+ * Time: O(n^2 m)
+ * Status: tested on kattis:equationsolver, and bruteforce-tested mod 3 and 5 for n,m &lt;= 3
+ */
+#pragma once
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+typedef vector&lt;double> vd;
+const double eps = 1e-12;
 
-point arr[100005];
-point res[100005];
+int solveLinear(vector&lt;vd>& A, vd& b, vd& x) {
+	int n = A.size(), m = x.size(), rank = 0, br, bc;
+	if (n) assert(A[0].size() == m);
+	// FOR(i, 0, n) FOR(j, 0, m) A[i][j] %= MOD; also b[i]...
+	vi col(m); iota(col.begin(), col.end(), 0);
 
+	FOR(i,0,n) {
+		double v, bv = 0;
+		FOR(r,i,n) FOR(c,i,m)
+			if ((v = fabs(A[r][c])) > bv)
+				br = r, bc = c, bv = v;
+		if (bv &lt;= eps) {
+			FOR(j,i,n) if (fabs(b[j]) > eps) return -1;
+			break;
+		}
+		swap(A[i], A[br]);
+		swap(b[i], b[br]);
+		swap(col[i], col[bc]);
+		FOR(j,0,n) swap(A[j][i], A[j][bc]);
+		bv = 1/A[i][i];
+		FOR(j,i+1,n) {
+			double fac = A[j][i] * bv;
+			b[j] -= fac * b[i];
+			FOR(k,i,m) A[j][k] -= fac*A[i][k];
+		}
+		rank++;
+	}
 
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
+	x.assign(m, 0);
+	for (int i = rank; i--;) {
+		b[i] /= A[i][i];
+		x[col[i]] = b[i];
+		FOR(j,0,i) b[j] -= A[j][i] * b[i];
+	}
+	return rank; // (multiple solutions if rank &lt; m)
 }
 </code></pre>
             </div>

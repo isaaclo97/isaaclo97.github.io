@@ -90,90 +90,43 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
-
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+                <pre><code class="language-cpp">/**
+* Author: Jakub
+* Date: 2009-04-06
+* License: -
+* Source:
+* Description: FastPow of any size (square) matrix given as vector&lt;vector&lt;ll>>, resulting values are modulus mod. Also contains matMul which works with any matrix with dimensions (m,n)(k,j) if n equals k;
+*/
+typedef vector&lt;ll> vl;
+vector&lt;vl> createMat(int s, bool ide){
+    //create 0 matrix (false) or identity matrix (true)
+    vector&lt;vl> mat(s);
+    for(int i=0; i&lt;s;i++){
+        for(int j=0;j&lt;s;j++) mat[i].push_back((i==j&&ide)?1:0);}
+    return mat;
 }
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+vector&lt;vl> matMul(vector&lt;vl> m1, vector&lt;vl> m2, int mod){
+    vector&lt;vl> res = createMat(m2.size(),false);
+    for (int i = 0; i &lt; m1.size(); ++i) 
+        for (int j = 0; j &lt; m2[0].size(); ++j)
+            for (int k = 0; k &lt; m2.size(); ++k) {
+                res[i][j]+=m1[i][k]*m2[k][j];
+                res[i][j]%=mod;
+            }
+    return res;
 }
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
+vector&lt;vl> matPow(vector&lt;vl> m, int pow, int mod) {
+    if (pow == 0) return createMat(m.size(), true);
+    if (pow == 1) return m;
+    if (pow == 2) return matMul(m,m,mod);
+    if (pow%2==0){
+        vector&lt;vl> aux = matPow(m,pow/2,mod);
+        return matMul(aux,aux,mod);
+    } else {
+        vector&lt;vl> aux = matPow(m,pow-1,mod);
+        return matMul(aux,m,mod);
     }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
-}
-</code></pre>
+}</code></pre>
             </div>
         </section>
          

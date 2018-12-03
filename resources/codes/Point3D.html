@@ -90,89 +90,50 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Ulf Lundstrom with inspiration from tinyKACTL
+ * Date: 2009-04-14
+ * License: CC0
+ * Source:
+ * Description: Class to handle points in 3D space.
+ * 	T can be e.g. double or long long.
+ * Usage:
+ * Status: tested, except for phi and theta
+ */
+#pragma once
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+template &lt;class T> struct Point3D {
+	typedef Point3D P;
+	typedef const P& R;
+	T x, y, z;
+	explicit Point3D(T x=0, T y=0, T z=0) : x(x), y(y), z(z) {}
+	bool operator&lt;(R p) const {
+		return tie(x, y, z) &lt; tie(p.x, p.y, p.z); }
+	bool operator==(R p) const {
+		return tie(x, y, z) == tie(p.x, p.y, p.z); }
+	P operator+(R p) const { return P(x+p.x, y+p.y, z+p.z); }
+	P operator-(R p) const { return P(x-p.x, y-p.y, z-p.z); }
+	P operator*(T d) const { return P(x*d, y*d, z*d); }
+	P operator/(T d) const { return P(x/d, y/d, z/d); }
+	T dot(R p) const { return x*p.x + y*p.y + z*p.z; }
+	P cross(R p) const {
+		return P(y*p.z - z*p.y, z*p.x - x*p.z, x*p.y - y*p.x);
+	}
+	T dist2() const { return x*x + y*y + z*z; }
+	double dist() const { return sqrt((double)dist2()); }
+	//Azimuthal angle (longitude) to x-axis in interval [-pi, pi]
+	double phi() const { return atan2(y, x); } 
+	//Zenith angle (latitude) to the z-axis in interval [0, pi]
+	double theta() const { return atan2(sqrt(x*x+y*y),z); }
+	P unit() const { return *this/(T)dist(); } //makes dist()=1
+	//returns unit vector normal to *this and p
+	P normal(P p) const { return cross(p).unit(); }
+	//returns point rotated 'angle' radians ccw around axis
+	P rotate(double angle, P axis) const {
+		double s = sin(angle), c = cos(angle); P u = axis.unit();
+		return u*dot(u)*(1-c) + (*this)*c - cross(u)*s;
+	}
 };
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
-}
 </code></pre>
             </div>
         </section>

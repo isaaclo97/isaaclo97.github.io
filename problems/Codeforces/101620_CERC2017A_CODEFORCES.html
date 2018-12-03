@@ -92,84 +92,208 @@
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 #define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
 int main()
 {
-    int n;
-    while(scanf("%d",&n)==1)
+    //freopen("C:/Users/Isaac/Documents/QT/Entregar/in.txt","r",stdin);
+    int r,p; scanf("%d%d",&r,&p);
+    int peopleleft=0, peopleright=0;
+    char matrix[r+3][11];
+    int numasientos[r+3][11]; memset(numasientos,0,sizeof(numasientos));
+    int arr[r+3]; memset(arr,0,sizeof(arr));
+    char a;
+    for(int i=0; i&lt;r+3;i++)
     {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
+       for(int j=0; j&lt;11;j++)
+       {
+           cin>>a; matrix[i][j]=a;
+           if(a=='#' && j&lt;5) peopleleft++;
+           else if(a=='#' && j>5) peopleright++;
+           if(a=='#') { arr[i]++; numasientos[i][j]++;}
+       }
+    }
+    char letra = 'a';
+    for(int i=0; i&lt;p;i++)
+    {
+        //solve A and B rule
+        int mini = INF,row=-1;
+        /*
+        ........... 0
+        ---.---.--- 1
+        ........... 2
+        ---.---.--- 3
+        ........... 4
+
+        2 + 3 = 5/2 = 2
+        */
+        int middlexit = (r+3)/2;
+        if(arr[1]!=9 || arr[middlexit+1]!=9)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+            //filas no completas cerca de salidas
+            if(arr[middlexit+1]&lt;arr[1]) row=middlexit+1;
+            else row=1;
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
+        else
         {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
+            int flag=0;
+            vector&lt;int> V;
+            for(int k=0; k&lt;r+3;k++)
+            {
+                if(k==0 || k==r+2 || k==middlexit) continue;
+                if(mini>arr[k]) { mini=arr[k]; row=k; flag=0; V.clear();}
+                else if(mini==arr[k]) { if(flag==0) V.push_back(row); flag=1; V.push_back(k); }
+            }
+            if(flag==1)
+            {
+                flag=0;
+                vector&lt;int> aux;
+                mini = INF;
+                for(unsigned int k1=0; k1&lt;V.size();k1++)
+                {
+                    //r = 2 -> r = 5 -> 0 2 4
+                    int minaux = min(abs(V[k1]-0),min(abs(V[k1]-(middlexit)),abs(V[k1]-(r+2))));
+                    if(mini>minaux) { mini=minaux; row=V[k1]; flag=0; aux.clear();}
+                    else if(mini==minaux) {
+                        if(flag==0) aux.push_back(row); flag = 1; aux.push_back(V[k1]);
+                    }
+                }
+                if(flag==1)
+                {
+                    sort(aux.begin(),aux.end());
+                    row = aux[0];
+                }
+            }
         }
-        printf("%d\n",res);
+        // ---.---.---
+        // 012345678910
+        //Seleccionar asiento
+        if(numasientos[row][4]==0 || numasientos[row][6]==0)
+        {
+            if(numasientos[row][4]==0 && numasientos[row][6]==0)
+            {
+                if(peopleleft&lt;=peopleright)
+                {
+                    numasientos[row][4]++;
+                    matrix[row][4]= letra;
+                    peopleleft++;
+                }
+                else{
+                    numasientos[row][6]++;
+                    matrix[row][6]= letra;
+                    peopleright++;
+                }
+            }
+            else if(numasientos[row][4]==0)
+            {
+                peopleleft++;
+                numasientos[row][4]++;
+                matrix[row][4]= letra;
+            }
+            else{
+                peopleright++;
+                numasientos[row][6]++;
+                matrix[row][6]= letra;
+            }
+        }
+        else if(numasientos[row][2]==0 || numasientos[row][8]==0)
+        {
+            if(numasientos[row][2]==0 && numasientos[row][8]==0)
+            {
+                if(peopleleft&lt;=peopleright)
+                {
+                    numasientos[row][2]++;
+                    matrix[row][2]= letra;
+                    peopleleft++;
+                }
+                else{
+                    numasientos[row][8]++;
+                    matrix[row][8]= letra;
+                    peopleright++;
+                }
+            }
+            else if(numasientos[row][2]==0)
+            {
+                peopleleft++;
+                numasientos[row][2]++;
+                matrix[row][2]= letra;
+            }
+            else{
+                peopleright++;
+                numasientos[row][8]++;
+                matrix[row][8]= letra;
+            }
+
+        }
+        else if(numasientos[row][0]==0 || numasientos[row][10]==0)
+        {
+            if(numasientos[row][0]==0 && numasientos[row][10]==0)
+            {
+                if(peopleleft&lt;=peopleright)
+                {
+                    numasientos[row][0]++;
+                    matrix[row][0]= letra;
+                    peopleleft++;
+                }
+                else{
+                    numasientos[row][10]++;
+                    matrix[row][10]= letra;
+                    peopleright++;
+                }
+            }
+            else if(numasientos[row][0]==0)
+            {
+                numasientos[row][0]++;
+                matrix[row][0]= letra;
+                peopleleft++;
+            }
+            else{
+                numasientos[row][10]++;
+                matrix[row][10]= letra;
+                peopleright++;
+            }
+        }
+        else if(numasientos[row][5]==0)
+        {
+            numasientos[row][5]++;
+            matrix[row][5] = letra;
+        }
+        else{
+            if(numasientos[row][1]==0 && numasientos[row][9]==0)
+            {
+                if(peopleleft&lt;=peopleright)
+                {
+                    numasientos[row][1]++;
+                    matrix[row][1]= letra;
+                    peopleleft++;
+                }
+                else{
+                    peopleright++;
+                    numasientos[row][9]++;
+                    matrix[row][9]= letra;
+                }
+            }
+            else if(numasientos[row][1]==0)
+            {
+                peopleleft++;
+                numasientos[row][1]++;
+                matrix[row][1]= letra;
+            }
+            else{
+                peopleright++;
+                numasientos[row][9]++;
+                matrix[row][9]= letra;
+            }
+        }
+        arr[row]++;
+        letra++;
+    }
+    //imprimir
+    for(int i=0; i&lt;r+3;i++)
+    {
+       for(int j=0; j&lt;11;j++)
+       cout&lt;&lt;matrix[i][j];
+      cout&lt;&lt;'\n';
     }
     return 0;
 }

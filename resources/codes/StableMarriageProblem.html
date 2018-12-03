@@ -90,90 +90,63 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+* Author: Isaac
+* Date: 2009-04-06
+* License: -
+* Source:
+* Description: Stable Marriage Problem
+* Time: O(n^2)
+*/
+// Gale-Shapley algorithm for the stable marriage problem.
+// madj[i][j] is the jth highest ranked woman for man i.
+// fpref[i][j] is the rank woman i assigns to man j.
+// Returns a pair of vectors (mpart, fpart), where mpart[i] gives 
+// the partner of man i, and fpart is analogous
+/*
+The Stable Marriage Problem states that given N men and N women, where each person has ranked all members of the opposite sex in order of preference, 
+marry the men and women together such that there are no two people of opposite sex who would both rather have each other than their current partners. 
+If there are no such people, all the marriages are "stable".
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+Consider the following example.
 
-point arr[100005];
-point res[100005];
+Let there be two men m1 and m2 and two women w1 and w2.
+Let m1`s list of preferences be {w1, w2}
+Let m2`s list of preferences be {w1, w2}
+Let w1`s list of preferences be {m1, m2}
+Let w2`s list of preferences be {m1, m2}
 
+The matching { {m1, w2}, {w1, m2} } is not stable because m1 and w1 would prefer each other over their assigned partners. 
+The matching {m1, w1} and {m2, w2} is stable because there are no two people of opposite sex that would prefer each other over their assigned partners.
 
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
-}
-
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
-}
-</code></pre>
+It is always possible to form stable marriages from lists of preferences 
+The idea is to iterate through all free men while there is any free man available. Every free man goes to all women in his preference list according 
+to the order. For every woman he goes to, he checks if the woman is free, if yes, they both become engaged. If the woman is not free, then the woman 
+chooses either says no to him or dumps her current engagement according to her preference list. So an engagement done once can be broken if a woman 
+gets better option.
+*/
+pair&lt;vector&lt;int>, vector&lt;int> > stable_marriage(vector&lt;vector&lt;int> >& madj, vector&lt;vector&lt;int> >& fpref) {
+	int n = madj.size();
+	vector&lt;int> mpart(n, -1), fpart(n, -1);
+	vector&lt;int> midx(n);
+	queue&lt;int> mfree;
+	for (int i = 0; i &lt; n; i++) {
+		mfree.push(i);
+	}
+	while (!mfree.empty()) {
+		int m = mfree.front(); mfree.pop();
+		int f = madj[m][midx[m]++];
+		if (fpart[f] == -1) {
+			mpart[m] = f; fpart[f] = m;
+		} else if (fpref[f][m] &lt; fpref[f][fpart[f]]) {
+			mpart[fpart[f]] = -1; mfree.push(fpart[f]);
+			mpart[m] = f; fpart[f] = m;
+		} else {
+			mfree.push(m);
+		}
+	}
+	return make_pair(mpart, fpart);
+}</code></pre>
             </div>
         </section>
          

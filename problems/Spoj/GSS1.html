@@ -91,85 +91,80 @@
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
                 <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
 using namespace std;
+#define INF 0x3F3F3F3F
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+struct node {
+   long long int m;
+   long long int ml;
+   long long int mr;
+   long long int s;
 };
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
+node join(node left,node right)
 {
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+    /*
+    Maximum sum of a subarray, starting at the leftmost index of this range
+    Maximum sum of a subarray, ending at the rightmost index of this range
+    Maximum sum of any subarray in this range
+    Sum of all elements in this range
+    */
+    node res;
+    res.s = left.s+right.s;
+    res.ml = max(left.ml,left.s+right.ml);
+    res.mr = max(right.mr,right.s+left.mr);
+    res.m = max(res.ml, max(res.mr, max(left.m, max(right.m, left.mr + right.ml))));
+
+    return res;
+}
+void buildTree(node *tree,int *a,int index,int s,int e)
+{
+    //base case
+    if(s>e) return;
+    //reached leaf node
+    if(s==e)
+    {
+        tree[index].m=tree[index].mr=tree[index].ml=tree[index].s=a[s];
+        return ;
+    }
+    //now build the segment tree in bottom up manner
+    int m = (s+e)/2;
+    buildTree(tree,a,2*index,s,m);
+    buildTree(tree,a,2*index+1,m+1,e);
+    node left = tree[2*index]; node right = tree[2*index+1];
+    tree[index]=join(left,right);
+    return;
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
-}
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+//function to query the segment tree for RSQ
+node query(node *tree,int index,int s,int e,int qs,int qe)
+{
+    //base case: if query range is outside the node range
+    if(qs>e || s>qe) return node{-INF,-INF,-INF,-INF};
+    //complete overlap
+    if(s>=qs && e&lt;=qe) return tree[index];
+    //now partial overlap case is executed
+    int m = (s+e)/2;
+    node left = query(tree,2*index,s,m,qs,qe);
+    node right = query(tree,2*index+1,m+1,e,qs,qe);
+    return join(left,right);
 }
 int main()
 {
-    int n;
+    int n,c;
     while(scanf("%d",&n)==1)
     {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
+        int a[n];
+        for(int i=0; i&lt;n; i++) scanf("%d",&a[i]);
+        node*tree = new node[4*n+1];                                    //array to store the segment tree
+        int index = 1;												  //index of 1st node
+        int s =0,e=n-1;
+        buildTree(tree,a,index,s,e);								  //now tree has been built
+        scanf("%d",&c);
+        for(int i=0; i&lt;c;i++)
         {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
+        int j,k; scanf("%d %d",&j,&k);
+        printf("%lld\n",query(tree,index,s,e,j-1,k-1).m);
         }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
     }
     return 0;
 }

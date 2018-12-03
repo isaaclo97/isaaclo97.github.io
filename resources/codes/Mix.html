@@ -90,90 +90,75 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">PI: 4 * atan(1)
+Distancia Euclediana: sqrt(pow(q[i].x-actual.x,2.0)+
+pow(q[i].y-actual.y,2.0)+ pow(q[i].z-actual.z,2.0));
+Distancia Manhattan: abs(x-x)+abs(y-y)
+INF: 0x3F3F3F3F
+//number too large. use powl instead of pow.
+powl(a, b)
+int sx[]={1,-1,0,0,1,-1,-1,1}; //8 directions
+int sy[]={0,0,1,-1,1,-1,1,-1};
+int sx[]={1,-1,0,0}; //4 directions
+int sy[]={0,0,1,-1};
+int dx2[]={-2,-1,1,2,2,1,-1,-2}; //horse jumps
+int dy2[]={1,2,2,1,-1,-2,-2,-1};
+scanf("%d:%d", &hr, &temp, &min);
+printf("%02d:%02d\n", hr, min);
+(int)round(p, (1.0/n))
+printf("%.1f\n", (a * b)/2);
+void copy(first, last, result);
+void swap(a,b);
+void reverse(first, last);
+void reverse_copy(first, last, result);
+int find(const string &s2, int pos1 = 0);
+cout &lt;&lt; s1.str() &lt;&lt; endl;
+bool operator&lt;(const cosa &other)const{ return weight &lt; other.weight; }
+pq.push(cosa{numer,2,numer});
+char str[90];
+gets(str)
+sscanf(str, "%d:%d:%d", &hh, &mm, &ss);
+//freopen("in.txt","r",stdin);
+//freopen("out.txt","r",stdout);
+x & -x //is the least bit in x.
+x && !(x & (x - 1)) //true, if x is power of 2.
+private long getXorFrom1ToX(long x) {
+    if (x == 0 || x == 1) return x;
+    if (x == 2) return 3;
+    if (x == 3) return 0;
+    long l = Long.highestOneBit(x);
+    if (x % 2 == 1) return getGr(x - l);
+    return l + getGr(x - l);
+  }
+  
+ 
+double DEG_to_RAD(double d) { return d * PI / 180.0; } //RADIANS = LENGTH
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
-};
+double RAD_to_DEG(double r) { return r * 180.0 / PI; }
 
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+unsigned int reverse_bits(unsigned int v){
+    v = ((v >> 1) & 0x55555555) | ((v & 0x55555555) &lt;&lt; 1);
+    v = ((v >> 2) & 0x33333333) | ((v & 0x33333333) &lt;&lt; 2);
+    v = ((v >> 4) & 0x0F0F0F0F) | ((v & 0x0F0F0F0F) &lt;&lt; 4);
+    v = ((v >> 8) & 0x00FF00FF) | ((v & 0x00FF00FF) &lt;&lt; 8);
+    return ((v >> 16) | (v &lt;&lt; 16));
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+/// Returns i if x = 2^i and 0 otherwise
+int bitscan(unsigned int x){
+    __asm__ volatile("bsf %0, %0" : "=r" (x) : "0" (x));
+    return x;
 }
 
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
-}
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
-}
-</code></pre>
+/// Returns next number with same number of 1 bits
+unsigned int next_combination(unsigned int x){
+    unsigned int y = x & -x;
+    x += y;
+    unsigned int z = x & -x;
+    z -= y;
+    z = z >> bitscan(z & -z);
+    return x | (z >> 1);
+}</code></pre>
             </div>
         </section>
          

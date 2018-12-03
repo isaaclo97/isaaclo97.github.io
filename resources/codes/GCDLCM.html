@@ -90,18 +90,24 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">
-#include &lt;bits/stdc++.h>
-int values[] = { 40, 10, 100, 90, 20, 25 };
-int compare (const void * a, const void * b) {
-  return ( *(int*)a - *(int*)b ); }
-int main (){
-int n;
-qsort (values, 6, sizeof(int), compare);
-for (n=0; n&lt;6; n++)  printf ("%d ",values[n]);
-return 0; }
+                <pre><code class="language-cpp">/**
+ * Author: Håkan Terelius
+ * Date: 2009-09-25
+ * License: CC0
+ * Source: http://en.wikipedia.org/wiki/Lucas'_theorem
+ * Description: Lucas' thm: Let $n,m$ be non-negative integers and $p$ a prime.
+ * Write $n=n_kp^k+...+n_1p+n_0$ and $m=m_kp^k+...+m_1p+m_0$.
+ * Then $\binom{n}{m} \equiv \prod_{i=0}^k\binom{n_i}{m_i} \pmod{p}$.
+ * fact and invfact must hold pre-computed factorials / inverse factorials, e.g. from ModInverse.h.
+ * Status: Untested
+ * Time: O(\log_p n)
+ */
 
-</code></pre>
+int gcd(int a, int b) {
+while (b > 0) {
+int temp = b; b = a % b; a = temp; }
+return a; }
+int lcm(int a, int b){ return a*(b/gcd(a,b));}</code></pre>
             </div>
         </section>
          

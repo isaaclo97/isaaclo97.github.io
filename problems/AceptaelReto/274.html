@@ -90,29 +90,22 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">
-#include &lt;bits/stdc++.h>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+#define INF 0x3F3F3F3F
 using namespace std;
-int lineal_search(int *array, int searched, int arraySize) {
-    for (int i = 0; i&lt; arraySize; i++) {
-        if (searched == array[i]) { return array[i]; }  }
-    return 0;}
-int binary_search(int *array, int searched, int arraySize)
-{   int first = 0, middle, last = arraySize - 1;
-    while (first &lt;= last) { middle = (first + last) / 2;
-if (searched == array[middle])  return array[middle];
-else {
-if (array[middle] > searched) last = middle - 1;
-else      first = middle + 1;
-}    } return -1; }
+
 int main()
 {
-    int arraySize, searched; cin >> arraySize;
-    int array[arraySize]; cin >> searched;
-    lineal_search(array, searched, arraySize);
-    binary_search(array, searched, arraySize);
-return 0; }
-
+    long long int cases,di,se,dt;
+    scanf("%lld",&cases);
+    while (cases--)
+    {
+        scanf("%lld%lld%lld",&dt,&se,&di);
+        if (di == 1) printf("%lld\n",dt/se);
+        else printf("%lld\n",(dt-(se-(di-1)))/se);
+    }
+    return 0;
+}
 </code></pre>
             </div>
         </section>

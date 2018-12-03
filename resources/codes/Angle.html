@@ -90,88 +90,58 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define EPS 1e-10
-#define PI acos(-1.0)
-using namespace std;
+                <pre><code class="language-cpp">/**
+ * Author: Simon Lindholm
+ * Date: 2015-01-31
+ * License: CC0
+ * Source:
+ * Description: A class for ordering angles (as represented by int points and
+ *  a number of rotations around the origin). Useful for rotational sweeping.
+ *  Sometimes also represents points or vectors.
+ * Usage:
+ *  vector&lt;Angle> v = {w[0], w[0].t360() ...}; // sorted
+ *  int j = 0; FOR(i,0,n) { while (v[j] &lt; v[i].t180()) ++j; }
+ *  // sweeps j such that (j-i) represents the number of positively oriented triangles with vertices at 0 and i
+ * Status: Used, works well
+ */
+#pragma once
 
-struct point{
-    double x,y;
-    point(){x=y=0;}
-    point(double _x,double _y){x=_x,y=_y;}
-    bool operator &lt;(point other) const{
-        if (fabs(x-other.x)>EPS)return x&lt;other.x;
-        return y&lt;other.y;
-    }bool operator ==(point other) const{
-        return (fabs(x-other.x)&lt;EPS)&&
-        (fabs(y-other.y)&lt;EPS);
-    }
+struct Angle {
+	int x, y;
+	int t;
+	Angle(int x, int y, int t=0) : x(x), y(y), t(t) {}
+	Angle operator-(Angle b) const { return {x-b.x, y-b.y, t}; }
+	int quad() const {
+		assert(x || y);
+		if (y &lt; 0) return (x >= 0) + 2;
+		if (y > 0) return (x &lt;= 0);
+		return (x &lt;= 0) * 2;
+	}
+	Angle t90() const { return {-y, x, t + (quad() == 3)}; }
+	Angle t180() const { return {-x, -y, t + (quad() >= 2)}; }
+	Angle t360() const { return {x, y, t + 1}; }
 };
-
-point arr[100005];
-point res[100005];
-
-
-double cross(const point &O, const point &A, const point &B)
-{
-    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+bool operator&lt;(Angle a, Angle b) {
+	// add a.dist2() and b.dist2() to also compare distances
+	return make_tuple(a.t, a.quad(), a.y * (ll)b.x) &lt;
+	       make_tuple(b.t, b.quad(), a.x * (ll)b.y);
 }
 
-int pointInsidePolygon(point p,int n) {
-    if (n &lt; 3) return false;
-    if (cross(res[0], p, res[1]) > EPS) return false;
-    if (cross(res[0], p, res[n-1]) &lt; -EPS) return false;
-
-    int l = 2, r = n-1;
-    int line = -1;
-    while (l &lt;= r) {
-        int mid = (l + r)>>1;
-        if (cross(res[0],p, res[mid]) > -EPS) {
-            line = mid;
-            r = mid - 1;
-        } else l = mid + 1;
-    }
-    return cross(res[line-1], p, res[line]) &lt; EPS;
+// Given two points, this calculates the smallest angle between
+// them, i.e., the angle that covers the defined line segment.
+pair&lt;Angle, Angle> segmentAngles(Angle a, Angle b) {
+	if (b &lt; a) swap(a, b);
+	return (b &lt; a.t180() ?
+	        make_pair(a, b) : make_pair(b, a.t360()));
 }
-
-int CH(int n) {
-    sort(arr, arr+n);
-    int i, m = 0, t;
-    for (i = 0; i &lt; n; i++) {
-        while(m >= 2 && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    for (i = n-1, t = m+1; i >= 0; i--) {
-        while(m >= t && cross(res[m-2], res[m-1], arr[i]) &lt;= 0)
-            m--;
-        res[m++] = arr[i];
-    }
-    return m-1;
+Angle operator+(Angle a, Angle b) { // point a + vector b
+	Angle r(a.x + b.x, a.y + b.y, a.t);
+	if (a.t180() &lt; r) r.t--;
+	return r.t180() &lt; a ? r.t360() : r;
 }
-int main()
-{
-    int n;
-    while(scanf("%d",&n)==1)
-    {
-        double x,y;
-        for(int i=0; i&lt;n;i++)
-        {
-            scanf("%lf %lf",&x,&y);
-            arr[i] = point(x, y);
-        }
-        int resn = CH(n);
-        scanf("%d",&n);
-        int res = 0;
-        for(int i=0; i&lt;n;i++)
-        {
-           point query; scanf("%lf%lf",&query.x,&query.y);
-           res+=pointInsidePolygon(query,resn);
-        }
-        printf("%d\n",res);
-    }
-    return 0;
+Angle angleDiff(Angle a, Angle b) { // angle b - angle a
+	int tu = b.t - a.t; a.t = b.t;
+	return {a.x*b.x + a.y*b.y, a.x*b.y - a.y*b.x, tu - (b &lt; a)};
 }
 </code></pre>
             </div>
