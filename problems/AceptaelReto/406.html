@@ -90,36 +90,30 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int casos;
-    cin>>casos;
-    while(casos--)
+int main()
+{
+    string line;
+    while(getline(cin,line))
     {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
+        int n,aux; scanf("%d",&n);
+        int flag=1;
+        queue&lt;int> Q;
+        for(int i=line.length()-1; i>=0;i--)
         {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
+            if(line[i]!='|' && flag==1) line[i] = '.';
+            else if(line[i]=='|' && flag==1) flag=0;
+            else if(line[i]!='|' && flag==0 && line[i]=='.') Q.push(i);
+            else if(line[i]!='|' && flag==0 && line[i]!='.' && Q.size()!=0) { line[Q.front()]=line[i]; line[i]='.'; Q.pop(); Q.push(i);}
+            else if(line[i]=='|') while(!Q.empty()) Q.pop();
         }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        for(int i=0; i&lt;n;i++){
+            scanf("%d",&aux); if(i==0) printf("%c",line[aux-1]); else printf(" %c",line[aux-1]);
+        }
+        printf("\n");
+        cin.ignore();
     }
     return 0;
 }

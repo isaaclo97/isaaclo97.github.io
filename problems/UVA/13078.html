@@ -90,36 +90,62 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 using namespace std;
 
+const char dir[] = "NESW";
+const int dx[] = {-1, 0, 1, 0};
+const int dy[] = {0, 1, 0, -1};
+
 int main() {
-    int casos;
+    int casos,Q,N,M;
     cin>>casos;
-    while(casos--)
-    {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
-        {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
+    while (casos--) {
+        cin>>N>>M>>Q;
+        int G[N][M];
+        for(int lm=0;lm&lt;N;lm++)
+            for(int pk=0; pk&lt;M;pk++)
+                G[lm][pk]=0;
+        for (int i = 0; i &lt; Q; i++) {
+            char s;
+            int x, y, v;
+            cin>>x>>y>>s>>v;
+            x--; y--;
+                    int d = 0;
+                    for (int p = 0; p &lt; 4; p++) {
+                        if (s == dir[p])
+                        {
+                            d = p; break;
+                        }
+                    }
+                    if (x >= N || y >= M || x &lt; 0 ||y &lt; 0)
+                        break;
+                    G[x][y]++;
+                    for (int l = 1; l&lt;500; l++) {
+                        for (int j = 0; j &lt; 2; j++) {
+                            for (int k = 0; k &lt; l; k++) {
+                                x += dx[d], y += dy[d];
+                                if (x >= N || y >= M || x &lt; 0 ||y &lt; 0)
+                                    break;
+                                G[x][y]++;
+                                v--;
+                                if (v == 0)	break;
+                            }
+                            if (x >= N || y >= M || x &lt; 0 ||y &lt; 0)
+                                break;
+                             if (v == 0)	break;
+                            d = (d + 1)%4;
+                        }
+                        if (x >= N || y >= M || x &lt; 0 ||y &lt; 0)
+                            break;
+                         if (v == 0)	break;
+                    }
         }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        for (int i = 0; i &lt; N; i++) {
+            for (int j = 0; j &lt; M; j++)
+                printf("%d%c", G[i][j], j == M-1 ? '\n' : ' ');
+        }
+        cout&lt;&lt;"---\n";
     }
     return 0;
 }

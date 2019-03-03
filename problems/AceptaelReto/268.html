@@ -90,36 +90,32 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int casos;
-    cin>>casos;
-    while(casos--)
+struct node{
+  int P,C;
+  double relation;
+};
+bool sortC(node a,node b)
+{
+    return a.relation&lt;b.relation;
+}
+int main()
+{
+    int P,C;
+    while(scanf("%d%d",&P,&C)==2 && (P!=0 || C!=0))
     {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
-        {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
-        }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        int arr[P];
+        int arrAux[C];
+        for(int i=0; i&lt;P;i++) scanf("%d",&arr[i]);
+        for(int i=0; i&lt;C;i++) scanf("%d",&arrAux[i]);
+        vector&lt;node> V;
+        for(int i=0; i&lt;P;i++)
+            for(int j=0; j&lt;C;j++) V.push_back({arr[i],arrAux[j],(double)arr[i]/(double)arrAux[j]});
+        sort(V.begin(),V.end(),sortC);
+        for(unsigned int i=0; i&lt;V.size();i++) if(i==0) printf("%d-%d",V[i].P,V[i].C); else printf(" %d-%d",V[i].P,V[i].C);
+        printf("\n");
     }
     return 0;
 }

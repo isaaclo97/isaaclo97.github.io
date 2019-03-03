@@ -92,34 +92,27 @@
                 </div>
                 <pre><code class="language-cpp">#include &lt;iostream>
 using namespace std;
-
 int main() {
     int casos;
-    cin>>casos;
-    while(casos--)
-    {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
-        {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
+    cin >> casos;
+    while (casos--) {
+        int nieve, arboles;
+        cin >> nieve >> arboles;
+        int p[arboles];
+        int i = 0, j = 0, l = 0, enpie = 0;
+
+            while (arboles--) {
+            cin >> p[j];
+            if (p[j] >= nieve && ++enpie > 5)
+                while (enpie > 5) {
+                    if (p[i] >= nieve)
+                        enpie--;
+                    i++;
+                }
+            l = max(l, j-i+1);
+            j++;
         }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        cout &lt;&lt; l &lt;&lt; endl;
     }
     return 0;
 }

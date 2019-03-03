@@ -90,36 +90,50 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+#define INF 0x3F3F3F3F
 using namespace std;
 
-int main() {
-    int casos;
-    cin>>casos;
-    while(casos--)
+int cnt(int n)
+{
+    int di = 0;
+    while (n > 0) {
+        di++;
+        n/=10;
+    }
+    return di;
+}
+int cntNum(int n)
+{
+    int d = cnt(n),p = 10, s = 1;
+    if (n &lt; 1) return 0;
+    if (d == 1) return n;
+    for (int i = 1; i &lt;= d-2; i++) {
+        s += p * (i+1);
+        p *= 10;
+    }
+    return 9*s + d * (n-p+1);
+}
+int getCount(int ini,int fin)
+{
+    return cntNum(fin)-cntNum(ini-1);
+}
+int main()
+{
+    int ini,fin;
+    while(scanf("%d%d",&ini,&fin)==2 && (ini!=0||fin!=0))
     {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
+        int i=ini,j=fin,m,mid=(getCount(ini,fin))/2;
+        while(i&lt;=j)
         {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
+           m = (i+j)/2;
+           int d1 = getCount(ini,m);
+           if(d1==mid) break;
+           if(d1&lt;mid) i = m+1;
+           else j = m-1;
         }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        if(getCount(ini,m)>getCount(m+1,fin)) m--;
+        printf("%d\n",m);
     }
     return 0;
 }

@@ -90,38 +90,30 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int casos;
-    cin>>casos;
-    while(casos--)
+int josephus(int num,int jump)
+{
+    int jos=1;
+    for(int i=2; i&lt;=num;i++)
     {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
-        {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
-        }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        jos=((jos+jump-1)%i)+1;
     }
-    return 0;
+    return jos;
+}
+
+int main()
+{
+   int a;
+   while(scanf("%d",&a)==1 && a!=0)
+   {
+      for(int i=1; i&lt;0x3f3f3f3f;i++)
+      {
+          int res = josephus(a-1,i)+1;
+          if(res==13) { printf("%d\n",i); break;}
+      }
+   }
 }
 </code></pre>
             </div>

@@ -90,36 +90,29 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">#include &lt;iostream>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int casos;
-    cin>>casos;
-    while(casos--)
+int main()
+{
+    int n;
+    while(scanf("%d",&n)==1 && n!=0)
     {
-        int c1=0,c2=0,c3=0;
-        cin>>c1>>c2>>c3;
-        string aux="";
-        cin>>aux;
-        for(int i=0;i&lt;aux.length();i++)
+        long long int maxval,acu,aux,temp,maxacu,tempAcu,flag=0,last=0;
+        scanf("%lld",&maxval); acu=temp=maxacu=tempAcu=maxval;
+        acu = max(acu,(long long int)0);
+        for(int i=1; i&lt;n;i++)
         {
-                switch(aux[i])
-            {
-                case 'M': c1--; break;
-                case 'Y': c2--; break;
-                case 'C': c3--;  break;
-                case 'R': c1--;c2--; break;
-                case 'B': c2--;c3--;c1--; break;
-                case 'G': c2--;c3--; break;
-                case 'V': c1--;c3--; break;
-                case 'W': break;
-            }
+            scanf("%lld",&aux);
+            tempAcu+=aux;
+            acu+=aux;
+            if(acu&lt;0) acu=0;
+            if(acu>0 && i+1==n) flag=1;
+            maxval=max(maxval,acu);
+            maxacu=max(maxacu,tempAcu);
         }
-                  if(c1&lt;0||c2&lt;0||c3&lt;0)
-                      cout&lt;&lt;"NO"&lt;&lt;"\n";
-                  else
-                      cout&lt;&lt;"YES"&lt;&lt;" "&lt;&lt;c1&lt;&lt;" "&lt;&lt;c2&lt;&lt;" "&lt;&lt;c3&lt;&lt;"\n";
+        if(flag==1) maxval=max(acu+maxacu,maxval);
+        printf("%lld\n",maxval);
     }
     return 0;
 }
