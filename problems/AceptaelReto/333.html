@@ -90,36 +90,36 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">// Print all primes smaller than or equal to n using Sieve
+                <pre><code class="language-cpp">
 #include &lt;bits/stdc++.h>
 using namespace std;
 
-void Sieve(int n){
-    bool prime[n+1];
-    memset(prime, true, sizeof(prime));
-    for (int p=2; p*p&lt;=n; p++)
-        if (prime[p] == true)
-            for (int i=p*2; i&lt;=n; i += p) prime[i] = false;
+string num;
 
-    for (int p=2; p&lt;=n; p++)
-       if (prime[p]) cout &lt;&lt; p &lt;&lt; " ";
+bool palindrome(int first, int last){
+    //cout&lt;&lt;first&lt;&lt;" "&lt;&lt;last&lt;&lt;endl;
+    if(num[first]=='0'&&first!=last) return false;
+    for(int i=first;i&lt;last && i&lt;(last-i+first);i++)
+        if(num[i]!=num[last-i+first]) return false;
+    return true;
 }
+
 int main(){
-    int n = 30;  Sieve(n);
-    return 0;}
-
-	
-bitset&lt;100005> bs;
-vector&lt;int> primes;
-
-void sieve() {
-    bs.set();
-    bs[0] = bs[1] = 0;
-    for (unsigned int i = 2; i &lt; bs.size(); i++)
-        if (bs[i]) {
-            for (long long j = (long long) i * i; j &lt; bs.size(); j += i) bs[j] = 0;
-            primes.push_back(i);
+    cin>>num;
+    while(num!="0"){
+        if(num.length()==2) printf("SI\n");
+        else if(num.length()==1) printf("NO\n");
+        else{
+            bool cap = false;
+            for(unsigned int i=0; i&lt;num.length() && !cap && (i+1)&lt;=(num.length()-1);i++){
+                if(palindrome(0,i) && palindrome(i+1,num.length()-1)) cap=true;
+            }
+            if(cap) printf("SI\n");
+            else printf("NO\n");
         }
+        cin>>num;
+    }
+    return 0;
 }
 </code></pre>
             </div>

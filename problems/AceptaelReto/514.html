@@ -90,36 +90,26 @@
                     <h3 class="section-title">Solución al problema.</h3>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">// Print all primes smaller than or equal to n using Sieve
+                <pre><code class="language-cpp">
 #include &lt;bits/stdc++.h>
 using namespace std;
 
-void Sieve(int n){
-    bool prime[n+1];
-    memset(prime, true, sizeof(prime));
-    for (int p=2; p*p&lt;=n; p++)
-        if (prime[p] == true)
-            for (int i=p*2; i&lt;=n; i += p) prime[i] = false;
-
-    for (int p=2; p&lt;=n; p++)
-       if (prime[p]) cout &lt;&lt; p &lt;&lt; " ";
-}
 int main(){
-    int n = 30;  Sieve(n);
-    return 0;}
-
-	
-bitset&lt;100005> bs;
-vector&lt;int> primes;
-
-void sieve() {
-    bs.set();
-    bs[0] = bs[1] = 0;
-    for (unsigned int i = 2; i &lt; bs.size(); i++)
-        if (bs[i]) {
-            for (long long j = (long long) i * i; j &lt; bs.size(); j += i) bs[j] = 0;
-            primes.push_back(i);
+    int cases;
+    while(scanf("%d",&cases)==1 && cases!=0){
+        int res[cases],paro[cases]; memset(res,0,sizeof(res));
+        for(int i=0; i&lt;cases;i++){
+            scanf("%d",&paro[i]);
+            int j = i - 1;
+            while (j >= 0 && paro[i] &lt; paro[j]) {
+                res[i] += res[j] + 1;
+                j -= (res[j] + 1);
+            }
         }
+        for(int i=0; i&lt;cases;i++) if(i==0) printf("%d",res[i]); else printf(" %d",res[i]);
+        printf("\n");
+    }
+    return 0;
 }
 </code></pre>
             </div>
