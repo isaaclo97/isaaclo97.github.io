@@ -73,3 +73,40 @@ cxd4 9. exd4 Bf5 10. c4 Rc8 11. Nbd2 Ne4 12. Nxe4 Bxe4 13. Rc1 e6 14. Ne5 Bxg2
 1. d4 Nf6 2. c4 e6 3. g3 d5 4. Nf3 dxc4 5. Qa4+ Nbd7 6. Bg2 a6 7. Nc3 Rb8 8.
 Qxc4 b5 9. Qd3 Bb7 10. O-O Be7 11. Bf4 Rc8 12.Rfd1 c5 13. dxc5 Bxc5 14. Ng5 Bxg2 15. Kxg2 1/2-1/2
 
+[Event "VIII Open Vallee d'Aoste A"]
+[Site "Saint Vincent - Chatillon ITA"]
+[Date "2000.02.12"]
+[Round "1"]
+[White "Valenti, Giuseppe"]
+[Black "Vera Gonzalez-Quevedo, Reynaldo"]
+[Result "0-1"]
+[ECO "B84"]
+[WhiteElo "2202"]
+[BlackElo "2546"]
+[PlyCount "76"]
+[EventDate "2000.02.12"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be2 e6 7. O-O Be7 8. Be3
+Qc7 9. f4 O-O 10. Qe1 b5 11. e5 dxe5 12. fxe5 Nfd7 13. Bf3 Bb7 14. Qg3 Kh8 15.
+Bxb7 Qxb7 16. Rad1 b4 17. Na4 Nc6 18. Nxc6 Qxc6 19. Rxd7 Qxd7 20. Nb6 Qc6 21.
+Nxa8 Qxa8 22. Qf3 Qb8 23. Qe4 Kg8 24. Rd1 Qb5 25. Rd3 Rc8 26. Rd2 h6 27. h3 Bf8
+28. Bf2 g6 29. Bh4 Rc4 30. Qe1 Qc6 31. Rd8 Rxc2 32. Qg3 Qc5+ 33. Kh2 Rc1 34.
+Qf4 g5 35. Bxg5 Qg1+ 36. Kg3 Rc2 37. Qe4 Qf2+ 38. Kh2 hxg5 0-1
+
+[Event "VIII Open Vallee d'Aoste A"]
+[Site "Saint Vincent - Chatillon ITA"]
+[Date "2000.02.13"]
+[Round "2"]
+[White "Calzetta Ruiz, Monica"]
+[Black "Frank, Albert"]
+[Result "1-0"]
+[ECO "B00"]
+[WhiteElo "2267"]
+[BlackElo "2029"]
+[PlyCount "35"]
+[EventDate "2000.02.12"]
+
+1. e4 b6 2. d4 e6 3. Nf3 Bb7 4. Bd3 d6 5. O-O Nd7 6. Re1 h6 7. Nbd2 Ne7 8. c3
+a6 9. a4 g6 10. Nc4 Bg7 11. Bf4 Qb8 12. Qd2 g5 13. Bg3 Nf8 14. e5 Bxf3 15. exd6
+Nc8 16. dxc7 Qb7 17. gxf3 b5 18. Be4 1-0
+
