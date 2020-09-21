@@ -1,13 +1,13 @@
 preferedLanguage = getCookie("preferedTranslation");
 
 if(preferedLanguage!=null){
-	console.log("Cookies");
-	console.log(preferedLanguage);
+	/*console.log("Cookies");
+	console.log(preferedLanguage);*/
 }
 else{
 	var userLang = navigator.language || navigator.userLanguage; 
 	preferedLanguage = userLang.split('-')[0];
-	console.log(preferedLanguage);
+	//console.log(preferedLanguage);
 }
 moveToLanguage(preferedLanguage);
 
@@ -41,7 +41,7 @@ function getCookie(cname) {
 }
 
 function moveToLanguage(lang){
-	console.log("Redirect");
+	//console.log("Redirect");
 	url = window.location.href
 	if((lang=='en' && url.includes('/en/')) || ((lang=='es' && !url.includes('/en/')))) 
 		return;
@@ -51,6 +51,6 @@ function moveToLanguage(lang){
 	else{
 		url = url.replace(".io/en/",".io/")
 	}
-	console.log(url);
+	//console.log(url);
 	window.location.href = url;
 }
