@@ -158,8 +158,8 @@
 				<div class="col-md-12 text-center wow fadeInUp animated" style="visibility: visible;">
 						<div class='item-container'>
 							<div class='item'>
-								<h3 class='qus active'><b>Entrenamiento Semana 1 - Diciembre</b></h3>
-								<div class='ans'>
+								<h3 class='qus'><b>Entrenamiento Semana 1 - Diciembre ⬇️</b></h3>
+								<div class='ans' style="display:none">
 									<h4 style="margin-top: 5%">Clasificación Avanzados</h4>
 									<table id="example" class="table table-striped table-bordered" style="width:100%">
 										<thead>
@@ -599,6 +599,691 @@
 											}
 										}
 									}
+									</code></pre>
+								</div>
+							</div>
+							<div class='item'>
+								<h3 class='qus active'><b>Entrenamiento Semana 2 - Diciembre ⬇️</b></h3>
+								<div class='ans'>
+									<h4 style="margin-top: 5%">Clasificación Avanzados</h4>
+									<table id="example" class="table table-striped table-bordered" style="width:100%">
+										<thead>
+											<tr>
+											<th>Puesto</th>
+											<th>Usuario</th>
+											<th>Puntos</th>
+											<th>Tiempo</th>
+											<th>352</th>
+											<th>570</th>
+											<th>204</th>
+										</tr>
+										</thead>
+										</table>
+									<p>Actualizada: 05/12/2021 - 15:31</p>
+									<h4 style="margin-top: 5%">Clasificación Iniciación</h4>
+	
+									   <table id="example2" class="table table-striped table-bordered" style="width:100%">
+										<thead>
+											<tr>
+											<th>Puesto</th>
+											<th>Usuario</th>
+											<th>Puntos</th>
+											<th>Tiempo</th>
+											<th>590</th>
+											<th>141</th>
+											<th>452</th>
+										</tr>
+										</thead>
+										</table>
+										<p>Actualizada: 05/12/2021 - 15:31</p>
+									<h4 style="margin-top: 5%">Solución Problemas Avanzados</h4>
+									<h5 style="margin-top: 5%">Problema 352 Acepta el Reto - Los amigos de mis amigos son mis amigos</h5>
+									<p></p>
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/X7v3yjKWWDU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol352');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol352Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol352" style="display:none"><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+#define INF 0x3F3F3F3F
+using namespace std;
+
+bool check[20500];
+queue &lt;int> q[20500];
+int resu,res;
+void dfs(int x)
+{
+    check[x]=true;
+    int size=q[x].size();
+    for(int i=0;i&lt;size;i++)
+    {
+        int temp=q[x].front();
+        q[x].pop();
+        if(!check[temp])
+        {
+            resu++;
+            dfs(temp);
+        }
+    }
+}
+
+int main()
+{
+    int t,n,e,x,y,count;
+    cin>>t;
+    while(t--)
+    {
+        count=res=0;
+        cin>>n>>e;
+        for(int i=0; i&lt;n+1;i++) check[i]=false;
+        for(int i=0;i&lt;e;i++)
+        {
+            cin>>x>>y;
+            q[x].push(y);
+            q[y].push(x);
+        }
+        for(int i=0;i&lt;n;i++)
+        {
+            if(!check[i])
+            {
+                resu=1;
+                check[i]=true;
+                dfs(i);
+                count++;
+                res=max(res,resu);
+            }
+        }
+        cout&lt;&lt;res&lt;&lt;"\n";
+    }
+    return 0;
+}
+									</code></pre>
+									<pre id="sol352Java" style="display:none"><code class="language-java">
+import java.util.*;
+ 
+public class Main2 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+ 
+        for (int p = 0; p &lt; n; p++) {
+            int nodos = in.nextInt();
+            int aristas = in.nextInt();
+            ArrayList&lt;Integer>[] grafo = new ArrayList[nodos];
+            for(int j=0; j&lt;nodos; j++){
+                grafo[j]=new ArrayList&lt;>();
+            }
+            for (int i = 0; i &lt; aristas; i++) {
+                int a = in.nextInt() - 1;
+                int b = in.nextInt() - 1;
+                grafo[a].add(b);
+                grafo[b].add(a);
+            }
+            boolean[] visitados = new boolean[nodos];
+            int maximo = 0;
+            for (int r = 0; r &lt; nodos; r++) {
+                if (!visitados[r]) {
+                    int inicial=r;
+                    Queue&lt;Integer> cola = new LinkedList&lt;>();
+                    cola.add(inicial);
+                    int contador = 1;
+                    visitados[inicial] = true;
+                    while (cola.size() > 0) {
+                        Integer pop = cola.remove();
+                        for (int i = 0; i &lt; grafo[pop].size(); i++) {
+                            int aux = grafo[pop].get(i);
+                            if (!visitados[aux]) {
+                                cola.add(aux);
+                                visitados[aux] = true;
+                                contador++;
+                            }
+                        }
+ 
+                    }
+                    maximo = Math.max(maximo, contador);
+                }
+            }
+            System.out.println(maximo);
+        }
+    }
+}
+									</code></pre>
+									<h5 style="margin-top: 5%">Problema 570 Acepta el Reto - DNI incompleto</h5>
+									<p></p>
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/cNW4upuxgaU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol570');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol570Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol570" style="display:none"><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+
+using namespace std;
+
+#define SET(v,i) memset(v,i,sizeof(v));
+#define FOR(i,n,k) for(int i=n;i&lt;k;++i)
+#define WHILE(i,n) while(i&lt;n)
+#define RI(i) scanf("%d",&i);
+#define RS(i) scanf("%s",i);
+#define RF(i) scanf("%lf",&i);
+#define RL(i) scanf("%lld",&i);
+#define OPEN(s) freopen(s,"r",stdin);
+#define CLOSE(s) freopen(s,"w",stdout);
+
+const int INF=0x3F3F3F3F;
+const int MAXN=100001;
+typedef long long int i64;
+typedef pair&lt;int,int> pii;
+typedef pair&lt;string,int> psi;
+
+map&lt;char, int> M;
+
+void preproc(){
+	M['T'] = 0; M['R'] = 1; M['W'] = 2; M['A'] = 3; M['G'] = 4; M['M'] = 5; M['Y'] = 6;
+	M['F'] = 7; M['P'] = 8; M['D'] = 9; M['X'] = 10; M['B'] = 11; M['N'] = 12; M['J'] = 13;
+	M['Z'] = 14; M['S'] = 15; M['Q'] = 16; M['V'] = 17; M['H'] = 18; M['L'] = 19; M['C'] = 20;
+	M['K'] = 21; M['E'] = 22;
+}
+
+char str[50];
+
+int bt(int idx, int tot, vector&lt;int> &missing, int remainder){
+	if(idx >= (int)missing.size()) return tot%23 == remainder;
+	int ans = 0;
+	FOR(i,0,10){
+		ans += bt(idx+1, tot+missing[idx]*i, missing, remainder);
+	}
+	return ans;
+}
+
+int main(){
+	preproc();
+	int t; RI(t);
+	while(t--){
+		vector&lt;int> missing;
+		RS(str);
+		int tot = 0;
+		int n = strlen(str);
+		int multiplier = 1e7;
+		FOR(i,0,n-1){
+			if(str[i] != '?')
+				tot += (str[i] -'0')*multiplier;
+			else{
+				missing.push_back(multiplier);
+			}
+			multiplier/=10;
+		}
+		int letter_remainder = M[str[n-1]];
+		printf("%d\n", bt(0, tot, missing, letter_remainder));
+	}
+	return 0;
+}
+
+
+////////////////////////////////////////////
+/////////////Code by David Moran////////////
+////////////////////////////////////////////
+
+									</code></pre>
+									<pre id="sol570Java" style="display:none"><code class="language-java">
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        HashMap&lt;Character,Integer> letras = new HashMap&lt;>();
+        char[] aux = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
+        for(int i=0;i&lt;23;i++){
+            letras.put(aux[i],i);
+        }
+ 
+        for(int i=0;i&lt;n;i++){
+            StringBuffer dni= new StringBuffer(in.next());
+            dni.reverse();
+            int resto = letras.get(dni.charAt(0));
+            int numero = 0;
+            LinkedList&lt;Integer> inter=new LinkedList&lt;>();
+            for(int j=1;j&lt;9;j++){
+                if(dni.charAt(j)=='?'){
+                    inter.add(j-1);
+                }else{
+                    numero+=((dni.charAt(j)-48)*(Math.pow(10,j-1)));
+                }
+            }
+            numero=numero%23;
+            HashMap&lt;Integer,Integer> posibles = new HashMap&lt;>();
+            posibles.put(numero,1);
+            int it=1;
+            for(Integer m:inter){
+                HashMap&lt;Integer,Integer> auxiliar = new HashMap();
+                for(Integer k:posibles.keySet()){
+                    for(int j=0;j&lt;10;j++){
+                        int nuevo = (int) ((k+j*Math.pow(10,m))%23);
+                        if(auxiliar.containsKey(nuevo)){
+                            auxiliar.put(nuevo,auxiliar.get(nuevo)+posibles.get(k));
+                        }
+                        else{
+                             auxiliar.put(nuevo,posibles.get(k));
+                        }
+                    }
+                }
+                posibles=auxiliar;
+ 
+            }
+ 
+ 
+ 
+ 
+            System.out.println(posibles.get(resto));
+ 
+        }
+ 
+    }
+}
+									</code></pre>
+									<h5 style="margin-top: 5%">Problema 204 Acepta el Reto - Árbol de navidad</h5>
+									<p></p>	
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/eN21uReHvaw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol204');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol204Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol204" style="display:none"><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+using namespace std;
+string line;
+bool flag;
+
+pair&lt;int,int> solve(int index, int value){
+    if(!flag) return {index,value};
+    if(line[index]=='.') return {index,value};
+    if(line[index]=='*') return {index,value+1};
+    pair&lt;int,int> res;
+    res = solve(index+1,value); //left node
+    int left = res.second;
+    res = solve(res.first+1,value); //right node
+    if(abs(left-res.second)>1) flag = false;
+    res.second+=left;
+    return res;
+}
+int main(){
+    while(getline(cin,line)){
+        flag = true;
+        solve(0,0);
+        if(flag) printf("OK\n");
+        else printf("KO\n");
+    }
+  return 0;
+}
+
+									</code></pre>	
+									<pre id="sol204Java" style="display:none"><code class="language-java">
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Scanner;
+ 
+ 
+public class Main {
+ 
+    public static class Node{
+        Boolean adorno;
+        Node left,right;
+ 
+        public Node(Boolean adorno) {
+            this.adorno = adorno;
+ 
+        }
+ 
+        public Node(Boolean adorno, Node left, Node right) {
+            this.adorno = adorno;
+            this.left = left;
+            this.right = right;
+        }
+    }
+ 
+    public static Node arbol(String lectura){
+        int contador=0;
+        Node devolver = new Node(false);
+        LinkedList<Node> pila = new LinkedList<>();
+        pila.addFirst(devolver);
+        while(!pila.isEmpty()){
+            Node aux = pila.removeFirst();
+            if(lectura.charAt(contador)=='.'){
+                aux.adorno=false;
+            }
+            else if(lectura.charAt(contador)=='*'){
+                aux.adorno=true;
+            }
+            else{
+                aux.adorno=false;
+                aux.left=new Node(false);
+                aux.right=new Node(false);
+                pila.addFirst(aux.right);
+                pila.addFirst(aux.left);
+            }
+            contador++;
+        }
+        return devolver;
+    }
+ 
+    public static int balanceado(Node nodo){
+        int izquierdo=0;
+        int derecho=0;
+        if(nodo.right!=null && nodo.left!=null){
+            derecho=balanceado(nodo.right);
+            izquierdo=balanceado(nodo.left);
+        }
+        else{
+            if(nodo.adorno) return 1;
+            else return 0;
+        }
+        if(Math.abs(izquierdo-derecho)>1) return -1;
+        if(izquierdo==-1 || derecho==-1) return -1;
+ 
+        return izquierdo+derecho;
+    }
+ 
+ 
+ 
+ 
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            int x=balanceado(arbol(in.next()));
+            if(x==-1) System.out.println("KO");
+            else System.out.println("OK");
+        }
+ 
+ 
+    }
+}
+									</code></pre>									
+									<h4 style="margin-top: 5%">Solución Problemas Iniciación</h4>
+									<h5 style="margin-top: 5%">Problema 590 Acepta el Reto - A caballo por el viñedo</h5>
+									<p></p>
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/JC_pmY7VZKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol590');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol590Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol590" style="display:none"><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+using namespace std;
+
+//Ventana deslizante - Sliding Windows
+
+int main(){
+    int racimos,uvastotales;
+    while(scanf("%d %d",&racimos,&uvastotales)==2 && (racimos != 0 || uvastotales!=0)){
+        int racimo[racimos];
+        for(int i=0; i&lt;racimos;i++) scanf("%d",&racimo[i]);
+        int minNumber = 0x3f3f3f3f,curNumber=0,slideWindow=0;
+        for(int i=0; i&lt;racimos;i++){
+            if(uvastotales>(curNumber+racimo[i])) curNumber+=racimo[i];
+            else{
+                curNumber+=racimo[i];
+                minNumber = min(minNumber,curNumber);
+                for(int j=slideWindow; j&lt;racimos;j++){
+                    curNumber-=racimo[slideWindow];
+                    slideWindow++;
+                    if(uvastotales>curNumber)
+                        break;
+                    minNumber = min(minNumber,curNumber);
+                }
+            }
+        }
+        if(minNumber == 0x3f3f3f3f) printf("IMPOSIBLE\n");
+        else printf("%d\n",minNumber);
+    }
+    return 0;
+}
+									</code></pre>
+									<pre id="sol590Java" style="display:none"><code class="language-java">
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
+public class Main {
+    public static int INF=1000000001;
+ 
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(in.readLine()," ");
+        int racimos = Integer.parseInt(st.nextToken());
+        int necesatios = Integer.parseInt(st.nextToken());
+ 
+        while(racimos!=0 || necesatios!=0){
+            int[] vi = new int[racimos];
+            st = new StringTokenizer(in.readLine()," ");
+            for(int i=0;i&lt;racimos;i++){
+                vi[i]=Integer.parseInt(st.nextToken());
+            }
+            int m=0;
+            int n=0;
+            int reco=0;
+            int min=INF;
+            while(!(m>=racimos && reco&lt;necesatios)){
+                if(reco&lt;necesatios){
+                    reco+=vi[m];
+                    if(reco>=necesatios) min=Math.min(min,reco);
+                    m++;
+                }
+                else if(reco>necesatios){
+                    reco-=vi[n];
+                    if(reco>=necesatios) min=Math.min(min,reco);
+                    n++;
+                }else{
+                    break;
+                }
+ 
+            }
+            if(necesatios==0) System.out.println("0");
+            else if (min==INF) System.out.println("IMPOSIBLE");
+            else System.out.println(min);
+ 
+            st = new StringTokenizer(in.readLine()," ");
+            racimos = Integer.parseInt(st.nextToken());
+            necesatios = Integer.parseInt(st.nextToken());
+ 
+        }
+    }
+}
+									</code></pre>
+									<h5 style="margin-top: 5%">Problema 141 Acepta el Reto - Paréntesis balanceados</h5>
+									<p></p>
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/Tz3Yy13bcNw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol141');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol141Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol141" style="display:none"><code class="language-cpp">
+#include &lt;iostream>
+#include &lt;stack>
+#include &lt;string>
+using namespace std;
+
+
+int main() {
+
+    string b;
+    while(getline(cin,b))
+    {
+        stack&lt;char> pila;
+        bool correcto=true;
+      for(unsigned int i=0; i&lt;b.length();i++)
+      {
+          if( b[i] == '(' || b[i] == '{' || b[i] == '[' )
+                      pila.push(b[i]);
+          else if( b[i] == ')')
+                  {
+                      if(pila.empty())
+                      {
+                          correcto=false;
+                          break;
+                      }
+                      if(pila.top()=='(')
+                              pila.pop();
+                      else
+                      {
+                          correcto=false;
+                          break;
+                      }
+                  }
+          else if( b[i] == '}')
+                  {
+                      if(pila.empty())
+                      {
+                          correcto=false;
+                          break;
+                      }
+
+                      if(pila.top()=='{')
+                              pila.pop();
+                      else
+                      {
+                          correcto=false;
+                          break;
+                      }
+
+                  }
+          else if(b[i] == ']')
+          {
+              if(pila.empty())
+              {
+                  correcto=false;
+                  break;
+              }
+              if(pila.top()=='[')
+                  pila.pop();
+              else
+              {
+                  correcto=false;
+                  break;
+              }
+          }
+          else
+              continue;
+      }
+      if(pila.empty()&&correcto)
+          cout&lt;&lt;"YES\n";
+      else
+          cout&lt;&lt;"NO\n";
+    }
+    return 0;
+}
+									</code></pre>
+									<pre id="sol141Java" style="display:none"><code class="language-java">
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+ 
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String aux = in.readLine();
+        while(aux!=null){
+            int l = aux.length();
+            Stack&lt;Character> p= new Stack&lt;>();
+            boolean salida=true;
+            for(int i=0;i&lt;l && salida;i++){
+                char c = aux.charAt(i);
+                if(c=='(' || c=='[' || c=='{'){
+                    p.add(c);
+                }
+                if(c==')' || c==']' || c=='}'){
+                    if(p.isEmpty()){
+                        salida=false;
+                        break;
+                    }
+                    char pop = p.pop();
+ 
+                    if((c==')' && pop=='(') || (c==']' && pop=='[') || (c=='}' && pop=='{')) continue;
+                    else{
+                        salida=false;
+                        break;
+                    }
+                }
+            }
+            if(salida && p.isEmpty()){
+                System.out.println("YES");
+            }
+            else{
+                System.out.println("NO");
+            }
+            aux=in.readLine();
+ 
+        }
+    }
+}
+									</code></pre>
+									<h5 style="margin-top: 5%">Problema 452 Acepta el Reto - Bingo infantil</h5>
+									<p></p>
+									<div class="video-responsive"> <iframe  src="https://www.youtube.com/embed/kqIIlT6JEL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+									<div>
+									<p onclick="displayOrNot('sol452');" class="btn btn-primary btn-scroll">Ver solución en C++</p>
+									<p onclick="displayOrNot('sol452Java');" class="btn btn-primary btn-scroll">Ver solución en Java</p>
+									</div>
+									<pre id="sol452" style="display:none"><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+#define INF 0x3F3F3F3F
+using namespace std;
+
+int main()
+{
+    int cases;
+    while(scanf("%d",&cases)==1 && cases!=0)
+    {
+        int arr[cases];
+        set&lt;int> S;
+        for(int i=0; i&lt;cases;i++) cin>>arr[i];
+        for(int i=0; i&lt;cases;i++)
+            for(int j=i+1; j&lt;cases;j++)
+                S.insert(abs(arr[i]-arr[j]));
+        int flag=0;
+        for(auto s:S)
+            if(flag==0) {flag=1; cout&lt;&lt;s;}
+            else cout&lt;&lt;" "&lt;&lt;s;
+        cout&lt;&lt;'\n';
+    }
+    return 0;
+}
+									</code></pre>
+									<pre id="sol452Java" style="display:none"><code class="language-java">
+import java.util.*;
+ 
+public class bingo {
+    public static void main (String[]Args){
+        Scanner in = new Scanner (System.in);
+        int n = in.nextInt();
+        while(n!=0){
+            int[]b=new int[n];
+            for(int i=0; i&lt;n; i++){
+                b[i]=in.nextInt();
+            }
+            Set&lt;Integer>res=new HashSet&lt;>();
+            for(int i=0; i&lt;n; i++){
+                for(int j=i+1; j&lt;n; j++){
+                    res.add(Math.abs(b[i]-b[j]));
+                }
+            }
+            ArrayList&lt;Integer>r=new ArrayList&lt;>(res);
+            Collections.sort(r);
+            for(int i=0; i&lt;r.size()-1; i++){
+                System.out.print(r.get(i)+" ");
+            }
+            System.out.println(r.get(r.size()-1));
+            n=in.nextInt();
+        }
+    }
+}
 									</code></pre>
 								</div>
 							</div>
