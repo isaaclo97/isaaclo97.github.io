@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Data -->
+    <title>Problem 496 of AceptaelReto - 496</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="🖥️ Solved problem of AceptaelReto number 496 with title 496. Discover the solution to the problem as well as some test cases or tips on some problems.">
+	<meta name="author" content="Isaac Lozano Osorio" />
+    <link rel="shortcut icon" href="../../../img/favicon.jpg" type="image/x-icon">
+	<meta name="reply-to" content="i.loozano97@gmail.com">
+	<link rev="made" href="mailto:i.loozano97@gmail.com">
+	<meta name="robots" content="ALL">
+	
+	<link rel="alternate" href="https://isaaclo97.github.io/en/problems/AceptaelReto/496.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/496.html" hreflang="es" />
+	
+	
+	<meta property="og:url" content="https://isaaclo97.github.io/en/problems/AceptaelReto/496.html">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Problem 496 of AceptaelReto - 496">
+	<meta property="og:description" content="🖥️ Solved problem of AceptaelReto number 496 with title 496. Discover the solution to the problem as well as some test cases or tips on some problems.">
+	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
+	<meta property="og:image" content="../../../img/favicon.jpg">
+	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@isaac_lozano_97">
+	<meta name="twitter:site" content="@isaac_lozano_97">
+
+    <!-- Stlylesheet -->
+	<link href="../../../css/owl.carousel.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/cubeportfolio.min.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/simple-line-icons.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/ionicons.min.css" rel='stylesheet' type='text/css' />		
+    <link href="../../../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="../../../css/style1.css" rel='stylesheet' type='text/css' />	
+    <link href="../../../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/prism.css" rel='stylesheet' type='text/css' />
+
+
+    <!-- Skin Color -->
+    <link rel="stylesheet" href="../../../css/colors/red.css" id="color-skins" />
+	
+	<script src="../../../js/translate.js"></script>
+	
+</head>
+
+<body>
+    <script src="../../../js/prism.js"></script>
+
+    <!--Start Header-->
+    <header>
+        <nav class="navbar navbar-default navbar-alt" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav  navbar-right">
+                        <li><a href="../../../en/index.html">Index</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#data2">Projects</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#portfolio">Technologies</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#team">Who I am?</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#get-connected">Contact</a></li>
+                        <li class="to-section"><a href="../../../en/blog.html">Blog</a></li>
+						<li class="to-section"><a href="../../../en/ajedrez.html">Chess</a></li>
+                        <li class="to-section"><a href="../../../en/programacion.html">Competitive programming</a></li>
+						<li class="to-section">
+						<a href="#" onclick="translateWeb('es');return false;"  style="display: inline-block;" title="Español"><img src="../../../img/es.png" height="24" width="24" alt="es"></a>
+						<a href="#" onclick="translateWeb('en');return false;"  style="display: inline-block;" title="English"><img src="../../../img/en.png" height="24" width="24" alt="en"></a>
+						</li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+    <!--End Header-->
+  <section id="quote" class="parallax-section-4">
+            <div class="container">
+                <div class="row wow fadeInUp">
+
+                    <div class="col-lg-12 wow fadeInUp" style="z-index:3">
+                        <div id="quote-slider" class="owl-carousel">
+                            <div>
+								<h1 style="font-size: 23px !important;" class="white wow fadeInDown">Competitive Programming</h1>
+                                <h4 class="quote-author highlight">Isaac Lozano Osorio</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Team Section -->
+        <section id="team">
+            <div class="container">
+
+                <div class="col-md-12 text-center wow fadeInUp">
+                    <h2 style="font-size: 20px;" class="section-title">Solution to the problem number 496 of AceptaelReto - 496.</h2>
+					 <p class="subheading wow fadeInUp">Any questions do not hesitate to contact.</p>
+                </div>
+                <pre><code class="language-cpp">
+#include &lt;bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int inicio,final,tiempo,valor;
+};
+
+vector&lt;node> v;
+bool flag;
+int hSalida, hDestino,tiempoMaximo,res;
+
+inline void fastInput(int &n){
+    char ch;
+    int sign = 1;
+    while(ch = getchar_unlocked(), isspace(ch)) {
+
+    };
+    n = 0;
+    if(ch == '-')
+        sign = -1;
+    else n = ch - '0';
+    while(ch = getchar_unlocked(), isdigit(ch))
+        n = (n &lt;&lt; 3) + (n &lt;&lt; 1) + ch - '0';
+    n *= sign;
+}
+
+inline void DFS(int start, int time, int sky){
+    if(time>tiempoMaximo) return;
+    if(start>=hDestino && time+(start-hDestino)&lt;=tiempoMaximo){
+        flag=true;
+        res=max(res,sky+(start-hDestino));
+    }
+    for(int i=0;i&lt;v.size();i++){
+        if(v[i].inicio&lt;=start){
+            DFS(v[i].final,time+(start-v[i].inicio)+v[i].tiempo,sky+(start-v[i].inicio));
+        }
+    }
+}
+
+int main(){
+    int N;
+    while(scanf("%d",&N) && N!=0){
+        int a,b,c;
+        v.clear();
+        for(int i=0; i&lt;N;i++){
+            fastInput(a); fastInput(b); fastInput(c);
+            v.push_back(node{a,b,c,a-b});
+        }
+        res = 0;
+        fastInput(hSalida); fastInput(hDestino); fastInput(tiempoMaximo);
+        flag = false;
+        DFS(hSalida,0,0);
+        if(!flag) printf("IMPOSIBLE\n");
+        else printf("%d\n",res);
+    }
+    return 0;
+}
+</code></pre>
+            </div>
+        </section>
+         
+
+
+        <!-- Start Get Connected -->
+        <section id="get-connected" class="parallax-section-6">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">Don't miss anything.</h3>
+                    <p class="subheading grey wow fadeInUp">Keep in touch with <span class="highlight">Isaac Lozano Osorio</span>!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                    <ul class="connected-icons text-center">
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://twitter.com/isaac_lozano_97">
+                                <span class="icon icon-social-twitter size-6x"></span>
+                                <h4 class="white">Twitter</h4>
+                                <span class="grey">Follow me</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio">
+                                <span class="icon icon-social-facebook size-6x"></span>
+                                <h4 class="white">Facebook</h4>
+                                <span class="grey">Follow me</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://github.com/isaaclo97">
+                                <span class="icon ion-social-octocat size-6x"></span>
+                                <h4 class="white">GitHub</h4>
+                                <span class="grey">Do you want to see my projects?</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="mailto:i.loozano97@gmail.com">
+                                <span class="icon icon-envelope-open size-6x"></span>
+                                <h4 class="white">Email</h4>
+                                <span class="grey">i.loozano97@gmail.com</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- End Get Connected -->
+
+        <!-- Start Footer 1 -->
+        <footer id="footer">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <p>© 2018-2021 Isaac Lozano Osorio. All Rights Reserved. </p>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <ul id="social-icons">
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-twitter"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio"><i class="icon ion-social-facebook"></i></a></li>
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-octocat"></i></a></li>
+                                <li><a target="_blank" href="mailto:i.loozano97@gmail.com"><i class="icon ion-android-drafts"></i></a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Copyright -->
+
+        </footer>
+        <!-- End Footer 1 -->
+
+        <!-- Start Back To Top -->
+        <a id="back-to-top"><i class="icon ion-chevron-up"></i></a>
+        <!-- End Back To Top -->
+
+    </div>
+    <!-- End Site Wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../../js/plugins/jquery.min.js"></script>
+    <script src="../../../js/plugins/moderniz.min.js"></script>
+    <script src="../../../js/plugins/smoothscroll.min.js"></script>
+    <script src="../../../js/plugins/revslider.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/plugins/waypoints.min.js"></script>
+    <script src="../../../js/plugins/parallax.min.js"></script>
+    <script src="../../../js/plugins/easign1.3.min.js"></script>
+    <script src="../../../js/plugins/cubeportfolio.min.js"></script>
+    <script src="../../../js/plugins/owlcarousel.min.js"></script>
+    <script src="../../../js/plugins/wow.min.js"></script>
+    <script src="../../../js/plugins/counterup.min.js"></script>
+    <script src="../../../js/scripts.js"></script>
+    <script src="../../../js/bars.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+     <script type="text/javascript" charset="UTF-8" src="../../../load.js"></script>
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-69918439-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!--Start Cookie Script-->
+    <script type="text/javascript" charset="UTF-8" src="https://cookie-script.com/s/eccbdbc38f31ea25d1b3265195902907.js"></script>
+    <!--End Cookie Script-->
+
+</body>
+
+</html>
