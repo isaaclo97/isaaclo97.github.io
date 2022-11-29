@@ -3,26 +3,26 @@
 
 <head>
 	<!-- Meta Data -->
-    <title>Problema 599 de AceptaelReto - 599</title>
+    <title>Problema 565 de AceptaelReto - 565</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
+    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 565 con título 565. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
 	<meta name="author" content="Isaac Lozano Osorio" />
     <link rel="shortcut icon" href="../../img/favicon.jpg" type="image/x-icon">
 	<meta name="reply-to" content="i.loozano97@gmail.com">
 	<link rev="made" href="mailto:i.loozano97@gmail.com">
 	<meta name="robots" content="ALL">
 	
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/599.html" hreflang="en" />
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/599.html" hreflang="es" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/565.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/565.html" hreflang="es" />
 	
 	
-	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/599.html">
+	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/565.html">
 	<meta property="og:locale" content="es">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Problema 599 de AceptaelReto - 599">
-	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
+	<meta property="og:title" content="Problema 565 de AceptaelReto - 565">
+	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 565 con título 565. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
 	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
 	<meta property="og:image" content="../../img/favicon.jpg">
 	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
@@ -111,47 +111,99 @@
             <div class="container">
 
                 <div class="col-md-12 text-center wow fadeInUp">
-                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 599 de AceptaelReto - 599.</h2>
+                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 565 de AceptaelReto - 565.</h2>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">import java.util.*;
-import java.lang.*;
-import java.io.*;
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+using namespace std;
 
-/**
- *
- * @author Isaac
- */
-public class Main
-{
-	static int solve(int size, int n, int[] cintas, int[] value, int[][][] memo, int size1, int id, int size2){
-	    if(size1>size || size2>size) return -0x3f3f3f; //si pasa del tamaño
-	    if(n==id) return 0; //ultima cinta
-	    int best = memo[size1][size2][id];
-	    if(best!=-1) return best;
-	    int v1 = solve(size,n,cintas,value,memo,size1+cintas[id],id+1,size2)+value[id];
-	    int v2 = solve(size,n,cintas,value,memo,size1,id+1,size2+cintas[id])+value[id];
-	    int v3 = solve(size,n,cintas,value,memo,size1,id+1,size2);
-	    return memo[size1][size2][id] = Math.max(v1,Math.max(v2,v3));
-	}
-
-	public static void main (String[] args)
-	{
-        Scanner sc= new Scanner(System.in);
-        while(sc.hasNext()){
-            int n=sc.nextInt();
-            if(n==0) break;
-            int size=sc.nextInt();
-            int cintas[] = new int[n];
-			int value[] = new int[n];
-			int memo[][][] = new int[size+1][size+1][n];
-	        for(int i=0; i&lt;n;i++) { cintas[i]=sc.nextInt(); value[i]=sc.nextInt(); }
-	        for(int i=0; i&lt;size+1;i++)
-	            for(int j=0; j&lt;size+1;j++)
-	                for(int k=0; k&lt;n;k++) memo[i][j][k]=-1;
-            System.out.println(Math.max(0,solve(size,n,cintas,value,memo,0,0,0)));
-        }
+struct clapsPQ{
+    int seconds,minpeople;
+    bool operator&lt;(const clapsPQ &other)const{
+        if(minpeople == other.minpeople)
+            return seconds&lt;other.seconds;
+        return minpeople &lt; other.minpeople;
     }
+};
+
+void updatePQ(priority_queue&lt;clapsPQ> &pq, queue&lt;clapsPQ> &q) {
+    while (!q.empty()){
+        pq.push(q.front());
+        q.pop();
+    }
+}
+
+//inline int getchar_unlocked() { return getchar(); }
+inline void fastInput(int &n){
+    char ch;
+    int sign = 1;
+    while(ch = getchar_unlocked(), isspace(ch)) {
+
+    };
+    n = 0;
+    if(ch == '-')
+        sign = -1;
+    else n = ch - '0';
+    while(ch = getchar_unlocked(), isdigit(ch))
+        n = (n &lt;&lt; 3) + (n &lt;&lt; 1) + ch - '0';
+    n *= sign;
+}
+
+int main(){
+    //freopen("C:\\Users\\isaac\\CLionProjects\\URJC_Entenamientos\\565_2.in","r",stdin);
+    //freopen("C:\\Users\\isaac\\CLionProjects\\URJC_Entenamientos\\565_isaac.out","w",stdout);
+    int people;
+    fastInput(people);
+    while(people!=0){
+        priority_queue&lt;clapsPQ> pq;
+        int oneperson=0;
+        for(int i=0; i&lt;people;i++) {
+            int seconds, minpeople;
+            fastInput(seconds);
+            fastInput(minpeople);
+            if(minpeople==1)
+                oneperson = max(oneperson,seconds);
+            else
+                pq.push({seconds,minpeople});
+        }
+        queue&lt;clapsPQ> q;
+        int minValue = oneperson;
+        int maxValue = oneperson;
+        while(!pq.empty()){
+            //Quedarse con solo los que puedan mejorar el tiempo
+            while (!pq.empty()){
+                clapsPQ actual=pq.top();
+                pq.pop();
+                if(actual.seconds>minValue)
+                    q.push(actual);
+            }
+            updatePQ(pq, q);
+            //Coger el mejor tiempo
+            if(!pq.empty())
+                minValue=pq.top().seconds;
+            bool flag = true;
+            int size = pq.size();
+            for (int i = 0; i &lt;size; i++) {
+                clapsPQ actual=pq.top();
+                minValue=min(actual.seconds,minValue);
+                int aplauden = pq.size()+q.size();
+                if(actual.minpeople&lt;=aplauden){
+                    if(flag)
+                        maxValue=actual.seconds;
+                    q.push(actual);
+                    maxValue=min(actual.seconds,maxValue);
+                    flag = false;
+                }
+                //Eliminamos todos os que no podrán aplaudir
+                pq.pop();
+            }
+            updatePQ(pq, q);
+            oneperson=max(oneperson,maxValue);
+        }
+        printf("%d\n",oneperson);
+        fastInput(people);
+    }
+    return 0;
 }</code></pre>
             </div>
         </section>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Meta Data -->
+    <title>Problem 327 of AceptaelReto - 327</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="🖥️ Solved problem of AceptaelReto number 327 with title 327. Discover the solution to the problem as well as some test cases or tips on some problems.">
+	<meta name="author" content="Isaac Lozano Osorio" />
+    <link rel="shortcut icon" href="../../../img/favicon.jpg" type="image/x-icon">
+	<meta name="reply-to" content="i.loozano97@gmail.com">
+	<link rev="made" href="mailto:i.loozano97@gmail.com">
+	<meta name="robots" content="ALL">
+	
+	<link rel="alternate" href="https://isaaclo97.github.io/en/problems/AceptaelReto/327.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/327.html" hreflang="es" />
+	
+	
+	<meta property="og:url" content="https://isaaclo97.github.io/en/problems/AceptaelReto/327.html">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Problem 327 of AceptaelReto - 327">
+	<meta property="og:description" content="🖥️ Solved problem of AceptaelReto number 327 with title 327. Discover the solution to the problem as well as some test cases or tips on some problems.">
+	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
+	<meta property="og:image" content="../../../img/favicon.jpg">
+	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@isaac_lozano_97">
+	<meta name="twitter:site" content="@isaac_lozano_97">
+
+    <!-- Stlylesheet -->
+	<link href="../../../css/owl.carousel.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/cubeportfolio.min.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/simple-line-icons.css" rel='stylesheet' type='text/css' />
+	<link href="../../../css/ionicons.min.css" rel='stylesheet' type='text/css' />		
+    <link href="../../../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="../../../css/style1.css" rel='stylesheet' type='text/css' />	
+    <link href="../../../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/prism.css" rel='stylesheet' type='text/css' />
+
+
+    <!-- Skin Color -->
+    <link rel="stylesheet" href="../../../css/colors/red.css" id="color-skins" />
+	
+	<script src="../../../js/translate.js"></script>
+	
+</head>
+
+<body>
+    <script src="../../../js/prism.js"></script>
+
+    <!--Start Header-->
+    <header>
+        <nav class="navbar navbar-default navbar-alt" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav  navbar-right">
+                        <li><a href="../../../en/index.html">Index</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#data2">Projects</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#portfolio">Technologies</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#team">Who I am?</a></li>
+                        <li class="to-section"><a href="../../../en/index.html#get-connected">Contact</a></li>
+                        <li class="to-section"><a href="../../../en/blog.html">Blog</a></li>
+						<li class="to-section"><a href="../../../en/ajedrez.html">Chess</a></li>
+                        <li class="to-section"><a href="../../../en/programacion.html">Competitive programming</a></li>
+						<li class="to-section">
+						<a href="#" onclick="translateWeb('es');return false;"  style="display: inline-block;" title="Español"><img src="../../../img/es.png" height="24" width="24" alt="es"></a>
+						<a href="#" onclick="translateWeb('en');return false;"  style="display: inline-block;" title="English"><img src="../../../img/en.png" height="24" width="24" alt="en"></a>
+						</li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    </header>
+    <!--End Header-->
+  <section id="quote" class="parallax-section-4">
+            <div class="container">
+                <div class="row wow fadeInUp">
+
+                    <div class="col-lg-12 wow fadeInUp" style="z-index:3">
+                        <div id="quote-slider" class="owl-carousel">
+                            <div>
+								<h1 style="font-size: 23px !important;" class="white wow fadeInDown">Competitive Programming</h1>
+                                <h4 class="quote-author highlight">Isaac Lozano Osorio</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Team Section -->
+        <section id="team">
+            <div class="container">
+
+                <div class="col-md-12 text-center wow fadeInUp">
+                    <h2 style="font-size: 20px;" class="section-title">Solution to the problem number 327 of AceptaelReto - 327.</h2>
+					 <p class="subheading wow fadeInUp">Any questions do not hesitate to contact.</p>
+                </div>
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+using namespace std;
+//https://oeis.org/A005179
+//https://link.springer.com/article/10.1007/s11139-014-9572-9
+
+int main() {
+    long long int n;
+    string res[] = {"+INF","1","2","4","6","16","12","64","24","36","48","1024","60","4096","192","144","120","65536","180","262144","240","576","3072","4194304","360","1296","12288","900","960","268435456","720","+INF","840","9216","196608","5184","1260","+INF","786432","36864","1680","+INF","2880","+INF","15360","3600","12582912","+INF","2520","46656","6480","589824","61440","+INF","6300","82944","6720","2359296","805306368","+INF","5040","+INF","+INF","14400","7560","331776","46080","+INF","983040","37748736","25920","+INF","10080","+INF","+INF","32400","3932160","746496","184320","+INF","15120","44100","+INF","+INF","20160","5308416","+INF","+INF","107520","+INF","25200","2985984","62914560","+INF","+INF","21233664","27720","+INF","233280","230400","45360","+INF","2949120","+INF","430080","129600","+INF","+INF","50400","+INF","414720","+INF","60480","+INF","11796480","339738624","+INF","921600","+INF","47775744","55440","60466176","+INF","+INF","+INF","810000","100800","+INF","83160","+INF","1658880","+INF","322560","191102976","+INF","176400","6881280","+INF","188743680","+INF","181440","+INF","+INF","241864704","110880","+INF","+INF","1166400","+INF","+INF","226800","+INF","27525120","14745600","3732480","+INF","1290240","+INF","+INF","+INF","166320","+INF","352800","+INF","+INF","2073600","+INF","+INF","221760","+INF","26542080","58982400","+INF","+INF","+INF","3240000","967680","+INF","+INF","+INF","277200","+INF","14929920","+INF","440401920","+INF","+INF","+INF","+INF","705600","106168320","+INF","332640","+INF","+INF","8294400","1632960","+INF","1612800","+INF","498960","+INF","+INF","+INF","20643840","+INF","+INF","943718400","3870720","+INF","907200","+INF","+INF","+INF","+INF","+INF","554400","+INF","+INF","+INF","2903040","+INF","+INF","+INF","665280","1587600","+INF","+INF","82575360","+INF","+INF","18662400","+INF","+INF","6451200","+INF","+INF","+INF","238878720","+INF","720720","+INF","302330880","2822400","+INF","29160000","+INF","+INF","+INF","+INF","5670000","+INF","1108800","+INF","+INF","132710400","1081080","+INF","+INF","+INF","11612160","+INF","+INF","+INF","3548160","+INF","955514880","+INF","+INF","+INF","1940400","+INF","61931520","74649600","+INF","51840000","+INF","+INF","+INF","+INF","1995840","+INF","+INF","+INF","+INF","530841600","+INF","+INF","1441440","+INF","+INF","+INF","+INF","+INF","8164800","+INF","+INF","11289600","+INF","+INF","2494800","+INF","+INF","+INF","247726080","+INF","103219200","+INF","26127360","+INF","+INF","+INF","14192640","+INF","+INF","6350400","+INF","+INF","+INF","+INF","2162160","+INF","+INF","+INF","3880800","207360000","+INF","+INF","+INF","+INF","14515200","+INF","+INF","+INF","+INF","+INF","2882880","+INF","+INF","+INF","185794560","+INF","412876800","729000000","+INF","+INF","+INF","+INF","+INF","+INF","22680000","45158400","10644480","+INF","+INF","+INF","+INF","+INF","+INF","+INF","3603600","+INF","+INF","+INF","104509440","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","39690000","+INF","+INF","7761600","+INF","743178240","+INF","+INF","+INF","4324320","466560000","+INF","+INF","+INF","+INF","58060800","+INF","17962560","+INF","+INF","+INF","17740800","+INF","+INF","+INF","6486480","+INF","+INF","+INF","+INF","21344400","+INF","+INF","227082240","+INF","+INF","+INF","+INF","+INF","+INF","+INF","42577920","+INF","+INF","+INF","9979200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","7207200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","31933440","57153600","+INF","+INF","+INF","+INF","+INF","+INF","8648640","+INF","17463600","+INF","+INF","+INF","+INF","+INF","908328960","+INF","+INF","722534400","+INF","+INF","130636800","+INF","+INF","+INF","+INF","+INF","70963200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","10810800","+INF","+INF","+INF","+INF","+INF","31046400","+INF","+INF","+INF","204120000","+INF","+INF","+INF","+INF","101606400","+INF","+INF","+INF","+INF","62370000","+INF","+INF","+INF","14414400","+INF","+INF","+INF","+INF","+INF","928972800","+INF","17297280","+INF","+INF","+INF","+INF","+INF","+INF","+INF","127733760","+INF","+INF","+INF","+INF","158760000","+INF","+INF","46126080","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","25225200","+INF","+INF","+INF","681246720","+INF","522547200","+INF","+INF","+INF","362880000","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","25945920","+INF","+INF","+INF","+INF","+INF","+INF","85377600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","21621600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","406425600","+INF","+INF","89812800","+INF","+INF","+INF","+INF","+INF","124185600","+INF","+INF","+INF","+INF","+INF","32432400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","287400960","+INF","+INF","+INF","+INF","+INF","+INF","+INF","184504320","+INF","+INF","+INF","+INF","+INF","69854400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","36756720","+INF","+INF","+INF","+INF","+INF","+INF","+INF","50450400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","159667200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","43243200","+INF","+INF","192099600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","914457600","+INF","+INF","+INF","+INF","+INF","+INF","249480000","+INF","496742400","+INF","138378240","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","61261200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","341510400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","436590000","+INF","+INF","+INF","+INF","+INF","100900800","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","73513440","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","638668800","+INF","+INF","+INF","233513280","+INF","+INF","+INF","+INF","+INF","+INF","+INF","230630400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","110270160","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","277477200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","553512960","+INF","+INF","+INF","+INF","+INF","+INF","+INF","129729600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","122522400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","415134720","+INF","628689600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","147026880","+INF","+INF","+INF","227026800","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","922521600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","768398400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","183783600","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","403603200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","810810000","+INF","+INF","+INF","+INF","+INF","+INF","+INF","245044800","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","294053760","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","691891200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","428828400","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","441080640","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","367567200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","551350800","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","908107200","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","698377680","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","857656800","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","+INF","735134400"};
+    while(scanf("%lld",&n)==1 && n!=0){
+        if (n > 1344) printf("+INF\n");
+        else cout&lt;&lt;res[n]&lt;&lt;'\n';
+    }
+    return 0;
+}</code></pre>
+            </div>
+        </section>
+         
+
+
+        <!-- Start Get Connected -->
+        <section id="get-connected" class="parallax-section-6">
+            <div class="container">
+
+                <div class="col-md-12 text-center">
+                    <h3 class="section-title white wow fadeInUp">Don't miss anything.</h3>
+                    <p class="subheading grey wow fadeInUp">Keep in touch with <span class="highlight">Isaac Lozano Osorio</span>!</p>
+                </div>
+
+                <div class="row text-center wow fadeInUp">
+                    <ul class="connected-icons text-center">
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://twitter.com/isaac_lozano_97">
+                                <span class="icon icon-social-twitter size-6x"></span>
+                                <h4 class="white">Twitter</h4>
+                                <span class="grey">Follow me</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio">
+                                <span class="icon icon-social-facebook size-6x"></span>
+                                <h4 class="white">Facebook</h4>
+                                <span class="grey">Follow me</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="https://github.com/isaaclo97">
+                                <span class="icon ion-social-octocat size-6x"></span>
+                                <h4 class="white">GitHub</h4>
+                                <span class="grey">Do you want to see my projects?</span>
+                            </a>
+                        </li>
+
+                        <li class="connected-icon">
+                            <a target="_blank" href="mailto:i.loozano97@gmail.com">
+                                <span class="icon icon-envelope-open size-6x"></span>
+                                <h4 class="white">Email</h4>
+                                <span class="grey">i.loozano97@gmail.com</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <!-- End Get Connected -->
+
+        <!-- Start Footer 1 -->
+        <footer id="footer">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <p>© 2018-2021 Isaac Lozano Osorio. All Rights Reserved. </p>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <ul id="social-icons">
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-twitter"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/isaac.lozanoosorio"><i class="icon ion-social-facebook"></i></a></li>
+                                <li><a target="_blank" href="https://github.com/isaaclo97"><i class="icon ion-social-octocat"></i></a></li>
+                                <li><a target="_blank" href="mailto:i.loozano97@gmail.com"><i class="icon ion-android-drafts"></i></a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Copyright -->
+
+        </footer>
+        <!-- End Footer 1 -->
+
+        <!-- Start Back To Top -->
+        <a id="back-to-top"><i class="icon ion-chevron-up"></i></a>
+        <!-- End Back To Top -->
+
+    </div>
+    <!-- End Site Wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../../js/plugins/jquery.min.js"></script>
+    <script src="../../../js/plugins/moderniz.min.js"></script>
+    <script src="../../../js/plugins/smoothscroll.min.js"></script>
+    <script src="../../../js/plugins/revslider.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/plugins/waypoints.min.js"></script>
+    <script src="../../../js/plugins/parallax.min.js"></script>
+    <script src="../../../js/plugins/easign1.3.min.js"></script>
+    <script src="../../../js/plugins/cubeportfolio.min.js"></script>
+    <script src="../../../js/plugins/owlcarousel.min.js"></script>
+    <script src="../../../js/plugins/wow.min.js"></script>
+    <script src="../../../js/plugins/counterup.min.js"></script>
+    <script src="../../../js/scripts.js"></script>
+    <script src="../../../js/bars.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+     <script type="text/javascript" charset="UTF-8" src="../../../load.js"></script>
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-69918439-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!--Start Cookie Script-->
+    <script type="text/javascript" charset="UTF-8" src="https://cookie-script.com/s/eccbdbc38f31ea25d1b3265195902907.js"></script>
+    <!--End Cookie Script-->
+
+</body>
+
+</html>

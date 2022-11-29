@@ -3,26 +3,26 @@
 
 <head>
 	<!-- Meta Data -->
-    <title>Problem 599 of AceptaelReto - 599</title>
+    <title>Problem 552 of AceptaelReto - 552</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="🖥️ Solved problem of AceptaelReto number 599 with title 599. Discover the solution to the problem as well as some test cases or tips on some problems.">
+    <meta name="description" content="🖥️ Solved problem of AceptaelReto number 552 with title 552. Discover the solution to the problem as well as some test cases or tips on some problems.">
 	<meta name="author" content="Isaac Lozano Osorio" />
     <link rel="shortcut icon" href="../../../img/favicon.jpg" type="image/x-icon">
 	<meta name="reply-to" content="i.loozano97@gmail.com">
 	<link rev="made" href="mailto:i.loozano97@gmail.com">
 	<meta name="robots" content="ALL">
 	
-	<link rel="alternate" href="https://isaaclo97.github.io/en/problems/AceptaelReto/599.html" hreflang="en" />
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/599.html" hreflang="es" />
+	<link rel="alternate" href="https://isaaclo97.github.io/en/problems/AceptaelReto/552.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/552.html" hreflang="es" />
 	
 	
-	<meta property="og:url" content="https://isaaclo97.github.io/en/problems/AceptaelReto/599.html">
+	<meta property="og:url" content="https://isaaclo97.github.io/en/problems/AceptaelReto/552.html">
 	<meta property="og:locale" content="en">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Problem 599 of AceptaelReto - 599">
-	<meta property="og:description" content="🖥️ Solved problem of AceptaelReto number 599 with title 599. Discover the solution to the problem as well as some test cases or tips on some problems.">
+	<meta property="og:title" content="Problem 552 of AceptaelReto - 552">
+	<meta property="og:description" content="🖥️ Solved problem of AceptaelReto number 552 with title 552. Discover the solution to the problem as well as some test cases or tips on some problems.">
 	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
 	<meta property="og:image" content="../../../img/favicon.jpg">
 	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
@@ -111,47 +111,83 @@
             <div class="container">
 
                 <div class="col-md-12 text-center wow fadeInUp">
-                    <h2 style="font-size: 20px;" class="section-title">Solution to the problem number 599 of AceptaelReto - 599.</h2>
+                    <h2 style="font-size: 20px;" class="section-title">Solution to the problem number 552 of AceptaelReto - 552.</h2>
 					 <p class="subheading wow fadeInUp">Any questions do not hesitate to contact.</p>
                 </div>
-                <pre><code class="language-cpp">import java.util.*;
-import java.lang.*;
-import java.io.*;
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+using namespace std;
 
-/**
- *
- * @author Isaac
- */
-public class Main
-{
-	static int solve(int size, int n, int[] cintas, int[] value, int[][][] memo, int size1, int id, int size2){
-	    if(size1>size || size2>size) return -0x3f3f3f; //si pasa del tamaño
-	    if(n==id) return 0; //ultima cinta
-	    int best = memo[size1][size2][id];
-	    if(best!=-1) return best;
-	    int v1 = solve(size,n,cintas,value,memo,size1+cintas[id],id+1,size2)+value[id];
-	    int v2 = solve(size,n,cintas,value,memo,size1,id+1,size2+cintas[id])+value[id];
-	    int v3 = solve(size,n,cintas,value,memo,size1,id+1,size2);
-	    return memo[size1][size2][id] = Math.max(v1,Math.max(v2,v3));
-	}
+//RIGHT LEFT TOP DOWN
+int dx[4] = {1, -1, 0, 0};
+int dy[4] = {0, 0, 1, -1};
 
-	public static void main (String[] args)
-	{
-        Scanner sc= new Scanner(System.in);
-        while(sc.hasNext()){
-            int n=sc.nextInt();
-            if(n==0) break;
-            int size=sc.nextInt();
-            int cintas[] = new int[n];
-			int value[] = new int[n];
-			int memo[][][] = new int[size+1][size+1][n];
-	        for(int i=0; i&lt;n;i++) { cintas[i]=sc.nextInt(); value[i]=sc.nextInt(); }
-	        for(int i=0; i&lt;size+1;i++)
-	            for(int j=0; j&lt;size+1;j++)
-	                for(int k=0; k&lt;n;k++) memo[i][j][k]=-1;
-            System.out.println(Math.max(0,solve(size,n,cintas,value,memo,0,0,0)));
+struct snake{
+    int x,y,move;
+};
+
+vector&lt;snake> serpiente;
+
+void move(int curMove) {
+    int curMoveBueno = curMove;
+    for(int j=0;j&lt;serpiente.size();j++) {
+        int nx = serpiente[j].x + dx[curMoveBueno];
+        int ny = serpiente[j].y + dy[curMoveBueno];
+        serpiente[j].x=nx; serpiente[j].y=ny;
+        curMove = serpiente[j].move; //modificar el siguiente con el movimiento del actual
+        serpiente[j].move=curMoveBueno;
+        curMoveBueno = curMove;
+    }
+}
+
+bool choca() {
+    map&lt;pair&lt;int,int>,int> choca;
+    for(int j=0;j&lt;serpiente.size();j++) {
+        if(choca[{serpiente[j].x,serpiente[j].y}]==1)
+            return true;
+        choca[{serpiente[j].x,serpiente[j].y}]=1;
+        if (serpiente[j].x &lt; 0 || serpiente[j].x >= 21 || serpiente[j].y &lt; 0 || serpiente[j].y >= 21) { //si toca un límite la cabeza muere
+            return true;
         }
     }
+    return false;
+}
+
+int main(){
+    int moves;
+    while(scanf("%d",&moves)==1 && moves!=0){
+        int totalMoves = 0,t;
+        string pos;
+        vector&lt;pair&lt;int,string>> V;
+        for(int i=0; i&lt;moves;i++){
+            cin>>t>>pos; V.push_back({t,pos});
+        }
+        V.push_back({100000000,"R"});
+        bool muerte = false;
+        int curMove = 2;
+        serpiente.clear();
+        for(int i=0;i&lt;10;i++){
+            serpiente.push_back({10,10-i,2});
+        }
+        for(int i=0; i&lt;=moves;i++){
+            if(muerte) break;
+            while(totalMoves!=V[i].first){
+                snake addNueva;
+                if(totalMoves%10==0) addNueva = serpiente[serpiente.size()-1];
+                move(curMove);
+                if(totalMoves%10==0 && i!=0) serpiente.push_back(addNueva);
+                muerte = choca();
+                if(muerte) break;
+                totalMoves++;
+            }
+            //RIGHT LEFT TOP DOWN
+            if(V[i].second=="R") curMove = 0;
+            if(V[i].second=="L") curMove = 1;
+            if(V[i].second=="U") curMove = 2;
+            if(V[i].second=="D") curMove = 3;
+        }
+        printf("%d\n",totalMoves);
+    }
+    return 0;
 }</code></pre>
             </div>
         </section>

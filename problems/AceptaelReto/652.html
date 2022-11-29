@@ -3,26 +3,26 @@
 
 <head>
 	<!-- Meta Data -->
-    <title>Problema 599 de AceptaelReto - 599</title>
+    <title>Problema 652 de AceptaelReto - 652</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
+    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 652 con título 652. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
 	<meta name="author" content="Isaac Lozano Osorio" />
     <link rel="shortcut icon" href="../../img/favicon.jpg" type="image/x-icon">
 	<meta name="reply-to" content="i.loozano97@gmail.com">
 	<link rev="made" href="mailto:i.loozano97@gmail.com">
 	<meta name="robots" content="ALL">
 	
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/599.html" hreflang="en" />
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/599.html" hreflang="es" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/652.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/652.html" hreflang="es" />
 	
 	
-	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/599.html">
+	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/652.html">
 	<meta property="og:locale" content="es">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Problema 599 de AceptaelReto - 599">
-	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
+	<meta property="og:title" content="Problema 652 de AceptaelReto - 652">
+	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 652 con título 652. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
 	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
 	<meta property="og:image" content="../../img/favicon.jpg">
 	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
@@ -111,47 +111,66 @@
             <div class="container">
 
                 <div class="col-md-12 text-center wow fadeInUp">
-                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 599 de AceptaelReto - 599.</h2>
+                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 652 de AceptaelReto - 652.</h2>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">import java.util.*;
-import java.lang.*;
-import java.io.*;
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+using namespace std;
 
-/**
- *
- * @author Isaac
- */
-public class Main
-{
-	static int solve(int size, int n, int[] cintas, int[] value, int[][][] memo, int size1, int id, int size2){
-	    if(size1>size || size2>size) return -0x3f3f3f; //si pasa del tamaño
-	    if(n==id) return 0; //ultima cinta
-	    int best = memo[size1][size2][id];
-	    if(best!=-1) return best;
-	    int v1 = solve(size,n,cintas,value,memo,size1+cintas[id],id+1,size2)+value[id];
-	    int v2 = solve(size,n,cintas,value,memo,size1,id+1,size2+cintas[id])+value[id];
-	    int v3 = solve(size,n,cintas,value,memo,size1,id+1,size2);
-	    return memo[size1][size2][id] = Math.max(v1,Math.max(v2,v3));
-	}
-
-	public static void main (String[] args)
-	{
-        Scanner sc= new Scanner(System.in);
-        while(sc.hasNext()){
-            int n=sc.nextInt();
-            if(n==0) break;
-            int size=sc.nextInt();
-            int cintas[] = new int[n];
-			int value[] = new int[n];
-			int memo[][][] = new int[size+1][size+1][n];
-	        for(int i=0; i&lt;n;i++) { cintas[i]=sc.nextInt(); value[i]=sc.nextInt(); }
-	        for(int i=0; i&lt;size+1;i++)
-	            for(int j=0; j&lt;size+1;j++)
-	                for(int k=0; k&lt;n;k++) memo[i][j][k]=-1;
-            System.out.println(Math.max(0,solve(size,n,cintas,value,memo,0,0,0)));
-        }
+// Function to find Nth number in base 9
+long long int findNthNumber(long long int N){
+    long long int result = 0;
+    long long int p = 1;
+    while (N > 0) {
+        result += (p * (N % 9));
+        N = N / 9;
+        p = p * 10;
     }
+    return result;
+}
+
+long long int val(char c) {
+    if (c >= '0' && c &lt;= '9') return (long long int)c - '0';
+    else return (long long int)c - 'A' + 10;
+}
+
+long long int convert_decimal(string str, int base) {
+    long long int len = str.length();
+    long long int power = 1;
+    long long int num = 0;
+    for (int i = len - 1; i >= 0; i--) {
+        num += val(str[i]) * power;
+        power = power * base;
+    }
+    return num;
+}
+
+
+int main(){
+    long long int n,n1;
+    int D = 5;
+    while(scanf("%lld %lld",&n,&n1)==2) {
+        string num = to_string(n);
+        string num1 = to_string(n1);
+        for(int i=0; i&lt;num.length();i++){
+            if(num[i]>=D+'0') num[i]--;
+        }
+        for(int i=0; i&lt;num1.length();i++){
+            if(num1[i]>=D+'0') num1[i]--;
+        }
+        long long int res = convert_decimal(num,9);
+        long long int res1 = convert_decimal(num1,9);
+
+        long long int mult = res*res1;
+        //cout&lt;&lt;res&lt;&lt;" "&lt;&lt;res1&lt;&lt;" "&lt;&lt;mult&lt;&lt;endl;
+        long long int sol = findNthNumber(mult);
+        string numSol = to_string(sol);
+        for(int i=0; i&lt;numSol.length();i++){
+            if(numSol[i]>=D+'0') numSol[i]++;
+        }
+        cout&lt;&lt;numSol&lt;&lt;endl;
+    }
+    return 0;
 }</code></pre>
             </div>
         </section>

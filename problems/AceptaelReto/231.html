@@ -3,26 +3,26 @@
 
 <head>
 	<!-- Meta Data -->
-    <title>Problema 599 de AceptaelReto - 599</title>
+    <title>Problema 231 de AceptaelReto - 231</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
+    <meta name="description" content="🖥️ Problema resuelto de AceptaelReto número 231 con título 231. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas. ">
 	<meta name="author" content="Isaac Lozano Osorio" />
     <link rel="shortcut icon" href="../../img/favicon.jpg" type="image/x-icon">
 	<meta name="reply-to" content="i.loozano97@gmail.com">
 	<link rev="made" href="mailto:i.loozano97@gmail.com">
 	<meta name="robots" content="ALL">
 	
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/599.html" hreflang="en" />
-	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/599.html" hreflang="es" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/en/231.html" hreflang="en" />
+	<link rel="alternate" href="https://isaaclo97.github.io/problems/AceptaelReto/231.html" hreflang="es" />
 	
 	
-	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/599.html">
+	<meta property="og:url" content="https://isaaclo97.github.io/problems/AceptaelReto/231.html">
 	<meta property="og:locale" content="es">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Problema 599 de AceptaelReto - 599">
-	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 599 con título 599. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
+	<meta property="og:title" content="Problema 231 de AceptaelReto - 231">
+	<meta property="og:description" content="🖥️ Problema resuelto de AceptaelReto número 231 con título 231. Descubre la solución al problema al igual que algunos casos de prueba o consejos en algunos problemas.">
 	<meta property="article:publisher" content="https://www.facebook.com/isaac.lozanoosorio">
 	<meta property="og:image" content="../../img/favicon.jpg">
 	<meta property="article:modified_time" content="2021-02-11T18:33:24+00:00">
@@ -111,47 +111,89 @@
             <div class="container">
 
                 <div class="col-md-12 text-center wow fadeInUp">
-                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 599 de AceptaelReto - 599.</h2>
+                    <h2 style="font-size: 20px;" class="section-title">Solución al problema número 231 de AceptaelReto - 231.</h2>
 					 <p class="subheading wow fadeInUp">Cualquier duda no dudes en contactar.</p>
                 </div>
-                <pre><code class="language-cpp">import java.util.*;
-import java.lang.*;
-import java.io.*;
+                <pre><code class="language-cpp">#include &lt;bits/stdc++.h>
+using namespace std;
 
-/**
- *
- * @author Isaac
- */
-public class Main
-{
-	static int solve(int size, int n, int[] cintas, int[] value, int[][][] memo, int size1, int id, int size2){
-	    if(size1>size || size2>size) return -0x3f3f3f; //si pasa del tamaño
-	    if(n==id) return 0; //ultima cinta
-	    int best = memo[size1][size2][id];
-	    if(best!=-1) return best;
-	    int v1 = solve(size,n,cintas,value,memo,size1+cintas[id],id+1,size2)+value[id];
-	    int v2 = solve(size,n,cintas,value,memo,size1,id+1,size2+cintas[id])+value[id];
-	    int v3 = solve(size,n,cintas,value,memo,size1,id+1,size2);
-	    return memo[size1][size2][id] = Math.max(v1,Math.max(v2,v3));
-	}
+struct n {
+    char d;
+    n *l;
+    n *r;
+};
 
-	public static void main (String[] args)
-	{
-        Scanner sc= new Scanner(System.in);
-        while(sc.hasNext()){
-            int n=sc.nextInt();
-            if(n==0) break;
-            int size=sc.nextInt();
-            int cintas[] = new int[n];
-			int value[] = new int[n];
-			int memo[][][] = new int[size+1][size+1][n];
-	        for(int i=0; i&lt;n;i++) { cintas[i]=sc.nextInt(); value[i]=sc.nextInt(); }
-	        for(int i=0; i&lt;size+1;i++)
-	            for(int j=0; j&lt;size+1;j++)
-	                for(int k=0; k&lt;n;k++) memo[i][j][k]=-1;
-            System.out.println(Math.max(0,solve(size,n,cintas,value,memo,0,0,0)));
+int top = -1;
+n *a[20005];
+
+void push(n *tree) {
+    top++;
+    a[top] = tree;
+}
+n *pop() {
+    top--;
+    return a[top + 1];
+}
+void construct_expression_tree(string s) {
+    n *newl, *p1, *p2;
+    for (int i = 0; i&lt;s.length(); i++) {
+        if (! (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i]== '/' || s[i]== '%')) {
+            newl = new n;
+            newl->d = s[i];
+            newl->l = NULL;
+            newl->r = NULL;
+            push(newl);
+        } else {
+            p1 = pop();
+            p2 = pop();
+            newl = new n;
+            newl->d = s[i];
+            newl->l = p2;
+            newl->r = p1;
+            push(newl);
         }
     }
+}
+
+vector&lt;char> levelOrder(n *tree){
+    vector&lt;char> levels;
+     if (tree != NULL) {
+            queue&lt;n*> pendientes;
+            pendientes.push(tree);
+            while (!pendientes.empty()) {
+                n *sig = pendientes.front();
+                pendientes.pop();
+                levels.push_back(sig->d);
+                if (sig->l != NULL)
+                    pendientes.push(sig->l);
+                if (sig->r != NULL)
+                    pendientes.push(sig->r);
+            }
+    }
+    return levels;
+}
+
+void inOrder(n *tree) {
+    if (tree != NULL) {
+        inOrder(tree->l);
+        inOrder(tree->r);
+        delete tree;
+    }
+}
+
+int main() {
+    string pf;
+    while(getline(cin,pf)) {
+        top = -1;
+        construct_expression_tree(pf);
+        vector&lt;char> sol = levelOrder(a[0]);
+        for (int i = sol.size() -1; i >= 0; i--){
+            cout &lt;&lt; sol[i];
+        }
+        printf("\n");
+        inOrder(a[0]);
+    }
+    return 0;
 }</code></pre>
             </div>
         </section>
