@@ -1,0 +1,235 @@
+<script>
+const RESOURCES = [
+  {id: "template", url: "/resources/template/"},
+  {id: "BinaryTree", url: "/resources/BinaryTree/"},
+  {id: "BIT", url: "/resources/BIT/"},
+  {id: "PriorityQueue", url: "/resources/PriorityQueue/"},
+  {id: "SegmentTree", url: "/resources/SegmentTree/"},
+  {id: "Trie", url: "/resources/Trie/"},
+  {id: "CanFormQuadrangle", url: "/resources/CanFormQuadrangle/"},
+  {id: "CanFormTriangle", url: "/resources/CanFormTriangle/"},
+  {id: "CompetitiveProgramming3Circles", url: "/resources/CompetitiveProgramming3Circles/"},
+  {id: "CompetitiveProgramming3PointAndLinesLibrary", url: "/resources/CompetitiveProgramming3PointAndLinesLibrary/"},
+  {id: "CompetitiveProgramming3Polygon", url: "/resources/CompetitiveProgramming3Polygon/"},
+  {id: "CompetitiveProgramming3Triangles", url: "/resources/CompetitiveProgramming3Triangles/"},
+  {id: "GeometryLibraryV4", url: "/resources/GeometryLibraryV4/"},
+  {id: "Geometry_Polygon_Library", url: "/resources/Geometry_Polygon_Library/"},
+  {id: "hasIntersectQuadrangles", url: "/resources/hasIntersectQuadrangles/"},
+  {id: "HeronWithMedians", url: "/resources/HeronWithMedians/"},
+  {id: "inCircle", url: "/resources/inCircle/"},
+  {id: "insideCircle", url: "/resources/insideCircle/"},
+  {id: "newConvexHull", url: "/resources/newConvexHull/"},
+  {id: "PolygonConvex", url: "/resources/PolygonConvex/"},
+  {id: "PolygonPerimeter", url: "/resources/PolygonPerimeter/"},
+  {id: "QuarterCircles", url: "/resources/QuarterCircles/"},
+  {id: "ArticulationPointAndBridges", url: "/resources/ArticulationPointAndBridges/"},
+  {id: "BFS-DFS", url: "/resources/BFS-DFS/"},
+  {id: "Ciclos", url: "/resources/Ciclos/"},
+  {id: "Componentes_conexas", url: "/resources/Componentes_conexas/"},
+  {id: "ConnectedComponents", url: "/resources/ConnectedComponents/"},
+  {id: "Dijkstra", url: "/resources/Dijkstra/"},
+  {id: "Dinic", url: "/resources/Dinic/"},
+  {id: "EuclidesAlgorithm", url: "/resources/EuclidesAlgorithm/"},
+  {id: "EulerianCycle", url: "/resources/EulerianCycle/"},
+  {id: "EulerianPath", url: "/resources/EulerianPath/"},
+  {id: "FloydWarshall", url: "/resources/FloydWarshall/"},
+  {id: "Hopcroft-Karp", url: "/resources/Hopcroft-Karp/"},
+  {id: "Hungarian", url: "/resources/Hungarian/"},
+  {id: "Kruskal", url: "/resources/Kruskal/"},
+  {id: "LCA", url: "/resources/LCA/"},
+  {id: "MaxBipartiteMaching", url: "/resources/MaxBipartiteMaching/"},
+  {id: "MaxFlow", url: "/resources/MaxFlow/"},
+  {id: "MaxflowMinCap", url: "/resources/MaxflowMinCap/"},
+  {id: "MinCostMaxFlow", url: "/resources/MinCostMaxFlow/"},
+  {id: "MinCut", url: "/resources/MinCut/"},
+  {id: "Prim", url: "/resources/Prim/"},
+  {id: "PushRelabel", url: "/resources/PushRelabel/"},
+  {id: "StronglyConnectedComponents", url: "/resources/StronglyConnectedComponents/"},
+  {id: "Topologicalsort", url: "/resources/Topologicalsort/"},
+  {id: "BinomialModPrime", url: "/resources/BinomialModPrime/"},
+  {id: "GCDLCM", url: "/resources/GCDLCM/"},
+  {id: "CatalanNumber", url: "/resources/CatalanNumber/"},
+  {id: "CoeficienteBinomial", url: "/resources/CoeficienteBinomial/"},
+  {id: "EulerianNumbers", url: "/resources/EulerianNumbers/"},
+  {id: "FubiniNumbers", url: "/resources/FubiniNumbers/"},
+  {id: "Karatsuba", url: "/resources/Karatsuba/"},
+  {id: "ModuloFactorial", url: "/resources/ModuloFactorial/"},
+  {id: "NumerosPrimos", url: "/resources/NumerosPrimos/"},
+  {id: "PartitionsOfSets-BellNumbers", url: "/resources/PartitionsOfSets-BellNumbers/"},
+  {id: "Sieve", url: "/resources/Sieve/"},
+  {id: "ReducirFila", url: "/resources/ReducirFila/"},
+  {id: "SistemasEcuacionesLineales-Inversa", url: "/resources/SistemasEcuacionesLineales-Inversa/"},
+  {id: "AhoCorasick", url: "/resources/AhoCorasick/"},
+  {id: "KMP", url: "/resources/KMP/"},
+  {id: "Knuth-Morris-Pratt", url: "/resources/Knuth-Morris-Pratt/"},
+  {id: "Manacher", url: "/resources/Manacher/"},
+  {id: "MinRotation", url: "/resources/MinRotation/"},
+  {id: "SuffixArray", url: "/resources/SuffixArray/"},
+  {id: "Z", url: "/resources/Z/"},
+  {id: "BellManFord", url: "/resources/BellManFord/"},
+  {id: "BinarySearch", url: "/resources/BinarySearch/"},
+  {id: "BITRange", url: "/resources/BITRange/"},
+  {id: "BusquedaBinaria", url: "/resources/BusquedaBinaria/"},
+  {id: "CountingInversionswithBIT", url: "/resources/CountingInversionswithBIT/"},
+  {id: "DigitCountDP", url: "/resources/DigitCountDP/"},
+  {id: "EditDistance", url: "/resources/EditDistance/"},
+  {id: "EDITDISTANCE_DP_PATTERN", url: "/resources/EDITDISTANCE_DP_PATTERN/"},
+  {id: "FASTINPUT", url: "/resources/FASTINPUT/"},
+  {id: "hanoi", url: "/resources/hanoi/"},
+  {id: "JosephusProblem", url: "/resources/JosephusProblem/"},
+  {id: "Knapsack Problem Dynamic Programming", url: "/resources/Knapsack%20Problem%20Dynamic%20Programming/"},
+  {id: "Latitude-Longitude", url: "/resources/Latitude-Longitude/"},
+  {id: "LCS", url: "/resources/LCS/"},
+  {id: "LinearDionphanatic", url: "/resources/LinearDionphanatic/"},
+  {id: "LIS", url: "/resources/LIS/"},
+  {id: "Longest Common Subsequence - DP Explanation", url: "/resources/Longest%20Common%20Subsequence%20-%20DP%20Explanation/"},
+  {id: "LongestCommonSubsequence", url: "/resources/LongestCommonSubsequence/"},
+  {id: "LongestIncreasingCommonSubsequence", url: "/resources/LongestIncreasingCommonSubsequence/"},
+  {id: "matFastPow", url: "/resources/matFastPow/"},
+  {id: "Matrix Chain Multiplication", url: "/resources/Matrix%20Chain%20Multiplication/"},
+  {id: "MatrixChainMultiplication", url: "/resources/MatrixChainMultiplication/"},
+  {id: "Mix", url: "/resources/Mix/"},
+  {id: "NextPermutation", url: "/resources/NextPermutation/"},
+  {id: "PalindromeString", url: "/resources/PalindromeString/"},
+  {id: "PartitionsInteger", url: "/resources/PartitionsInteger/"},
+  {id: "StableMarriageProblem", url: "/resources/StableMarriageProblem/"},
+  {id: "TernarySearch", url: "/resources/TernarySearch/"},
+  {id: "VeniceTechnique", url: "/resources/VeniceTechnique/"},
+  {id: "multinomial", url: "/resources/multinomial/"},
+  {id: "Angle", url: "/resources/Angle/"},
+  {id: "circle2PtsRad", url: "/resources/circle2PtsRad/"},
+  {id: "CircleIntersection", url: "/resources/CircleIntersection/"},
+  {id: "circleTangents", url: "/resources/circleTangents/"},
+  {id: "circumcircle", url: "/resources/circumcircle/"},
+  {id: "closestPair", url: "/resources/closestPair/"},
+  {id: "ConvexHull", url: "/resources/ConvexHull/"},
+  {id: "inCircumCircle", url: "/resources/inCircumCircle/"},
+  {id: "insidePolygon", url: "/resources/insidePolygon/"},
+  {id: "linearTransformation", url: "/resources/linearTransformation/"},
+  {id: "lineDistance", url: "/resources/lineDistance/"},
+  {id: "LineHullIntersection", url: "/resources/LineHullIntersection/"},
+  {id: "lineIntersection", url: "/resources/lineIntersection/"},
+  {id: "lineIntersectionv2", url: "/resources/lineIntersectionv2/"},
+  {id: "MinimumEnclosingCircle", url: "/resources/MinimumEnclosingCircle/"},
+  {id: "onSegment", url: "/resources/onSegment/"},
+  {id: "Point", url: "/resources/Point/"},
+  {id: "Point3D", url: "/resources/Point3D/"},
+  {id: "PointInsideHull", url: "/resources/PointInsideHull/"},
+  {id: "pointsToLine", url: "/resources/pointsToLine/"},
+  {id: "PolygonArea", url: "/resources/PolygonArea/"},
+  {id: "PolygonAreav2", url: "/resources/PolygonAreav2/"},
+  {id: "PolygonCenter", url: "/resources/PolygonCenter/"},
+  {id: "PolygonCenterOfMass", url: "/resources/PolygonCenterOfMass/"},
+  {id: "PolygonCut", url: "/resources/PolygonCut/"},
+  {id: "PolygonDiameter", url: "/resources/PolygonDiameter/"},
+  {id: "PolyhedronVolume", url: "/resources/PolyhedronVolume/"},
+  {id: "SegmentDistance", url: "/resources/SegmentDistance/"},
+  {id: "SegmentIntersection", url: "/resources/SegmentIntersection/"},
+  {id: "segmentIntersectionPoint", url: "/resources/segmentIntersectionPoint/"},
+  {id: "SegmentIntersectionQ", url: "/resources/SegmentIntersectionQ/"},
+  {id: "sideOf", url: "/resources/sideOf/"},
+  {id: "sphericalDistance", url: "/resources/sphericalDistance/"},
+  {id: "eratosthenes", url: "/resources/eratosthenes/"},
+  {id: "euclid", url: "/resources/euclid/"},
+  {id: "factor", url: "/resources/factor/"},
+  {id: "MillerRabin", url: "/resources/MillerRabin/"},
+  {id: "ModInverse", url: "/resources/ModInverse/"},
+  {id: "ModMulLL", url: "/resources/ModMulLL/"},
+  {id: "ModPow", url: "/resources/ModPow/"},
+  {id: "ModSqrt", url: "/resources/ModSqrt/"},
+  {id: "ModSum", url: "/resources/ModSum/"},
+  {id: "ModularArithmetic", url: "/resources/ModularArithmetic/"},
+  {id: "Determinant", url: "/resources/Determinant/"},
+  {id: "MatrixInverse", url: "/resources/MatrixInverse/"},
+  {id: "PolyInterpolate", url: "/resources/PolyInterpolate/"},
+  {id: "Polynomial", url: "/resources/Polynomial/"},
+  {id: "PolyRoots", url: "/resources/PolyRoots/"},
+  {id: "SolveLinear", url: "/resources/SolveLinear/"},
+  {id: "SolveLinear2", url: "/resources/SolveLinear2/"},
+  {id: "Simplex", url: "/resources/Simplex/"},
+  {id: "Tridiagonal", url: "/resources/Tridiagonal/"},
+  {id: "botAER", url: "/resources/botAER/"},
+  {id: "botSpoj", url: "/resources/botSpoj/"},
+  {id: "botURJC", url: "/resources/botURJC/"},
+  {id: "ClasificationAER", url: "/resources/ClasificationAER/"},
+  {id: "Clasificación Acepta el Reto", url: "/resources/codes/Clasification.html"},
+];
+</script>
+
+<div style="margin-bottom:1rem; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;">
+  <input id="res-search" type="text" placeholder="Buscar algoritmo..." autocomplete="off"
+    style="padding:.45rem .75rem; border:1px solid #ccc; border-radius:4px; font-size:.95rem; flex:1; min-width:180px;">
+  <span id="res-count" style="font-size:.85rem; color:#666;"></span>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover" style="font-size:.95rem;">
+    <thead>
+      <tr>
+        <th style="width:70%">Título</th>
+        <th>Enlace</th>
+      </tr>
+    </thead>
+    <tbody id="res-tbody"></tbody>
+  </table>
+</div>
+
+<nav id="res-pagination" aria-label="Paginación" style="margin-top:1rem;"></nav>
+
+<script>
+(function () {
+  const PER_PAGE = 15;
+  let filtered = RESOURCES.slice();
+  let currentPage = 1;
+
+  const tbody   = document.getElementById('res-tbody');
+  const paginav = document.getElementById('res-pagination');
+  const counter = document.getElementById('res-count');
+  const input   = document.getElementById('res-search');
+
+  function render() {
+    const total = filtered.length;
+    const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+    currentPage = Math.min(currentPage, pages);
+    const start = (currentPage - 1) * PER_PAGE;
+    const slice = filtered.slice(start, start + PER_PAGE);
+
+    tbody.innerHTML = slice.map(r =>
+      `<tr><td>${r.id}</td><td><a href="${r.url}">Ver código</a></td></tr>`
+    ).join('');
+
+    counter.textContent = `${total} recurso${total !== 1 ? 's' : ''}`;
+
+    if (pages <= 1) { paginav.innerHTML = ''; return; }
+
+    let btns = '';
+    const prevDis = currentPage === 1 ? 'disabled' : '';
+    const nextDis = currentPage === pages ? 'disabled' : '';
+    btns += `<button class="btn btn-sm btn-outline-primary" ${prevDis} onclick="resPage(${currentPage-1})">‹ Anterior</button> `;
+
+    const w = 2, lo = Math.max(1, currentPage - w), hi = Math.min(pages, currentPage + w);
+    if (lo > 1) btns += `<button class="btn btn-sm btn-outline-secondary" onclick="resPage(1)">1</button> `;
+    if (lo > 2) btns += `<span style="padding:0 .3rem">…</span>`;
+    for (let i = lo; i <= hi; i++) {
+      const active = i === currentPage ? 'btn-primary' : 'btn-outline-primary';
+      btns += `<button class="btn btn-sm ${active}" onclick="resPage(${i})">${i}</button> `;
+    }
+    if (hi < pages - 1) btns += `<span style="padding:0 .3rem">…</span>`;
+    if (hi < pages) btns += `<button class="btn btn-sm btn-outline-secondary" onclick="resPage(${pages})">${pages}</button> `;
+    btns += `<button class="btn btn-sm btn-outline-primary" ${nextDis} onclick="resPage(${currentPage+1})">Siguiente ›</button>`;
+
+    paginav.innerHTML = `<div style="display:flex;gap:.25rem;flex-wrap:wrap;align-items:center;">${btns}</div>`;
+  }
+
+  window.resPage = function(p) { currentPage = p; render(); };
+
+  input.addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    filtered = q ? RESOURCES.filter(r => r.id.toLowerCase().includes(q)) : RESOURCES.slice();
+    currentPage = 1;
+    render();
+  });
+
+  render();
+})();
+</script>

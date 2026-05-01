@@ -1,0 +1,17 @@
+- id: paper-conference
+  translation: Congreso
+
+- id: pub_article_journal
+  translation: Revista
+
+- id: pub_1
+  translation: Congreso
+
+- id: pub_2
+  translation: Revista
+
+- id: pub_6
+  translation: Libro
+
+- id: pub_7
+  translation: Tesis

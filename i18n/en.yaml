@@ -1,0 +1,32 @@
+- id: paper-conference
+  translation: Conference
+
+- id: pub_article_journal
+  translation: Journal
+
+- id: pub_1
+  translation: Conference
+
+- id: pub_2
+  translation: Journal
+
+- id: pub_6
+  translation: Book
+
+- id: pub_7
+  translation: Thesis
+
+- id: publication_type
+  translation: Type
+
+- id: date
+  translation: Date
+
+- id: search_placeholder
+  translation: Search...
+
+- id: more_publications
+  translation: See all publications
+
+- id: present
+  translation: Present

@@ -1,0 +1,112 @@
+{{- define "main" -}}
+
+{{ partial "page_header.html" . }}
+
+<div class="universal-wrapper">
+
+  {{ with .Content }}
+  <div class="article-style" style="margin-bottom:1.5rem;">{{ . }}</div>
+  {{ end }}
+
+  {{/* Build JS array with all problems */}}
+  {{ $pages := .Pages }}
+  <script>
+    const PROBLEMS = [
+      {{ range $pages }}{{ $id := index (last 2 (split .RelPermalink "/")) 0 }}{ id: "{{ $id }}", url: "{{ .RelPermalink }}" },
+      {{ end }}
+    ];
+  </script>
+
+  <!-- Search box -->
+  <div style="margin-bottom:1rem; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;">
+    <input id="prob-search" type="text" placeholder="Buscar problema..." autocomplete="off"
+      style="padding:.45rem .75rem; border:1px solid #ccc; border-radius:4px; font-size:.95rem; flex:1; min-width:180px;">
+    <span id="prob-count" style="font-size:.85rem; color:#666;"></span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-hover" style="font-size:.95rem;">
+      <thead>
+        <tr>
+          <th style="width:60%">Problema</th>
+          <th>Enlace</th>
+        </tr>
+      </thead>
+      <tbody id="prob-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <nav id="prob-pagination" aria-label="Paginación" style="margin-top:1rem;"></nav>
+
+</div>
+
+<script>
+(function () {
+  const PER_PAGE = 10;
+  let filtered = PROBLEMS.slice();
+  let currentPage = 1;
+
+  const tbody   = document.getElementById('prob-tbody');
+  const paginav = document.getElementById('prob-pagination');
+  const counter = document.getElementById('prob-count');
+  const input   = document.getElementById('prob-search');
+
+  function render() {
+    const total = filtered.length;
+    const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+    currentPage = Math.min(currentPage, pages);
+    const start = (currentPage - 1) * PER_PAGE;
+    const slice = filtered.slice(start, start + PER_PAGE);
+
+    // Table rows
+    tbody.innerHTML = slice.map(p =>
+      `<tr>
+        <td>${p.id}</td>
+        <td><a href="${p.url}">Ver solución</a></td>
+      </tr>`
+    ).join('');
+
+    // Counter
+    counter.textContent = `${total} problema${total !== 1 ? 's' : ''}`;
+
+    // Pagination buttons
+    if (pages <= 1) { paginav.innerHTML = ''; return; }
+
+    let btns = '';
+    const prevDis = currentPage === 1 ? 'disabled' : '';
+    const nextDis = currentPage === pages ? 'disabled' : '';
+    btns += `<button class="btn btn-sm btn-outline-primary" ${prevDis} onclick="goPage(${currentPage-1})">‹ Anterior</button> `;
+
+    // Show window of page numbers
+    const w = 2;
+    const lo = Math.max(1, currentPage - w);
+    const hi = Math.min(pages, currentPage + w);
+    if (lo > 1)  btns += `<button class="btn btn-sm btn-outline-secondary" onclick="goPage(1)">1</button> `;
+    if (lo > 2)  btns += `<span style="padding:0 .3rem">…</span>`;
+    for (let i = lo; i <= hi; i++) {
+      const active = i === currentPage ? 'btn-primary' : 'btn-outline-primary';
+      btns += `<button class="btn btn-sm ${active}" onclick="goPage(${i})">${i}</button> `;
+    }
+    if (hi < pages - 1) btns += `<span style="padding:0 .3rem">…</span>`;
+    if (hi < pages)     btns += `<button class="btn btn-sm btn-outline-secondary" onclick="goPage(${pages})">${pages}</button> `;
+    btns += `<button class="btn btn-sm btn-outline-primary" ${nextDis} onclick="goPage(${currentPage+1})">Siguiente ›</button>`;
+
+    paginav.innerHTML = `<div style="display:flex;gap:.25rem;flex-wrap:wrap;align-items:center;">${btns}</div>`;
+  }
+
+  window.goPage = function(p) { currentPage = p; render(); window.scrollTo(0,0); };
+
+  input.addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    filtered = q ? PROBLEMS.filter(p => p.id.toLowerCase().includes(q)) : PROBLEMS.slice();
+    currentPage = 1;
+    render();
+  });
+
+  render();
+})();
+</script>
+
+{{- end -}}

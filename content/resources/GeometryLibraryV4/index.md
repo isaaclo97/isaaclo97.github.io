@@ -1,0 +1,781 @@
+---
+title: "Algoritmo de GeometryLibraryV4."
+type: page
+---
+
+```cpp
+#include <bits/stdc++.h>
+#define EPS 10e-9
+using namespace std;
+
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
+#define FOR(i, a, b) for(int i = (a); i < int(b); i++)
+#define trav(i, v) for(auto &i : v)
+#define has(c, e) ((c).find(e) != (c).end())
+#define sz(c) int((c).size())
+#define all(c) c.begin(), c.end()
+#define debug(x) cerr << #x << ": " << x << endl;
+
+typedef double T;
+template<class T>
+struct P {
+    T x, y;
+
+    explicit P(T a = 0, T b = 0) : x(a), y(b) {
+    }
+
+    bool operator<(P p) const {
+        return tie(x, y) < tie(p.x, p.y);
+    }
+
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+
+    P operator*(T d) const {
+        return P(x*d, y * d);
+    }
+
+    P operator/(T d) const {
+        return P(x / d, y / d);
+    }
+
+    T dot(P p) const {
+        return x * p.x + y * p.y;
+    }
+
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
+
+    T cross(P a, P b) const {
+        return (a - * this).cross(b - * this);
+    }
+
+    T dist2() const {
+        return x * x + y*y;
+    }
+
+    double dist() const {
+        return sqrt((double) dist2());
+    }
+    // angle to x-axis in interval [-pi, pi]
+
+    double angle() const {
+        return atan2(y, x);
+    }
+
+    P unit() const {
+        return *this / dist();
+    } // makes dist()=1
+
+    P perp() const {
+        return P(-y, x);
+    } // rotates +90 degrees
+
+    P normal() const {
+        return perp().unit();
+    }
+    // returns P rotated a radians ccw around the origin
+
+    P rotate(double a) const {
+        return P(x * cos(a) - y * sin(a), x * sin(a) + y * cos(a));
+    }
+};
+
+template<class P>
+double lineDist(const P& a, const P& b, const P& p) {
+    return (double) (b - a).cross(p - a) / (b - a).dist();
+}
+template<class P>
+double segDist(P& s, P& e, P& p) {
+    if (s == e) return (p - s).dist();
+    auto d = (e - s).dist2(), t = min(d, max(.0, (p - s).dot(e - s)));
+    return ((p - s) * d - (e - s) * t).dist() / d;
+}
+template <class P>
+int segmentIntersection(const P& s1, const P& e1,
+        const P& s2, const P& e2, P& r1, P& r2) {
+    if (e1 == s1) {
+        if (e2 == s2) {
+            if (e1 == e2) {
+                r1 = e1;
+                return 1;
+            }//all equal
+            else return 0; //different P segments
+        } else return segmentIntersection(s2, e2, s1, e1, r1, r2); //swap
+    }
+    //segment directions and separation
+    P v1 = e1 - s1, v2 = e2 - s2, d = s2 - s1;
+    auto a = v1.cross(v2), a1 = v1.cross(d), a2 = v2.cross(d);
+    if (a == 0) { //if parallel
+        auto b1 = s1.dot(v1), c1 = e1.dot(v1),
+                b2 = s2.dot(v1), c2 = e2.dot(v1);
+        if (a1 || a2 || max(b1, min(b2, c2)) > min(c1, max(b2, c2)))
+            return 0;
+        r1 = min(b2, c2) < b1 ? s1 : (b2 < c2 ? s2 : e2);
+        r2 = max(b2, c2) > c1 ? e1 : (b2 > c2 ? s2 : e2);
+        return 2 - (r1 == r2);
+    }
+    if (a < 0) {
+        a = -a;
+        a1 = -a1;
+        a2 = -a2;
+    }
+    if (0 < a1 || a<-a1 || 0 < a2 || a<-a2)
+        return 0;
+    r1 = s1 - v1 * a2 / a;
+    return 1;
+
+
+}
+template <class P>
+bool segmentIntersectionQ(P s1, P e1, P s2, P e2) {
+    if (e1 == s1) {
+        if (e2 == s2) return e1 == e2;
+        swap(s1, s2);
+        swap(e1, e2);
+    }
+    P v1 = e1 - s1, v2 = e2 - s2, d = s2 - s1;
+    auto a = v1.cross(v2), a1 = d.cross(v1), a2 = d.cross(v2);
+    if (a == 0) { // parallel
+        auto b1 = s1.dot(v1), c1 = e1.dot(v1),
+                b2 = s2.dot(v1), c2 = e2.dot(v1);
+        return !a1 && max(b1, min(b2, c2)) <= min(c1, max(b2, c2));
+    }
+    if (a < 0) {
+        a = -a;
+        a1 = -a1;
+        a2 = -a2;
+    }
+    return (0 <= a1 && a1 <= a && 0 <= a2 && a2 <= a);
+}
+
+template <class P>
+int lineIntersection(const P& s1, const P& e1, const P& s2,
+        const P& e2, P& r) {
+    if ((e1 - s1).cross(e2 - s2)) { //if not parallell
+        r = s2 - (e2 - s2)*(e1 - s1).cross(s2 - s1) / (e1 - s1).cross(e2 - s2);
+        return 1;
+    } else
+        return -((e1 - s1).cross(s2 - s1) == 0 || s2 == e2);
+}
+
+template <class P>
+int sideOf(const P& s, const P& e, const P& p) {
+    auto a = (e - s).cross(p - s);
+    return (a > 0) - (a < 0);
+}
+
+template <class P>
+int sideOf(const P& s, const P& e, const P& p, double eps) {
+    auto a = (e - s).cross(p - s);
+    double l = (e - s).dist() * eps;
+    return (a > l) - (a < -l);
+}
+
+template <class P>
+bool onSegment(const P& s, const P& e, const P& p) {
+    P ds = p - s, de = p - e;
+    return ds.cross(de) == 0 && ds.dot(de) <= 0;
+}
+
+template <class P>
+P linearTransformation(const P& p0, const P& p1,
+        const P& q0, const P& q1, const P& r) {
+    P dp = p1 - p0, dq = q1 - q0, num(dp.cross(dq), dp.dot(dq));
+    return q0 + P((r - p0).cross(num), (r - p0).dot(num)) / dp.dist2();
+}
+
+struct Angle {
+    int x, y;
+    int t;
+
+    Angle(int x, int y, int t = 0) : x(x), y(y), t(t) {
+    }
+
+    Angle operator-(Angle b) const {
+        return
+        {
+            x - b.x, y - b.y, t
+        };
+    }
+
+    int quad() const {
+        assert(x || y);
+        if (y < 0) return (x >= 0) + 2;
+        if (y > 0) return (x <= 0);
+        return (x <= 0) * 2;
+    }
+
+    Angle t90() const {
+        return
+        {
+            -y, x, t + (quad() == 3)
+        };
+    }
+
+    Angle t180() const {
+        return
+        {
+            -x, -y, t + (quad() >= 2)
+        };
+    }
+
+    Angle t360() const {
+        return
+        {
+            x, y, t + 1
+        };
+    }
+};
+
+bool operator<(Angle a, Angle b) {
+    // add a.dist2() and b.dist2() to also compare distances
+    return make_tuple(a.t, a.quad(), a.y * (ll) b.x) <
+            make_tuple(b.t, b.quad(), a.x * (ll) b.y);
+}
+// Given two Ps, this calculates the smallest angle between
+// them, i.e., the angle that covers the defined line segment.
+
+pair<Angle, Angle> segmentAngles(Angle a, Angle b) {
+    if (b < a) swap(a, b);
+    return (b < a.t180() ?
+            make_pair(a, b) : make_pair(b, a.t360()));
+}
+
+Angle operator+(Angle a, Angle b) { // P a + vector b
+    Angle r(a.x + b.x, a.y + b.y, a.t);
+    if (a.t180() < r) r.t--;
+    return r.t180() < a ? r.t360() : r;
+}
+
+Angle angleDiff(Angle a, Angle b) { // angle b - angle a
+    int tu = b.t - a.t;
+    a.t = b.t;
+    return
+    {
+        a.x * b.x + a.y * b.y, a.x * b.y - a.y * b.x, tu - (b < a)
+    };
+}
+
+template <class P>
+bool circleIntersection(P a, P b, double r1, double r2,
+        pair<P, P>* out) {
+    P delta = b - a;
+    assert(delta.x || delta.y || r1 != r2);
+    if (!delta.x && !delta.y) return false;
+    double r = r1 + r2, d2 = delta.dist2();
+    double p = (d2 + r1 * r1 - r2 * r2) / (2.0 * d2);
+    double h2 = r1 * r1 - p * p*d2;
+    if (d2 > r * r || h2 < 0) return false;
+    P mid = a + delta*p, per = delta.perp() * sqrt(h2 / d2);
+    *out = {mid + per, mid - per};
+    return true;
+}
+
+template <class P>
+pair<P, P> circleTangents(const P &p, const P &c, double r) {
+    P a = p - c;
+    double x = r * r / a.dist2(), y = sqrt(x - x * x);
+    return make_pair(c + a * x + a.perp() * y, c + a * x - a.perp() * y);
+}
+
+template <class P>
+double ccRadius(const P& A, const P& B, const P& C) {
+    return (B - A).dist()*(C - B).dist()*(A - C).dist() /
+            abs((B - A).cross(C - A)) / 2;
+}
+template <class P>
+P ccCenter(const P& A, const P& B, const P& C) {
+    P b = C - A, c = B - A;
+    return A + (b * c.dist2() - c * b.dist2()).perp() / b.cross(c) / 2;
+}
+template <class P>
+pair<double, P> mec2(vector<P>& S, P a, P b, int n) {
+    double hi = INFINITY, lo = -hi;
+
+    FOR(i, 0, n) {
+        auto si = (b - a).cross(S[i] - a);
+        if (si == 0) continue;
+        P m = ccCenter(a, b, S[i]);
+        auto cr = (b - a).cross(m - a);
+        if (si < 0) hi = min(hi, cr);
+        else lo = max(lo, cr);
+    }
+    double v = (0 < lo ? lo : hi < 0 ? hi : 0);
+    P c = (a + b) / 2 + (b - a).perp() * v / (b - a).dist2();
+    return
+    {
+        (a - c).dist2(), c
+    };
+}
+template <class P>
+pair<double, P> mec(vector<P>& S, P a, int n) {
+    random_shuffle(S.begin(), S.begin() + n);
+    P b = S[0], c = (a + b) / 2;
+    double r = (a - c).dist2();
+    FOR(i, 1, n) if ((S[i] - c).dist2() > r * (1 + 1e-8)) {
+        tie(r, c) = (n == sz(S) ?
+                mec(S, S[i], i) : mec2(S, a, S[i], i));
+    }
+    return
+    {
+        r, c
+    };
+}
+template <class P>
+pair<double, P> enclosingCircle(vector<P> S) {
+    assert(!S.empty());
+    auto r = mec(S, S[0], sz(S));
+    return
+    {
+        sqrt(r.first), r.second
+    };
+}
+
+template <class It, class P>
+bool insidePolygon(It begin, It end, const P& p,
+        bool strict = true) {
+    int n = 0; //number of isects with line from p to (inf,p.y)
+    for (It i = begin, j = end - 1; i != end; j = i++) {
+        //if p is on edge of polygon
+        if (onSegment(*i, *j, p)) return !strict;
+        //or: if (segDist(*i, *j, p) <= epsilon) return !strict;
+        //increment n if segment intersects line from p
+        n += (max(i->y, j->y) > p.y && min(i->y, j->y) <= p.y &&
+                ((*j - *i).cross(p - *i) > 0) == (i->y <= p.y));
+    }
+    return n & 1; //inside if odd number of intersections
+}
+
+template <class T>
+T polygonArea2(vector<P<T>>&v) {
+    T a = v.back().cross(v[0]);
+    FOR(i, 0, sz(v) - 1) a += v[i].cross(v[i + 1]);
+    return a;
+}
+
+template <class P>
+P polygonCenter(vector<P>& v) {
+    auto i = v.begin(), end = v.end(), j = end - 1;
+    P res{0, 0};
+    double A = 0;
+    for (; i != end; j = i++) {
+        res = res + (*i + *j) * j->cross(*i);
+        A += j->cross(*i);
+    }
+    return res / A / 3;
+}
+template <class P>
+vector<P> polygonCut(const vector<P>& poly, P s, P e) {
+    vector<P> res;
+
+    FOR(i, 0, sz(poly)) {
+        P cur = poly[i], prev = i ? poly[i - 1] : poly.back();
+        bool side = s.cross(e, cur) < 0;
+        if (side != (s.cross(e, prev) < 0)) {
+            res.emplace_back();
+            lineIntersection(s, e, cur, prev, res.back());
+        }
+        if (side)
+            res.push_back(cur);
+    }
+    return res;
+}
+
+template <class P>
+int insideHull2(const vector<P>& H, int L, int R, const P& p) {
+    int len = R - L;
+    if (len == 2) {
+        int sa = sideOf(H[0], H[L], p);
+        int sb = sideOf(H[L], H[L + 1], p);
+        int sc = sideOf(H[L + 1], H[0], p);
+        if (sa < 0 || sb < 0 || sc < 0) return 0;
+        if (sb == 0 || (sa == 0 && L == 1) || (sc == 0 && R == sz(H)))
+            return 1;
+        return 2;
+    }
+    int mid = L + len / 2;
+    if (sideOf(H[0], H[mid], p) >= 0)
+        return insideHull2(H, mid, R, p);
+    return insideHull2(H, L, mid + 1, p);
+}
+template <class P>
+int insideHull(const vector<P>& hull, const P& p) {
+    if (sz(hull) < 3) return onSegment(hull[0], hull.back(), p);
+    else return insideHull2(hull, 1, sz(hull), p);
+}
+
+ll sgn(ll a) {
+    return (a > 0) - (a < 0);
+}
+template <class P>
+struct HullIntersection {
+    int N;
+    vector<P> p;
+    vector<pair<P, int>> a;
+
+    HullIntersection(const vector<P>& ps) : N(sz(ps)), p(ps) {
+        p.insert(p.end(), all(ps));
+        int b = 0;
+        FOR(i, 1, N) if (P{p[i].y, p[i].x}
+            < P
+            {
+                p[b].y, p[b].x
+            }) b = i;
+
+        FOR(i, 0, N) {
+            int f = (i + b) % N;
+            a.emplace_back(p[f + 1] - p[f], f);
+        }
+    }
+
+    int qd(P p) {
+        return (p.y < 0) ? (p.x >= 0) + 2
+                : (p.x <= 0) * (1 + (p.y <= 0));
+    }
+
+    int bs(P dir) {
+        int lo = -1, hi = N;
+        while (hi - lo > 1) {
+            int mid = (lo + hi) / 2;
+            if (make_pair(qd(dir), dir.y * a[mid].first.x) <
+                    make_pair(qd(a[mid].first), dir.x * a[mid].first.y))
+                hi = mid;
+            else lo = mid;
+        }
+        return a[hi % N].second;
+    }
+
+    bool isign(P a, P b, int x, int y, int s) {
+        return sgn(a.cross(p[x], b)) * sgn(a.cross(p[y], b)) == s;
+    }
+
+    int bs2(int lo, int hi, P a, P b) {
+        int L = lo;
+        if (hi < lo) hi += N;
+        while (hi - lo > 1) {
+            int mid = (lo + hi) / 2;
+            if (isign(a, b, mid, L, -1)) hi = mid;
+            else lo = mid;
+        }
+        return lo;
+    }
+
+    pii isct(P a, P b) {
+        int f = bs(a - b), j = bs(b - a);
+        if (isign(a, b, f, j, 1)) return {
+            -1, -1
+        };
+        int x = bs2(f, j, a, b) % N,
+                y = bs2(j, f, a, b) % N;
+        if (a.cross(p[x], b) == 0 &&
+                a.cross(p[x + 1], b) == 0) return {
+            x, x
+        };
+        if (a.cross(p[y], b) == 0 &&
+                a.cross(p[y + 1], b) == 0) return {
+            y, y
+        };
+        if (a.cross(p[f], b) == 0) return {
+            f, -1
+        };
+        if (a.cross(p[j], b) == 0) return {
+            j, -1
+        };
+        return
+        {
+            x, y
+        };
+    }
+};
+
+
+int lxsol,lysol,rxsol,rysol;
+int hasIntersectQuadrangles(int lx, int ly, int rx, int ry, int la, int lb, int ra, int rb) {
+    lx = lxsol = max(lx, la);
+    ly = lysol = max(ly, lb);
+    rx = rxsol = min(rx, ra);
+    ry = rysol = min(ry, rb);
+    return lx < rx && ly < ry;
+}
+
+bool canFormQuadrangle(double a, double b, double c,double d) {
+  return (a + b + c> d) && (a + c + d > b) && (b + c + d > a) && (a+b+d>c); }
+
+bool canFormTriangle(double a, double b, double c) {
+  return (a + b > c) && (a + c > b) && (b + c > a); }
+
+double perimeter(double ab, double bc, double ca) {
+  return ab + bc + ca; }
+
+double area(double ab, double bc, double ca) {
+  // Heron's formula
+  double s = 0.5 * perimeter(ab, bc, ca);
+  return sqrt(s) * sqrt(s - ab) * sqrt(s - bc) * sqrt(s - ca); }
+
+double rInCircle(double ab, double bc, double ca) {
+  double per = perimeter(ab, bc, ca);
+  if(per==0) return 0;
+  return area(ab, bc, ca) / (0.5 * per); }
+
+template <class P>
+double cross(P o, P a, P b) {
+    return (a.x-o.x)*(b.y-o.y) - (a.y-o.y)*(b.x-o.x);
+}
+template <class P>
+double cross2(P a, P b) {
+    return a.x * b.y - a.y * b.x;
+}
+
+template <class P>
+double dist(P p1, P p2) {
+  return hypot(p1.x - p2.x, p1.y - p2.y); }
+
+template <class P>
+double perimeter(const vector<P> &Pa) {
+  double result = 0.0;
+  for (int i = 0; i < (int)Pa.size()-1; i++)
+    result += dist(Pa[i], Pa[i+1]);
+  return result; }
+
+template <class P>
+vector<P> CH(vector<P> Pa){
+    vector<P> res;
+    sort(Pa.begin(),Pa.end());
+    int n = Pa.size();
+    int m=0;
+    for (int i=0;i<n;i++){
+        while (m>1&&cross(res[m-2], res[m-1], Pa[i]) <= 0)res.pop_back(),m--;
+        res.push_back(Pa[i]),m++;
+    }
+    for (int i = n-1, t = m+1; i >= 0; i--) {
+        while (m>=t&&cross(res[m-2], res[m-1], Pa[i]) <= 0)res.pop_back(),m--;
+        res.push_back(Pa[i]),m++;
+    }
+    return res;
+}
+
+double calc_area(vector<P<double>> Pa) {
+    double ans = 0;
+    for(int i = 0; i < (int)Pa.size()-1; i++)
+        ans += Pa[i].x*Pa[i+1].y - Pa[i].y*Pa[i+1].x;
+    return fabs(ans)/2.0;
+}
+template <class P>
+P centroid(vector<P> g)		//center of mass
+{
+    double cx = 0.0, cy = 0.0;
+    for(unsigned int i = 0; i < g.size() - 1; i++)
+    {
+        double x1 = g[i].x, y1 = g[i].y;
+        double x2 = g[i+1].x, y2 = g[i+1].y;
+
+        double f = x1 * y2 - x2 * y1;
+        cx += (x1 + x2) * f;
+        cy += (y1 + y2) * f;
+    }
+    double res = calc_area(g);		//remove abs
+    cx /= 6.0 * res;
+    cy /= 6.0 * res;
+    return P(cx, cy);
+}
+
+struct line {
+    double a, b, c;
+};
+
+// the answer is stored in the third parameter (pass by reference)
+template <class P>
+void pointsToLine(P p1, P p2, line &l) {
+    if (fabs(p1.x - p2.x) < EPS) { // vertical line is fine
+        l.a = 1.0;
+        l.b = 0.0;
+        l.c = -p1.x; // default values
+    } else {
+        l.a = -(double) (p1.y - p2.y) / (p1.x - p2.x);
+        l.b = 1.0; // IMPORTANT: we fix the value of b to 1.0
+        l.c = -(double) (l.a * p1.x) - p1.y;
+    }
+}
+
+struct vec {
+    double x, y;
+
+    vec(double _x, double _y) : x(_x), y(_y) {
+    }
+};
+template <class P>
+vec toVec(P a, P b) {
+    return vec(b.x - a.x, b.y - a.y);
+}
+
+double dot(vec a, vec b) {
+    return (a.x * b.x + a.y * b.y);
+}
+
+double norm_sq(vec v) {
+    return v.x * v.x + v.y * v.y;
+}
+
+vec scale(vec v, double s) { // nonnegative s = [<1 .. 1 ..>1]
+    return vec(v.x * s, v.y * s);
+}// shorter.same.longer
+
+template <class P>
+P translate(P p, vec v) { // translate p according to v
+    return P(p.x + v.x, p.y + v.y);
+}
+template <class P>
+double distToLine(P p, P a, P b, P &c) {
+    // formula: c = a + u * ab
+    vec ap = toVec(a, p), ab = toVec(a, b);
+    double u = dot(ap, ab) / norm_sq(ab);
+    c = translate(a, scale(ab, u)); // translate a to c
+    return dist(p, c);
+}
+template <class P>
+double distToLineSegment(P p, P a, P b, P &c) {
+    vec ap = toVec(a, p), ab = toVec(a, b);
+    double u = dot(ap, ab) / norm_sq(ab);
+    if (u < 0.0) {
+        c = P(a.x, a.y); // closer to a
+        return dist(p, a);
+    }
+    if (u > 1.0) {
+        c = P(b.x, b.y); // closer to b
+        return dist(p, b);
+    }
+    return distToLine(p, a, b, c);
+} // run distToLine as above
+
+template <class P>
+bool areIntersect(line l1, line l2, P &p) {
+    int den = l1.a * l2.b - l1.b * l2.a;
+    if (!den) return false; //same line or parallel
+    p.x = l1.c * l2.b - l1.b * l2.c;
+    if (p.x) p.x /= den;
+    p.y = l1.a * l2.c - l1.c * l2.a;
+    if (p.y) p.y /= den;
+    return true;
+}
+template <class P>
+int insideCircle(P p, P c, double r) { // all integer version
+    double dx = p.x - c.x, dy = p.y - c.y;
+    double Euc = dx * dx + dy * dy, rSq = r * r; // all integer
+    return Euc < rSq ? 0 : Euc == rSq ? 1 : 2;
+} //inside/border/outside
+
+template <class P>
+bool circle2PtsRad(P p1, P p2, double r, P &c) {
+    double d2 = (p1.x - p2.x) * (p1.x - p2.x) +
+            (p1.y - p2.y) * (p1.y - p2.y);
+    double det = r * r / d2 - 0.25;
+    if (det < 0.0) return false;
+    double h = sqrt(det);
+    c.x = (p1.x + p2.x) * 0.5 + (p1.y - p2.y) * h;
+    c.y = (p1.y + p2.y) * 0.5 + (p2.x - p1.x) * h;
+    return true;
+}
+// returns 1 if there is a circumCenter center, returns 0 otherwise
+// if this function returns 1, ctr will be the circumCircle center
+// and r is the same as rCircumCircle
+
+template <class P>
+int circumCircle(P p1, P p2, P p3, P& ctr,double &r) {
+    double a = p2.x - p1.x, b = p2.y - p1.y;
+    double c = p3.x - p1.x, d = p3.y - p1.y;
+    double e = a * (p1.x + p2.x) + b * (p1.y + p2.y);
+    double f = c * (p1.x + p3.x) + d * (p1.y + p3.y);
+    double g = 2.0 * (a * (p3.y - p2.y) - b * (p3.x - p2.x));
+    if (fabs(g) < EPS) return 0;
+    ctr.x = (d * e - b * f) / g;
+    ctr.y = (a * f - c * e) / g;
+    r = dist(p1, ctr); // r = distance from center to 1 of the 3 points
+    return 1;
+}
+// returns true if Pd is inside the circumCircle defined by a,b,c
+
+template <class P>
+int inCircumCircle(P a, P b, P c, P d) {
+    return (a.x - d.x) * (b.y - d.y) * ((c.x - d.x) * (c.x - d.x)
+            + (c.y - d.y) * (c.y - d.y)) +
+            (a.y - d.y) * ((b.x - d.x) * (b.x - d.x) + (b.y - d.y)
+            * (b.y - d.y)) * (c.x - d.x) +
+            ((a.x - d.x) * (a.x - d.x) + (a.y - d.y) * (a.y - d.y)
+            ) * (b.x - d.x) * (c.y - d.y) -
+            ((a.x - d.x) * (a.x - d.x) + (a.y - d.y) * (a.y - d.y)
+            ) * (b.y - d.y) * (c.x - d.x) -
+            (a.y - d.y) * (b.x - d.x) * ((c.x - d.x) * (c.x - d.x)
+            + (c.y - d.y) * (c.y - d.y)) -
+            (a.x - d.x) * ((b.x - d.x) * (b.x - d.x) + (b.y - d.y)
+            * (b.y - d.y)) * (c.y - d.y) > 0 ? 1 : 0;
+}
+
+double cross(vec a, vec b) {
+    return a.x * b.y - a.y * b.x;
+}
+// note: to accept collinear points, we have to change the > 0
+// returns true if Pr is on the left side of line pq
+template <class P>
+bool ccw(P p, P q, P r) {
+    return cross(toVec(p, q), toVec(p, r)) > 0;
+}
+// returns true if Pr is on the same line as the line pq
+template <class P>
+bool collinear(P p, P q, P r) {
+    return fabs(cross(toVec(p, q), toVec(p, r))) < EPS;
+}
+template <class P>
+bool isConvex(const vector<P> &Pa) {
+    int sz = (int) Pa.size();
+    if (sz <= 3) return false;
+    bool isLeft = ccw(Pa[0], Pa[1], Pa[2]);
+    for (int i = 1; i < sz - 1; i++)
+        if (ccw(Pa[i], Pa[i + 1], Pa[(i + 2) == sz ? 1 : i + 2]) != isLeft)
+            return false;
+    return true;
+}
+template <class P>
+double polygonDiameter(const vector<P>& pt) {
+    double ret = 1e+60;
+    P aux;
+    int n =  pt.size()-1; //just end added
+	if (n <= 2) return 0;
+    for (int i = 0, j = 0; i <n; i++) {
+            while (cross(pt[i], pt[i+1], pt[j+1]) >= cross(pt[i], pt[i+1], pt[j]))
+                j = (j+1)%n;
+            double dist = distToLineSegment(pt[j], pt[i], pt[i+1],aux);
+            ret = min(ret, dist);
+        }
+    return ret;
+}
+int main()
+{
+    int n,r;
+    while(scanf("%d%d",&n,&r)==2)
+    {
+        vector<P<double>> Pa;
+        double x,y;
+        for(int i=0; i<n;i++)
+        {
+            scanf("%lf%lf",&x,&y); Pa.push_back(P<double>{x,y});
+        }
+        vector<P<double>> res = CH(Pa);
+        double sol = polygonDiameter(res);
+        printf("%.17lf\n",sol);
+    }
+    return 0;
+}
+```

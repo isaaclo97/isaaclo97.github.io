@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Entrada y salida estándar, Scanner, Print Writter, ejercicios</title>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="stylesheet" href="../assets/css/reveal.css">
+		<link rel="stylesheet" href="../assets/css/theme/ufps.css" id="theme">
+		<!-- Code syntax highlighting -->
+		<link href="../../css/prismW.css" rel='stylesheet' type='text/css' />
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../assets/css/print/pdf.css' : '../assets/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Unidad 1</h3>
+                    <p>Entrada y salida estándar, cin/scanf, cout/printf, ejercicios</p>   
+				</section>
+				<section>
+					<h3>Entrada Estandar</h3>
+					<pre>
+						<code class="language-cpp" data-trim contenteditable>
+	//Leer una linea completa
+	string a; 
+	getline(cin,a);
+	//Leer una palabra hasta un espacio
+	string b;
+	cin>>b; 
+	//Leer un entero
+	int a;
+	cin>>a;
+	scanf("%d",&a); 
+	//Ejemplo leer horas 10:55:55
+	int horas, minutos, segundos;
+	scanf("%d:%d:%d",&horas,&minutos,&segundos);						
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>Salida Estandar</h3>
+					<pre>
+						<code class="language-cpp" data-trim contenteditable>
+	printf("Texto sin salto de linea");
+	cout<<"Texto sin salto de linea";
+	printf("Salto de linea\n");
+	cout<<"Salto de linea\n";
+	cout&lt;&lt;"Salto de linea"&lt;&lt;endl;
+	int numero = 10;
+	printf("%d\n",numero);
+	double pi = 3.141592654;
+	printf("%.4f\n", pi); //3.1416
+						</code>
+					</pre>
+				</section>
+			<section>
+					<h3>Estructura de un ejercicio <a href="https://www.aceptaelreto.com/problem/statement.php?id=116">Acepta el Reto 116</a></h3>
+					<p><strong>Enunciado:</strong> Escribir un programa que escriba tantos "Hola mundo." como nos pidan.</p>
+					<p><strong>Entradas: </strong>La entrada consta de una única línea que contiene un número n, 0 ≤ n ≤ 5, que indica cuántos mensajes hay que emitir.</p>
+					<p><strong>Salidas: </strong>Cada mensaje a escribir aparecerá en una única línea y será la cadena "Hola mundo.".</p>
+					
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td>Entradas</td>
+							<td>Salidas</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Hola mundo.<br>Hola mundo.<br>Hola mundo.</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h3>Estructura de la solución</h3>
+					<pre>
+						<code  class="language-cpp" data-trim contenteditable>
+	#include &lt;bits/stdc++.h>
+	using namespace std;
+	int main() {
+		int cases; cin>>cases;
+		while(cases--)
+		{
+			cout&lt;&lt;"Hola mundo.\n";
+		}
+		return 0;
+	}
+							</code>
+					</pre>
+				</section>
+				
+				<section>
+					<h3>Estructura de un ejercicio</h3>
+					<p><strong>Enunciado:</strong> Dados dos numeros a y b, retornar a+b.</p>
+					<p><strong>Entradas: </strong>Un numero n indicando el número de casos de prueba. Luego n lineas con dos enteros a y b separados por espacios.</p>
+					<p><strong>Salidas: </strong>Para cada caso imprimir una linea con a+b</p>
+					
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td>Entradas</td>
+							<td>Salidas</td>
+						</tr>
+						<tr>
+							<td>3<br>1 2<br>5 9<br>10 14</td>
+							<td>3<br>14<br>24</td>
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h3>Estructura de la solución</h3>
+					<pre>
+						<code  class="language-cpp" data-trim contenteditable>
+	#include &lt;bits/stdc++.h>
+	using namespace std;
+
+	int main(){
+		int cases,a,b; scanf("%d",&cases);
+		while(cases--){
+			scanf("%d %d",&a,&b);
+			printf("%d\n",a+b);
+		}
+		return 0;
+	}
+						</code>
+					</pre>
+				</section>
+				
+
+        <section>
+          <h3>Tipos de entradas</h3>
+          <h4>Entrada individual</h4>
+          <p>Un solo caso de prueba.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	int a,b;
+	scanf("%d %d",&a,&b);
+	printf("%d\n",a+b);
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h4>Número de casos de prueba</h4>
+          <p>Primero se indica cuantos casos de prueba se evaluaran, y posteriormente se indica cada caso.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	int cases,a,b; scanf("%d",&cases);
+	while(cases--){
+		scanf("%d %d",&a,&b);
+		printf("%d\n",a+b);
+	}
+            </code>
+          </pre>
+        </section>
+		
+        <section>
+          <h4>EOF - números</h4>
+          <p>Se evaluan varios casos de prueba, pero no se indica cuantos. El programa debe leer mientras aun queden datos por evaluar.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	int a,b;
+	while(scanf("%d %d",&a,&b)==2){ //Si fuera un número 1, dos 2, tres 3
+		printf("%d\n",a+b);
+	}
+            </code>
+          </pre>
+        </section>
+		 <section>
+          <h4>EOF - palabra</h4>
+          <p>Se evaluan varios casos de prueba, pero no se indica cuantos. El programa debe leer mientras aun queden datos por evaluar.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	string palabra;
+	while(cin>>palabra){ 
+		cout&lt;&lt;palabra;
+	}
+            </code>
+          </pre>
+        </section>
+		
+		<section>
+          <h4>EOF - linea</h4>
+          <p>Se evaluan varios casos de prueba, pero no se indica cuantos. El programa debe leer mientras aun queden datos por evaluar.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	string linea;
+	while(getline(cin,linea)){ 
+		cout&lt;&lt;linea;
+	}
+            </code>
+          </pre>
+        </section>
+		
+		 <section>
+          <h4>Lectura de fechas</h4>
+          <p>Existen problemas con lecturas particulares donde gracias a scanf son muy fáciles de realizar.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	int horas,minutos,segundos;
+	//11:30:15
+	scanf("%d:%d:%d",&horas,&minutos,&segundos);
+            </code>
+          </pre>
+        </section>
+		
+		<section>
+          <h4>Lectura de matriculas</h4>
+          <p>Existen problemas con lecturas particulares donde gracias a scanf son muy fáciles de realizar.</p>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+	char letras[3];
+	int numeros;
+	//5555CPP
+	scanf("%d%s",&numeros,letras);
+            </code>
+          </pre>
+        </section>
+		        <section>
+          <h3>Lecturas con scanf</h3>
+          <img src="img/scanf.png" alt="">
+        </section>
+		
+				<section>
+					<h4>Optimizando Lecturas de Enteros</h4>
+				    <pre>
+					<code class="language-cpp" data-trim contenteditable>
+	#include &lt;bits/stdc++.h>
+	using namespace std;
+
+	//inline int getchar_unlocked() { return getchar(); }
+	inline void fastInput(int &n){
+		char ch;
+		int sign = 1;
+		while(ch = getchar_unlocked(), isspace(ch)) {
+		};
+		n = 0;
+		if(ch == '-') sign = -1;
+		else n = ch - '0';
+		while(ch = getchar_unlocked(), isdigit(ch))
+			n = (n &lt;&lt; 3) + (n &lt;&lt; 1) + ch - '0';
+		n *= sign;
+	}
+	int main(){
+		int n; fastInput(n);
+		return 0;
+	}
+					</code>
+				  </pre>
+				</section>
+		<section>
+          <h3>Salidas</h3>
+	  <pre>
+		<code class="language-cpp" data-trim contenteditable> 
+	int x = 3; 
+	printf("%02d",x); //Salida 03 útil para formatos horarios
+	double x = 31415.9265; //Imprimir ciertos decimales
+    printf("%.3lf", x); //31415.927
+	x = 31415.9265;
+    printf("%.3lf", x); //31415.926
+	x = 31415.9265;
+    printf("%.3lf", x); //31415.927
+		</code>
+	  </pre> 
+        </section>
+        <section>
+          <h3>Optimizar Salidas</h3>
+		  <p>NOTA: En un problema, estos cambios no deben suponer la diferencia entre TLE y AC. Esto se usa si se quiere bajar el tiempo de un problema con AC.</p>
+		  <ul>
+			  <li>Uso de printf frente a cout</li>
+			  <li>Uso de scanf frente a cin</li>
+			  <li>Uso de fastinput frente a scanf</li>
+			  <li>En algunos problemas el no poner return 0 optimiza</li>
+			  <li>Uso de ios_base::sync_with_stdio(false); cin.tie(NULL);</li>
+		  </ul>
+        </section>
+		 <section>
+          <h3>¿Como evitar cada vez poner el caso de prueba y salida para probar el código?</h3>
+		  <p>Leer fichero de entrada: freopen("PATH","r",stdin);</p>
+		  <p>Sacar a fichero (útil en algunos jueces que tiene casos de pruebas largos para probar, como los que 
+		  se pueden encontrar en <a href="https://udebug.com/">udebug</a>)</p>
+		  <p>Sacar a fichero: freopen("PATH","w",stdout);</</p>
+		  <p>De esta manera con scanf/cin y printf/cout podemos leer los casos de prueba e imprimir a fichero</p>
+        </section>
+        <section>
+          <h3>¡Resolvamos un problema!</h3>
+          <p>¿Qué lado de la calle?</p>
+          <a href="https://www.aceptaelreto.com/problem/statement.php?id=217">Acepta el Reto - 217</a>
+        </section>
+        <section>
+          <p>... Una vez hecho eso, las viviendas que quedan al lado izquierdo (respecto al punto inicial) reciben números impares consecutivos, y las que quedan al lado derecho números pares consecutivos. ...</p>
+        </section>
+        <section>
+          <p><strong>Input:</strong> El programa recibirá, por la entrada estándar, un conjunto de casos de prueba, cada uno en una línea. Cada caso de prueba estará compuesto de un número de vivienda. Se garantiza que nunca será mayor que 1.000. El último caso, que no deberá procesarse, será el número 0.</p>
+        </section>
+        <section>
+        	<p><strong>Output:</strong> Para cada caso de prueba el programa escribirá "IZQUIERDA" (sin las comillas) si la vivienda está situada a la izquierda de la calle, y "DERECHA" si está a la derecha.
+        	</p>
+        </section>
+        <section>
+          <table>
+            <tr>
+              <th>Input</th>
+              <th>Output</th>
+            </tr>
+            <tr>
+              <td>3<br>
+				10<br>
+				41<br>
+				0<br></td>
+              <td>
+				IZQUIERDA<br>
+				DERECHA<br>
+				IZQUIERDA<br></td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <h3>Solución</h3>
+          <pre>
+            <code class="language-cpp" data-trim contenteditable>
+
+	#include &lt;bits/stdc++.h>
+	using namespace std;
+
+	int main(){
+		int numero;
+		while(scanf("%d",&numero)==1 && numero!=0){
+			if(numero%2==0) printf("DERECHA\n");
+			else printf("IZQUIERDA\n");
+		}
+		return 0;
+	}
+            </code>
+          </pre>
+        </section>
+        <section>
+        	<h3>Ejercicios propuestos</h3>
+        	<ul>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=116">Acepta el Reto - 116</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=413">Acepta el Reto - 413</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=313">Acepta el Reto - 313</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=407">Acepta el Reto - 407</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=362">Acepta el Reto - 362</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=368">Acepta el Reto - 368</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=433">Acepta el Reto - 433</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=117">Acepta el Reto - 117</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=369">Acepta el Reto - 369</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=434">Acepta el Reto - 434</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=191">Acepta el Reto - 191</a></li>
+			<li><a href="https://www.aceptaelreto.com/problem/statement.php?id=380">Acepta el Reto - 380</a></li>
+			</ul>
+        </section>
+			</div>
+
+		</div>
+
+		<script src="../assets/lib/js/head.min.js"></script>
+		<script src="../assets/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../assets/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../assets/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../assets/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../assets/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../assets/plugin/notes/notes.js', async: true },
+					{ src: '../../js/prism.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

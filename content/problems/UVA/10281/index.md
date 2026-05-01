@@ -1,0 +1,36 @@
+---
+title: "10281 — UVA"
+summary: "Solución al problema 10281 de UVA."
+tags: ["UVA", "competitive-programming"]
+categories: ["Programación Competitiva"]
+type: page
+---
+
+## Solución — 10281
+
+```cpp
+#include <bits/stdc++.h>
+#define INF 0x3F3F3F3F
+using namespace std;
+
+int main() {
+   
+    char str[90];
+    int hh, mm, ss;
+    double ans = 0, ltime = 0, rtime, v = 0;
+    while(gets(str))
+    {
+        sscanf(str, "%d:%d:%d", &hh, &mm, &ss);
+        rtime = hh + mm/60.0 + ss/3600.0;
+        if(str[8] == '\0') {
+            ans += (rtime-ltime)*v;
+            printf("%s %.2lf km\n", str, ans);
+        } else {
+            ans += (rtime-ltime)*v;
+            sscanf(str+8, "%lf", &v);
+        }
+        ltime = rtime;
+    }
+    return 0;
+}
+```

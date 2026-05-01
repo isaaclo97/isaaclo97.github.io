@@ -1,0 +1,24 @@
+{{ $admin := site.GetPage "/authors/admin" }}
+{{ if $admin }}
+<div style="text-align:center; padding: 0.5rem 0;">
+  {{ partial "social_links" $admin }}
+</div>
+{{ end }}
+
+{{ if or (site.GetPage "/terms.md") (site.GetPage "/privacy.md") }}
+<p class="powered-by">
+  {{ with site.GetPage "/privacy.md" }}
+    {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
+  {{ end }}
+  {{ with site.GetPage "/terms.md" }}
+    {{ if site.GetPage "/privacy.md" }} &middot; {{ end }}
+    {{ printf "<a href=\"%s\">%s</a>" .RelPermalink .Title | safeHTML }}
+  {{ end }}
+</p>
+{{ end }}
+
+{{ with site.Params.footer.text }}
+<p class="powered-by">{{ . | markdownify | emojify }}</p>
+{{ end }}
+
+{{ partial "site_footer_license" . }}

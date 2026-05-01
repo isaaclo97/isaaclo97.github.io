@@ -1,0 +1,134 @@
+title = "Isaac Lozano Osorio"
+baseURL = "https://isaaclo97.github.io/"
+copyright = "© {year} Isaac Lozano Osorio"
+
+defaultContentLanguage = "es"
+hasCJKLanguage = false
+defaultContentLanguageInSubdir = false
+disablePathToLower = true
+removePathAccents = true
+
+[languages]
+  [languages.es]
+    languageName = "Español"
+    weight = 1
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    title = "Isaac Lozano Osorio"
+    copyright = "© {year} Isaac Lozano Osorio"
+    [languages.en.params.main]
+      description = "Postdoctoral Researcher at URJC · Combinatorial Optimization · Metaheuristics · Competitive Programming"
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        name = "Home"
+        url = "#about"
+        weight = 1
+      [[languages.en.menu.main]]
+        name = "Publications"
+        url = "/en/publication/"
+        weight = 3
+      [[languages.en.menu.main]]
+        name = "Blog"
+        url = "#posts"
+        weight = 3
+      [[languages.en.menu.main]]
+        name = "Competitive Programming"
+        url = "/en/programacion/"
+        weight = 6
+      [[languages.en.menu.main]]
+        name = "Chess"
+        url = "/en/ajedrez/"
+        weight = 7
+      [[languages.en.menu.main]]
+        name = "Cybersecurity"
+        url = "/en/ciberseguridad/"
+        weight = 8
+      [[languages.en.menu.main]]
+        name = "Companies"
+        url = "/en/empresas/"
+        weight = 9
+      [[languages.en.menu.main]]
+        name = "Contact"
+        url = "#contact"
+        weight = 10
+
+[module]
+  [[module.imports]]
+    path = "github.com/HugoBlox/hugo-blox-builder/modules/blox-bootstrap/v5"
+  [[module.imports]]
+    path = "github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify"
+  [[module.imports]]
+    path = "github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal"
+
+[outputs]
+  home = ["HTML", "RSS", "WebAppManifest", "headers", "redirects"]
+  section = ["HTML", "RSS"]
+
+[params]
+  color_theme_light = "default"
+  color_theme_dark = "ocean"
+  font = "minimal"
+  font_size = "L"
+
+[params.main]
+  username = "admin"
+  date_format = "Jan 2, 2006"
+  time_format = "3:04 PM"
+  description = "Investigador Predoctoral en URJC · Optimización Combinatoria · Metaheurísticas · Programación Competitiva"
+
+[params.comments]
+  engine = 0
+
+[params.search]
+  provider = "wowchemy"
+
+[params.marketing]
+  google_analytics = "UA-69918439-1"
+  google_tag_manager = ""
+
+[params.contact]
+  autolink = true
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  publication_type = "publication_types"
+  author = "authors"
+
+[security.funcs]
+  getenv = ['^HUGO_', '^CI$', '^WC_POST_CSS$']
+
+[menu]
+  [[menu.main]]
+    name = "Inicio"
+    url = "#about"
+    weight = 1
+  [[menu.main]]
+    name = "Publicaciones"
+    url = "/publication/"
+    weight = 3
+  [[menu.main]]
+    name = "Blog"
+    url = "#posts"
+    weight = 3
+  [[menu.main]]
+    name = "Programación Competitiva"
+    url = "/programacion/"
+    weight = 6
+  [[menu.main]]
+    name = "Ajedrez"
+    url = "/ajedrez/"
+    weight = 7
+  [[menu.main]]
+    name = "Ciberseguridad"
+    url = "/ciberseguridad/"
+    weight = 8
+  [[menu.main]]
+    name = "Empresas"
+    url = "/empresas/"
+    weight = 9
+  [[menu.main]]
+    name = "Contacto"
+    url = "#contact"
+    weight = 10
