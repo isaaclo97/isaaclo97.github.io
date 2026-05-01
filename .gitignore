@@ -1,6 +1,7 @@
 # Hugo output
 public/
 resources/_gen/
+old/resources/_gen/
 .hugo_build.lock
 
 # Hugo modules (descargados automáticamente por go.sum)
@@ -9,6 +10,8 @@ _vendor/
 # Archivos de planificación
 MIGRATION_PLAN.md
 GRAFO.bib
+
+node_modules/
 
 # OS
 .DS_Store
