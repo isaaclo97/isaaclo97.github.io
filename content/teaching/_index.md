@@ -1,15 +1,23 @@
 ---
 title: Docencia
 type: widget_page
+summary: "Docencia universitaria de Isaac Lozano Osorio en la URJC: asignaturas de seguridad informática, algoritmia y programación. Director de 17 TFGs y 3 TFMs."
 ---
 
 ## Docencia universitaria
 
 | Asignatura | Institución | Curso |
 |-----------|-------------|-------|
-| Seguridad Informática | Universidad Rey Juan Carlos | 2021/22 |
-| Metodología de Desarrollo Seguro | Universidad Rey Juan Carlos | 2021/22 |
-| Sistemas de Información | Universidad Rey Juan Carlos | 2021/22 |
+| Seguridad Informática | Universidad Rey Juan Carlos | 2021/22 – 2025/26 |
+| Metodologías de Desarrollo Seguro | Universidad Rey Juan Carlos | 2021/22 – 2025/26 |
+| Sistemas de Información | Universidad Rey Juan Carlos | 2021/22 – 2025/26 |
+| Técnicas de Hacking | Universidad Rey Juan Carlos | 2025/26 |
+
+---
+
+## Supervisión académica
+
+He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación en la Universidad Rey Juan Carlos. En total, he impartido **581 horas** de docencia universitaria, equivalentes a **58,1 créditos**.
 
 ---
 

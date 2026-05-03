@@ -8,7 +8,7 @@ abstract: "This paper addresses the Band Collocation Problem (BCP), which models
 featured: false
 publication: "*Electronics* (MDPI)"
 doi: "10.3390/electronics9111860"
-url_pdf: "https://doi.org/10.3390/electronics9111860"
+url_pdf: "https://hdl.handle.net/10115/62117"
 tags: ["VNS", "Band Collocation Problem", "Network Optimization", "Metaheuristics"]
 ---
 

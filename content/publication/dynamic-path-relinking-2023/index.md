@@ -8,4 +8,5 @@ abstract: "We propose a Dynamic Path Relinking metaheuristic approach to solve t
 featured: true
 publication: "*Journal*"
 tags: ["Path Relinking", "Target Set Selection", "Metaheuristics", "Social Networks"]
+url_pdf: "https://hdl.handle.net/10115/24913"
 ---

@@ -1,0 +1,8 @@
+{{/* Display author list as plain text without links. */}}
+{{- $taxonomy := "authors" }}
+{{ if .Param $taxonomy }}
+  {{ range $index, $value := (.GetTerms $taxonomy) }}
+    {{- if gt $index 0 }}, {{ end -}}
+    <span>{{.LinkTitle}}</span>
+  {{- end -}}
+{{- end -}}

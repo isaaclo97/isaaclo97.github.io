@@ -8,7 +8,7 @@ abstract: "BlueThinking is an inclusive educational application designed for iOS
 featured: true
 publication: "*Interacción'19 — XX International Conference on Human-Computer Interaction. Donostia-San Sebastián, España*"
 doi: "10.1145/3335595.3335640"
-url_pdf: "https://dl.acm.org/citation.cfm?doid=3335595.3335640"
+url_pdf: "https://hdl.handle.net/10115/62457"
 url_slides: "/uploads/bluethinking.pdf"
 tags: ["Educational Technology", "HCI", "Programming Education", "Executive Functions", "iOS"]
 ---

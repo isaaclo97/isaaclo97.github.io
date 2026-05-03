@@ -8,4 +8,5 @@ abstract: "This paper presents an efficient GRASP-based algorithm to address the
 featured: true
 publication: "*Journal*"
 tags: ["Influence Maximization", "GRASP", "Metaheuristics", "Social Networks"]
+url_pdf: "https://hdl.handle.net/10115/63337"
 ---

@@ -67,6 +67,8 @@ sections:
     content:
       title: Docencia
       text: |
+        He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación. En total, he impartido **581 horas** de docencia universitaria, equivalentes a **58,1 créditos**.
+
         | Asignatura | Curso | Horas | Valoración | Rol |
         |-----------|-------|------:|-----------|-----|
         | Diseño y Desarrollo de Algoritmos | 2025-2026 | 60h | 4.55/5.0 | Profesor |
@@ -87,6 +89,7 @@ sections:
         | Seguridad Informática | 2021-2022 | 20h | 4.4/5.0 | Profesor |
         | Metodologías de Desarrollo Seguro | 2021-2022 | 20h | 4.4/5.0 | Profesor |
         | Sistemas de Información | 2021-2022 | 20h | 4.4/5.0 | Profesor |
+
     design:
       columns: '1'
 

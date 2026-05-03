@@ -1,9 +1,5 @@
 ---
-# Display name
 title: Experiencia
-
-# Page type
 type: experience
-
-# List your experiences and skills.
+summary: "Trayectoria profesional de Isaac Lozano Osorio: Profesor Ayudante Doctor en la URJC, investigador en optimización combinatoria y metaheurísticas, y Doctor en Inteligencia Artificial."
 ---

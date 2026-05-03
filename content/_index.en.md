@@ -67,6 +67,8 @@ sections:
     content:
       title: Teaching
       text: |
+        I have supervised **17 Bachelor's Final Projects (TFG)** and **3 Master's Final Projects (TFM)**, and have participated in more than **40 evaluation committees**. In total, I have taught **581 hours** of university teaching, equivalent to **58.1 credits**.
+
         | Subject | Year | Hours | Rating | Role |
         |---------|------|------:|-------|------|
         | Algorithm Design and Development | 2025-2026 | 60h | 4.55/5.0 | Lecturer |
@@ -87,6 +89,7 @@ sections:
         | Computer Security | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
         | Secure Development Methodologies | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
         | Information Systems | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
+
     design:
       columns: '1'
 

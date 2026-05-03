@@ -2,6 +2,7 @@ title = "Isaac Lozano Osorio"
 baseURL = "https://isaaclo97.github.io/"
 copyright = "© {year} Isaac Lozano Osorio"
 
+enableGitInfo = true
 defaultContentLanguage = "es"
 hasCJKLanguage = false
 defaultContentLanguageInSubdir = false
@@ -75,7 +76,7 @@ removePathAccents = true
   username = "admin"
   date_format = "Jan 2, 2006"
   time_format = "3:04 PM"
-  description = "Investigador Predoctoral en URJC · Optimización Combinatoria · Metaheurísticas · Programación Competitiva"
+  description = "Profesor Ayudante Doctor en URJC · Optimización Combinatoria · Metaheurísticas · Programación Competitiva"
 
 [params.comments]
   engine = 0
@@ -84,8 +85,11 @@ removePathAccents = true
   provider = "wowchemy"
 
 [params.marketing]
-  google_analytics = "UA-69918439-1"
+  google_analytics = ""
   google_tag_manager = ""
+
+[params.marketing.seo]
+  twitter = "isaac_lozano_97"
 
 [params.contact]
   autolink = true
