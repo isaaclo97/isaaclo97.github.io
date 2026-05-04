@@ -134,12 +134,24 @@ sections:
       text: |
         | Año | Premio | Organización |
         |-----|--------|-------------|
-        | 2024 | Mejor Trabajo de Estudiante — MAEB 2024 | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
+        | 2025 | [Premio Extraordinario de Doctorado](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2024 | [Mejor Trabajo de Estudiante — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
+        | 2024 | [Premio — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
+        | 2023 | [3er puesto — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
+        | 2023 | [Finalista — Liga Nacional de Retos del Ciberespacio 2023](/premios/2023%20-%20Certificado%20-%20Finalista%20NCL%202023.pdf) | Liga Nacional de Retos del Ciberespacio |
+        | 2022 | [Ganador — VII JNIC 2022](/premios/2022%20-%20Certificado%20-%20Premio%20JNIC%202022.png) | Jornadas Nacionales de Investigación en Ciberseguridad |
+        | 2021 | 2º puesto — BitUp 2021 | BitUp Hackathon |
+        | 2020 | [Ganador — II Liga Nacional de Retos del Ciberespacio](/premios/2020%20-%20Certificado%20-%20Finalista%20NCL%202020.pdf) | Liga Nacional de Retos del Ciberespacio |
+        | 2020 | [Las12Uvas 2020](/premios/2020%20-%20Certificado%20-%20Las12Uvas%202020.pdf) | Concurso de Programación Fin de Año |
         | 2019 | [Ganador II Premio Consejo Social Jóvenes Investigadores](/uploads/Resolucion.pdf) | Universidad Rey Juan Carlos |
         | 2019 | [Mención especial — Congreso E-Madrid (BlueThinking)](http://www.emadridnet.org/) | Red de excelencia eMadrid |
         | 2019 | Matrícula de Honor — TFG Ingeniería Informática | Universidad Rey Juan Carlos |
         | 2019 | Matrícula de Honor — TFG Ingeniería de Computadores | Universidad Rey Juan Carlos |
+        | 2019 | [Premio Ada Byron 2019](/premios/2019%20-%20Certificado%20-%20AdaByron%202019%20Premio.pdf) | RITSI |
+        | 2019 | [Las12Uvas 2019](/premios/2019%20-%20Certificado%20-%20Las12Uvas%202019.pdf) | Concurso de Programación Fin de Año |
+        | 2019 | [Premio T3chFest 2019](/premios/2019%20-%20Certificado%20-%20Premio%20T3chfest%202019.pdf) | T3chFest |
     design:
       columns: '1'
 

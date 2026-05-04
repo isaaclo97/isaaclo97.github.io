@@ -2,8 +2,8 @@
 title: "Max-min dispersion with capacity and cost for a practical location problem"
 authors:
   - Isaac Lozano-Osorio
-  - Anna Mart\'\inez-Gavara
-  - Rafael Mart\'\i
+  - Anna Martínez-Gavara
+  - Rafael Martí
   - Abraham Duarte
 date: 2022-01-01
 doi: "10.1016/j.eswa.2022.116899"

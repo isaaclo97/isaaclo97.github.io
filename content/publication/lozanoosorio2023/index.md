@@ -1,10 +1,10 @@
 ---
 title: "A reactive path relinking algorithm for solving the bi-objective p-Median and p-Dispersion problem"
 authors:
-  - I. Lozano-Osorio
-  - J. Sanchez-Oro
-  - A. D. Lopez-Sanchez
-  - A. Duarte
+  - Isaac Lozano-Osorio
+  - Jesús Sánchez-Oro
+  - Ana D. López-Sánchez
+  - Abraham Duarte
 date: 2023-01-01
 doi: "10.1007/s00500-023-07994-4"
 publication_types: ["2"]

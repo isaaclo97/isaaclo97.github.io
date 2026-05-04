@@ -1,7 +1,7 @@
 ---
-title: "Constructivo GRASP para la optimizacion de una planta de produccion en la industria automotriz"
+title: "Constructivo GRASP para la optimización de una planta de producción en la industria automotriz"
 authors:
-  - Sergio Cavero-D\'\iaz
+  - Sergio Cavero-Díaz
   - Isaac Lozano-Osorio
   - Manuel Laguna
 date: 2025-01-01

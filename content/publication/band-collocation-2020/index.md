@@ -2,7 +2,11 @@
 title: "Optimizing Computer Networks Communication with the Band Collocation Problem: A Variable Neighborhood Search Approach"
 date: 2020-11-01
 publishDate: 2020-11-01
-authors: ["Isaac Lozano-Osorio"]
+authors:
+  - Isaac Lozano-Osorio
+  - Jesús Sánchez-Oro
+  - Miguel Ángel Rodríguez-García
+  - Abraham Duarte
 publication_types: ["2"]
 abstract: "This paper addresses the Band Collocation Problem (BCP), which models the assignment of communication bands in computer networks to minimize interference. We propose a Variable Neighborhood Search (VNS) metaheuristic that outperforms existing approaches."
 featured: false

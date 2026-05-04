@@ -2,7 +2,11 @@
 title: "BlueThinking, a programming tool for the development of executive functions at childhood"
 date: 2019-06-25
 publishDate: 2019-06-25
-authors: ["Isaac Lozano-Osorio"]
+authors:
+  - Isaac Lozano-Osorio
+  - David Roldán-Álvarez
+  - Adrián Bacelo
+  - Estefanía Martín
 publication_types: ["1"]
 abstract: "BlueThinking is an inclusive educational application designed for iOS (iPad) that teaches programming concepts to young children (ages 6–12) while simultaneously developing executive functions through game-based learning. Built with HTML, CSS, JavaScript and SQLite."
 featured: true

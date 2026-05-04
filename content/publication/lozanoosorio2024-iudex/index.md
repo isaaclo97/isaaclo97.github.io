@@ -2,9 +2,9 @@
 title: "Evaluacion automatica de codigo mediante la plataforma educativa Iudex"
 authors:
   - Isaac Lozano-Osorio
-  - Raul Mart\'\in-Santamar\'\ia
-  - Jesus Sanchez-Oro
-  - Jose Manuel Colmenar
+  - Raúl Martín-Santamaría
+  - Jesús Sánchez-Oro
+  - José Manuel Colmenar
 date: 2024-01-01
 doi: ""
 publication_types: ["1"]

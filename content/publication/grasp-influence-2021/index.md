@@ -2,7 +2,11 @@
 title: "A quick GRASP-based method for influence maximization in social networks"
 date: 2021-01-01
 publishDate: 2021-01-01
-authors: ["Isaac Lozano-Osorio"]
+authors:
+  - Isaac Lozano-Osorio
+  - Jesús Sánchez-Oro
+  - Abraham Duarte
+  - Óscar Cordón
 publication_types: ["2"]
 abstract: "This paper proposes a fast and effective GRASP (Greedy Randomized Adaptive Search Procedure) method for the Influence Maximization problem in social networks. The algorithm efficiently finds seed sets that maximize information spread under the Independent Cascade model."
 featured: true

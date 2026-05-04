@@ -134,12 +134,24 @@ sections:
       text: |
         | Year | Award | Organisation |
         |------|-------|-------------|
-        | 2024 | Best Student Paper — MAEB 2024 | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
+        | 2025 | [Extraordinary Doctoral Award](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2024 | [Best Student Paper — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
+        | 2024 | [Award — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
+        | 2023 | [3rd place — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Spanish National Conference on Cybersecurity Research |
+        | 2023 | [Finalist — National Cyber Challenge League 2023](/premios/2023%20-%20Certificado%20-%20Finalista%20NCL%202023.pdf) | National Cyber Challenge League |
+        | 2022 | [Winner — VII JNIC 2022](/premios/2022%20-%20Certificado%20-%20Premio%20JNIC%202022.png) | Spanish National Conference on Cybersecurity Research |
+        | 2021 | 2nd place — BitUp 2021 | BitUp Hackathon |
+        | 2020 | [Winner — II National Cyber Challenge League](/premios/2020%20-%20Certificado%20-%20Finalista%20NCL%202020.pdf) | National Cyber Challenge League |
+        | 2020 | [Las12Uvas 2020](/premios/2020%20-%20Certificado%20-%20Las12Uvas%202020.pdf) | Year-End Programming Contest |
         | 2019 | [Winner — II Social Council Award for Young Researchers](/uploads/Resolucion.pdf) | Universidad Rey Juan Carlos |
         | 2019 | [Special Mention — E-Madrid Congress (BlueThinking)](http://www.emadridnet.org/) | eMadrid Excellence Network |
         | 2019 | Honours — Computer Engineering Final Project | Universidad Rey Juan Carlos |
         | 2019 | Honours — Computer Systems Engineering Final Project | Universidad Rey Juan Carlos |
+        | 2019 | [Ada Byron Award 2019](/premios/2019%20-%20Certificado%20-%20AdaByron%202019%20Premio.pdf) | RITSI |
+        | 2019 | [Las12Uvas 2019](/premios/2019%20-%20Certificado%20-%20Las12Uvas%202019.pdf) | Year-End Programming Contest |
+        | 2019 | [T3chFest Award 2019](/premios/2019%20-%20Certificado%20-%20Premio%20T3chfest%202019.pdf) | T3chFest |
     design:
       columns: '1'
 
