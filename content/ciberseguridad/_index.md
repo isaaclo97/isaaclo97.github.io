@@ -33,8 +33,8 @@ Plataforma web de evaluación y puntuación en ciberseguridad. Permite medir el 
 
 | Charla | Evento | Fecha |
 |--------|--------|-------|
-| OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada | [RootedCON 2026](https://rootedcon.com/) — Track Rooted, Sala 17, 12:00 | 2026 |
-| Ajedrez y Ciberseguridad: Estrategias para un Mundo Conectado | [III Jornada Ajedrez, IA y Ciberseguridad — INCIBE, León](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | 2024 |
+| [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/Rooted2026.pdf) | [RootedCON 2026](https://rootedcon.com/) — Track Rooted, Sala 17, 12:00 | 2026 |
+| [Ajedrez y Ciberseguridad: Estrategias para un Mundo Conectado](/congresos/INCIBE2025.pdf) | [III Jornada Ajedrez, IA y Ciberseguridad — INCIBE, León](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | 2024 |
 | ¿Qué tan pública es tu información privada? | Universidad Rey Juan Carlos | Abr 2019 |
 
 ---

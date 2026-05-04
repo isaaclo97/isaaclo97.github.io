@@ -12,4 +12,5 @@ featured: true
 publication: "*Lecture Notes in Computer Science*"
 doi: "10.1007/978-3-031-34500-5_9"
 tags: ["VNS", "Influence Maximization", "Metaheuristics", "Social Networks"]
+url_slides: "/congresos/MRIM-ICVNS-2022.pdf"
 ---

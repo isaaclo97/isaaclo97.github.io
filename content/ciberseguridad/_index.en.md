@@ -12,11 +12,12 @@ Passionate about cybersecurity since my university days, I combine research and 
 
 | Award | Organisation | Year |
 |-------|-------------|------|
-| **Winner** — VII National Cybersecurity Research Conference | JNIC | 2022 |
-| **3rd place** — VIII National Cybersecurity Research Conference | JNIC | 2023 |
+| [**Award** — IX National Cybersecurity Research Conference](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | JNIC | 2024 |
+| [**Winner** — VII National Cybersecurity Research Conference](/premios/2022%20-%20Certificado%20-%20Premio%20JNIC%202022.png) | JNIC | 2022 |
+| [**3rd place** — VIII National Cybersecurity Research Conference](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | JNIC | 2023 |
 | **2nd place** — BitUp 2021 | BitUp Congress | 2021 |
-| **Winner** — II National CyberLeague | Civil Guard University Center | 2020 |
-| **Finalist** — IV & V National CyberLeague | Civil Guard University Center | 2020 |
+| [**Winner** — II National Cyber Challenge League](/premios/2020%20-%20Certificado%20-%20Finalista%20NCL%202020.pdf) | Civil Guard University Center | 2020 |
+| [**Finalist** — National Cyber Challenge League](/premios/2023%20-%20Certificado%20-%20Finalista%20NCL%202023.pdf) | Civil Guard University Center | 2023 |
 
 ---
 
@@ -32,8 +33,8 @@ A web platform for cybersecurity scoring and assessment. It enables users and or
 
 | Talk | Event | Date |
 |------|-------|------|
-| OSINT in Chess: The Secret Behind Spain's Olympiad Medals | [RootedCON 2026](https://rootedcon.com/) — Track Rooted, Room 17, 12:00 | 2026 |
-| Chess and Cybersecurity: Strategies for a Connected World | [III Chess, AI & Cybersecurity Conference — INCIBE, León](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | 2024 |
+| [OSINT in Chess: The Secret Behind Spain's Olympiad Medals](/congresos/Rooted2026.pdf) | [RootedCON 2026](https://rootedcon.com/) — Track Rooted, Room 17, 12:00 | 2026 |
+| [Chess and Cybersecurity: Strategies for a Connected World](/congresos/INCIBE2025.pdf) | [III Chess, AI & Cybersecurity Conference — INCIBE, León](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | 2024 |
 | How Public Is Your Private Information? | Universidad Rey Juan Carlos | Apr 2019 |
 
 ---

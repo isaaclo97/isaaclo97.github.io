@@ -9,7 +9,7 @@ I am a **Level 1 Coach** certified by the Spanish Chess Federation. Active playe
 
 - **Maximum FIDE Classical ELO:** 2106
 - **Maximum FIDE Rapid ELO:** 1991
-- **Maximum FIDE Blitz ELO:** 1793
+- **Maximum FIDE Blitz ELO:** 1991
 
 I have applied modern technologies to the chess world, developing projects that combine programming and artificial intelligence with the game.
 
@@ -19,9 +19,9 @@ I have applied modern technologies to the chess world, developing projects that 
 
 | Talk | Event | Date |
 |------|-------|------|
-| [OSINT in Chess: The Secret Behind Spain's Olympiad Medals](https://rootedcon.com/) | RootedCON 2026 — Track Rooted, Room 17, 12:00 | 2026 |
-| [Chess and Cybersecurity: Strategies for a Connected World](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | III Chess, AI & Cybersecurity Conference — INCIBE, León | 2024 |
-| [We All Work with Patterns: How AI Finds Them in Chess and the Classroom](https://congresodeajedrezmenorca.com/) | IV International Chess and AI Congress — Maó, Menorca | 25 April 2026 |
+| [OSINT in Chess: The Secret Behind Spain's Olympiad Medals](/congresos/Rooted2026.pdf) | RootedCON 2026 — Track Rooted, Room 17, 12:00 | 2026 |
+| [Chess and Cybersecurity: Strategies for a Connected World](/congresos/INCIBE2025.pdf) | III Chess, AI & Cybersecurity Conference — INCIBE, León | 2024 |
+| [We All Work with Patterns: How AI Finds Them in Chess and the Classroom](/congresos/menorcaEN2026.pdf) | IV International Chess and AI Congress — Maó, Menorca | 25 April 2026 |
 
 ---
 

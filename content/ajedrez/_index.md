@@ -9,7 +9,7 @@ Soy **Monitor Nivel 1** de la Federación Española de Ajedrez. Jugador activo c
 
 - **Máximo ELO FIDE Clásico:** 2106
 - **Máximo ELO FIDE Rápido:** 1991
-- **Máximo ELO FIDE Blitz:** 1793
+- **Máximo ELO FIDE Blitz:** 1991
 
 He aprendido y aplicado las tecnologías modernas al mundo del ajedrez, desarrollando proyectos que combinan programación e inteligencia artificial con el juego ciencia.
 
@@ -19,9 +19,9 @@ He aprendido y aplicado las tecnologías modernas al mundo del ajedrez, desarrol
 
 | Charla | Evento | Fecha |
 |--------|--------|-------|
-| [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](https://rootedcon.com/) | RootedCON 2026 — Track Rooted, Sala 17, 12:00 | 2026 |
-| [Ajedrez y Ciberseguridad: Estrategias para un Mundo Conectado](https://ajedrez-ia-ciberseguridad.advancedchessleon.com/) | III Jornada de Ajedrez, IA y Ciberseguridad — INCIBE, León | 2024 |
-| [Todos funcionamos con patrones: cómo la IA los encuentra en el ajedrez y en el aula](https://congresodeajedrezmenorca.com/) | IV Congreso Internacional Ajedrez e IA — Maó, Menorca | 25 abril 2026 |
+| [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/Rooted2026.pdf) | RootedCON 2026 — Track Rooted, Sala 17, 12:00 | 2026 |
+| [Ajedrez y Ciberseguridad: Estrategias para un Mundo Conectado](/congresos/INCIBE2025.pdf) | III Jornada de Ajedrez, IA y Ciberseguridad — INCIBE, León | 2024 |
+| [Todos funcionamos con patrones: cómo la IA los encuentra en el ajedrez y en el aula](/congresos/menorcaES2026.pdf) · [EN](/congresos/menorcaEN2026.pdf) | IV Congreso Internacional Ajedrez e IA — Maó, Menorca | 25 abril 2026 |
 
 ---
 

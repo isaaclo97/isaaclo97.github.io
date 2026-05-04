@@ -61,6 +61,35 @@ removePathAccents = true
     path = "github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify"
   [[module.imports]]
     path = "github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-reveal"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+  [[module.mounts]]
+    source = "archetypes"
+    target = "archetypes"
+  [[module.mounts]]
+    source = "content/publication"
+    target = "content/publication"
+    lang = "es"
+  [[module.mounts]]
+    source = "content/publication"
+    target = "content/publication"
+    lang = "en"
 
 [outputs]
   home = ["HTML", "RSS", "WebAppManifest", "headers", "redirects"]

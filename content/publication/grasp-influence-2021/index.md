@@ -13,6 +13,7 @@ featured: true
 publication: "*Journal of Ambient Intelligence and Humanized Computing*"
 doi: "10.1007/s12652-021-03510-4"
 url_pdf: "https://hdl.handle.net/10115/62077"
+url_dataset: "https://grafo.etsii.urjc.es/SNIMP/"
 tags: ["GRASP", "Influence Maximization", "Social Networks", "Metaheuristics"]
 ---
 

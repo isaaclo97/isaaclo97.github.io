@@ -13,6 +13,7 @@ featured: false
 publication: "*Electronics* (MDPI)"
 doi: "10.3390/electronics9111860"
 url_pdf: "https://hdl.handle.net/10115/62117"
+url_dataset: "https://grafo.etsii.urjc.es/BandCollocation/"
 tags: ["VNS", "Band Collocation Problem", "Network Optimization", "Metaheuristics"]
 ---
 

@@ -14,4 +14,5 @@ tags: ["Path Relinking", "Target Set Selection", "Metaheuristics", "Social Netwo
 doi: "10.1016/j.knosys.2023.110827"
 url_pdf: "https://hdl.handle.net/10115/24913"
 url_dataset: "https://grafo.etsii.urjc.es/TSS"
+url_slides: "/congresos/TSS-SEIO-2023.pdf"
 ---
