@@ -129,6 +129,9 @@ removePathAccents = true
   publication_type = "publication_types"
   author = "authors"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [security.funcs]
   getenv = ['^HUGO_', '^CI$', '^WC_POST_CSS$']
 

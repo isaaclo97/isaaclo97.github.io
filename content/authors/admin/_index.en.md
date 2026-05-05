@@ -20,7 +20,7 @@ interests:
 
 education:
   courses:
-    - course: PhD in Artificial Intelligence
+    - course: PhD in Artificial Intelligence (International Mention · Cum Laude)
       institution: Universidad Rey Juan Carlos
       year: 2025
     - course: Master's in Artificial Intelligence Research (8.4)

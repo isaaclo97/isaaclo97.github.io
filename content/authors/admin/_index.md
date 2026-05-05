@@ -20,7 +20,7 @@ interests:
 
 education:
   courses:
-    - course: Doctorado en Inteligencia Artificial
+    - course: Doctorado en Inteligencia Artificial (Mención Internacional · Cum Laude)
       institution: Universidad Rey Juan Carlos
       year: 2025
     - course: Máster en Investigación en Inteligencia Artificial (8.4)

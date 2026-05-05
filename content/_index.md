@@ -69,26 +69,43 @@ sections:
       text: |
         He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación. En total, he impartido **581 horas** de docencia universitaria, equivalentes a **58,1 créditos**.
 
-        | Asignatura | Curso | Horas | Valoración | Rol |
-        |-----------|-------|------:|-----------|-----|
-        | Diseño y Desarrollo de Algoritmos | 2025-2026 | 60h | 4.55/5.0 | Profesor |
-        | Seguridad Informática | 2025-2026 | 26h | — | Profesor |
-        | Metodologías de Desarrollo Seguro | 2025-2026 | 20h | — | Profesor |
-        | Programación 1 | 2025-2026 | 30h | 4.24/5.0 | Prácticas |
-        | Técnicas de Hacking | 2025-2026 | 30h | 3.92/5.0 | Prácticas |
-        | Diseño y Desarrollo de Algoritmos | 2024-2025 | 75h | 4.80 / 4.24 /5.0 | Profesor |
-        | Seguridad Informática | 2024-2025 | 60h | 4.45/5.0 | Profesor |
-        | Metodologías de Desarrollo Seguro | 2024-2025 | 50h | 4.46/5.0 | Profesor |
-        | Programación 1 | 2024-2025 | 30h | 3.94/5.0 | Prácticas |
-        | Seguridad Informática | 2023-2024 | 40h | 4.74/5.0 | Profesor |
-        | Metodologías de Desarrollo Seguro | 2023-2024 | 20h | 4.18/5.0 | Profesor |
-        | Diseño y Desarrollo de Algoritmos | 2023-2024 | 10h | — | Profesor |
-        | Sistemas de Información | 2023-2024 | 10h | — | Profesor |
-        | Seguridad Informática | 2022-2023 | 40h | 4.4/5.0 | Profesor |
-        | Metodologías de Desarrollo Seguro | 2022-2023 | 20h | 4.4/5.0 | Profesor |
-        | Seguridad Informática | 2021-2022 | 20h | 4.4/5.0 | Profesor |
-        | Metodologías de Desarrollo Seguro | 2021-2022 | 20h | 4.4/5.0 | Profesor |
-        | Sistemas de Información | 2021-2022 | 20h | 4.4/5.0 | Profesor |
+        <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
+        <button class="yr-btn yr-active" onclick="yrTab(this,'yr2526')">2025-2026</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2425')">2024-2025</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2324')">2023-2024</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2223')">2022-2023</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2122')">2021-2022</button>
+        </div>
+        <div id="yr2526" class="yr-pane yr-show"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
+        <tr><td>Diseño y Desarrollo de Algoritmos</td><td>60h</td><td>4.55/5.0</td><td>Profesor</td></tr>
+        <tr><td>Seguridad Informática</td><td>26h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Programación 1</td><td>30h</td><td>4.24/5.0</td><td>Prácticas</td></tr>
+        <tr><td>Técnicas de Hacking</td><td>30h</td><td>3.92/5.0</td><td>Prácticas</td></tr>
+        </tbody></table></div>
+        <div id="yr2425" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
+        <tr><td>Diseño y Desarrollo de Algoritmos</td><td>75h</td><td>4.80 / 4.24 /5.0</td><td>Profesor</td></tr>
+        <tr><td>Seguridad Informática</td><td>60h</td><td>4.45/5.0</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>50h</td><td>4.46/5.0</td><td>Profesor</td></tr>
+        <tr><td>Programación 1</td><td>30h</td><td>3.94/5.0</td><td>Prácticas</td></tr>
+        </tbody></table></div>
+        <div id="yr2324" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
+        <tr><td>Seguridad Informática</td><td>40h</td><td>4.74/5.0</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>4.18/5.0</td><td>Profesor</td></tr>
+        <tr><td>Diseño y Desarrollo de Algoritmos</td><td>10h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Sistemas de Información</td><td>10h</td><td>—</td><td>Profesor</td></tr>
+        </tbody></table></div>
+        <div id="yr2223" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
+        <tr><td>Seguridad Informática</td><td>40h</td><td>4.4/5.0</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>4.4/5.0</td><td>Profesor</td></tr>
+        </tbody></table></div>
+        <div id="yr2122" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
+        <tr><td>Seguridad Informática</td><td>20h</td><td>4.4/5.0</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>4.4/5.0</td><td>Profesor</td></tr>
+        <tr><td>Sistemas de Información</td><td>20h</td><td>4.4/5.0</td><td>Profesor</td></tr>
+        </tbody></table></div>
+        <script>function yrTab(b,id){document.querySelectorAll('.yr-btn').forEach(x=>x.classList.remove('yr-active'));b.classList.add('yr-active');document.querySelectorAll('.yr-pane').forEach(p=>p.classList.remove('yr-show'));document.getElementById(id).classList.add('yr-show');}</script>
 
     design:
       columns: '1'
@@ -146,7 +163,7 @@ sections:
         | 2020 | [Ganador — II Liga Nacional de Retos del Ciberespacio](/premios/2020%20-%20Certificado%20-%20Finalista%20NCL%202020.pdf) | Liga Nacional de Retos del Ciberespacio |
         | 2020 | [Las12Uvas 2020](/premios/2020%20-%20Certificado%20-%20Las12Uvas%202020.pdf) | Concurso de Programación Fin de Año |
         | 2019 | [Ganador II Premio Consejo Social Jóvenes Investigadores](/uploads/Resolucion.pdf) | Universidad Rey Juan Carlos |
-        | 2019 | [Mención especial — Congreso E-Madrid (BlueThinking)](http://www.emadridnet.org/) | Red de excelencia eMadrid |
+        | 2019 | [Mención especial — Congreso E-Madrid (BlueThinking)](/premios/2020%20-%20Certificado%20-%20Menci%C3%B3n%20TFG%20Emadrid.pdf) | Red de excelencia eMadrid |
         | 2019 | Matrícula de Honor — TFG Ingeniería Informática | Universidad Rey Juan Carlos |
         | 2019 | Matrícula de Honor — TFG Ingeniería de Computadores | Universidad Rey Juan Carlos |
         | 2019 | [Premio Ada Byron 2019](/premios/2019%20-%20Certificado%20-%20AdaByron%202019%20Premio.pdf) | RITSI |

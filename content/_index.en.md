@@ -69,26 +69,43 @@ sections:
       text: |
         I have supervised **17 Bachelor's Final Projects (TFG)** and **3 Master's Final Projects (TFM)**, and have participated in more than **40 evaluation committees**. In total, I have taught **581 hours** of university teaching, equivalent to **58.1 credits**.
 
-        | Subject | Year | Hours | Rating | Role |
-        |---------|------|------:|-------|------|
-        | Algorithm Design and Development | 2025-2026 | 60h | 4.55/5.0 | Lecturer |
-        | Computer Security | 2025-2026 | 26h | — | Lecturer |
-        | Secure Development Methodologies | 2025-2026 | 20h | — | Lecturer |
-        | Programming 1 | 2025-2026 | 30h | 4.24/5.0 | Lab sessions |
-        | Hacking Techniques | 2025-2026 | 30h | 3.92/5.0 | Lab sessions |
-        | Algorithm Design and Development | 2024-2025 | 75h | 4.80 / 4.24 /5.0 | Lecturer |
-        | Computer Security | 2024-2025 | 60h | 4.45/5.0 | Lecturer |
-        | Secure Development Methodologies | 2024-2025 | 50h | 4.46/5.0 | Lecturer |
-        | Programming 1 | 2024-2025 | 30h | 3.94/5.0 | Lab sessions |
-        | Computer Security | 2023-2024 | 40h | 4.74/5.0 | Lecturer |
-        | Secure Development Methodologies | 2023-2024 | 20h | 4.18/5.0 | Lecturer |
-        | Algorithm Design and Development | 2023-2024 | 10h | — | Lecturer |
-        | Information Systems | 2023-2024 | 10h | — | Lecturer |
-        | Computer Security | 2022-2023 | 40h | 4.4/5.0 | Lecturer |
-        | Secure Development Methodologies | 2022-2023 | 20h | 4.4/5.0 | Lecturer |
-        | Computer Security | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
-        | Secure Development Methodologies | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
-        | Information Systems | 2021-2022 | 20h | 4.4/5.0 | Lecturer |
+        <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
+        <button class="yr-btn yr-active" onclick="yrTab(this,'yr2526')">2025-2026</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2425')">2024-2025</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2324')">2023-2024</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2223')">2022-2023</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2122')">2021-2022</button>
+        </div>
+        <div id="yr2526" class="yr-pane yr-show"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Algorithm Design and Development</td><td>60h</td><td>4.55/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Computer Security</td><td>26h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>20h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Programming 1</td><td>30h</td><td>4.24/5.0</td><td>Lab sessions</td></tr>
+        <tr><td>Hacking Techniques</td><td>30h</td><td>3.92/5.0</td><td>Lab sessions</td></tr>
+        </tbody></table></div>
+        <div id="yr2425" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Algorithm Design and Development</td><td>75h</td><td>4.80 / 4.24 /5.0</td><td>Lecturer</td></tr>
+        <tr><td>Computer Security</td><td>60h</td><td>4.45/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>50h</td><td>4.46/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Programming 1</td><td>30h</td><td>3.94/5.0</td><td>Lab sessions</td></tr>
+        </tbody></table></div>
+        <div id="yr2324" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Computer Security</td><td>40h</td><td>4.74/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>20h</td><td>4.18/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Algorithm Design and Development</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Information Systems</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
+        </tbody></table></div>
+        <div id="yr2223" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Computer Security</td><td>40h</td><td>4.4/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>20h</td><td>4.4/5.0</td><td>Lecturer</td></tr>
+        </tbody></table></div>
+        <div id="yr2122" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Computer Security</td><td>20h</td><td>4.4/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>20h</td><td>4.4/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Information Systems</td><td>20h</td><td>4.4/5.0</td><td>Lecturer</td></tr>
+        </tbody></table></div>
+        <script>function yrTab(b,id){document.querySelectorAll('.yr-btn').forEach(x=>x.classList.remove('yr-active'));b.classList.add('yr-active');document.querySelectorAll('.yr-pane').forEach(p=>p.classList.remove('yr-show'));document.getElementById(id).classList.add('yr-show');}</script>
 
     design:
       columns: '1'
@@ -146,7 +163,7 @@ sections:
         | 2020 | [Winner — II National Cyber Challenge League](/premios/2020%20-%20Certificado%20-%20Finalista%20NCL%202020.pdf) | National Cyber Challenge League |
         | 2020 | [Las12Uvas 2020](/premios/2020%20-%20Certificado%20-%20Las12Uvas%202020.pdf) | Year-End Programming Contest |
         | 2019 | [Winner — II Social Council Award for Young Researchers](/uploads/Resolucion.pdf) | Universidad Rey Juan Carlos |
-        | 2019 | [Special Mention — E-Madrid Congress (BlueThinking)](http://www.emadridnet.org/) | eMadrid Excellence Network |
+        | 2019 | [Special Mention — E-Madrid Congress (BlueThinking)](/premios/2020%20-%20Certificado%20-%20Menci%C3%B3n%20TFG%20Emadrid.pdf) | eMadrid Excellence Network |
         | 2019 | Honours — Computer Engineering Final Project | Universidad Rey Juan Carlos |
         | 2019 | Honours — Computer Systems Engineering Final Project | Universidad Rey Juan Carlos |
         | 2019 | [Ada Byron Award 2019](/premios/2019%20-%20Certificado%20-%20AdaByron%202019%20Premio.pdf) | RITSI |
