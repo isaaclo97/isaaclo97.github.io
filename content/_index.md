@@ -151,6 +151,7 @@ sections:
       text: |
         | Año | Premio | Organización |
         |-----|--------|-------------|
+        | 2026 | [Ganador — XI JNIC 2022](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2025 | [Premio Extraordinario de Doctorado](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
         | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
         | 2024 | [Mejor Trabajo de Estudiante — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |

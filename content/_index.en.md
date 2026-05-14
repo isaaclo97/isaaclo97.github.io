@@ -151,6 +151,7 @@ sections:
       text: |
         | Year | Award | Organisation |
         |------|-------|-------------|
+        | 2026 | [Winner — XI JNIC 2022](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2025 | [Extraordinary Doctoral Award](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
         | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
         | 2024 | [Best Student Paper — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
