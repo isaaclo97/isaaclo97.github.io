@@ -19,9 +19,10 @@ He aprendido y aplicado las tecnologías modernas al mundo del ajedrez, desarrol
 
 | Charla | Evento | Fecha |
 |--------|--------|-------|
+| [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/HACKRON-2026.pdf) | [HackRON 2026](http://hackron.com/) —  Auditorio de Tenerife Adán Martín, 18:30 | 2026 |
+| [Todos funcionamos con patrones: cómo la IA los encuentra en el ajedrez y en el aula](/congresos/menorcaES2026.pdf) | IV Congreso Internacional Ajedrez e IA — Maó, Menorca | 25 abril 2026 |
 | [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/Rooted2026.pdf) | RootedCON 2026 — Track Rooted, Sala 17, 12:00 | 2026 |
 | [Ajedrez y Ciberseguridad: Estrategias para un Mundo Conectado](/congresos/INCIBE2025.pdf) | III Jornada de Ajedrez, IA y Ciberseguridad — INCIBE, León | 2024 |
-| [Todos funcionamos con patrones: cómo la IA los encuentra en el ajedrez y en el aula](/congresos/menorcaES2026.pdf) · [EN](/congresos/menorcaEN2026.pdf) | IV Congreso Internacional Ajedrez e IA — Maó, Menorca | 25 abril 2026 |
 
 ---
 

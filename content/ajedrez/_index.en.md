@@ -19,9 +19,10 @@ I have applied modern technologies to the chess world, developing projects that 
 
 | Talk | Event | Date |
 |------|-------|------|
+| [OSINT in Chess: The Secret Behind Spain's Olympiad Medals](/congresos/HACKRON-2026.pdf) | [HackRON 2026](http://hackron.com/) —  Auditorio de Tenerife Adán Martín, 18:30 | 2026 |
+| [We All Work with Patterns: How AI Finds Them in Chess and the Classroom](/congresos/menorcaEN2026.pdf) | IV International Chess and AI Congress — Maó, Menorca | 25 April 2026 |
 | [OSINT in Chess: The Secret Behind Spain's Olympiad Medals](/congresos/Rooted2026.pdf) | RootedCON 2026 — Track Rooted, Room 17, 12:00 | 2026 |
 | [Chess and Cybersecurity: Strategies for a Connected World](/congresos/INCIBE2025.pdf) | III Chess, AI & Cybersecurity Conference — INCIBE, León | 2024 |
-| [We All Work with Patterns: How AI Finds Them in Chess and the Classroom](/congresos/menorcaEN2026.pdf) | IV International Chess and AI Congress — Maó, Menorca | 25 April 2026 |
 
 ---
 
