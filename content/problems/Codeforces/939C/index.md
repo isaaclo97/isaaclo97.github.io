@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/939C.html"]
 title: "939C — Codeforces"
 summary: "Solución al problema 939C de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

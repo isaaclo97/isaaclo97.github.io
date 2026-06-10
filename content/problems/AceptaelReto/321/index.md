@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/321.html"]
 title: "321 — AceptaelReto"
 summary: "Solución al problema 321 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

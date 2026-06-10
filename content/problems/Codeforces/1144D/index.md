@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1144D.html"]
 title: "1144D — Codeforces"
 summary: "Solución al problema 1144D de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

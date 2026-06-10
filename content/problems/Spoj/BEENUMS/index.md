@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/BEENUMS.html"]
 title: "BEENUMS — Spoj"
 summary: "Solución al problema BEENUMS de Spoj."
 tags: ["Spoj", "competitive-programming"]

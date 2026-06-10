@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/443A.html"]
 title: "443A — Codeforces"
 summary: "Solución al problema 443A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

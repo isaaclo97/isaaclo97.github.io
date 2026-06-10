@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ABCPATH.html"]
 title: "ABCPATH — Spoj"
 summary: "Solución al problema ABCPATH de Spoj."
 tags: ["Spoj", "competitive-programming"]

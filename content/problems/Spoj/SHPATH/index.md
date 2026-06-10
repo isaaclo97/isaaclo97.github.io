@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SHPATH.html"]
 title: "SHPATH — Spoj"
 summary: "Solución al problema SHPATH de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ACT.html"]
 title: "ACT — Spoj"
 summary: "Solución al problema ACT de Spoj."
 tags: ["Spoj", "competitive-programming"]

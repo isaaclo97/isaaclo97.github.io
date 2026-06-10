@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/ProductiveProductivity.html"]
 title: "ProductiveProductivity — HackerEarth"
 summary: "Solución al problema ProductiveProductivity de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

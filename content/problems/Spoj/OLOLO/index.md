@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/OLOLO.html"]
 title: "OLOLO — Spoj"
 summary: "Solución al problema OLOLO de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/QUEST4.html"]
 title: "QUEST4 — Spoj"
 summary: "Solución al problema QUEST4 de Spoj."
 tags: ["Spoj", "competitive-programming"]

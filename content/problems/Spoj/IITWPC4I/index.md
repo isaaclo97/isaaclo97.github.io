@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/IITWPC4I.html"]
 title: "IITWPC4I — Spoj"
 summary: "Solución al problema IITWPC4I de Spoj."
 tags: ["Spoj", "competitive-programming"]

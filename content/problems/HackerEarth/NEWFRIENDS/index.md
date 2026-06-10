@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/NEWFRIENDS.html"]
 title: "NEWFRIENDS — HackerEarth"
 summary: "Solución al problema NEWFRIENDS de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

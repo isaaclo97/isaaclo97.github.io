@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/103577H.html"]
 title: "103577H — Codeforces"
 summary: "Solución al problema 103577H de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

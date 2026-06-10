@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CLONE.html"]
 title: "CLONE — Spoj"
 summary: "Solución al problema CLONE de Spoj."
 tags: ["Spoj", "competitive-programming"]

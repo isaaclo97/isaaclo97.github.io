@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SAMER08D.html"]
 title: "SAMER08D — Spoj"
 summary: "Solución al problema SAMER08D de Spoj."
 tags: ["Spoj", "competitive-programming"]

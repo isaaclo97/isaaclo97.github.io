@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1056B.html"]
 title: "1056B — Codeforces"
 summary: "Solución al problema 1056B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

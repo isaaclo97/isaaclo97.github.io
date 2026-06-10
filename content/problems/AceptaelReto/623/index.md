@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/623.html"]
 title: "623 — AceptaelReto"
 summary: "Solución al problema 623 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

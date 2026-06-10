@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/71A.html"]
 title: "71A — Codeforces"
 summary: "Solución al problema 71A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

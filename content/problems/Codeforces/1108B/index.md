@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1108B.html"]
 title: "1108B — Codeforces"
 summary: "Solución al problema 1108B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

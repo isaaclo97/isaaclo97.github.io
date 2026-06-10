@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/914A.html"]
 title: "914A — Codeforces"
 summary: "Solución al problema 914A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SARRAY.html"]
 title: "SARRAY — Spoj"
 summary: "Solución al problema SARRAY de Spoj."
 tags: ["Spoj", "competitive-programming"]

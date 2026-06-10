@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FEENTREE.html"]
 title: "FEENTREE — Spoj"
 summary: "Solución al problema FEENTREE de Spoj."
 tags: ["Spoj", "competitive-programming"]

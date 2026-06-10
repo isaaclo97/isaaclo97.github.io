@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CISTFILL.html"]
 title: "CISTFILL — Spoj"
 summary: "Solución al problema CISTFILL de Spoj."
 tags: ["Spoj", "competitive-programming"]

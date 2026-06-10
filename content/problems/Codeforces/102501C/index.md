@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/102501C.html"]
 title: "102501C — Codeforces"
 summary: "Solución al problema 102501C de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

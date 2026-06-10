@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FREQUENT.html"]
 title: "FREQUENT — Spoj"
 summary: "Solución al problema FREQUENT de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/CountSubstringOccurrences.html"]
 title: "CountSubstringOccurrences — HackerEarth"
 summary: "Solución al problema CountSubstringOccurrences de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

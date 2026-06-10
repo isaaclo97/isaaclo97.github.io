@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/HOMO.html"]
 title: "HOMO — Spoj"
 summary: "Solución al problema HOMO de Spoj."
 tags: ["Spoj", "competitive-programming"]

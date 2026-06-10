@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1466B.html"]
 title: "1466B — Codeforces"
 summary: "Solución al problema 1466B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

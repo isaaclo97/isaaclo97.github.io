@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/AGGRCOW.html"]
 title: "AGGRCOW — Spoj"
 summary: "Solución al problema AGGRCOW de Spoj."
 tags: ["Spoj", "competitive-programming"]

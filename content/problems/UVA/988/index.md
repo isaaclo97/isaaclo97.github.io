@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/988.html"]
 title: "988 — UVA"
 summary: "Solución al problema 988 de UVA."
 tags: ["UVA", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/431A.html"]
 title: "431A — Codeforces"
 summary: "Solución al problema 431A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

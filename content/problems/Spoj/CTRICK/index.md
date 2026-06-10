@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CTRICK.html"]
 title: "CTRICK — Spoj"
 summary: "Solución al problema CTRICK de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TEST.html"]
 title: "TEST — Spoj"
 summary: "Solución al problema TEST de Spoj."
 tags: ["Spoj", "competitive-programming"]

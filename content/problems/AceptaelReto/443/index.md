@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/443.html"]
 title: "443 — AceptaelReto"
 summary: "Solución al problema 443 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

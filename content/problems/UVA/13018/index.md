@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/13018.html"]
 title: "13018 — UVA"
 summary: "Solución al problema 13018 de UVA."
 tags: ["UVA", "competitive-programming"]

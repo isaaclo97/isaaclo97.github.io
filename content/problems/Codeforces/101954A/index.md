@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/101954A.html"]
 title: "101954A — Codeforces"
 summary: "Solución al problema 101954A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

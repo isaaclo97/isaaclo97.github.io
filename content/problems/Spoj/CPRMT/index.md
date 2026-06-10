@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CPRMT.html"]
 title: "CPRMT — Spoj"
 summary: "Solución al problema CPRMT de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TEMPTISL.html"]
 title: "TEMPTISL — Spoj"
 summary: "Solución al problema TEMPTISL de Spoj."
 tags: ["Spoj", "competitive-programming"]

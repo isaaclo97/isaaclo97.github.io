@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/HoliAndCulturalFestival.html"]
 title: "HoliAndCulturalFestival — HackerEarth"
 summary: "Solución al problema HoliAndCulturalFestival de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

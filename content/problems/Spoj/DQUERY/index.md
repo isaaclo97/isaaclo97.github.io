@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/DQUERY.html"]
 title: "DQUERY — Spoj"
 summary: "Solución al problema DQUERY de Spoj."
 tags: ["Spoj", "competitive-programming"]

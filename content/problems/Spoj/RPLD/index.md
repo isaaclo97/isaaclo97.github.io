@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/RPLD.html"]
 title: "RPLD — Spoj"
 summary: "Solución al problema RPLD de Spoj."
 tags: ["Spoj", "competitive-programming"]

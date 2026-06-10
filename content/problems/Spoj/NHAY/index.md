@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/NHAY.html"]
 title: "NHAY — Spoj"
 summary: "Solución al problema NHAY de Spoj."
 tags: ["Spoj", "competitive-programming"]

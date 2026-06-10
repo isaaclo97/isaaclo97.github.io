@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/DAVIDG.html"]
 title: "DAVIDG — Spoj"
 summary: "Solución al problema DAVIDG de Spoj."
 tags: ["Spoj", "competitive-programming"]

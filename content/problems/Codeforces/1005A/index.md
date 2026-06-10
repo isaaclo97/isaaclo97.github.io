@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1005A.html"]
 title: "1005A — Codeforces"
 summary: "Solución al problema 1005A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

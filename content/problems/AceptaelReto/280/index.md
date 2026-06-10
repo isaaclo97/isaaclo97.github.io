@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/280.html"]
 title: "280 — AceptaelReto"
 summary: "Solución al problema 280 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

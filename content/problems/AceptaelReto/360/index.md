@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/360.html"]
 title: "360 — AceptaelReto"
 summary: "Solución al problema 360 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

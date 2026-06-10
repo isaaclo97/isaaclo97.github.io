@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SGAME.html"]
 title: "SGAME — Spoj"
 summary: "Solución al problema SGAME de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/101635K.html"]
 title: "101635K — Codeforces"
 summary: "Solución al problema 101635K de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/213.html"]
 title: "213 — AceptaelReto"
 summary: "Solución al problema 213 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

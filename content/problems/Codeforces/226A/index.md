@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/226A.html"]
 title: "226A — Codeforces"
 summary: "Solución al problema 226A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

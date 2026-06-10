@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/732A.html"]
 title: "732A — Codeforces"
 summary: "Solución al problema 732A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

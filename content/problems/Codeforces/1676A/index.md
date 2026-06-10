@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1676A.html"]
 title: "1676A — Codeforces"
 summary: "Solución al problema 1676A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

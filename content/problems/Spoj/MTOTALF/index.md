@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MTOTALF.html"]
 title: "MTOTALF — Spoj"
 summary: "Solución al problema MTOTALF de Spoj."
 tags: ["Spoj", "competitive-programming"]

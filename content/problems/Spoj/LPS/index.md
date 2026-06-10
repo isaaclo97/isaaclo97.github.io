@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/LPS.html"]
 title: "LPS — Spoj"
 summary: "Solución al problema LPS de Spoj."
 tags: ["Spoj", "competitive-programming"]

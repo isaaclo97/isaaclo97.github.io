@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/UCV2013J.html"]
 title: "UCV2013J — Spoj"
 summary: "Solución al problema UCV2013J de Spoj."
 tags: ["Spoj", "competitive-programming"]

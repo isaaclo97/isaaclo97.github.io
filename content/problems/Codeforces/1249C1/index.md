@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1249C1.html"]
 title: "1249C1 — Codeforces"
 summary: "Solución al problema 1249C1 de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

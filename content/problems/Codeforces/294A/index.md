@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/294A.html"]
 title: "294A — Codeforces"
 summary: "Solución al problema 294A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

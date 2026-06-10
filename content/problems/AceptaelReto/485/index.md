@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/485.html"]
 title: "485 — AceptaelReto"
 summary: "Solución al problema 485 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

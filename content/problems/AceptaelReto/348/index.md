@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/348.html"]
 title: "348 — AceptaelReto"
 summary: "Solución al problema 348 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/EDIST.html"]
 title: "EDIST — Spoj"
 summary: "Solución al problema EDIST de Spoj."
 tags: ["Spoj", "competitive-programming"]

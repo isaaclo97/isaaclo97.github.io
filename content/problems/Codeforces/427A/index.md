@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/427A.html"]
 title: "427A — Codeforces"
 summary: "Solución al problema 427A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

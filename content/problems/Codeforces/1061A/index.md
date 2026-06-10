@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1061A.html"]
 title: "1061A — Codeforces"
 summary: "Solución al problema 1061A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

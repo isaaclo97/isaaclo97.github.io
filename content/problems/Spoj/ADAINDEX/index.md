@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ADAINDEX.html"]
 title: "ADAINDEX — Spoj"
 summary: "Solución al problema ADAINDEX de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TOANDFRO.html"]
 title: "TOANDFRO — Spoj"
 summary: "Solución al problema TOANDFRO de Spoj."
 tags: ["Spoj", "competitive-programming"]

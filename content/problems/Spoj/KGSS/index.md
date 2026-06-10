@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/KGSS.html"]
 title: "KGSS — Spoj"
 summary: "Solución al problema KGSS de Spoj."
 tags: ["Spoj", "competitive-programming"]

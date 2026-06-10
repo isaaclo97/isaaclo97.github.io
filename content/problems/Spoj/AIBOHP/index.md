@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/AIBOHP.html"]
 title: "AIBOHP — Spoj"
 summary: "Solución al problema AIBOHP de Spoj."
 tags: ["Spoj", "competitive-programming"]

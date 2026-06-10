@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/EC-MODE.html"]
 title: "EC_MODE — Spoj"
 summary: "Solución al problema EC_MODE de Spoj."
 tags: ["Spoj", "competitive-programming"]

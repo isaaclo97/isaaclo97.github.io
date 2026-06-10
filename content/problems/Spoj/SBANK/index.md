@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SBANK.html"]
 title: "SBANK — Spoj"
 summary: "Solución al problema SBANK de Spoj."
 tags: ["Spoj", "competitive-programming"]

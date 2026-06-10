@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/URJC2-A.html"]
 title: "URJC2_A — Spoj"
 summary: "Solución al problema URJC2_A de Spoj."
 tags: ["Spoj", "competitive-programming"]

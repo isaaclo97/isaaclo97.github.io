@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ALICESIE.html"]
 title: "ALICESIE — Spoj"
 summary: "Solución al problema ALICESIE de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/919B.html"]
 title: "919B — Codeforces"
 summary: "Solución al problema 919B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

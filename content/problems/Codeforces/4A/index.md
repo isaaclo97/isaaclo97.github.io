@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/4A.html"]
 title: "4A — Codeforces"
 summary: "Solución al problema 4A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

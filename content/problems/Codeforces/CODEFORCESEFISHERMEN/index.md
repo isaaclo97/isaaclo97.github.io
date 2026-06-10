@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/CODEFORCESEFISHERMEN.html"]
 title: "CODEFORCESEFISHERMEN — Codeforces"
 summary: "Solución al problema CODEFORCESEFISHERMEN de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/STAMPS.html"]
 title: "STAMPS — Spoj"
 summary: "Solución al problema STAMPS de Spoj."
 tags: ["Spoj", "competitive-programming"]

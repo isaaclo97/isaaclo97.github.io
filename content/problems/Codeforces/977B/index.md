@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/977B.html"]
 title: "977B — Codeforces"
 summary: "Solución al problema 977B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

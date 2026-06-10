@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1064C.html"]
 title: "1064C — Codeforces"
 summary: "Solución al problema 1064C de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

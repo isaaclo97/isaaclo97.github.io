@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/218.html"]
 title: "218 — UVA"
 summary: "Solución al problema 218 de UVA."
 tags: ["UVA", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/364.html"]
 title: "364 — AceptaelReto"
 summary: "Solución al problema 364 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

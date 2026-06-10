@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MIXTURES.html"]
 title: "MIXTURES — Spoj"
 summary: "Solución al problema MIXTURES de Spoj."
 tags: ["Spoj", "competitive-programming"]

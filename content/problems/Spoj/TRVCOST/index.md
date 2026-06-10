@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TRVCOST.html"]
 title: "TRVCOST — Spoj"
 summary: "Solución al problema TRVCOST de Spoj."
 tags: ["Spoj", "competitive-programming"]

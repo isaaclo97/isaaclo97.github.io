@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TAXI.html"]
 title: "TAXI — Spoj"
 summary: "Solución al problema TAXI de Spoj."
 tags: ["Spoj", "competitive-programming"]

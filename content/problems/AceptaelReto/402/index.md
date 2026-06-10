@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/402.html"]
 title: "402 — AceptaelReto"
 summary: "Solución al problema 402 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

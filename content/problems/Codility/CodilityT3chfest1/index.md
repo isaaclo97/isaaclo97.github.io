@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codility/CodilityT3chfest1.html"]
 title: "CodilityT3chfest1 — Codility"
 summary: "Solución al problema CodilityT3chfest1 de Codility."
 tags: ["Codility", "competitive-programming"]

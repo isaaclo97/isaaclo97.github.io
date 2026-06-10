@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TWENDS.html"]
 title: "TWENDS — Spoj"
 summary: "Solución al problema TWENDS de Spoj."
 tags: ["Spoj", "competitive-programming"]

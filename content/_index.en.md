@@ -67,7 +67,7 @@ sections:
     content:
       title: Teaching
       text: |
-        I have supervised **17 Bachelor's Final Projects (TFG)** and **3 Master's Final Projects (TFM)**, and have participated in more than **40 evaluation committees**. In total, I have taught **581 hours** of university teaching, equivalent to **58.1 credits**.
+        I have supervised **17 Bachelor's Final Projects (TFG)** and **3 Master's Final Projects (TFM)**, and have participated in more than **40 evaluation committees**. In total, I have taught **601 hours** of university teaching, equivalent to **60.1 credits**.
 
         <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
@@ -83,6 +83,8 @@ sections:
         <tr><td>Secure Development Methodologies</td><td>20h</td><td>—</td><td>Lecturer</td></tr>
         <tr><td>Programming 1</td><td>30h</td><td>4.24/5.0</td><td>Lab sessions</td></tr>
         <tr><td>Hacking Techniques</td><td>30h</td><td>3.92/5.0</td><td>Lab sessions</td></tr>
+        <tr><td>Cloud Security · MSc Cybersecurity (UAX)</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Privacy · MSc Cybersecurity (UAX)</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
         </tbody></table></div>
         <div id="yr2425" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
         <tr><td>Algorithm Design and Development</td><td>75h</td><td>4.80 / 4.24 /5.0</td><td>Lecturer</td></tr>

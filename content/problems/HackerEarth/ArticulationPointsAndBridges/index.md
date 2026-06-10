@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/ArticulationPointsAndBridges.html"]
 title: "ArticulationPointsAndBridges — HackerEarth"
 summary: "Solución al problema ArticulationPointsAndBridges de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

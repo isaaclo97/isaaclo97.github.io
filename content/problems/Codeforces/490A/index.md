@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/490A.html"]
 title: "490A — Codeforces"
 summary: "Solución al problema 490A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

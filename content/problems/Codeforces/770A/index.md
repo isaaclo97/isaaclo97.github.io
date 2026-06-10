@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/770A.html"]
 title: "770A — Codeforces"
 summary: "Solución al problema 770A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

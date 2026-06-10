@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PRIME1.html"]
 title: "PRIME1 — Spoj"
 summary: "Solución al problema PRIME1 de Spoj."
 tags: ["Spoj", "competitive-programming"]

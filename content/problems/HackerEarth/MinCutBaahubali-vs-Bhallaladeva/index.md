@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/MinCutBaahubali-vs-Bhallaladeva.html"]
 title: "MinCutBaahubali vs Bhallaladeva — HackerEarth"
 summary: "Solución al problema MinCutBaahubali vs Bhallaladeva de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

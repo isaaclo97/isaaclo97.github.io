@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PT07Y.html"]
 title: "PT07Y — Spoj"
 summary: "Solución al problema PT07Y de Spoj."
 tags: ["Spoj", "competitive-programming"]

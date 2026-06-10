@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/13072.html"]
 title: "13072 — UVA"
 summary: "Solución al problema 13072 de UVA."
 tags: ["UVA", "competitive-programming"]

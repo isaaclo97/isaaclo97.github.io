@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/ShilAndLabAssignment.html"]
 title: "ShilAndLabAssignment — HackerEarth"
 summary: "Solución al problema ShilAndLabAssignment de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

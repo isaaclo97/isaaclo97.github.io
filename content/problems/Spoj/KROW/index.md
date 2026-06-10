@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/KROW.html"]
 title: "KROW — Spoj"
 summary: "Solución al problema KROW de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/101620-CERC2017H-CODEFORCES.html"]
 title: "101620_CERC2017H_CODEFORCES — Codeforces"
 summary: "Solución al problema 101620_CERC2017H_CODEFORCES de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

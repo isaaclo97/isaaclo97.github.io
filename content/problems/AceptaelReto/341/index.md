@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/341.html"]
 title: "341 — AceptaelReto"
 summary: "Solución al problema 341 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

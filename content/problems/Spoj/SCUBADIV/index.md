@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SCUBADIV.html"]
 title: "SCUBADIV — Spoj"
 summary: "Solución al problema SCUBADIV de Spoj."
 tags: ["Spoj", "competitive-programming"]

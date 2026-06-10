@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SBETS.html"]
 title: "SBETS — Spoj"
 summary: "Solución al problema SBETS de Spoj."
 tags: ["Spoj", "competitive-programming"]

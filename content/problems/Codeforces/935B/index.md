@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/935B.html"]
 title: "935B — Codeforces"
 summary: "Solución al problema 935B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

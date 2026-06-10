@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PANCAKES.html"]
 title: "PANCAKES — Spoj"
 summary: "Solución al problema PANCAKES de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MAY99-2.html"]
 title: "MAY99_2 — Spoj"
 summary: "Solución al problema MAY99_2 de Spoj."
 tags: ["Spoj", "competitive-programming"]

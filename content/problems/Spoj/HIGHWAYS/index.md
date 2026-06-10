@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/HIGHWAYS.html"]
 title: "HIGHWAYS — Spoj"
 summary: "Solución al problema HIGHWAYS de Spoj."
 tags: ["Spoj", "competitive-programming"]

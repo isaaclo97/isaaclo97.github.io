@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/181.html"]
 title: "181 — AceptaelReto"
 summary: "Solución al problema 181 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

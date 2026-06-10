@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/107.html"]
 title: "107 — AceptaelReto"
 summary: "Solución al problema 107 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

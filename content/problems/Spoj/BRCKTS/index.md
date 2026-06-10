@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/BRCKTS.html"]
 title: "BRCKTS — Spoj"
 summary: "Solución al problema BRCKTS de Spoj."
 tags: ["Spoj", "competitive-programming"]

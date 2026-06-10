@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FPOLICE.html"]
 title: "FPOLICE — Spoj"
 summary: "Solución al problema FPOLICE de Spoj."
 tags: ["Spoj", "competitive-programming"]

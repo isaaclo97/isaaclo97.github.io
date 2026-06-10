@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/265A.html"]
 title: "265A — Codeforces"
 summary: "Solución al problema 265A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

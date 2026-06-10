@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1108D.html"]
 title: "1108D — Codeforces"
 summary: "Solución al problema 1108D de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

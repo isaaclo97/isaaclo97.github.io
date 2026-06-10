@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/261.html"]
 title: "261 — AceptaelReto"
 summary: "Solución al problema 261 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

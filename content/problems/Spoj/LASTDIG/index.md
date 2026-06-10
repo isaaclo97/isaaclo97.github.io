@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/LASTDIG.html"]
 title: "LASTDIG — Spoj"
 summary: "Solución al problema LASTDIG de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MISERMAN.html"]
 title: "MISERMAN — Spoj"
 summary: "Solución al problema MISERMAN de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ANGELS.html"]
 title: "ANGELS — Spoj"
 summary: "Solución al problema ANGELS de Spoj."
 tags: ["Spoj", "competitive-programming"]

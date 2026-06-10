@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CTOI09-1.html"]
 title: "CTOI09_1 — Spoj"
 summary: "Solución al problema CTOI09_1 de Spoj."
 tags: ["Spoj", "competitive-programming"]

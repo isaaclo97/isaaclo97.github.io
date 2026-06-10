@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ACODE.html"]
 title: "ACODE — Spoj"
 summary: "Solución al problema ACODE de Spoj."
 tags: ["Spoj", "competitive-programming"]

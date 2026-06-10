@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/DISUBSTR.html"]
 title: "DISUBSTR — Spoj"
 summary: "Solución al problema DISUBSTR de Spoj."
 tags: ["Spoj", "competitive-programming"]

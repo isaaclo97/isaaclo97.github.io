@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/381A.html"]
 title: "381A — Codeforces"
 summary: "Solución al problema 381A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

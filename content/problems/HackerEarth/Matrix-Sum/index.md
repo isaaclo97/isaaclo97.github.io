@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/Matrix-Sum.html"]
 title: "Matrix_Sum — HackerEarth"
 summary: "Solución al problema Matrix_Sum de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

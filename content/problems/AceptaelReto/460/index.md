@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/460.html"]
 title: "460 — AceptaelReto"
 summary: "Solución al problema 460 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/DICT.html"]
 title: "DICT — Spoj"
 summary: "Solución al problema DICT de Spoj."
 tags: ["Spoj", "competitive-programming"]

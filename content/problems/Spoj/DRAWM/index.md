@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/DRAWM.html"]
 title: "DRAWM — Spoj"
 summary: "Solución al problema DRAWM de Spoj."
 tags: ["Spoj", "competitive-programming"]

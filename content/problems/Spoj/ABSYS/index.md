@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ABSYS.html"]
 title: "ABSYS — Spoj"
 summary: "Solución al problema ABSYS de Spoj."
 tags: ["Spoj", "competitive-programming"]

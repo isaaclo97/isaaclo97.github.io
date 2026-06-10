@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/301.html"]
 title: "301 — AceptaelReto"
 summary: "Solución al problema 301 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

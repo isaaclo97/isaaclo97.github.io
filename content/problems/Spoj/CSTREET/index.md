@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CSTREET.html"]
 title: "CSTREET — Spoj"
 summary: "Solución al problema CSTREET de Spoj."
 tags: ["Spoj", "competitive-programming"]

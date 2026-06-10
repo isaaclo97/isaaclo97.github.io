@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/403.html"]
 title: "403 — AceptaelReto"
 summary: "Solución al problema 403 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

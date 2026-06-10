@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/982A.html"]
 title: "982A — Codeforces"
 summary: "Solución al problema 982A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

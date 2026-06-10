@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/GEORGE.html"]
 title: "GEORGE — Spoj"
 summary: "Solución al problema GEORGE de Spoj."
 tags: ["Spoj", "competitive-programming"]

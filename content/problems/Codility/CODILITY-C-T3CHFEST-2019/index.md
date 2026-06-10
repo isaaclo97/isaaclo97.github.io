@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codility/CODILITY-C-T3CHFEST-2019.html"]
 title: "CODILITY_C-T3CHFEST_2019 — Codility"
 summary: "Solución al problema CODILITY_C-T3CHFEST_2019 de Codility."
 tags: ["Codility", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1690D.html"]
 title: "1690D — Codeforces"
 summary: "Solución al problema 1690D de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

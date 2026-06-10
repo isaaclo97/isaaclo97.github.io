@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/668.html"]
 title: "668 — AceptaelReto"
 summary: "Solución al problema 668 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

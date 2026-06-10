@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/486.html"]
 title: "486 — AceptaelReto"
 summary: "Solución al problema 486 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/425.html"]
 title: "425 — AceptaelReto"
 summary: "Solución al problema 425 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

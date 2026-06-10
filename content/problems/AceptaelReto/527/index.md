@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/527.html"]
 title: "527 — AceptaelReto"
 summary: "Solución al problema 527 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

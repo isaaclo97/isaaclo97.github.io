@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/BLINNET.html"]
 title: "BLINNET — Spoj"
 summary: "Solución al problema BLINNET de Spoj."
 tags: ["Spoj", "competitive-programming"]

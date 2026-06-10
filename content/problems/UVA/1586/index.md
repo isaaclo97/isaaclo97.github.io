@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/1586.html"]
 title: "1586 — UVA"
 summary: "Solución al problema 1586 de UVA."
 tags: ["UVA", "competitive-programming"]

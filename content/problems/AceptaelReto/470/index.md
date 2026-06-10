@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/470.html"]
 title: "470 — AceptaelReto"
 summary: "Solución al problema 470 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

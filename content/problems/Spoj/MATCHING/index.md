@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MATCHING.html"]
 title: "MATCHING — Spoj"
 summary: "Solución al problema MATCHING de Spoj."
 tags: ["Spoj", "competitive-programming"]

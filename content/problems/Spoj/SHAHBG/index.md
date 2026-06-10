@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/SHAHBG.html"]
 title: "SHAHBG — Spoj"
 summary: "Solución al problema SHAHBG de Spoj."
 tags: ["Spoj", "competitive-programming"]

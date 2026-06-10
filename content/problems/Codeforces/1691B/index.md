@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1691B.html"]
 title: "1691B — Codeforces"
 summary: "Solución al problema 1691B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/731A.html"]
 title: "731A — Codeforces"
 summary: "Solución al problema 731A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

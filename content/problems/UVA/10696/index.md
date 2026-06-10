@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/10696.html"]
 title: "10696 — UVA"
 summary: "Solución al problema 10696 de UVA."
 tags: ["UVA", "competitive-programming"]

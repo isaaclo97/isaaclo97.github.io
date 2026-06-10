@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/978B.html"]
 title: "978B — Codeforces"
 summary: "Solución al problema 978B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

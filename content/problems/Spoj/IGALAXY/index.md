@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/IGALAXY.html"]
 title: "IGALAXY — Spoj"
 summary: "Solución al problema IGALAXY de Spoj."
 tags: ["Spoj", "competitive-programming"]

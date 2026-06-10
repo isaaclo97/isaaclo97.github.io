@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/628.html"]
 title: "628 — AceptaelReto"
 summary: "Solución al problema 628 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

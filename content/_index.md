@@ -67,7 +67,7 @@ sections:
     content:
       title: Docencia
       text: |
-        He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación. En total, he impartido **581 horas** de docencia universitaria, equivalentes a **58,1 créditos**.
+        He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación. En total, he impartido **601 horas** de docencia universitaria, equivalentes a **60,1 créditos**.
 
         <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
@@ -83,6 +83,8 @@ sections:
         <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>—</td><td>Profesor</td></tr>
         <tr><td>Programación 1</td><td>30h</td><td>4.24/5.0</td><td>Prácticas</td></tr>
         <tr><td>Técnicas de Hacking</td><td>30h</td><td>3.92/5.0</td><td>Prácticas</td></tr>
+        <tr><td>Seguridad en la Nube · Máster Ciberseguridad (UAX)</td><td>10h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Privacidad · Máster Ciberseguridad (UAX)</td><td>10h</td><td>—</td><td>Profesor</td></tr>
         </tbody></table></div>
         <div id="yr2425" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
         <tr><td>Diseño y Desarrollo de Algoritmos</td><td>75h</td><td>4.80 / 4.24 /5.0</td><td>Profesor</td></tr>

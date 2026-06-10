@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/433.html"]
 title: "433 — AceptaelReto"
 summary: "Solución al problema 433 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

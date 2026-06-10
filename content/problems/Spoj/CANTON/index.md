@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CANTON.html"]
 title: "CANTON — Spoj"
 summary: "Solución al problema CANTON de Spoj."
 tags: ["Spoj", "competitive-programming"]

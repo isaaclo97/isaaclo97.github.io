@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FASHION.html"]
 title: "FASHION — Spoj"
 summary: "Solución al problema FASHION de Spoj."
 tags: ["Spoj", "competitive-programming"]

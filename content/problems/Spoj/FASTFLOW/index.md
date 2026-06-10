@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FASTFLOW.html"]
 title: "FASTFLOW — Spoj"
 summary: "Solución al problema FASTFLOW de Spoj."
 tags: ["Spoj", "competitive-programming"]

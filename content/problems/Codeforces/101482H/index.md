@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/101482H.html"]
 title: "101482H — Codeforces"
 summary: "Solución al problema 101482H de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

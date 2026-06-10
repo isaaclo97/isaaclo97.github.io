@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/JRIDE.html"]
 title: "JRIDE — Spoj"
 summary: "Solución al problema JRIDE de Spoj."
 tags: ["Spoj", "competitive-programming"]

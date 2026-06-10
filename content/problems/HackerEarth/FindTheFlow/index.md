@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/FindTheFlow.html"]
 title: "FindTheFlow — HackerEarth"
 summary: "Solución al problema FindTheFlow de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ELEVTRBL.html"]
 title: "ELEVTRBL — Spoj"
 summary: "Solución al problema ELEVTRBL de Spoj."
 tags: ["Spoj", "competitive-programming"]

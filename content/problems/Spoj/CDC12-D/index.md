@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CDC12-D.html"]
 title: "CDC12_D — Spoj"
 summary: "Solución al problema CDC12_D de Spoj."
 tags: ["Spoj", "competitive-programming"]

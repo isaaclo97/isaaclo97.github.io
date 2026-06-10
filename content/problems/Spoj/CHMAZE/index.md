@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CHMAZE.html"]
 title: "CHMAZE — Spoj"
 summary: "Solución al problema CHMAZE de Spoj."
 tags: ["Spoj", "competitive-programming"]

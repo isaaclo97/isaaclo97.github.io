@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/686A.html"]
 title: "686A — Codeforces"
 summary: "Solución al problema 686A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MKBUDGET.html"]
 title: "MKBUDGET — Spoj"
 summary: "Solución al problema MKBUDGET de Spoj."
 tags: ["Spoj", "competitive-programming"]

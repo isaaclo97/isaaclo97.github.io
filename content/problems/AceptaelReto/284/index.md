@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/284.html"]
 title: "284 — AceptaelReto"
 summary: "Solución al problema 284 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/HISIX.html"]
 title: "HISIX — Spoj"
 summary: "Solución al problema HISIX de Spoj."
 tags: ["Spoj", "competitive-programming"]

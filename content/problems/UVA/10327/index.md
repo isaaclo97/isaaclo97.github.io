@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/10327.html"]
 title: "10327 — UVA"
 summary: "Solución al problema 10327 de UVA."
 tags: ["UVA", "competitive-programming"]

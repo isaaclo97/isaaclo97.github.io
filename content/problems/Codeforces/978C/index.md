@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/978C.html"]
 title: "978C — Codeforces"
 summary: "Solución al problema 978C de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

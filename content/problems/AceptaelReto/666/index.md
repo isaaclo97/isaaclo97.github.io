@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/666.html"]
 title: "666 — AceptaelReto"
 summary: "Solución al problema 666 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

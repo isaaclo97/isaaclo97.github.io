@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Kattis/timeloop.html"]
 title: "timeloop — Kattis"
 summary: "Solución al problema timeloop de Kattis."
 tags: ["Kattis", "competitive-programming"]

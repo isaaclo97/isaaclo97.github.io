@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/POTHOLE.html"]
 title: "POTHOLE — Spoj"
 summary: "Solución al problema POTHOLE de Spoj."
 tags: ["Spoj", "competitive-programming"]

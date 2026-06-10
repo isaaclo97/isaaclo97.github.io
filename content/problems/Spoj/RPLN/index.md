@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/RPLN.html"]
 title: "RPLN — Spoj"
 summary: "Solución al problema RPLN de Spoj."
 tags: ["Spoj", "competitive-programming"]

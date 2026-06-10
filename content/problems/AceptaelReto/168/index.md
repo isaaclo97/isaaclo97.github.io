@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/168.html"]
 title: "168 — AceptaelReto"
 summary: "Solución al problema 168 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

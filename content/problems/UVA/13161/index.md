@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/13161.html"]
 title: "13161 — UVA"
 summary: "Solución al problema 13161 de UVA."
 tags: ["UVA", "competitive-programming"]

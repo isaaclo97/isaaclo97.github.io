@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/977C.html"]
 title: "977C — Codeforces"
 summary: "Solución al problema 977C de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

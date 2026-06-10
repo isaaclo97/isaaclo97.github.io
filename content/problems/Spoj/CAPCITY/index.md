@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CAPCITY.html"]
 title: "CAPCITY — Spoj"
 summary: "Solución al problema CAPCITY de Spoj."
 tags: ["Spoj", "competitive-programming"]

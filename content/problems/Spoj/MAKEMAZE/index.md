@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MAKEMAZE.html"]
 title: "MAKEMAZE — Spoj"
 summary: "Solución al problema MAKEMAZE de Spoj."
 tags: ["Spoj", "competitive-programming"]

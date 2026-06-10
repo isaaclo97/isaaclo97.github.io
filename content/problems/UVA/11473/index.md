@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/11473.html"]
 title: "11473 — UVA"
 summary: "Solución al problema 11473 de UVA."
 tags: ["UVA", "competitive-programming"]

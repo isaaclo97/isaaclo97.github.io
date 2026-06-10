@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/FISHER.html"]
 title: "FISHER — Spoj"
 summary: "Solución al problema FISHER de Spoj."
 tags: ["Spoj", "competitive-programming"]

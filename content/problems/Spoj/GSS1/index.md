@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/GSS1.html"]
 title: "GSS1 — Spoj"
 summary: "Solución al problema GSS1 de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PHONELST.html"]
 title: "PHONELST — Spoj"
 summary: "Solución al problema PHONELST de Spoj."
 tags: ["Spoj", "competitive-programming"]

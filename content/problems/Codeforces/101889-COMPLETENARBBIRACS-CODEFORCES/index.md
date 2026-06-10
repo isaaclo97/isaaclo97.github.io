@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/101889-COMPLETENARBBIRACS-CODEFORCES.html"]
 title: "101889_COMPLETENARBBIRACS_CODEFORCES — Codeforces"
 summary: "Solución al problema 101889_COMPLETENARBBIRACS_CODEFORCES de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

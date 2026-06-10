@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/MTHUR.html"]
 title: "MTHUR — Spoj"
 summary: "Solución al problema MTHUR de Spoj."
 tags: ["Spoj", "competitive-programming"]

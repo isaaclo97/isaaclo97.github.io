@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PFDEP.html"]
 title: "PFDEP — Spoj"
 summary: "Solución al problema PFDEP de Spoj."
 tags: ["Spoj", "competitive-programming"]

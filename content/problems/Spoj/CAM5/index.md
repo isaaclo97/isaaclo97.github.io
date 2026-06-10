@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CAM5.html"]
 title: "CAM5 — Spoj"
 summary: "Solución al problema CAM5 de Spoj."
 tags: ["Spoj", "competitive-programming"]

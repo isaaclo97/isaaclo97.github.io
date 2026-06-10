@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/488.html"]
 title: "488 — AceptaelReto"
 summary: "Solución al problema 488 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

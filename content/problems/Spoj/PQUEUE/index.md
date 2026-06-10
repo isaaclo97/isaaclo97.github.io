@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/PQUEUE.html"]
 title: "PQUEUE — Spoj"
 summary: "Solución al problema PQUEUE de Spoj."
 tags: ["Spoj", "competitive-programming"]

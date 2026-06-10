@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/CHICAGO.html"]
 title: "CHICAGO — Spoj"
 summary: "Solución al problema CHICAGO de Spoj."
 tags: ["Spoj", "competitive-programming"]

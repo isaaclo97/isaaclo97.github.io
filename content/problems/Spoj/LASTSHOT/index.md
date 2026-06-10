@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/LASTSHOT.html"]
 title: "LASTSHOT — Spoj"
 summary: "Solución al problema LASTSHOT de Spoj."
 tags: ["Spoj", "competitive-programming"]

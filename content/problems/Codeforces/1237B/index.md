@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1237B.html"]
 title: "1237B — Codeforces"
 summary: "Solución al problema 1237B de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

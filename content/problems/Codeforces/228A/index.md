@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/228A.html"]
 title: "228A — Codeforces"
 summary: "Solución al problema 228A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/339A.html"]
 title: "339A — Codeforces"
 summary: "Solución al problema 339A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

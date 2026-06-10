@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/397.html"]
 title: "397 — AceptaelReto"
 summary: "Solución al problema 397 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

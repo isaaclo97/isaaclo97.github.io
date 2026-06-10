@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ADATRIP.html"]
 title: "ADATRIP — Spoj"
 summary: "Solución al problema ADATRIP de Spoj."
 tags: ["Spoj", "competitive-programming"]

@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/ARDA1.html"]
 title: "ARDA1 — Spoj"
 summary: "Solución al problema ARDA1 de Spoj."
 tags: ["Spoj", "competitive-programming"]

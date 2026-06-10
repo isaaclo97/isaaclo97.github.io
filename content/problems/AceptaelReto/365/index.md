@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/AceptaelReto/365.html"]
 title: "365 — AceptaelReto"
 summary: "Solución al problema 365 de AceptaelReto."
 tags: ["AceptaelReto", "competitive-programming"]

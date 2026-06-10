@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/TRAFFICN.html"]
 title: "TRAFFICN — Spoj"
 summary: "Solución al problema TRAFFICN de Spoj."
 tags: ["Spoj", "competitive-programming"]

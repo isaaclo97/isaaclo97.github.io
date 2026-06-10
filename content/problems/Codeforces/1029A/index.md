@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Codeforces/1029A.html"]
 title: "1029A — Codeforces"
 summary: "Solución al problema 1029A de Codeforces."
 tags: ["Codeforces", "competitive-programming"]

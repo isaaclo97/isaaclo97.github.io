@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Kattis/r2.html"]
 title: "r2 — Kattis"
 summary: "Solución al problema r2 de Kattis."
 tags: ["Kattis", "competitive-programming"]

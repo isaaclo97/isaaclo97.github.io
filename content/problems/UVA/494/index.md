@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/UVA/494.html"]
 title: "494 — UVA"
 summary: "Solución al problema 494 de UVA."
 tags: ["UVA", "competitive-programming"]

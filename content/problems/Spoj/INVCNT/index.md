@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/Spoj/INVCNT.html"]
 title: "INVCNT — Spoj"
 summary: "Solución al problema INVCNT de Spoj."
 tags: ["Spoj", "competitive-programming"]

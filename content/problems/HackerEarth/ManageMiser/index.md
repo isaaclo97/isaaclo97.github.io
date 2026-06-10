@@ -1,4 +1,5 @@
 ---
+aliases: ["/problems/HackerEarth/ManageMiser.html"]
 title: "ManageMiser — HackerEarth"
 summary: "Solución al problema ManageMiser de HackerEarth."
 tags: ["HackerEarth", "competitive-programming"]
