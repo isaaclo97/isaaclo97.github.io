@@ -67,7 +67,7 @@ sections:
     content:
       title: Teaching
       text: |
-        I have supervised **17 Bachelor's Final Projects (TFG)** and **3 Master's Final Projects (TFM)**, and have participated in more than **40 evaluation committees**. In total, I have taught **601 hours** of university teaching, equivalent to **60.1 credits**.
+        I have supervised **20 Bachelor's Final Projects (TFG)** and **7 Master's Final Projects (TFM)**, and have participated in **58 TFG evaluation committees** and **2 TFM evaluation committees**. In total, I have taught **611 hours** of university teaching, equivalent to **61.1 credits**.
 
         <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
@@ -79,11 +79,11 @@ sections:
         </div>
         <div id="yr2526" class="yr-pane yr-show"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
         <tr><td>Algorithm Design and Development</td><td>60h</td><td>4.55/5.0</td><td>Lecturer</td></tr>
-        <tr><td>Computer Security</td><td>26h</td><td>—</td><td>Lecturer</td></tr>
-        <tr><td>Secure Development Methodologies</td><td>20h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Computer Security</td><td>26h</td><td>4.65/5.0</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>20h</td><td>4.31/5.0</td><td>Lecturer</td></tr>
         <tr><td>Programming 1</td><td>30h</td><td>4.24/5.0</td><td>Lab sessions</td></tr>
         <tr><td>Hacking Techniques</td><td>30h</td><td>3.92/5.0</td><td>Lab sessions</td></tr>
-        <tr><td>Cloud Security · MSc Cybersecurity (UAX)</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Cloud Security · MSc Cybersecurity (UAX)</td><td>20h</td><td>4.6/5.0</td><td>Lecturer</td></tr>
         <tr><td>Privacy · MSc Cybersecurity (UAX)</td><td>10h</td><td>—</td><td>Lecturer</td></tr>
         </tbody></table></div>
         <div id="yr2425" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
@@ -155,8 +155,7 @@ sections:
         |------|-------|-------------|
         | 2026 | [Winner — XI JNIC 2026](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2025 | [Extraordinary Doctoral Award](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2024 | [Best Student Paper — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
+        | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |        | 2024 | [Best Student Paper — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
         | 2024 | [Award — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
         | 2023 | [3rd place — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Spanish National Conference on Cybersecurity Research |

@@ -67,7 +67,7 @@ sections:
     content:
       title: Docencia
       text: |
-        He dirigido **17 Trabajos de Fin de Grado (TFG)** y **3 Trabajos de Fin de Máster (TFM)**, y he participado en más de **40 tribunales** de evaluación. En total, he impartido **601 horas** de docencia universitaria, equivalentes a **60,1 créditos**.
+        He dirigido **20 Trabajos de Fin de Grado (TFG)** y **7 Trabajos de Fin de Máster (TFM)**, y he participado en **58 tribunales** de TFG y **2 tribunales** de TFM. En total, he impartido **611 horas** de docencia universitaria, equivalentes a **61,1 créditos**.
 
         <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
@@ -79,11 +79,11 @@ sections:
         </div>
         <div id="yr2526" class="yr-pane yr-show"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
         <tr><td>Diseño y Desarrollo de Algoritmos</td><td>60h</td><td>4.55/5.0</td><td>Profesor</td></tr>
-        <tr><td>Seguridad Informática</td><td>26h</td><td>—</td><td>Profesor</td></tr>
-        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Seguridad Informática</td><td>26h</td><td>4.65/5.0</td><td>Profesor</td></tr>
+        <tr><td>Metodologías de Desarrollo Seguro</td><td>20h</td><td>4.31/5.0</td><td>Profesor</td></tr>
         <tr><td>Programación 1</td><td>30h</td><td>4.24/5.0</td><td>Prácticas</td></tr>
         <tr><td>Técnicas de Hacking</td><td>30h</td><td>3.92/5.0</td><td>Prácticas</td></tr>
-        <tr><td>Seguridad en la Nube · Máster Ciberseguridad (UAX)</td><td>10h</td><td>—</td><td>Profesor</td></tr>
+        <tr><td>Seguridad en la Nube · Máster Ciberseguridad (UAX)</td><td>20h</td><td>4.6/5.0</td><td>Profesor</td></tr>
         <tr><td>Privacidad · Máster Ciberseguridad (UAX)</td><td>10h</td><td>—</td><td>Profesor</td></tr>
         </tbody></table></div>
         <div id="yr2425" class="yr-pane"><table><thead><tr><th>Asignatura</th><th>Horas</th><th>Valoración</th><th>Rol</th></tr></thead><tbody>
@@ -155,8 +155,7 @@ sections:
         |-----|--------|-------------|
         | 2026 | [Ganador — XI JNIC 2026](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2025 | [Premio Extraordinario de Doctorado](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2024 | [Mejor Trabajo de Estudiante — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
+        | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |        | 2024 | [Mejor Trabajo de Estudiante — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
         | 2024 | [Premio — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
         | 2023 | [3er puesto — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |

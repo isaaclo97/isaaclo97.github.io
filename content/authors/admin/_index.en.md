@@ -3,7 +3,7 @@ title: Isaac Lozano Osorio
 
 superuser: true
 
-role: Assistant Doctor Professor
+role: 'Assistant Doctor Professor<br><span style="font-size:0.7em;font-weight:400;opacity:.85">1 Research Six-Year Term (Sexenio) · 1 DOCENTIA Teaching Accreditation</span>'
 
 organizations:
   - name: Universidad Rey Juan Carlos (URJC)

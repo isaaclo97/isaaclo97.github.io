@@ -3,7 +3,7 @@ title: Isaac Lozano Osorio
 
 superuser: true
 
-role: Profesor Ayudante Doctor · Doctor en Inteligencia Artificial
+role: 'Profesor Ayudante Doctor · Doctor en Inteligencia Artificial<br><span style="font-size:0.7em;font-weight:400;opacity:.85">1 Sexenio de Investigación · 1 tramo DOCENTIA</span>'
 
 organizations:
   - name: Universidad Rey Juan Carlos (URJC)
