@@ -71,13 +71,21 @@ sections:
 
         <style>.yr-btn{padding:5px 16px;border:1px solid #ccc;border-radius:20px;cursor:pointer;background:#f5f5f5;font-size:.875rem;margin:2px;transition:background .2s,color .2s}.yr-btn.yr-active{background:#1565c0;color:#fff;border-color:#1565c0}.yr-pane{display:none}.yr-pane.yr-show{display:block}</style>
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:.75rem">
-        <button class="yr-btn yr-active" onclick="yrTab(this,'yr2526')">2025-2026</button>
+        <button class="yr-btn yr-active" onclick="yrTab(this,'yr2627')">2026-2027</button>
+        <button class="yr-btn" onclick="yrTab(this,'yr2526')">2025-2026</button>
         <button class="yr-btn" onclick="yrTab(this,'yr2425')">2024-2025</button>
         <button class="yr-btn" onclick="yrTab(this,'yr2324')">2023-2024</button>
         <button class="yr-btn" onclick="yrTab(this,'yr2223')">2022-2023</button>
         <button class="yr-btn" onclick="yrTab(this,'yr2122')">2021-2022</button>
         </div>
-        <div id="yr2526" class="yr-pane yr-show"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <div id="yr2627" class="yr-pane yr-show"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
+        <tr><td>Computer Security · GIC</td><td>15h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Computer Security · GIS</td><td>55h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Algorithm Design and Analysis</td><td>60h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Secure Development Methodologies</td><td>35h</td><td>—</td><td>Lecturer</td></tr>
+        <tr><td>Programming 1</td><td>30h</td><td>—</td><td>Lab sessions</td></tr>
+        </tbody></table></div>
+        <div id="yr2526" class="yr-pane"><table><thead><tr><th>Subject</th><th>Hours</th><th>Rating</th><th>Role</th></tr></thead><tbody>
         <tr><td>Algorithm Design and Development</td><td>60h</td><td>4.55/5.0</td><td>Lecturer</td></tr>
         <tr><td>Computer Security</td><td>26h</td><td>4.65/5.0</td><td>Lecturer</td></tr>
         <tr><td>Secure Development Methodologies</td><td>20h</td><td>4.31/5.0</td><td>Lecturer</td></tr>
