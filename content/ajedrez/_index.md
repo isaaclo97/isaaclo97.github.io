@@ -19,6 +19,7 @@ He aprendido y aplicado las tecnologías modernas al mundo del ajedrez, desarrol
 
 | Charla | Evento | Fecha |
 |--------|--------|-------|
+| [Cómo preparar una partida con IA y base de datos YottaChess](/congresos/BenidormES2026.pdf) · [Vídeo](https://www.youtube.com/watch?v=9YoQNUM2GO8) | Benidorm Chess Open 2026 | 2026 |
 | [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/HACKRON-2026.pdf) | [HackRON 2026](http://hackron.com/) —  Auditorio de Tenerife Adán Martín, 18:30 | 2026 |
 | [Todos funcionamos con patrones: cómo la IA los encuentra en el ajedrez y en el aula](/congresos/menorcaES2026.pdf) | IV Congreso Internacional Ajedrez e IA — Maó, Menorca | 25 abril 2026 |
 | [OSINT en Ajedrez: El secreto detrás de las medallas de España en la Olimpiada](/congresos/Rooted2026.pdf) | RootedCON 2026 — Track Rooted, Sala 17, 12:00 | 2026 |
