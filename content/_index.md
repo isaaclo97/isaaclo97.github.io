@@ -161,9 +161,13 @@ sections:
       text: |
         | Año | Premio | Organización |
         |-----|--------|-------------|
+        | 2026 | [1er Premio al Mejor Trabajo — MAEB 2026 (CAEPIA 2026)](/premios/2026%20-%20Certificado%20-%20Premio%20MAEB%202026%20-%20General.pdf) | XVII Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
+        | 2026 | [Mención especial al mejor TFM en «IA y Soluciones dirigidas por datos» — CAEPIA 2026 (director del TFM de Lucas Martín García)](/premios/2026%20-%20Certificado%20-%20Premio%20CAEPIA%202026%20-%20TFM.pdf) | Cátedra URJC-OGA en Artificial Intelligence for Data Driven Solutions |
+        | 2026 | [1er Premio al Mejor Trabajo de Estudiante — MAEB 2026 (CAEPIA 2026)](/premios/2026%20-%20Certificado%20-%20Premio%20MAEB%202026%20-%20Estudiante.pdf) | XVII Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
         | 2026 | [Ganador — XI JNIC 2026](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2025 | [Premio Extraordinario de Doctorado](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |        | 2024 | [Mejor Trabajo de Estudiante — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
+        | 2025 | [Premio a la Tesis con mayor impacto en ODS](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2024 | [1er Premio al Mejor Trabajo de Estudiante — MAEB 2024 (CAEPIA 2024)](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Congreso Español de Metaheurísticas, Algoritmos Evolutivos y Bioinspirados |
         | 2024 | [Premio — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
         | 2023 | [3er puesto — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Jornadas Nacionales de Investigación en Ciberseguridad |

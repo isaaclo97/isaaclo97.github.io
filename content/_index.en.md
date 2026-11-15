@@ -161,9 +161,13 @@ sections:
       text: |
         | Year | Award | Organisation |
         |------|-------|-------------|
+        | 2026 | [1st Prize, Best Paper — MAEB 2026 (CAEPIA 2026)](/premios/2026%20-%20Certificado%20-%20Premio%20MAEB%202026%20-%20General.pdf) | XVII Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
+        | 2026 | [Special Mention for Best Master's Thesis in «AI and Data-Driven Solutions» — CAEPIA 2026 (supervisor of Lucas Martín García's thesis)](/premios/2026%20-%20Certificado%20-%20Premio%20CAEPIA%202026%20-%20TFM.pdf) | URJC-OGA Chair in Artificial Intelligence for Data Driven Solutions |
+        | 2026 | [1st Prize, Best Student Paper — MAEB 2026 (CAEPIA 2026)](/premios/2026%20-%20Certificado%20-%20Premio%20MAEB%202026%20-%20Estudiante.pdf) | XVII Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
         | 2026 | [Winner — XI JNIC 2026](/premios/2026%20-%20Certificado%20-%20Premio%20JNIC%202026.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2025 | [Extraordinary Doctoral Award](/premios/2025%20-%20Premio%20Extraordinario%20Tesis.pdf) | Universidad Rey Juan Carlos |
-        | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |        | 2024 | [Best Student Paper — MAEB 2024](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
+        | 2025 | [Thesis Award for Greatest Impact on SDGs](/premios/2025%20-%20Premio%20ODS%20Tesis.pdf) | Universidad Rey Juan Carlos |
+        | 2024 | [1st Prize, Best Student Paper — MAEB 2024 (CAEPIA 2024)](/premios/2024%20-%20Certificado%20-%20Premio%20MAEB%202024.pdf) | XV Spanish Congress on Metaheuristics, Evolutionary and Bio-inspired Algorithms |
         | 2024 | [Award — IX JNIC 2024](/premios/2024%20-%20Certificado%20-%20Premio%20JNIC%202024.pdf) | Spanish National Conference on Cybersecurity Research |
         | 2023 | Huawei Training Camp — Shenzhen, China | Huawei |
         | 2023 | [3rd place — VIII JNIC 2023](/premios/2023%20-%20Certificado%20-%20Premio%20JNIC%202023.pdf) | Spanish National Conference on Cybersecurity Research |

@@ -8,6 +8,8 @@ authors:
   - Abraham Duarte
 publication_types: ["2"]
 abstract: "This paper presents an efficient GRASP-based algorithm to address the Budget Influence Maximization Problem (BIMP), in which the goal is to select a seed set of users in a social network to maximize the spread of influence subject to a budget constraint."
+jcr:
+  indexed: true
 featured: true
 publication: "*Journal of Ambient Intelligence and Humanized Computing*"
 tags: ["Influence Maximization", "GRASP", "Metaheuristics", "Social Networks"]

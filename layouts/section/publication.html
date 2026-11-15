@@ -35,6 +35,14 @@
           </select>
         </div>
         <div class="col-auto">
+          <select class="pub-filters quality-select form-control form-control-sm" data-filter-group="quality">
+            <option value="*">{{ i18n "quality_filter" }}</option>
+            {{ range slice "q1" "q2" "q3" "q4" "pending" "sjr" }}
+            <option value=".quality-{{ . }}">{{ i18n (printf "quality_%s" .) }}</option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="col-auto">
           <select class="pub-filters form-control form-control-sm" data-filter-group="year">
             <option value="*">{{ i18n "date" }}</option>
             {{ $years_sorted := $.Scratch.GetSortedMapValues "years" }}
@@ -46,6 +54,21 @@
             {{ end }}
             {{ end }}
           </select>
+        </div>
+      </div>
+
+      {{/* Recuento de publicaciones visibles según los filtros */}}
+      <div class="pub-stats mb-4" id="pub-stats" aria-live="polite">
+        <div class="pub-stat pub-stat-total"><span class="pub-stat-num" data-count="*">0</span><span class="pub-stat-label">{{ i18n "stats_total" }}</span></div>
+        <div class="pub-stat-group">
+          <div class="pub-stat"><span class="pub-stat-num" data-count=".pubtype-2">0</span><span class="pub-stat-label">{{ i18n "stats_journals" }}</span></div>
+          <div class="pub-stat"><span class="pub-stat-num" data-count=".pubtype-1">0</span><span class="pub-stat-label">{{ i18n "stats_conferences" }}</span></div>
+          <div class="pub-stat"><span class="pub-stat-num" data-count=".pubtype-7">0</span><span class="pub-stat-label">{{ i18n "pub_7" }}</span></div>
+        </div>
+        <div class="pub-stat-group pub-stat-group-quality">
+          {{ range slice "q1" "q2" "q3" "q4" "pending" "sjr" }}
+          <button type="button" class="pub-stat pub-stat-q pub-q-{{ . }}" data-quality="{{ . }}"><span class="pub-stat-num" data-count=".quality-{{ . }}">0</span><span class="pub-stat-label">{{ i18n (printf "quality_%s" .) }}</span></button>
+          {{ end }}
         </div>
       </div>
 
@@ -61,13 +84,14 @@
         {{ end }}
 
         {{ $num := sub $total $i }}
+        {{ $qk := partial "pub_quality_key" $page }}
 
-        <div class="grid-sizer col-lg-12 isotope-item pubtype-{{ $.Scratch.Get "pubtype" }} year-{{ $page.Date.Format "2006" }}">
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-{{ $.Scratch.Get "pubtype" }}{{ with $qk }} quality-{{ . }}{{ end }} year-{{ $page.Date.Format "2006" }}">
           <div style="display:flex; gap:0.5rem; align-items:baseline;">
             <span class="pub-num" style="min-width:2rem; font-weight:600; color:#888; flex-shrink:0; text-align:right; padding-top:0.1rem;">{{ $num }}.</span>
             <div style="flex:1;">
               <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
-                <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+                {{ partial "pub_type_badge" $page }}{{ partial "pub_quality_badge" $page }}
                 <span class="article-metadata li-cite-author">
                   {{ partial "page_metadata_authors" $page }}
                 </span>
@@ -93,24 +117,81 @@
 
 <script>
 (function () {
-  function renumber() {
+  // Elementos visibles según Isotope (no depende de las animaciones).
+  function visibleItems(container) {
+    var iso = window.jQuery && jQuery(container).data('isotope');
+    if (iso && iso.filteredItems) return iso.filteredItems.map(function (it) { return it.element; });
+    return Array.from(container.querySelectorAll('.isotope-item'));
+  }
+
+  function refresh() {
     var container = document.getElementById('container-publications');
     if (!container) return;
-    var visible = Array.from(container.querySelectorAll('.isotope-item')).filter(function (el) {
-      return !el.classList.contains('isotope-hidden');
-    });
-    var total = visible.length;
-    visible.forEach(function (el, i) {
+    var els = visibleItems(container);
+    // Numeración descendente de los visibles.
+    els.forEach(function (el, i) {
       var span = el.querySelector('.pub-num');
-      if (span) span.textContent = (total - i) + '.';
+      if (span) span.textContent = (els.length - i) + '.';
     });
+    // Recuento por tipo y calidad.
+    document.querySelectorAll('#pub-stats [data-count]').forEach(function (span) {
+      var sel = span.getAttribute('data-count');
+      var n = sel === '*' ? els.length : els.filter(function (el) { return el.matches(sel); }).length;
+      span.textContent = n;
+      var box = span.closest('.pub-stat');
+      if (box) box.classList.toggle('is-zero', n === 0);
+    });
+    // Marca el cuartil activo.
+    var qs = document.querySelector('.quality-select');
+    document.querySelectorAll('#pub-stats [data-quality]').forEach(function (b) {
+      b.classList.toggle('is-active', !!qs && qs.value === '.quality-' + b.getAttribute('data-quality'));
+    });
+  }
+  function refreshSoon() { setTimeout(refresh, 60); }
+
+  function applyQuality(q) {
+    var sel = document.querySelector('.quality-select');
+    if (!sel) return;
+    var val = q ? '.quality-' + q : '*';
+    if (!sel.querySelector('option[value="' + val + '"]')) return;
+    sel.value = val;
+    jQuery(sel).trigger('change');
+    var url = new URL(window.location.href);
+    if (q) url.searchParams.set('quality', q); else url.searchParams.delete('quality');
+    history.replaceState(null, '', url);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     var container = document.getElementById('container-publications');
     if (!container) return;
-    $(container).on('arrangeComplete', renumber);
-    setTimeout(renumber, 800);
+
+    // Recalcular tras cualquier cambio de filtro o búsqueda.
+    document.querySelectorAll('.pub-filters').forEach(function (s) { s.addEventListener('change', refreshSoon); });
+    var search = document.querySelector('.filter-search');
+    if (search) search.addEventListener('keyup', function () { setTimeout(refresh, 200); });
+    jQuery(container).on('arrangeComplete layoutComplete', refresh);
+
+    // Etiquetas de calidad de cada publicación.
+    container.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-quality]');
+      if (!a) return;
+      e.preventDefault();
+      applyQuality(a.getAttribute('data-quality'));
+    });
+
+    // Botones del recuento: activan o quitan el filtro.
+    document.querySelectorAll('#pub-stats [data-quality]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var q = b.getAttribute('data-quality');
+        applyQuality(b.classList.contains('is-active') ? '' : q);
+      });
+    });
+
+    // Filtro desde la URL (?quality=q1), tras inicializar Isotope.
+    setTimeout(function () {
+      var q = new URLSearchParams(window.location.search).get('quality');
+      if (q) applyQuality(q); else refresh();
+    }, 300);
   });
 })();
 </script>

@@ -1,0 +1,13 @@
+{{/* Indicadores de calidad: JCR (cuartil, factor de impacto, posición) o SJR. Enlazan al filtro. */}}
+{{ $k := partial "pub_quality_key" . }}
+{{ $base := relLangURL "publication/" }}
+{{ with .Params.jcr }}
+  <a class="pub-quality-badge pub-q-{{ $k }}" href="{{ $base }}?quality={{ $k }}" data-quality="{{ $k }}" title="Journal Citation Reports">
+    <strong>{{ .quartile | default (i18n "quality_pending") }}</strong>
+    {{- with .impact_factor }}<span class="pub-quality-sep">·</span>{{ i18n "impact_factor_short" }} {{ . }}{{ end }}
+    {{- with .rank }}<span class="pub-quality-sep">·</span>{{ . }}{{ end }}
+  </a>
+{{ end }}
+{{ if and .Params.sjr (not .Params.jcr) }}
+  <a class="pub-quality-badge pub-q-sjr" href="{{ $base }}?quality=sjr" data-quality="sjr" title="SCImago Journal Rank"><strong>SJR</strong></a>
+{{ end }}

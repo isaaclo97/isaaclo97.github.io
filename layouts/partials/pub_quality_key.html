@@ -1,0 +1,5 @@
+{{- /* Devuelve la clave de calidad: q1..q4, pending, sjr o "" */ -}}
+{{- $k := "" -}}
+{{- with .Params.jcr -}}{{- $k = lower (.quartile | default "pending") -}}{{- end -}}
+{{- if and (not $k) .Params.sjr -}}{{- $k = "sjr" -}}{{- end -}}
+{{- return $k -}}

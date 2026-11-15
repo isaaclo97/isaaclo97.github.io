@@ -9,6 +9,7 @@ authors:
   - Estefanía Martín
 publication_types: ["1"]
 abstract: "BlueThinking is an inclusive educational application designed for iOS (iPad) that teaches programming concepts to young children (ages 6–12) while simultaneously developing executive functions through game-based learning. Built with HTML, CSS, JavaScript and SQLite."
+sjr: true
 featured: true
 publication: "*Interacción'19 — XX International Conference on Human-Computer Interaction. Donostia-San Sebastián, España*"
 doi: "10.1145/3335595.3335640"

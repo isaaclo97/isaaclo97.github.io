@@ -9,6 +9,8 @@ authors:
   - Óscar Cordón
 publication_types: ["2"]
 abstract: "This paper proposes a fast and effective GRASP (Greedy Randomized Adaptive Search Procedure) method for the Influence Maximization problem in social networks. The algorithm efficiently finds seed sets that maximize information spread under the Independent Cascade model."
+jcr:
+  indexed: true
 featured: true
 publication: "*Journal of Ambient Intelligence and Humanized Computing*"
 doi: "10.1007/s12652-021-03510-4"

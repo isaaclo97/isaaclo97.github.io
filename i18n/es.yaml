@@ -15,3 +15,36 @@
 
 - id: pub_7
   translation: Tesis
+
+- id: impact_factor_short
+  translation: FI
+
+- id: quality_filter
+  translation: Calidad
+
+- id: quality_q1
+  translation: JCR Q1
+
+- id: quality_q2
+  translation: JCR Q2
+
+- id: quality_q3
+  translation: JCR Q3
+
+- id: quality_q4
+  translation: JCR Q4
+
+- id: quality_pending
+  translation: JCR pendiente
+
+- id: quality_sjr
+  translation: Congreso SJR
+
+- id: stats_total
+  translation: Publicaciones
+
+- id: stats_journals
+  translation: Revistas
+
+- id: stats_conferences
+  translation: Congresos

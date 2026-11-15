@@ -8,6 +8,11 @@ authors:
   - Jesús Sánchez-Oro
 publication_types: ["2"]
 abstract: "We propose a Dynamic Path Relinking metaheuristic approach to solve the Target Set Selection problem, a combinatorial optimization problem that models influence propagation in social networks under a threshold model."
+jcr:
+  indexed: true
+  quartile: "Q1"
+  impact_factor: "7.20"
+  rank: "27/197"
 featured: true
 publication: "*Knowledge-Based Systems*"
 tags: ["Path Relinking", "Target Set Selection", "Metaheuristics", "Social Networks"]

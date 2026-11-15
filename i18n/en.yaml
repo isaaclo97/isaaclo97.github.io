@@ -30,3 +30,36 @@
 
 - id: present
   translation: Present
+
+- id: impact_factor_short
+  translation: IF
+
+- id: quality_filter
+  translation: Quality
+
+- id: quality_q1
+  translation: JCR Q1
+
+- id: quality_q2
+  translation: JCR Q2
+
+- id: quality_q3
+  translation: JCR Q3
+
+- id: quality_q4
+  translation: JCR Q4
+
+- id: quality_pending
+  translation: JCR pending
+
+- id: quality_sjr
+  translation: SJR conference
+
+- id: stats_total
+  translation: Publications
+
+- id: stats_journals
+  translation: Journals
+
+- id: stats_conferences
+  translation: Conferences

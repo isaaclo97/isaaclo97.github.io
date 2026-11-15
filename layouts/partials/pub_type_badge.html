@@ -1,0 +1,8 @@
+{{/* Etiqueta con el tipo de publicación (Revista / Congreso / Tesis / Libro). */}}
+{{ $t := "0" }}
+{{ with .Params.publication_types }}{{ $t = index . 0 | string }}{{ end }}
+{{ $icons := dict "1" "fa-users" "2" "fa-book-open" "6" "fa-book" "7" "fa-graduation-cap" }}
+{{ $label := i18n (printf "pub_%s" $t) }}
+{{ if $label }}
+<span class="pub-type-badge pub-type-{{ $t }}"><i class="fas {{ index $icons $t | default "fa-file-alt" }}" aria-hidden="true"></i>{{ $label }}</span>
+{{ end }}
